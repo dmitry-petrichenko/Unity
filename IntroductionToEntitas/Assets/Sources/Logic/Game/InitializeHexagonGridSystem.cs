@@ -18,6 +18,7 @@ public class InitializeHexagonGridSystem : IInitializeSystem
             {
                 var entity = _contexts.game.CreateEntity();
                 entity.AddPosition(new IntVector2(j, i));
+                entity.isHexagon = true;
             }
         }
         

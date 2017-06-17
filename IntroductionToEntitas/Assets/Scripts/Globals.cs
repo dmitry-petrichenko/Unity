@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Entitas.CodeGeneration.Attributes;
+using UnityEngine;
 
-[Game]
+[Game, Unique]
 public class Globals : ScriptableObject
 {
     public GameObject hexagonPrefab;

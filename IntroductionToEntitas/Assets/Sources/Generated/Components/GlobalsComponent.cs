@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-[Game]
+[Game][Entitas.CodeGeneration.Attributes.UniqueAttribute]
 public sealed partial class GlobalsComponent : Entitas.IComponent {
     public Globals value;
 }

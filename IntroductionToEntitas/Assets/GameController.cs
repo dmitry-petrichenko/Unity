@@ -12,7 +12,8 @@ public class GameController : MonoBehaviour
 	{
 	    var contexts = Contexts.sharedInstance;
 
-	   contexts.game.SetGlobals(globals);
+	    contexts.game.SetGlobals(globals);
+	    contexts.game.SetUiRoot(uiRoot);
 
 	    var entity = contexts.game.CreateEntity();
 	    
@@ -20,10 +21,16 @@ public class GameController : MonoBehaviour
         _systems.Initialize();
 	}
 
+    void Update()
+    {
+        _systems.Execute();
+    }
+
     private Systems CreateSystems(Contexts contexts)
     {
         return new Feature("Game")
             .Add(new InitializeHexagonGridSystem(contexts))
+            .Add(new AddHexagonViewSystem(contexts))
             ;
     }
 }

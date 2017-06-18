@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     {
         return new Feature("Game")
             .Add(new InitializeHexagonGridSystem(contexts))
+            .Add(new CheckClickInputSystem(contexts))
             .Add(new AddHexagonViewSystem(contexts))
             ;
     }

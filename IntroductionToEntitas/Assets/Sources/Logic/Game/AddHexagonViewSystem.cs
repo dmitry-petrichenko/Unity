@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AddHexagonViewSystem : ReactiveSystem<GameEntity>
 {
@@ -25,12 +26,29 @@ public class AddHexagonViewSystem : ReactiveSystem<GameEntity>
     {
         var hexagonPrefab = _contexts.game.globals.value.hexagonPrefab;
         var uiRoot = _contexts.game.uiRoot.value;
+        var globals = _contexts.game.globals.value;
 
         foreach (var entity in entities)
         {
             var hexagon = GameObject.Instantiate(hexagonPrefab, uiRoot);
-            var rectTransform = (RectTransform) hexagon.transform;
-            rectTransform.anchoredPosition = new Vector2(entity.position.value.x * 45f, entity.position.value.y * 45f);
+            var rectTransform = (RectTransform)hexagon.transform;
+            entity.AddView(hexagon);
+
+            var position = new Vector2(entity.position.value.x * globals.widthSpacing, entity.position.value.y * globals.heightSpacing);
+            var isEven = entity.position.value.x % 2 == 0;
+            var image = hexagon.GetComponent<Image>();
+            
+            if (isEven)
+            {
+                image.color = globals.evenColor;
+            }
+            else
+            {
+                position.y += globals.heightOffset;
+                image.color = globals.oddColor;
+            }
+        
+            rectTransform.anchoredPosition = position;
         }
 
 

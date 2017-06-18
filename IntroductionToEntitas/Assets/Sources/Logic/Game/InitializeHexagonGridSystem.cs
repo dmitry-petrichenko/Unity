@@ -12,9 +12,9 @@ public class InitializeHexagonGridSystem : IInitializeSystem
 
     public void Initialize()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = -3; i < 3; i++)
         {
-            for (int j = 0; j < 14; j++)
+            for (int j = -7; j < 7; j++)
             {
                 var entity = _contexts.game.CreateEntity();
                 entity.AddPosition(new IntVector2(j, i));

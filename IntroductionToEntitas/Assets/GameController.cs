@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
             .Add(new InitializeHexagonGridSystem(contexts))
             .Add(new CheckClickInputSystem(contexts))
             .Add(new AddHexagonViewSystem(contexts))
+		    .Add(new DisplayHexagonTypeSystem(contexts))
             ;
     }
 }

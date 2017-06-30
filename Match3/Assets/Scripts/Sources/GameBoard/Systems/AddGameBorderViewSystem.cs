@@ -18,7 +18,7 @@ public class AddGameBorderViewSystem : ReactiveSystem<GameEntity>
     
     protected override bool Filter(GameEntity entity)
     {
-        return entity.hasPosition;
+        return entity.hasPosition && entity.isGameBoardSquare;
     }
     
     protected override void Execute(List<GameEntity> entities)
@@ -26,17 +26,23 @@ public class AddGameBorderViewSystem : ReactiveSystem<GameEntity>
         var backgroundSquarePrefab = _contexts.gameState.globalSettings.value.backgroundSquarePrefab;
         var uiRoot = _contexts.game.uiRoot.value;
         var globalSettings = _contexts.gameState.globalSettings.value;
+        var addViewFlag = true;
         
         foreach (var entity in entities)
         {
-            var square = GameObject.Instantiate(backgroundSquarePrefab, uiRoot);
-            var rectTransform = (RectTransform) square.transform;
-            entity.AddView(square);
-            
-            var position = new Vector2(entity.position.value.x * globalSettings.widthSpacing,
-                entity.position.value.y * globalSettings.heightSpacing);
+            if (addViewFlag)
+            {
+                var square = GameObject.Instantiate(backgroundSquarePrefab, uiRoot);
+                var rectTransform = (RectTransform) square.transform;
 
-            rectTransform.anchoredPosition = position;
+                entity.AddView(square);
+
+                var position = new Vector2(entity.position.value.x * globalSettings.widthSpacing,
+                    entity.position.value.y * globalSettings.heightSpacing);
+
+                rectTransform.anchoredPosition = position;
+            }
+            addViewFlag = !addViewFlag;
         }
     }
 }

@@ -8,19 +8,28 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Position = 0;
-    public const int UiRoot = 1;
-    public const int View = 2;
+    public const int GameBoardSquare = 0;
+    public const int GameTile = 1;
+    public const int GameTileType = 2;
+    public const int Position = 3;
+    public const int UiRoot = 4;
+    public const int View = 5;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 6;
 
     public static readonly string[] componentNames = {
+        "GameBoardSquare",
+        "GameTile",
+        "GameTileType",
         "Position",
         "UiRoot",
         "View"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(GameBoardSquare),
+        typeof(GameTileComponent),
+        typeof(GameTileTypeComponent),
         typeof(PositionComponent),
         typeof(UiRootComponent),
         typeof(ViewComponent)

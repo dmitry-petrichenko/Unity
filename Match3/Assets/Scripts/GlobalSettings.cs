@@ -10,4 +10,5 @@ public class GlobalSettings : ScriptableObject
      public int heightSpacing;
 
      public GameObject backgroundSquarePrefab;
+     public GameObject tileViewPrefab;
 }

@@ -22,16 +22,19 @@ public class GameController : MonoBehaviour
     }
 
     private void Update()
-    {
+    { 
         _systems.Execute();
     }
 
     private Systems CreateSystems(Contexts contexts)
     {
         return new Feature("Game")
-                .Add(new InitializeSystem(contexts))
                 .Add(new InitializeGameBoardSystem(contexts))
                 .Add(new AddGameBorderViewSystem(contexts))
+                
+                .Add(new InitializeTilesSystem(contexts))
+                .Add(new AddTilesViewSystem(contexts))
+                .Add(new DisplayTileTypeSystem(contexts))
             ;
     }
 }

@@ -32,16 +32,9 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
             var tile = GameObject.Instantiate(tileViewPrefab, uiRoot);
             var rectTransform = (RectTransform) tile.transform;
 
-            var rectTransform1 = uiRoot.GetComponent<RectTransform>();
-            //Debug.Log(rectTransform1.rect.width);
-            var temp = rectTransform1.rect.width / globalSettings.width;
-
-            var scaleW = temp / globalSettings.widthSpacing;
-            Debug.Log(rectTransform1.rect.width + " " + scaleW + " " +temp.ToString());
-            
             entity.AddView(tile);
 
-            var position = new Vector2(entity.position.value.x * globalSettings.widthSpacing * scaleW,
+            var position = new Vector2(entity.position.value.x * globalSettings.widthSpacing,
                 entity.position.value.y * globalSettings.heightSpacing);
 
             rectTransform.anchoredPosition = position;

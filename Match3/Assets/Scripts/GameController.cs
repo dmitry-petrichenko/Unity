@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     private Systems _systems;
     private Contexts _contexts;
 
+    private bool InitializeGlobalSettings;
+
     private void Awake()
     {
         _contexts = Contexts.sharedInstance;
@@ -22,7 +24,11 @@ public class GameController : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
+        if (!InitializeGlobalSettings)
+        {
+            _contexts.gameState.globalSettings.value.Initialize();
+        }
         _systems.Execute();
     }
 

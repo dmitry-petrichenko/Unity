@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AddGameBorderViewSystem : ReactiveSystem<GameEntity>
 {
@@ -34,6 +35,9 @@ public class AddGameBorderViewSystem : ReactiveSystem<GameEntity>
             {
                 var square = GameObject.Instantiate(backgroundSquarePrefab, uiRoot);
                 var rectTransform = (RectTransform) square.transform;
+                
+                var image = square.GetComponent<Image>();
+                image.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing, globalSettings.heightSpacing);
 
                 entity.AddView(square);
 

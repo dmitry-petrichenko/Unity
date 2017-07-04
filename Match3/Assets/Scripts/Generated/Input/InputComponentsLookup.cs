@@ -6,20 +6,17 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public static class GameStateComponentsLookup {
+public static class InputComponentsLookup {
 
-    public const int GlobalSettings = 0;
-    public const int Score = 1;
+    public const int Input = 0;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 1;
 
     public static readonly string[] componentNames = {
-        "GlobalSettings",
-        "Score"
+        "Input"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(GlobalSettingsComponent),
-        typeof(ScoreComponent)
+        typeof(InputComponent)
     };
 }

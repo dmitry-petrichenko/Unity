@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.CodeDom.Compiler;
+using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu]
 public class GlobalSettings : ScriptableObject
@@ -19,15 +21,17 @@ public class GlobalSettings : ScriptableObject
           
           var contexts = Contexts.sharedInstance;
           var uiRoot = contexts.game.uiRoot.value;
+          var aspectRatioFitter = uiRoot.GetComponent<AspectRatioFitter>();
 
+          aspectRatioFitter.aspectRatio = (float)width / (float)height;
+               
           var rectTransform = uiRoot.GetComponent<RectTransform>();
-          
-          var temp = rectTransform.rect.width / width;
-          var scale = temp / startWidth;
-          widthSpacing = (int)(scale * startWidth);
 
-          temp = rectTransform.rect.height / height;
-          scale = temp / startHeight;
-          heightSpacing = (int)(scale * startHeight);
+          widthSpacing = (int)(rectTransform.rect.width / width);
+
+          heightSpacing = (int) (rectTransform.rect.height / height);
+
+          //Debug.Log(widthSpacing);
+          //Debug.Log(aspectRatioFitter.aspectRatio + " " + rectTransform.rect.width + " " + widthSpacing);
      }
 }

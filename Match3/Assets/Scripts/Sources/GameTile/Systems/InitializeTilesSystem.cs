@@ -32,7 +32,7 @@ public class InitializeTilesSystem : IInitializeSystem
             for (int j = startPositionY; j < endPositionY; j++)
             {
                 var entity = context.CreateEntity();
-                entity.AddPosition(new IntVector2D(j, i));
+                entity.AddPosition(new IntVector2D(i, j));
                 entity.isGameTile = true;
                 entity.AddGameTileType(_tipes[UnityEngine.Random.Range(0, _tipes.Length)]);
             }

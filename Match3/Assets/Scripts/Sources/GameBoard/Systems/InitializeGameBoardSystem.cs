@@ -23,7 +23,7 @@ public class InitializeGameBoardSystem : IInitializeSystem
             for (int j = startPositionY; j < endPositionY; j++)
             {
                 var entity = context.CreateEntity();
-                entity.AddPosition(new IntVector2D(j, i));
+                entity.AddPosition(new IntVector2D(i, j));
                 entity.isGameBoardSquare = true;
             }
         }

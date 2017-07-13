@@ -40,14 +40,20 @@ public class GameController : MonoBehaviour
                 
                 .Add(new InitializeTilesSystem(contexts))
                 .Add(new AddTilesViewSystem(contexts))
+
                 .Add(new DisplayTileTypeSystem(contexts))
             
                 .Add(new ScoreSystem(contexts))
                 .Add(new EmitInputSystem(contexts))
                 .Add(new ProcessInputSystem(contexts))
-                
+
                 .Add(new RemoveViewSystem(contexts))
                 .Add(new DestroySystem(contexts))
+        
+                .Add(new AnimatePositionSystem(contexts))
+            
+                .Add(new FallSystem(contexts))
+            
             ;
     }
 }

@@ -22,16 +22,12 @@ public class EmitInputSystem : IExecuteSystem, ICleanupSystem
 
         if (input)
         {
-            Debug.Log(Input.mousePosition);
-
             var position = Input.mousePosition - _uiRoot.position;
             var x = (int)Mathf.Round(position.x / _globalSettings.widthSpacing);
             var y = (int)Mathf.Round(position.y / _globalSettings.heightSpacing);
 
             _contexts.CreateEntity()
                 .AddInput(x, y);
-            
-            Debug.Log(x + " " + y);
         }
     }
 

@@ -14,7 +14,7 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
     
     protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
-        return context.CreateCollector(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile));
+        return context.CreateCollector(GameMatcher.AllOf(GameMatcher.GameTile));
     }
     
     protected override bool Filter(GameEntity entity)
@@ -27,7 +27,6 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
         var tileViewPrefab = _contexts.gameState.globalSettings.value.tileViewPrefab;
         var uiRoot = _contexts.game.uiRoot.value;
         var globalSettings = _contexts.gameState.globalSettings.value;
-        
         foreach (var entity in entities)
         {
             var tile = GameObject.Instantiate(tileViewPrefab, uiRoot);

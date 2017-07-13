@@ -31,8 +31,6 @@ public class RemoveViewSystem : ReactiveSystem<GameEntity>
     }
     
     void destroyView(ViewComponent viewComponent) {
-        Debug.Log(viewComponent);
-        
         viewComponent.value.DestroyGameObject();//.enabled = false;
         
     }

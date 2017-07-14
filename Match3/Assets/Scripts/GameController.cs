@@ -1,5 +1,6 @@
 ﻿using Entitas;
 using UnityEngine;
+using UnityEngine.VR.WSA.Sharing;
 
 public class GameController : MonoBehaviour
 {
@@ -21,14 +22,16 @@ public class GameController : MonoBehaviour
 
         _systems = CreateSystems(_contexts);
         _systems.Initialize();
+        
+    }
+
+    private void Start()
+    {
+        _contexts.gameState.globalSettings.value.Initialize();
     }
 
     private void Update()
     {
-        if (!InitializeGlobalSettings)
-        {
-            _contexts.gameState.globalSettings.value.Initialize();
-        }
         _systems.Execute();
     }
 

@@ -1,3 +1,4 @@
+using System;
 using Entitas;
 using UnityEngine;
 
@@ -6,7 +7,9 @@ public static class GameBoardLogic {
     public static int GetNextEmptyRow(Contexts contexts, IntVector2D position) {
         var globalSettings = contexts.gameState.globalSettings.value;
         position.y -= 1;
-        while(position.y >= (-globalSettings.height / 2) && GetEntitiesWithPosition(contexts, position)== null) {
+        if(position.x == -1 && position.y == 1)
+             Debug.Log("y " + position.y + "x " + position.x);
+        while(position.y >= globalSettings.startPositionY && GetEntitiesWithPosition(contexts, position)== null) {
             position.y -= 1;
         }
 
@@ -22,5 +25,17 @@ public static class GameBoardLogic {
             }
         }
         return null;
+    }
+
+    public static void DoForEach(Contexts contexts, Action<int, int> execute)
+    {
+        var globalSettings = contexts.gameState.globalSettings.value;
+        for (int column = globalSettings.startPositionX; column < globalSettings.endPositionX; column++)
+        {
+            for (int row = globalSettings.startPositionY; row < globalSettings.endPositionY; row++)
+            {
+                execute(column, row);
+            }
+        }
     }
 }

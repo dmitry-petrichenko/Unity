@@ -3,7 +3,7 @@ using Entitas;
 
 public class InitializeTilesSystem : IInitializeSystem
 {
-    static readonly TileType[] _tipes = {
+    public static readonly TileType[] _tipes = {  //todo
         TileType.Red,
         TileType.Green,
         TileType.Blue,

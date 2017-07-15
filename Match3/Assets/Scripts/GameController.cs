@@ -49,6 +49,8 @@ public class GameController : MonoBehaviour
                 .Add(new ScoreSystem(contexts))
                 .Add(new EmitInputSystem(contexts))
                 .Add(new ProcessInputSystem(contexts))
+                .Add(new ProcessSelectionSystem(contexts))
+                .Add(new DisplaySelectionViewSystem(contexts))
 
                 .Add(new RemoveViewSystem(contexts))
                 .Add(new DestroySystem(contexts))

@@ -25,11 +25,11 @@ public class ProcessInputSystem : ReactiveSystem<InputEntity>
     {
         var inputEntity = entities.SingleEntity();
         var input = inputEntity.input;
-        
+
         foreach (var e in _contexts.game.GetEntities(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile))) {
             if (input.x == e.position.value.x && input.y == e.position.value.y)
             {
-                e.isDestroyed = true;
+                e.isSelected = true;
             }
         }
     }

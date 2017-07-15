@@ -6,8 +6,10 @@ public class TileViewBehaviour : MonoBehaviour {
 	public Sprite greenSprite;
 	public Sprite yellowSprite;
 	public Sprite blueSprite;
+	public Sprite selectedSprite;
 
 	public Image image;
+	public Image selected;
 
 	public void SetType(TileType tileType)
 	{
@@ -36,5 +38,10 @@ public class TileViewBehaviour : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	public void SetSelected(bool value)
+	{
+		selected.enabled = value;
 	}
 }

@@ -38,6 +38,7 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
 
             var tileViewBehaviour = tile.GetComponent<TileViewBehaviour>();
             tileViewBehaviour.image.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.65f, globalSettings.heightSpacing * 0.65f);
+            tileViewBehaviour.selected.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.7f, globalSettings.heightSpacing * 0.7f);
             
             entity.AddView(tile);
 

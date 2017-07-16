@@ -24,7 +24,13 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override void Execute(List<GameEntity> entities) {
-        Debug.Log(entities.Count + " Count of selected");
+        /*
+        foreach (var entity in entities)
+        {
+            entity.isDestroyed = true;
+        }
+        */
+        
         //_selectedEntities.Add(entities[0]);
 
         foreach (var entity in entities)
@@ -37,8 +43,8 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
             var neibhourEntity =  GetSelectedNeighbourOfPosition(_selectedEntities[1].position.value);
             if (neibhourEntity != null)
             {
-                Debug.Log("has neibh");
-                //ReplaceEntities();
+                ReplaceEntities();
+                Debug.Log("ReplaceEntities");
                 ResetSelectedEntities();
             }
             else
@@ -53,7 +59,11 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
 
     private void ReplaceEntities()
     {
-        
+        var entity1 = _selectedEntities[0];
+        var entity2 = _selectedEntities[1];
+        var tempPos = entity1.position.value;
+        entity1.ReplacePosition(entity2.position.value);
+        entity2.ReplacePosition(tempPos);
     }
     
     private void ResetSelectedEntities()

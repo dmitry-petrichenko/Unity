@@ -22,6 +22,7 @@ public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override void Execute(List<GameEntity> entities) {
+        Debug.Log("Animate position");
         var globalSettings = _contexts.gameState.globalSettings.value;
         foreach (var e in entities) {
             var pos = e.position;

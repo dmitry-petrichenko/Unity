@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Entitas;
 using UnityEditorInternal;
+using UnityEngine;
 
 public sealed class FallSystem : ReactiveSystem<GameEntity> {
 
@@ -27,11 +28,25 @@ public sealed class FallSystem : ReactiveSystem<GameEntity> {
     void Action(int column, int row)
     {
         var position = new IntVector2D(column, row);
+        /*
+        var entities = _context.GetEntitiesWithPosition(position);
+        Debug.Log(entities);
+        foreach (var entity in entities)
+        {
+            if (entity != null)
+            {
+                moveDown(entity, position);
+            } 
+        }
+        */
+        
         var entity = GameBoardLogic.GetEntitiesWithPosition(_contexts, position);
         if (entity != null)
         {
             moveDown(entity, position);
         } 
+        
+
     }
 
     void moveDown(GameEntity e, IntVector2D position) {

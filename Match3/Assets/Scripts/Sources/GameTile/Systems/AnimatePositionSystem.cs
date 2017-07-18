@@ -27,22 +27,20 @@ public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>
 
     protected override void Execute(List<GameEntity> entities)
     {
-        Debug.Log("Execute AnimatePositionSystem");
+        Debug.Log("Execute AnimatePositionSystem" + entities.Count);
+        
         var globalSettings = _contexts.gameState.globalSettings.value;
         Tweener tweener = null;
         foreach (var e in entities)
         {
             var pos = e.position;
-            var isTopRow = pos.value.y == globalSettings.height - 1;
-            if (isTopRow)
-            {
-                e.view.value.transform.localPosition = new Vector3(pos.value.x, pos.value.y + 1);
-            }
+
             var rectTransform = (RectTransform) e.view.value.transform;
             var position = new Vector2(pos.value.x * globalSettings.widthSpacing,
                 pos.value.y * globalSettings.heightSpacing);
 
-            tweener = rectTransform.DOAnchorPos(position, 2.0f).SetEase(Ease.Linear);
+            if (rectTransform.anchoredPosition != position)
+                tweener = rectTransform.DOAnchorPos(position, 0.1f).SetEase(Ease.Linear);
         }
 
         if (tweener != null)

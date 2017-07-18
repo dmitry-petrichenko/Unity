@@ -38,29 +38,33 @@ public class GameController : MonoBehaviour
     private Systems CreateSystems(Contexts contexts)
     {
         return new Feature("Game")
+                // iniialize
                 .Add(new InitializeGameBoardSystem(contexts))
                 .Add(new AddGameBorderViewSystem(contexts))
-                
                 .Add(new InitializeTilesSystem(contexts))
                 .Add(new AddTilesViewSystem(contexts))
-
                 .Add(new DisplayTileTypeSystem(contexts))
-            
+                
+                // input selection
                 .Add(new ScoreSystem(contexts))
                 .Add(new EmitInputSystem(contexts))
                 .Add(new ProcessInputSystem(contexts))
                 .Add(new ProcessSelectionSystem(contexts))
-                .Add(new DisplaySelectionViewSystem(contexts))
+                //.Add(new DisplaySelectionViewSystem(contexts))
                 
-                .Add(new ProcessMatchedSystem(contexts))
+                // process
+                .Add(new AnimatePositionSystem(contexts))
                 
+                //.Add(new ProcessMatchedSystem(contexts))
+                // destroy everything
                 .Add(new RemoveViewSystem(contexts))
                 .Add(new DestroySystem(contexts))
-        
-                .Add(new AnimatePositionSystem(contexts))
-            
-                .Add(new FillSystem(contexts))
+                
                 .Add(new FallSystem(contexts))
+                .Add(new FillSystem(contexts))
+                
+            
+
             ;
     }
 }

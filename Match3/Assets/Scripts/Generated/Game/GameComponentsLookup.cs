@@ -18,10 +18,11 @@ public static class GameComponentsLookup {
     public const int GameTileType = 7;
     public const int Position = 8;
     public const int Selected = 9;
-    public const int UiRoot = 10;
-    public const int View = 11;
+    public const int StartFallSystem = 10;
+    public const int UiRoot = 11;
+    public const int View = 12;
 
-    public const int TotalComponents = 12;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
         "AllAnimationComplete",
@@ -34,6 +35,7 @@ public static class GameComponentsLookup {
         "GameTileType",
         "Position",
         "Selected",
+        "StartFallSystem",
         "UiRoot",
         "View"
     };
@@ -49,6 +51,7 @@ public static class GameComponentsLookup {
         typeof(GameTileTypeComponent),
         typeof(PositionComponent),
         typeof(SelectedComponent),
+        typeof(StartFallSystemComponent),
         typeof(UiRootComponent),
         typeof(ViewComponent)
     };

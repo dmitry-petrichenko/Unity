@@ -8,7 +8,7 @@ public static class GameBoardLogic {
         var globalSettings = contexts.gameState.globalSettings.value;
         position.y -= 1;
         if (position.y >= globalSettings.startPositionY && GetEntitiesWithPosition(contexts, position)== null) {
-            position.y -= 1;
+           return position.y;
         }
 
         return position.y + 1;

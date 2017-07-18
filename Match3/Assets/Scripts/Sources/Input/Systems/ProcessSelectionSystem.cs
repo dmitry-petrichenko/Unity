@@ -16,14 +16,16 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context) {
-        return context.CreateCollector(GameMatcher.Selected);
+        return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.Selected,GameMatcher.CompleteClearMatched));
     }
 
     protected override bool Filter(GameEntity entity) {
         return true;
     }
 
-    protected override void Execute(List<GameEntity> entities) {
+    protected override void Execute(List<GameEntity> entities)
+    {
+        Debug.Log("Execute ProcessSelectionSystem");
         /*
         foreach (var entity in entities)
         {
@@ -32,6 +34,13 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
         */
         
         //_selectedEntities.Add(entities[0]);
+        
+        var inputEntity = entities.SingleEntity();
+        if (inputEntity.isCompleteClearMatched)
+        {
+            _context.DestroyEntity(inputEntity);
+            return; 
+        }
 
         foreach (var entity in entities)
         {

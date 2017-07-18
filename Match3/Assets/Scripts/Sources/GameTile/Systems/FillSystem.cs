@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Entitas;
+using UnityEngine;
 
 public sealed class FillSystem : ReactiveSystem<GameEntity> {
 
@@ -13,7 +14,7 @@ public sealed class FillSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context) {
-        return context.CreateCollector(GameMatcher.GameTile, GroupEvent.Removed);
+        return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.AnimationComplete, GameMatcher.AllAnimationComplete));
     }
 
     protected override bool Filter(GameEntity entity) {
@@ -21,6 +22,7 @@ public sealed class FillSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override void Execute(List<GameEntity> entities) {
+        Debug.Log("Execute FILL_System");
         var globalSettings = _contexts.gameState.globalSettings.value;
         
         for (int column = globalSettings.startPositionX; column < globalSettings.endPositionX; column++) {

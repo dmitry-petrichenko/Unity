@@ -8,21 +8,33 @@ public sealed class FallSystem : ReactiveSystem<GameEntity> {
     readonly GameContext _context;
     readonly Contexts _contexts;
 
+    private bool _fallExecuted;
+
     public FallSystem(Contexts contexts) : base(contexts.game) {
         _context = contexts.game;
         _contexts = contexts;
     }
 
     protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context) {
-        return context.CreateCollector(GameMatcher.GameTile, GroupEvent.Removed);
+        return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.AnimationComplete, GameMatcher.Destroyed));
     }
 
     protected override bool Filter(GameEntity entity) {
         return true;
     }
 
-    protected override void Execute(List<GameEntity> entities) {
-        GameBoardLogic.DoForEach(_contexts, Action);   
+    protected override void Execute(List<GameEntity> entities)
+    {
+        _fallExecuted = false;
+        Debug.Log("Execute FallSystem");
+        GameBoardLogic.DoForEach(_contexts, Action);
+
+        if (!_fallExecuted)
+        {
+            Debug.Log("No fall executed");
+            var completeEntity = _context.CreateEntity();
+            completeEntity.isAllAnimationComplete = true;
+        }
     }
     
     void Action(int column, int row)
@@ -53,6 +65,7 @@ public sealed class FallSystem : ReactiveSystem<GameEntity> {
         var nextRowPos = GameBoardLogic.GetNextEmptyRow(_contexts, position);
         if (nextRowPos != position.y)
         {
+            _fallExecuted = true;
             e.ReplacePosition(new IntVector2D(position.x, nextRowPos));
         }
     }

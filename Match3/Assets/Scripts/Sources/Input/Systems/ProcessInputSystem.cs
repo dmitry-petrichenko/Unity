@@ -32,5 +32,7 @@ public class ProcessInputSystem : ReactiveSystem<InputEntity>
                 e.isSelected = true;
             }
         }
+        
+        _contexts.input.DestroyEntity(inputEntity);
     }
 }

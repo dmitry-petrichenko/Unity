@@ -7,7 +7,7 @@ public static class GameBoardLogic {
     public static int GetNextEmptyRow(Contexts contexts, IntVector2D position) {
         var globalSettings = contexts.gameState.globalSettings.value;
         position.y -= 1;
-        while(position.y >= globalSettings.startPositionY && GetEntitiesWithPosition(contexts, position)== null) {
+        if (position.y >= globalSettings.startPositionY && GetEntitiesWithPosition(contexts, position)== null) {
             position.y -= 1;
         }
 
@@ -39,10 +39,12 @@ public static class GameBoardLogic {
 
     public static GameEntity CreateRandomeTile(Contexts contexts, int x, int y)
     {
+        var globalSettings = contexts.gameState.globalSettings.value;
         var context = contexts.game;
         var entity = context.CreateEntity();
-        entity.AddPosition(new IntVector2D(x, y));
+        //entity.AddPosition(new IntVector2D(x,  globalSettings.endPositionY));
         entity.isGameTile = true;
+        entity.ReplacePosition(new IntVector2D(x, y));
         entity.AddGameTileType(InitializeTilesSystem._tipes[UnityEngine.Random.Range(0, InitializeTilesSystem._tipes.Length)]);
         return entity;
     }

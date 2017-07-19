@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using DG.Tweening;
 using Entitas;
 using UnityEngine;
 
-public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>
+public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>, ICleanupSystem
 {
     readonly GameContext _context;
     readonly Contexts _contexts;
@@ -27,8 +26,6 @@ public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>
 
     protected override void Execute(List<GameEntity> entities)
     {
-        Debug.Log("Execute AnimatePositionSystem" + entities.Count);
-        
         var globalSettings = _contexts.gameState.globalSettings.value;
         Tweener tweener = null;
         foreach (var e in entities)
@@ -49,8 +46,16 @@ public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>
 
     void CompleteHandler()
     {
-        Debug.Log("anim co");
         var completeEntity = _context.CreateEntity();
         completeEntity.isAnimationComplete = true;
+    }
+
+    public void Cleanup()
+    {
+        var animationCompletes = _context.GetGroup(GameMatcher.AnimationComplete);
+        foreach (var e in animationCompletes.GetEntities())
+        {
+            _context.DestroyEntity(e);
+        }
     }
 }

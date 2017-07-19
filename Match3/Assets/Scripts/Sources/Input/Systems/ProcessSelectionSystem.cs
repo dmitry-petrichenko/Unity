@@ -4,13 +4,11 @@ using UnityEngine;
 
 public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
 
-    readonly GameContext _context;
     readonly Contexts _contexts;
 
     private List<GameEntity> _selectedEntities;
 
     public ProcessSelectionSystem(Contexts contexts) : base(contexts.game) {
-        _context = contexts.game;
         _contexts = contexts;
         _selectedEntities = new List<GameEntity>();
     }
@@ -25,21 +23,6 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
 
     protected override void Execute(List<GameEntity> entities)
     {
-        //Debug.Log("Execute ProcessSelectionSystem");
-        
-        foreach (var entity in entities)
-        {
-            entity.isDestroyed = true;
-        }
-        
-        /*
-        var inputEntity = entities.SingleEntity();
-        if (inputEntity.isCompleteClearMatched)
-        {
-            _context.DestroyEntity(inputEntity);
-            return; 
-        }
-
         foreach (var entity in entities)
         {
             _selectedEntities.Add(entity);
@@ -51,17 +34,15 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
             if (neibhourEntity != null)
             {
                 ReplaceEntities();
-                Debug.Log("ReplaceEntities");
                 ResetSelectedEntities();
             }
             else
             {
-                Debug.Log("no neibh");
                 ResetSelectedEntities();
             }
             
         }
-*/
+
     }
 
     private void ReplaceEntities()

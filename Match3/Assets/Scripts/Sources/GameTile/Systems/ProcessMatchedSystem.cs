@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
+using System.Linq.Expressions;
+
 
 public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
 {
@@ -35,26 +37,9 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
     
     protected override void Execute(List<GameEntity> entities)
     {
-        Debug.Log("Execute ProcessMatchedSystem");
-/*
-        foreach (var entity in entities)
-        {
-            if (entity.isAllAnimationComplete)
-            {
-                _context.DestroyEntity(entity);
-                Debug.Log("if (entity.isAnimationComplete)");
-                if (entitiesToDestroy.Count > 0)
-                {
-                    Debug.Log("anim complete");
-                    
+        Debug.Log("Execute ProcessMatchedSystem" + entities.Count);
 
-                    
-                }
-            }   
-        }
-        */
         entitiesToDestroy.Clear();
-        
         var globalSettings = _contexts.gameState.globalSettings.value;
         for (int column = globalSettings.startPositionX; column < globalSettings.endPositionX; column++)
         {
@@ -73,13 +58,27 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
             }
             previousType = null;
         }
-        
+
+        AddEntitiesToDestroy();
+            
         foreach (var entityToDestroy in entitiesToDestroy)
         {
             entityToDestroy.isDestroyed = true;
         }
         entitiesToDestroy.Clear();
 
+    }
+
+    void AddEntitiesToDestroy()
+    {
+        if (sameTypeEntities.Count >= 3)
+        {
+            foreach (var sameTypeEntity in sameTypeEntities)
+            {
+                entitiesToDestroy.Add(sameTypeEntity);
+            }
+        }
+        sameTypeEntities.Clear();
     }
 
     void Action(int x, int y)
@@ -90,14 +89,7 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
         {
             if (previousType != entity.gameTileType.value)
             {
-                if (sameTypeEntities.Count >= 3)
-                {
-                    foreach (var sameTypeEntity in sameTypeEntities)
-                    {
-                        entitiesToDestroy.Add(sameTypeEntity);
-                    }
-                }
-                sameTypeEntities.Clear();
+                AddEntitiesToDestroy();
                 sameTypeEntities.Add(entity);
                 previousType = entity.gameTileType.value;
             }

@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Entitas;
 using UnityEngine;
 
-public sealed class FillSystem : ReactiveSystem<GameEntity> {
+public sealed class FillSystem : ReactiveSystem<GameEntity>, ICleanupSystem {
 
     readonly GameContext _context;
     readonly Contexts _contexts;
@@ -15,7 +15,7 @@ public sealed class FillSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context) {
-        return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.AnimationComplete));
+        return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.AnimationComplete, GameMatcher.AllAnimationComplete));
     }
 
     protected override bool Filter(GameEntity entity) {
@@ -23,7 +23,6 @@ public sealed class FillSystem : ReactiveSystem<GameEntity> {
     }
 
     protected override void Execute(List<GameEntity> entities) {
-        Debug.Log("Execute FILL_System");
         _tilesCreated = false;
         var globalSettings = _contexts.gameState.globalSettings.value;
         
@@ -34,8 +33,7 @@ public sealed class FillSystem : ReactiveSystem<GameEntity> {
             if (nextRowPos != globalSettings.endPositionY)
             {
                 _tilesCreated = true;
-                Debug.Log("CreateRandomeTile(" + column + " " + globalSettings.endPositionY);
-                GameBoardLogic.CreateRandomeTile(_contexts, column, globalSettings.endPositionY);
+                _context.CreateRandomeTile(column, globalSettings.endPositionY);
             }
         }
 
@@ -43,7 +41,17 @@ public sealed class FillSystem : ReactiveSystem<GameEntity> {
         {
             var completeEntity = _context.CreateEntity();
             completeEntity.isStartFallSystem = true;
+            //Debug.Log("Execute FILL_System");
         }
 
+    }
+    
+    public void Cleanup()
+    {
+        var startFalEntities = _context.GetGroup(GameMatcher.StartFallSystem);
+        foreach (var e in startFalEntities.GetEntities())
+        {
+            _context.DestroyEntity(e);
+        }
     }
 }

@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         _systems.Execute();
+        _systems.Cleanup();
     }
 
     private Systems CreateSystems(Contexts contexts)
@@ -50,19 +51,19 @@ public class GameController : MonoBehaviour
                 .Add(new EmitInputSystem(contexts))
                 .Add(new ProcessInputSystem(contexts))
                 .Add(new ProcessSelectionSystem(contexts))
-                //.Add(new DisplaySelectionViewSystem(contexts))
+                .Add(new DisplaySelectionViewSystem(contexts))
                 
                 // process
                 .Add(new AnimatePositionSystem(contexts))
                 
-                //.Add(new ProcessMatchedSystem(contexts))
-                // destroy everything
-                .Add(new RemoveViewSystem(contexts))
-                .Add(new DestroySystem(contexts))
+                .Add(new ProcessMatchedSystem(contexts))
                 
                 .Add(new FallSystem(contexts))
                 .Add(new FillSystem(contexts))
                 
+                // destroy everything
+                .Add(new RemoveViewSystem(contexts))
+                .Add(new DestroySystem(contexts))
             
 
             ;

@@ -3,7 +3,7 @@ using Entitas;
 using UnityEditorInternal;
 using UnityEngine;
 
-public sealed class FallSystem : ReactiveSystem<GameEntity> {
+public sealed class FallSystem : ReactiveSystem<GameEntity>, ICleanupSystem {
 
     readonly GameContext _context;
     readonly Contexts _contexts;
@@ -48,7 +48,7 @@ public sealed class FallSystem : ReactiveSystem<GameEntity> {
     {
         var position = new IntVector2D(column, row);
         var entity = GameBoardLogic.GetEntitiesWithPosition(_contexts, position);
-        if (entity != null)
+        if (entity != null && !entity.isDestroyed)
         {
             moveDown(entity, position);
         } 
@@ -61,9 +61,17 @@ public sealed class FallSystem : ReactiveSystem<GameEntity> {
         if (nextRowPos != position.y)
         {
             _fallExecuted = true;
-            Debug.Log("e.ReplacePosition(" + position.x + " " + position.y + "on" + position.x + " " + nextRowPos);
             e.ReplacePosition(new IntVector2D(position.x, nextRowPos));
         }
         
+    }
+    
+    public void Cleanup()
+    {
+        var animationCompletes = _context.GetGroup(GameMatcher.AllAnimationComplete);
+        foreach (var e in animationCompletes.GetEntities())
+        {
+            _context.DestroyEntity(e);
+        }
     }
 }

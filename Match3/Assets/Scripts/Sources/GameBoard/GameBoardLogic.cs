@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Entitas;
 using UnityEngine;
 
@@ -7,10 +8,18 @@ public static class GameBoardLogic {
     public static int GetNextEmptyRow(Contexts contexts, IntVector2D position) {
         var globalSettings = contexts.gameState.globalSettings.value;
         position.y -= 1;
-        if (position.y >= globalSettings.startPositionY && GetEntitiesWithPosition(contexts, position)== null) {
-           return position.y;
+        if (position.y >= globalSettings.startPositionY)
+        {
+            if (GetEntitiesWithPosition(contexts, position) == null)
+            {
+                return position.y;
+            }
+            if (GetEntitiesWithPosition(contexts, position).isDestroyed)
+            {
+                return position.y; 
+            }
         }
-
+        
         return position.y + 1;
     }
 

@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class EmitInputSystem : IExecuteSystem, ICleanupSystem
 {
-    readonly InputContext _contexts;
+    readonly InputContext _context;
+    readonly Contexts _contexts;
     readonly IGroup<InputEntity> _inputs;
     private GlobalSettings _globalSettings;
     private RectTransform _uiRoot;
 
     public EmitInputSystem(Contexts contexts)
     {
-        _contexts = contexts.input;
-        _inputs = _contexts.GetGroup(InputMatcher.Input);
+        _context = contexts.input;
+        _contexts = contexts;
+        
+        _inputs = _context.GetGroup(InputMatcher.Input);
         _globalSettings = contexts.gameState.globalSettings.value;
         _uiRoot = contexts.game.uiRoot.value;
     }
@@ -26,7 +29,7 @@ public class EmitInputSystem : IExecuteSystem, ICleanupSystem
             var x = (int)Mathf.Round(position.x / _globalSettings.widthSpacing);
             var y = (int)Mathf.Round(position.y / _globalSettings.heightSpacing);
 
-            _contexts.CreateEntity()
+            _context.CreateEntity()
                 .AddInput(x, y);
         }
     }
@@ -35,7 +38,7 @@ public class EmitInputSystem : IExecuteSystem, ICleanupSystem
     {
         foreach (var e in _inputs.GetEntities())
         {
-            _contexts.DestroyEntity(e);
+            _context.DestroyEntity(e);
         }
     }
 }

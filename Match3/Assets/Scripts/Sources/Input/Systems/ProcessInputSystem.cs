@@ -25,28 +25,27 @@ public class ProcessInputSystem : ReactiveSystem<InputEntity>
     {
         var inputEntity = entities.SingleEntity();
         var input = inputEntity.input;
+        
+        foreach (var e in _contexts.game.GetEntities(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile))) {
+            if (input.x == e.position.value.x && input.y == e.position.value.y)
+            {
+                e.isSelected = true;
+            }
+        }
+        /*
+        foreach (var e in _contexts.game.GetEntities(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile))) {
+            if (input.x == e.position.value.x && input.y == e.position.value.y)
+            {
+                e.isSelected = true;
+            }
+        }
 
-        foreach (var e in _contexts.game.GetEntities(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile))) {
-            if (/*input.x == e.position.value.x &&*/input.x == e.position.value.x && input.y == e.position.value.y)
-            {
-                e.isSelected = true;
-            }
-        }
-        
-        foreach (var e in _contexts.game.GetEntities(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile))) {
-            if (input.x + 1 == e.position.value.x && input.y == e.position.value.y)
-            {
-                e.isSelected = true;
-            }
-        }
-        
         foreach (var e in _contexts.game.GetEntities(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.GameTile))) {
             if (input.x + 1 == e.position.value.x && input.y == e.position.value.y + 1)
             {
                 e.isSelected = true;
             }
         }
-        
-        _contexts.input.DestroyEntity(inputEntity);
+    */
     }
 }

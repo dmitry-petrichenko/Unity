@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class AddTilesViewSystem : ReactiveSystem<GameEntity>
 {
     private Contexts _contexts;
-    
-    public AddTilesViewSystem (Contexts contexts) : base(contexts.game)
+
+    public AddTilesViewSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
     }
-    
+
     protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
         return context.CreateCollector(GameMatcher.AllOf(GameMatcher.GameTile));
     }
-    
+
     protected override bool Filter(GameEntity entity)
     {
         return entity.hasPosition && entity.isGameTile;
     }
-    
+
     protected override void Execute(List<GameEntity> entities)
     {
         var tileViewPrefab = _contexts.gameState.globalSettings.value.tileViewPrefab;
@@ -31,15 +31,17 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
         {
             var tile = GameObject.Instantiate(tileViewPrefab, uiRoot);
             var rectTransform = (RectTransform) tile.transform;
-            
-            rectTransform.sizeDelta = new Vector2 (globalSettings.widthSpacing, globalSettings.heightSpacing);
+
+            rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing, globalSettings.heightSpacing);
             //var boxCollider = tile.GetComponent(typeof (BoxCollider)) as BoxCollider;
             //boxCollider.size = new Vector2 (globalSettings.widthSpacing, globalSettings.heightSpacing);
 
             var tileViewBehaviour = tile.GetComponent<TileViewBehaviour>();
-            tileViewBehaviour.image.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.65f, globalSettings.heightSpacing * 0.65f);
-            tileViewBehaviour.selected.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.7f, globalSettings.heightSpacing * 0.7f);
-            
+            tileViewBehaviour.image.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.65f,
+                globalSettings.heightSpacing * 0.65f);
+            tileViewBehaviour.selected.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.7f,
+                globalSettings.heightSpacing * 0.7f);
+
             entity.AddView(tile);
 
             var position = new Vector2(entity.position.value.x * globalSettings.widthSpacing,

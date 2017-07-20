@@ -3,22 +3,24 @@ using Entitas;
 
 public class InitializeTilesSystem : IInitializeSystem
 {
-    public static readonly TileType[] _tipes = {  //todo
+    public static readonly TileType[] _tipes =
+    {
+        //todo
         TileType.Red,
         TileType.Green,
         TileType.Blue,
         TileType.Yellow
     };
-    
+
     private Contexts _contexts;
     private GameContext _context;
-    
-    public InitializeTilesSystem (Contexts contexts)
+
+    public InitializeTilesSystem(Contexts contexts)
     {
         _contexts = contexts;
         _context = _contexts.game;
     }
-   
+
     public void Initialize()
     {
         _context.DoForEach(_contexts, Action);

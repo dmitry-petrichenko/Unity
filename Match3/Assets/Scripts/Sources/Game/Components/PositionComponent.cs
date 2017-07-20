@@ -4,6 +4,5 @@ using Entitas.CodeGeneration.Attributes;
 [Game]
 public class PositionComponent : IComponent
 {
-    [EntityIndex]
-    public IntVector2D value;
+    [EntityIndex] public IntVector2D value;
 }

@@ -8,33 +8,33 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
 {
     readonly GameContext _context;
     readonly Contexts _contexts;
-    
+
     List<GameEntity> sameTypeEntities;
     List<GameEntity> entitiesToDestroy;
 
-    private TileType ? previousType;
-    
-    public ProcessMatchedSystem (Contexts contexts) : base(contexts.game)
+    private TileType? previousType;
+
+    public ProcessMatchedSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
         _context = _contexts.game;
-        
+
         sameTypeEntities = new List<GameEntity>();
         entitiesToDestroy = new List<GameEntity>();
-        
+
         previousType = null;
     }
-    
-    protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context) 
+
+    protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
         return context.CreateCollector(GameMatcher.AllAnimationComplete);
     }
-    
-    protected override bool Filter(GameEntity entity) 
+
+    protected override bool Filter(GameEntity entity)
     {
         return true;
     }
-    
+
     protected override void Execute(List<GameEntity> entities)
     {
         Debug.Log("Execute ProcessMatchedSystem" + entities.Count);
@@ -49,7 +49,7 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
             }
             previousType = null;
         }
-        
+
         for (int row = globalSettings.startPositionY; row < globalSettings.endPositionY; row++)
         {
             for (int column = globalSettings.startPositionX; column < globalSettings.endPositionX; column++)
@@ -60,13 +60,12 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
         }
 
         AddEntitiesToDestroy();
-            
+
         foreach (var entityToDestroy in entitiesToDestroy)
         {
             entityToDestroy.isDestroyed = true;
         }
         entitiesToDestroy.Clear();
-
     }
 
     void AddEntitiesToDestroy()

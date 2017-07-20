@@ -23,9 +23,6 @@ public class GlobalSettings : ScriptableObject
 
     public void Initialize()
     {
-        int startWidth = 102;
-        int startHeight = 102;
-
         var contexts = Contexts.sharedInstance;
         var uiRoot = contexts.game.uiRoot.value;
         var aspectRatioFitter = uiRoot.GetComponent<AspectRatioFitter>();

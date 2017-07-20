@@ -7,7 +7,8 @@ public static class ContextExtensions
         var entity = context.CreateEntity();
         entity.isGameTile = true;
         entity.ReplacePosition(new IntVector2D(x, y));
-        entity.AddGameTileType(InitializeTilesSystem._tipes[UnityEngine.Random.Range(0, InitializeTilesSystem._tipes.Length)]);
+        entity.AddGameTileType(
+            InitializeTilesSystem._tipes[UnityEngine.Random.Range(0, InitializeTilesSystem._tipes.Length)]);
         return entity;
     }
 
@@ -23,8 +24,9 @@ public static class ContextExtensions
         }
         return null;
     }
-    
-    public static int GetNextEmptyRow(this GameContext context, IntVector2D position, Contexts contexts) {
+
+    public static int GetNextEmptyRow(this GameContext context, IntVector2D position, Contexts contexts)
+    {
         var globalSettings = contexts.gameState.globalSettings.value;
         position.y -= 1;
         if (position.y >= globalSettings.startPositionY)
@@ -35,13 +37,13 @@ public static class ContextExtensions
             }
             if (context.GetTileWithPosition(position).isDestroyed)
             {
-                return position.y; 
+                return position.y;
             }
         }
-        
+
         return position.y + 1;
     }
-    
+
     public static void DoForEach(this GameContext context, Contexts contexts, Action<int, int> execute)
     {
         var globalSettings = contexts.gameState.globalSettings.value;

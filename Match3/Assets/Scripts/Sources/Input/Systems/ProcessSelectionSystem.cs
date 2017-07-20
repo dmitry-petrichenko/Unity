@@ -2,22 +2,25 @@ using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
 
-public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
-
+public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity>
+{
     readonly Contexts _contexts;
 
     private List<GameEntity> _selectedEntities;
 
-    public ProcessSelectionSystem(Contexts contexts) : base(contexts.game) {
+    public ProcessSelectionSystem(Contexts contexts) : base(contexts.game)
+    {
         _contexts = contexts;
         _selectedEntities = new List<GameEntity>();
     }
 
-    protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context) {
+    protected override Collector<GameEntity> GetTrigger(IContext<GameEntity> context)
+    {
         return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.Selected));
     }
 
-    protected override bool Filter(GameEntity entity) {
+    protected override bool Filter(GameEntity entity)
+    {
         return true;
     }
 
@@ -30,7 +33,7 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
 
         if (_selectedEntities.Count > 1)
         {
-            var neibhourEntity =  GetSelectedNeighbourOfPosition(_selectedEntities[1].position.value);
+            var neibhourEntity = GetSelectedNeighbourOfPosition(_selectedEntities[1].position.value);
             if (neibhourEntity != null)
             {
                 ReplaceEntities();
@@ -40,9 +43,7 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
             {
                 ResetSelectedEntities();
             }
-            
         }
-
     }
 
     private void ReplaceEntities()
@@ -53,7 +54,7 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
         entity1.ReplacePosition(entity2.position.value);
         entity2.ReplacePosition(tempPos);
     }
-    
+
     private void ResetSelectedEntities()
     {
         foreach (var entity in _selectedEntities)
@@ -68,15 +69,15 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
         var positionN = new IntVector2D(position.x, position.y + 1);
         if (IsSelectedOnPosition(positionN))
             return _contexts.game.GetTileWithPosition(positionN);
-        
+
         positionN = new IntVector2D(position.x, position.y - 1);
         if (IsSelectedOnPosition(positionN))
             return _contexts.game.GetTileWithPosition(positionN);
-        
+
         positionN = new IntVector2D(position.x + 1, position.y);
         if (IsSelectedOnPosition(positionN))
             return _contexts.game.GetTileWithPosition(positionN);
-        
+
         positionN = new IntVector2D(position.x - 1, position.y);
         if (IsSelectedOnPosition(positionN))
             return _contexts.game.GetTileWithPosition(positionN);

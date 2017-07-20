@@ -4,7 +4,6 @@ using UnityEngine;
 public class EmitInputSystem : IExecuteSystem, ICleanupSystem
 {
     readonly InputContext _context;
-    readonly Contexts _contexts;
     readonly IGroup<InputEntity> _inputs;
     private GlobalSettings _globalSettings;
     private RectTransform _uiRoot;
@@ -12,8 +11,7 @@ public class EmitInputSystem : IExecuteSystem, ICleanupSystem
     public EmitInputSystem(Contexts contexts)
     {
         _context = contexts.input;
-        _contexts = contexts;
-        
+
         _inputs = _context.GetGroup(InputMatcher.Input);
         _globalSettings = contexts.gameState.globalSettings.value;
         _uiRoot = contexts.game.uiRoot.value;
@@ -21,13 +19,13 @@ public class EmitInputSystem : IExecuteSystem, ICleanupSystem
 
     public void Execute()
     {
-        var input = Input.GetMouseButtonDown(0);//Input.GetKeyDown("b");
+        var input = Input.GetMouseButtonDown(0); //Input.GetKeyDown("b");
 
         if (input)
         {
             var position = Input.mousePosition - _uiRoot.position;
-            var x = (int)Mathf.Round(position.x / _globalSettings.widthSpacing);
-            var y = (int)Mathf.Round(position.y / _globalSettings.heightSpacing);
+            var x = (int) Mathf.Round(position.x / _globalSettings.widthSpacing);
+            var y = (int) Mathf.Round(position.y / _globalSettings.heightSpacing);
 
             _context.CreateEntity()
                 .AddInput(x, y);

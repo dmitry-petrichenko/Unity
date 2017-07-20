@@ -20,6 +20,6 @@ public class ScoreLabelController : MonoBehaviour
     }
 
     void updateScore(int score) {
-        _label.text = "Score " + score;
+        _label.text = "SCORE\n" + score;
     }
 }

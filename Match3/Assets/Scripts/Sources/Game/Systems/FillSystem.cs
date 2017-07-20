@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Entitas;
-using UnityEngine;
 
 public sealed class FillSystem : ReactiveSystem<GameEntity>, ICleanupSystem
 {
@@ -47,7 +45,6 @@ public sealed class FillSystem : ReactiveSystem<GameEntity>, ICleanupSystem
         {
             var completeEntity = _context.CreateEntity();
             completeEntity.isStartFallSystem = true;
-            //Debug.Log("Execute FILL_System");
         }
     }
 

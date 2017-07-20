@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AddTilesViewSystem : ReactiveSystem<GameEntity>
 {
@@ -33,8 +32,6 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
             var rectTransform = (RectTransform) tile.transform;
 
             rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing, globalSettings.heightSpacing);
-            //var boxCollider = tile.GetComponent(typeof (BoxCollider)) as BoxCollider;
-            //boxCollider.size = new Vector2 (globalSettings.widthSpacing, globalSettings.heightSpacing);
 
             var tileViewBehaviour = tile.GetComponent<TileViewBehaviour>();
             tileViewBehaviour.image.rectTransform.sizeDelta = new Vector2(globalSettings.widthSpacing * 0.65f,

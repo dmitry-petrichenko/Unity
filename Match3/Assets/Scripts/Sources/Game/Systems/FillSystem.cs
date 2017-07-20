@@ -28,8 +28,8 @@ public sealed class FillSystem : ReactiveSystem<GameEntity>, ICleanupSystem {
         
         for (int column = globalSettings.startPositionX; column < globalSettings.endPositionX; column++) {
             var position = new IntVector2D(column, globalSettings.endPositionY);
-        
-            var nextRowPos = GameBoardLogic.GetNextEmptyRow(_contexts, position);
+
+            var nextRowPos = _context.GetNextEmptyRow(position, _contexts);
             if (nextRowPos != globalSettings.endPositionY)
             {
                 _tilesCreated = true;

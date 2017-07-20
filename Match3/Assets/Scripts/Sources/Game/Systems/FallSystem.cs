@@ -47,17 +47,16 @@ public sealed class FallSystem : ReactiveSystem<GameEntity>, ICleanupSystem {
     void Action(int column, int row)
     {
         var position = new IntVector2D(column, row);
-        var entity = GameBoardLogic.GetEntitiesWithPosition(_contexts, position);
+        var entity = _context.GetTileWithPosition(position);
+
         if (entity != null && !entity.isDestroyed)
         {
             moveDown(entity, position);
         } 
-        
-
     }
 
     void moveDown(GameEntity e, IntVector2D position) {
-        var nextRowPos = GameBoardLogic.GetNextEmptyRow(_contexts, position);
+        var nextRowPos = _context.GetNextEmptyRow(position, _contexts);
         if (nextRowPos != position.y)
         {
             _fallExecuted = true;

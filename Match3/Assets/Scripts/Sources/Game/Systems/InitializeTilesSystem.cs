@@ -21,7 +21,7 @@ public class InitializeTilesSystem : IInitializeSystem
    
     public void Initialize()
     {
-        GameBoardLogic.DoForEach(_contexts, Action);   
+        _context.DoForEach(_contexts, Action);
     }
 
     void Action(int column, int row)

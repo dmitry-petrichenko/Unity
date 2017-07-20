@@ -67,26 +67,26 @@ public sealed class ProcessSelectionSystem : ReactiveSystem<GameEntity> {
     {
         var positionN = new IntVector2D(position.x, position.y + 1);
         if (IsSelectedOnPosition(positionN))
-            return GameBoardLogic.GetEntitiesWithPosition(_contexts, positionN);
+            return _contexts.game.GetTileWithPosition(positionN);
         
         positionN = new IntVector2D(position.x, position.y - 1);
         if (IsSelectedOnPosition(positionN))
-            return GameBoardLogic.GetEntitiesWithPosition(_contexts, positionN);
+            return _contexts.game.GetTileWithPosition(positionN);
         
         positionN = new IntVector2D(position.x + 1, position.y);
         if (IsSelectedOnPosition(positionN))
-            return GameBoardLogic.GetEntitiesWithPosition(_contexts, positionN);
+            return _contexts.game.GetTileWithPosition(positionN);
         
         positionN = new IntVector2D(position.x - 1, position.y);
         if (IsSelectedOnPosition(positionN))
-            return GameBoardLogic.GetEntitiesWithPosition(_contexts, positionN);
+            return _contexts.game.GetTileWithPosition(positionN);
 
         return null;
     }
 
     private bool IsSelectedOnPosition(IntVector2D position)
     {
-        var entity = GameBoardLogic.GetEntitiesWithPosition(_contexts, position);
+        var entity = _contexts.game.GetTileWithPosition(position);
         if (entity != null && entity.isSelected)
         {
             return true;

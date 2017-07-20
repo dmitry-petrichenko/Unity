@@ -84,7 +84,7 @@ public class ProcessMatchedSystem : ReactiveSystem<GameEntity>
     void Action(int x, int y)
     {
         GameEntity entity;
-        entity = GameBoardLogic.GetEntitiesWithPosition(_contexts, new IntVector2D(x, y));
+        entity = _context.GetTileWithPosition(new IntVector2D(x, y));
         if (entity != null)
         {
             if (previousType != entity.gameTileType.value)

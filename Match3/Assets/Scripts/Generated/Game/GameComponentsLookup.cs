@@ -10,25 +10,21 @@ public static class GameComponentsLookup {
 
     public const int AllAnimationComplete = 0;
     public const int AnimationComplete = 1;
-    public const int Changed = 2;
-    public const int CompleteClearMatched = 3;
-    public const int Destroyed = 4;
-    public const int GameBoardSquare = 5;
-    public const int GameTile = 6;
-    public const int GameTileType = 7;
-    public const int Position = 8;
-    public const int Selected = 9;
-    public const int StartFallSystem = 10;
-    public const int UiRoot = 11;
-    public const int View = 12;
+    public const int Destroyed = 2;
+    public const int GameBoardSquare = 3;
+    public const int GameTile = 4;
+    public const int GameTileType = 5;
+    public const int Position = 6;
+    public const int Selected = 7;
+    public const int StartFallSystem = 8;
+    public const int UiRoot = 9;
+    public const int View = 10;
 
-    public const int TotalComponents = 13;
+    public const int TotalComponents = 11;
 
     public static readonly string[] componentNames = {
         "AllAnimationComplete",
         "AnimationComplete",
-        "Changed",
-        "CompleteClearMatched",
         "Destroyed",
         "GameBoardSquare",
         "GameTile",
@@ -43,8 +39,6 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(AllAnimationCompleteComponent),
         typeof(AnimationCompleteComponent),
-        typeof(ChangedComponent),
-        typeof(CompleteClearMatchedComponent),
         typeof(DestroyedComponent),
         typeof(GameBoardSquare),
         typeof(GameTileComponent),

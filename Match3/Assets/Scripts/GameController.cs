@@ -55,9 +55,7 @@ public class GameController : MonoBehaviour
                 
                 // process
                 .Add(new AnimatePositionSystem(contexts))
-                
                 .Add(new ProcessMatchedSystem(contexts))
-                
                 .Add(new FallSystem(contexts))
                 .Add(new FillSystem(contexts))
                 

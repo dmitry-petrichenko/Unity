@@ -1,14 +1,11 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
 public class GlobalSettings : ScriptableObject
 {
     public Size fieldHeight = Size.SIZE5;
-    public Size fieldWidth = Size.SIZE5;
+    public Size fieldWidth = Size.SIZE7;
 
     public int widthSpacing;
     public int heightSpacing;

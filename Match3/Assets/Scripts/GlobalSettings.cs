@@ -7,8 +7,8 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class GlobalSettings : ScriptableObject
 {
-    public int height = 5;
-    public int width = 5;
+    public Size fieldHeight = Size.SIZE5;
+    public Size fieldWidth = Size.SIZE5;
 
     public int widthSpacing;
     public int heightSpacing;
@@ -23,6 +23,8 @@ public class GlobalSettings : ScriptableObject
 
     public void Initialize()
     {
+        int width = (int) fieldWidth;
+        int height = (int) fieldHeight;
         var contexts = Contexts.sharedInstance;
         var uiRoot = contexts.game.uiRoot.value;
         var aspectRatioFitter = uiRoot.GetComponent<AspectRatioFitter>();
@@ -42,8 +44,9 @@ public class GlobalSettings : ScriptableObject
     }
 }
 
-public enum Days
+public enum Size
 {
-    S3 = 3,
-    S5 = 5
+    SIZE3 = 3,
+    SIZE5 = 5,
+    SIZE7 = 7
 }

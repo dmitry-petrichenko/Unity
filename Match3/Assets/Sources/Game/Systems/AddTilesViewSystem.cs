@@ -47,7 +47,7 @@ public class AddTilesViewSystem : ReactiveSystem<GameEntity>
             rectTransform.anchoredPosition = position;
         }
         
-        var completeEntity = _contexts.game.CreateEntity();
-        completeEntity.isAllAnimationComplete = true;
+        var completeEntity = _contexts.input.CreateEntity();
+        completeEntity.isAllAnimationCompleteComponentI = true;
     }
 }

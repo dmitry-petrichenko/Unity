@@ -3,7 +3,7 @@ using DG.Tweening;
 using Entitas;
 using UnityEngine;
 
-public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>, ICleanupSystem
+public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>
 {
     readonly GameContext _context;
     readonly Contexts _contexts;
@@ -46,16 +46,7 @@ public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>, ICleanup
 
     void CompleteHandler()
     {
-        var completeEntity = _context.CreateEntity();
-        completeEntity.isAnimationComplete = true;
-    }
-
-    public void Cleanup()
-    {
-        var animationCompletes = _context.GetGroup(GameMatcher.AnimationComplete);
-        foreach (var e in animationCompletes.GetEntities())
-        {
-            _context.DestroyEntity(e);
-        }
+        var nextStepEntity = _contexts.input.CreateEntity();
+        nextStepEntity.isNextStepEvent = true;
     }
 }

@@ -58,12 +58,11 @@ public class GameController : MonoBehaviour
                 .Add(new ProcessMatchedSystem(contexts))
                 .Add(new FallSystem(contexts))
                 .Add(new FillSystem(contexts))
+                .Add(new CleanupInputSystem(contexts))
                 
                 // destroy everything
                 .Add(new RemoveViewSystem(contexts))
                 .Add(new DestroySystem(contexts))
-            
-
             ;
     }
 }

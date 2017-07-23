@@ -1,7 +1,7 @@
 using Entitas;
 using UnityEngine;
 
-public class EmitInputSystem : IExecuteSystem, ICleanupSystem
+public class EmitInputSystem : IExecuteSystem
 {
     readonly InputContext _context;
     readonly IGroup<InputEntity> _inputs;
@@ -29,14 +29,6 @@ public class EmitInputSystem : IExecuteSystem, ICleanupSystem
 
             _context.CreateEntity()
                 .AddInput(x, y);
-        }
-    }
-
-    public void Cleanup()
-    {
-        foreach (var e in _inputs.GetEntities())
-        {
-            _context.DestroyEntity(e);
         }
     }
 }

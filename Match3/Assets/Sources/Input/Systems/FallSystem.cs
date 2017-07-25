@@ -26,7 +26,6 @@ public sealed class FallSystem : ReactiveSystem<InputEntity>
 
     protected override void Execute(List<InputEntity> entities)
     {
-        //Debug.Log("Execute FallSystem");
         _fallExecuted = false;
         var globalSettings = _contexts.gameState.globalSettings.value;
         for (int column = globalSettings.startPositionX; column < globalSettings.endPositionX; column++)

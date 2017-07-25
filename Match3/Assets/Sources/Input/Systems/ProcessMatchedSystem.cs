@@ -37,7 +37,6 @@ public class ProcessMatchedSystem : ReactiveSystem<InputEntity>
 
     protected override void Execute(List<InputEntity> entities)
     {
-        //Debug.Log("Execute ProcessMatchedSystem");
         _somethingDestroyed = false;
         
         entitiesToDestroy.Clear();

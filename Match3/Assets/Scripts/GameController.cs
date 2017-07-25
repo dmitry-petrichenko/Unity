@@ -19,14 +19,14 @@ public class GameController : MonoBehaviour
        
         _contexts.game.SetUiRoot(uiRoot);
 
-        _systems = CreateSystems(_contexts);
-        _systems.Initialize();
+        _systems = CreateSystems(_contexts);  
         
     }
 
     private void Start()
     {
         _contexts.gameState.globalSettings.value.Initialize();
+        _systems.Initialize();
     }
 
     private void Update()

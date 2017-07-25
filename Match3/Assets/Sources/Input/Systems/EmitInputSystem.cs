@@ -4,7 +4,6 @@ using UnityEngine;
 public class EmitInputSystem : IExecuteSystem
 {
     readonly InputContext _context;
-    readonly IGroup<InputEntity> _inputs;
     private GlobalSettings _globalSettings;
     private RectTransform _uiRoot;
 
@@ -12,7 +11,6 @@ public class EmitInputSystem : IExecuteSystem
     {
         _context = contexts.input;
 
-        _inputs = _context.GetGroup(InputMatcher.Input);
         _globalSettings = contexts.gameState.globalSettings.value;
         _uiRoot = contexts.game.uiRoot.value;
     }

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Entitas;
-using UnityEditorInternal;
-using UnityEngine;
 
 public sealed class FallSystem : ReactiveSystem<InputEntity>
 {

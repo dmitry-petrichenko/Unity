@@ -5,12 +5,10 @@ using UnityEngine;
 
 public sealed class AnimatePositionSystem : ReactiveSystem<GameEntity>
 {
-    readonly GameContext _context;
     readonly Contexts _contexts;
 
     public AnimatePositionSystem(Contexts contexts) : base(contexts.game)
     {
-        _context = contexts.game;
         _contexts = contexts;
     }
 

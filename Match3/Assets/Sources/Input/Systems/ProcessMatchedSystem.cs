@@ -6,7 +6,6 @@ using System.Linq.Expressions;
 
 public class ProcessMatchedSystem : ReactiveSystem<InputEntity>
 {
-    readonly InputContext _context;
     readonly Contexts _contexts;
 
     List<GameEntity> sameTypeEntities;
@@ -19,7 +18,6 @@ public class ProcessMatchedSystem : ReactiveSystem<InputEntity>
     public ProcessMatchedSystem(Contexts contexts) : base(contexts.input)
     {
         _contexts = contexts;
-        _context = _contexts.input;
 
         sameTypeEntities = new List<GameEntity>();
         entitiesToDestroy = new List<GameEntity>();

@@ -1,6 +1,5 @@
 ﻿using Entitas;
 using UnityEngine;
-using UnityEngine.VR.WSA.Sharing;
 
 public class GameController : MonoBehaviour
 {

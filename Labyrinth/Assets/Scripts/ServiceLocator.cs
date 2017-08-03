@@ -1,10 +1,22 @@
-﻿using NSMapInfoController;
+﻿using NSGraphics;
+using NSMapInfoController;
 using NSMapViewController;
 
 public static class ServiceLocator
 {
      private static IMapInfoController _mapInfoController;
      private static IMapViewController _mapViewController;
+     private static IGraphicsController _graphicsController;
+     
+     public static void InitializeGraphicsController(IGraphicsController controller)
+     {
+          _graphicsController = controller;
+     }
+     
+     public static IGraphicsController GetGraphicsController()
+     {
+          return _graphicsController;
+     }
      
      public static void InitializeMapInfoController(IMapInfoController controller)
      {

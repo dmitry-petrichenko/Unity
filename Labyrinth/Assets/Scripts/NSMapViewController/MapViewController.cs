@@ -7,6 +7,7 @@ namespace NSMapViewController
     public class MapViewController : IMapViewController
     {
         private MapInfoUpdateController _mapInfoUpdateController;
+        private MapViewUpdateController _mapViewUpdateController;
 
         public void Initialize()
         {
@@ -14,6 +15,11 @@ namespace NSMapViewController
             _mapInfoUpdateController.Initialize();
             _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
             _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
+            
+            
+            _mapViewUpdateController = new MapViewUpdateController();
+            _mapViewUpdateController.Initialize();
+            
 
         }
         
@@ -24,12 +30,12 @@ namespace NSMapViewController
 
         private void DestroyTilesHandler(List<IMapTileInfo> tilesInfo)
         {
-            Debug.Log(tilesInfo);
+            _mapViewUpdateController.DestroyTiles(tilesInfo);
         }
         
         private void InitializeTilesHandler(List<IMapTileInfo> tilesInfo)
         {
-            Debug.Log(tilesInfo + "create");
+            _mapViewUpdateController.InitializeTiles(tilesInfo);
         }
     }
 }

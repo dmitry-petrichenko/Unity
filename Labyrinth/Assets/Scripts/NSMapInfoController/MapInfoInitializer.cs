@@ -29,7 +29,7 @@ namespace NSMapInfoController
         public IMapTileInfo InitializeEmptyTileInfo(IntVector2 index)
         {
             MapTileInfo mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Empty, new IntVector2(0, 0), index, null);
+            mapTileInfo.Initialize(MapTileType.Empty, index, index, null);
 
             return mapTileInfo;
         }

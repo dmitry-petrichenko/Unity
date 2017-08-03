@@ -78,7 +78,7 @@ namespace NSMapViewController
                 {
                     for (int y = -_halfActiveAreaY; y < _halfActiveAreaY; y++)
                     {
-                        tileIndex = new IntVector2(x, y);
+                        tileIndex = new IntVector2(x + _currentPosition.x, y + _currentPosition.y);
                         if (!_mapTileInfoContainers.ContainsKey(tileIndex))
                         {
                             mapTileInfo = _mapInfoController.GetMapTileInfo(tileIndex);

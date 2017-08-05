@@ -17,11 +17,11 @@ namespace NSMapInfoController
             
             _mapTilesInfo = new IMapTileInfo[mapArea.x, mapArea.y];
             
-            for (int i = 0; i < mapArea.x; i += 2)
+            for (int i = 0; i < mapArea.x; i++)
             {
-                for (int j = 0; j < mapArea.y; j += 2)
+                for (int j = 0; j < mapArea.y; j++)
                 {
-                    InitializePlane(new IntVector2(i, j));
+                    InitializeSquare(new IntVector2(i, j));
                 }
             }
         }
@@ -32,6 +32,15 @@ namespace NSMapInfoController
             mapTileInfo.Initialize(MapTileType.Empty, index, index, null);
 
             return mapTileInfo;
+        }
+        
+        public void InitializeSquare(IntVector2 position)
+        {
+            MapTileInfo mapTileInfo;
+            
+            mapTileInfo = new MapTileInfo();
+            mapTileInfo.Initialize(MapTileType.Square, position, position, null);
+            _mapTilesInfo[position.x, position.y] = mapTileInfo;
         }
 
         public void InitializePlane(IntVector2 position)

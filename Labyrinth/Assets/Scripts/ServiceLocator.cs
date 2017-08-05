@@ -1,4 +1,5 @@
-﻿using NSGraphics;
+﻿using NSCameraController;
+using NSGraphics;
 using NSMapInfoController;
 using NSMapViewController;
 
@@ -7,6 +8,17 @@ public static class ServiceLocator
      private static IMapInfoController _mapInfoController;
      private static IMapViewController _mapViewController;
      private static IGraphicsController _graphicsController;
+     private static ICameraController _cameraController;
+     
+     public static void InitializeCameraController(ICameraController controller)
+     {
+          _cameraController = controller;
+     }
+     
+     public static ICameraController GetCameraController()
+     {
+          return _cameraController;
+     }
      
      public static void InitializeGraphicsController(IGraphicsController controller)
      {

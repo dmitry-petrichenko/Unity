@@ -42,6 +42,11 @@ namespace NSMapViewController
                     _graphicsController.InitializePlane(tileInfo.ViewPosition);
                     break;
                 }
+                case MapTileType.Square:
+                {
+                    _graphicsController.InitializeSquare(tileInfo.ViewPosition);
+                    break;
+                }
                 case MapTileType.Empty:
                 {
                     _graphicsController.InitializeEmpty(tileInfo.ViewPosition);
@@ -54,6 +59,10 @@ namespace NSMapViewController
 
         public void DestroyTiles(List<IMapTileInfo> tileInfos)
         {
+            foreach (IMapTileInfo tileInfo in tileInfos)
+            {
+                _graphicsController.DestroyTile(tileInfo.Index);
+            }
         }
     }
 }

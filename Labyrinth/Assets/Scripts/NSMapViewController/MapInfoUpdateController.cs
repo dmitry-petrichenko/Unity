@@ -35,8 +35,49 @@ namespace NSMapViewController
 
         public void UpdateCurrentPosition(IntVector2 currentPosition)
         {
-            UpdateTilesInfoTime(currentPosition);
-            ResetTiles();
+            int positionDisplacementX = currentPosition.x - _currentPosition.x;
+            int positionDisplacementY = currentPosition.y - _currentPosition.y;
+
+            if (Math.Abs(positionDisplacementX) >= _mapSectionSize ||
+                Math.Abs(positionDisplacementY) >= _mapSectionSize)
+            {
+                UpdateTilesInfoTime(currentPosition);
+                ResetTiles();
+            }
+        }
+        
+        private void UpdateTilesInfoTime(IntVector2 currentPosition)
+        {
+            _tilesInfoToInitialize = new List<IMapTileInfo>();
+            
+            IntVector2 tileIndex;
+            IMapTileInfo mapTileInfo;
+            MapTileInfoContainer mapTileInfoContainer;
+            
+            _updateTime = DateTime.Now.Millisecond;
+            
+            for (int x = -_halfActiveAreaX; x < _halfActiveAreaX; x++)
+            {
+                for (int y = -_halfActiveAreaY; y < _halfActiveAreaY; y++)
+                {
+                    tileIndex = new IntVector2(x + _currentPosition.x, y + _currentPosition.y);
+                    if (!_mapTileInfoContainers.ContainsKey(tileIndex))
+                    {
+                        mapTileInfo = _mapInfoController.GetMapTileInfo(tileIndex);
+                        mapTileInfoContainer = new MapTileInfoContainer(mapTileInfo, _updateTime);
+                        _mapTileInfoContainers.Add(tileIndex, mapTileInfoContainer);
+                        _tilesInfoToInitialize.Add(mapTileInfo);
+                    }
+                    else
+                    {
+                        _mapTileInfoContainers[tileIndex].InitializeTime = _updateTime;
+                    }
+                }
+            }
+              
+            _currentPosition = currentPosition;
+            
+            InitializeTilesHandler(_tilesInfoToInitialize); 
         }
 
         private void ResetTiles()
@@ -55,48 +96,9 @@ namespace NSMapViewController
                 }
             }
 
+            _mapTileInfoContainers = _newMapTileInfoContainers;
+            
             DestroyTilesHandler(_tilesInfoToDestroy);
-        }
-
-        private void UpdateTilesInfoTime(IntVector2 currentPosition)
-        {
-            _tilesInfoToInitialize = new List<IMapTileInfo>();
-            
-            int positionDisplacementX = currentPosition.x - _currentPosition.x;
-            int positionDisplacementY = currentPosition.y - _currentPosition.y;
-
-            IntVector2 tileIndex;
-            IMapTileInfo mapTileInfo;
-            MapTileInfoContainer mapTileInfoContainer;
-            
-            _updateTime = new DateTime().Millisecond;
-            
-            if (Math.Abs(positionDisplacementX) >= _mapSectionSize ||
-                Math.Abs(positionDisplacementY) >= _mapSectionSize)
-            {
-                for (int x = -_halfActiveAreaX; x < _halfActiveAreaX; x++)
-                {
-                    for (int y = -_halfActiveAreaY; y < _halfActiveAreaY; y++)
-                    {
-                        tileIndex = new IntVector2(x + _currentPosition.x, y + _currentPosition.y);
-                        if (!_mapTileInfoContainers.ContainsKey(tileIndex))
-                        {
-                            mapTileInfo = _mapInfoController.GetMapTileInfo(tileIndex);
-                            mapTileInfoContainer = new MapTileInfoContainer(mapTileInfo, _updateTime);
-                            _mapTileInfoContainers.Add(tileIndex, mapTileInfoContainer);
-                            _tilesInfoToInitialize.Add(mapTileInfo);
-                        }
-                        else
-                        {
-                            _mapTileInfoContainers[tileIndex].InitializeTime = _updateTime;
-                        }
-                    }
-                }
-            }
-
-            _currentPosition = currentPosition;
-
-            InitializeTilesHandler(_tilesInfoToInitialize);
         }
     }
 

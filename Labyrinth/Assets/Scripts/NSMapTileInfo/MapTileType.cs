@@ -4,6 +4,7 @@
     {
         Plane,
         Cube, 
+        Square,
         Empty
     }
 }

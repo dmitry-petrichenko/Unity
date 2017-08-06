@@ -46,6 +46,9 @@ namespace NSGraphics
 
         public void DestroyTile(IntVector2 position)
         {
+            if (!_activeGameObjects.ContainsKey(position))
+                return;
+            
             var gameObject = _activeGameObjects[position];
             Object.Destroy(gameObject);
             _activeGameObjects.Remove(position);

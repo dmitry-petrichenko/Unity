@@ -3,11 +3,9 @@ using NSUnits;
 
 namespace Labyrinth
 {
-    public interface IMapTileInfo
+    public interface IMapTileInfo : ITileView
     {
-        MapTileType Type { get; set; }
         Unit UnitContainer { get; set; }
-        IntVector2 ViewPosition { get; set; }
         IntVector2 Index { get; set; }
     }
 }

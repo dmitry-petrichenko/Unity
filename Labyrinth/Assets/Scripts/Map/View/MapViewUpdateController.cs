@@ -19,13 +19,13 @@ namespace Map
         {
             _initializedIndexes = new List<IntVector2>();
 
-            foreach (IMapTileInfo tileInfo in tileInfos)
+            foreach (ITileView tileInfo in tileInfos)
             {
                 InitializeTile(tileInfo);
             }
         }
 
-        private void InitializeTile(IMapTileInfo tileInfo)
+        private void InitializeTile(ITileView tileInfo)
         {
             if (_initializedIndexes.Contains(tileInfo.ViewPosition))
                 return;
@@ -59,9 +59,9 @@ namespace Map
 
         public void DestroyTiles(List<IMapTileInfo> tileInfos)
         {
-            foreach (IMapTileInfo tileInfo in tileInfos)
+            foreach (ITileView tileInfo in tileInfos)
             {
-                _graphicsController.DestroyTile(tileInfo.Index);
+                _graphicsController.DestroyTile(tileInfo.ViewPosition);
             }
         }
     }

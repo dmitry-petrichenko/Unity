@@ -24,6 +24,9 @@ namespace Map
                     InitializeSquare(new IntVector2(i, j));
                 }
             }
+            
+            InitializeCube(new IntVector2(0, 0));
+            InitializeCube(new IntVector2(2, 0));
         }
 
         public IMapTileInfo InitializeEmptyTileInfo(IntVector2 index)
@@ -61,6 +64,27 @@ namespace Map
             
             mapTileInfo = new MapTileInfo();
             mapTileInfo.Initialize(MapTileType.Plane, position, new IntVector2(position.x + 1, position.y + 1), null);
+            _mapTilesInfo[position.x + 1, position.y + 1] = mapTileInfo;
+        }
+        
+        public void InitializeCube(IntVector2 position)
+        {
+            MapTileInfo mapTileInfo;
+            
+            mapTileInfo = new MapTileInfo();
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x, position.y), null);
+            _mapTilesInfo[position.x, position.y] = mapTileInfo;
+            
+            mapTileInfo = new MapTileInfo();
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y), null);
+            _mapTilesInfo[position.x + 1, position.y] = mapTileInfo;
+            
+            mapTileInfo = new MapTileInfo();
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x, position.y + 1), null);
+            _mapTilesInfo[position.x, position.y + 1] = mapTileInfo;
+            
+            mapTileInfo = new MapTileInfo();
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y + 1), null);
             _mapTilesInfo[position.x + 1, position.y + 1] = mapTileInfo;
         }
 

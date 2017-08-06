@@ -1,4 +1,4 @@
-﻿namespace NSMapViewController
+﻿namespace Labyrinth
 {
     public interface IMapViewController
     {

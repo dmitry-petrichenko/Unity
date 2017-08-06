@@ -1,4 +1,6 @@
-﻿namespace NSCameraController
+﻿using Labyrinth;
+
+namespace NSCameraController
 {
     public interface ICameraController
     {

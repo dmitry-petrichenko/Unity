@@ -1,11 +1,14 @@
-﻿public struct IntVector2
+﻿namespace Labyrinth
 {
-    public int x;
-    public int y;
-
-    public IntVector2(int x, int y)
+    public struct IntVector2
     {
-        this.x = x;
-        this.y = y;
-    }
+        public int x;
+        public int y;
+
+        public IntVector2(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    } 
 }

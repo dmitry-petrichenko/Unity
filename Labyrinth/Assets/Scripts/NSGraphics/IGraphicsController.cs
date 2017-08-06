@@ -1,4 +1,6 @@
-﻿namespace NSGraphics
+﻿using Labyrinth;
+
+namespace NSGraphics
 {
     public interface IGraphicsController
     {

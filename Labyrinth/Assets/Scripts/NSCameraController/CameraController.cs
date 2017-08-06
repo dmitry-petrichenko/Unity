@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Labyrinth;
+using UnityEngine;
 
 namespace NSCameraController
 {

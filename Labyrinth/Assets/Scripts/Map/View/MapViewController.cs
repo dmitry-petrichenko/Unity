@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using NSMapTileInfo;
-using UnityEngine;
+using Labyrinth;
 
-namespace NSMapViewController
+namespace Map
 {
     public class MapViewController : IMapViewController
     {
@@ -11,16 +10,13 @@ namespace NSMapViewController
 
         public void Initialize()
         {
-            _mapInfoUpdateController = new MapInfoUpdateController(); 
-            _mapInfoUpdateController.Initialize();
-            _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
-            _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
-            
-            
             _mapViewUpdateController = new MapViewUpdateController();
             _mapViewUpdateController.Initialize();
             
-
+            _mapInfoUpdateController = new MapInfoUpdateController();      
+            _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
+            _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
+            _mapInfoUpdateController.Initialize();
         }
         
         public void UpdateCurrentPosition(IntVector2 position)

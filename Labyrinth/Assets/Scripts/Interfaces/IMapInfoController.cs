@@ -1,6 +1,4 @@
-﻿using NSMapTileInfo;
-
-namespace NSMapInfoController
+﻿namespace Labyrinth
 {
     public interface IMapInfoController
     {

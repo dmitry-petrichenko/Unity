@@ -1,6 +1,7 @@
-﻿using NSUnits;
+﻿using Labyrinth;
+using NSUnits;
 
-namespace NSMapTileInfo
+namespace Map
 {
     public class MapTileInfo : IMapTileInfo
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using Labyrinth;
 using NSGraphics;
-using NSMapTileInfo;
 
-namespace NSMapViewController
+namespace Map
 {
     public class MapViewUpdateController
     {

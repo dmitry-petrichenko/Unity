@@ -1,4 +1,4 @@
-﻿namespace NSMapTileInfo
+﻿namespace Map
 {
     public enum MapTileType
     {

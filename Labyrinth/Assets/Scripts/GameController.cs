@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using Labyrinth;
+using Labyrinth.Settings;
+using Map;
 using NSCameraController;
 using NSGraphics;
-using NSMapInfoController;
-using NSMapViewController;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
@@ -16,11 +14,16 @@ public class GameController : MonoBehaviour {
 	private MapViewController _mapViewController;
 	private GraphicsController _graphicsController;
 	private CameraController _cameraController;
+	private SettingsList _settingsList;
 
 	private int g;
 	
 	// Use this for initialization
 	void Start () {
+		_settingsList = new SettingsList();
+		_settingsList.Initialize();
+		ServiceLocator.InitializeSettings(_settingsList);
+		
 		_cameraController = new CameraController();
 		_cameraController.Initialize(_camera);
 		ServiceLocator.InitializeCameraController(_cameraController);
@@ -37,8 +40,13 @@ public class GameController : MonoBehaviour {
 		_mapViewController.Initialize();
 		ServiceLocator.InitializeMapViewController(_mapViewController);
 		
-		_mapViewController.UpdateCurrentPosition(new IntVector2(0, 0));
-		_cameraController.UpdateCurrentPosition(new IntVector2(0, 0));
+		
+		//---
+		ISettings set = ServiceLocator.GetSettings();
+		IntVector2 pos = new IntVector2(0, 0);
+		_mapViewController.UpdateCurrentPosition(pos);
+		_cameraController.UpdateCurrentPosition(pos);
+		//_cameraController.UpdateCurrentPosition(new IntVector2(pos.x + set.ActiveAreaSize / 2, pos.y + set.ActiveAreaSize / 2));
 		g = 0;
 		InvokeRepeating("cl", 1f, 1f);
 
@@ -47,8 +55,11 @@ public class GameController : MonoBehaviour {
 	private void cl()
 	{
 		g++;
-		_mapViewController.UpdateCurrentPosition(new IntVector2(g, 0));
-		_cameraController.UpdateCurrentPosition(new IntVector2(g, 0));
+		IntVector2 pos = new IntVector2(g, 0);
+		ISettings set = ServiceLocator.GetSettings();
+		_mapViewController.UpdateCurrentPosition(pos);
+		_cameraController.UpdateCurrentPosition(pos);
+		//_cameraController.UpdateCurrentPosition(new IntVector2(pos.x + set.ActiveAreaSize / 2, pos.y + set.ActiveAreaSize / 2));
 		Debug.Log(g);
 	}
 	

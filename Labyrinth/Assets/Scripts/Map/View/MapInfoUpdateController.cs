@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using NSMapInfoController;
-using NSMapTileInfo;
+using Labyrinth;
 
-namespace NSMapViewController
+namespace Map
 {
     public class MapInfoUpdateController 
     {
@@ -14,13 +13,14 @@ namespace NSMapViewController
 
         private IMapInfoController _mapInfoController;
         private IntVector2 _currentPosition;
-        private int _mapSectionSize = 4;
-        private int _halfActiveAreaX = 8;
-        private int _halfActiveAreaY = 8;
+        private int _mapSectionSize;
+        private int _halfActiveAreaX;
+        private int _halfActiveAreaY;
         private int _updateTime;
         private Dictionary<IntVector2, MapTileInfoContainer> _mapTileInfoContainers;
         private List<IMapTileInfo> _tilesInfoToDestroy;
         private List<IMapTileInfo> _tilesInfoToInitialize;
+        private ISettings _settings;
         
         public MapInfoUpdateController()
         {
@@ -29,8 +29,15 @@ namespace NSMapViewController
 
         public void Initialize()
         {
+            _settings = ServiceLocator.GetSettings();
             _mapInfoController = ServiceLocator.GetMapInfoController();
             _mapTileInfoContainers = new Dictionary<IntVector2, MapTileInfoContainer>();
+
+            _mapSectionSize = _settings.MapSectionSize;
+            _halfActiveAreaX = _halfActiveAreaY = _settings.ActiveAreaSize / 2;
+            
+            UpdateTilesInfoTime(_settings.InitializePosition);
+            ResetTiles();
         }
 
         public void UpdateCurrentPosition(IntVector2 currentPosition)

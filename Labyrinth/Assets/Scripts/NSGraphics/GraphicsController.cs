@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Labyrinth;
 using UnityEngine;
-using UnityEngine.VR.WSA;
 
 namespace NSGraphics
 {

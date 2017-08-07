@@ -7,6 +7,7 @@ namespace Map
     {
         private MapInfoUpdateController _mapInfoUpdateController;
         private MapViewUpdateController _mapViewUpdateController;
+        
 
         public void Initialize()
         {
@@ -18,7 +19,7 @@ namespace Map
             _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
             _mapInfoUpdateController.Initialize();
         }
-        
+
         public void UpdateCurrentPosition(IntVector2 position)
         {
             _mapInfoUpdateController.UpdateCurrentPosition(position);

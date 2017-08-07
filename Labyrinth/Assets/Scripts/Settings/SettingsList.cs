@@ -13,7 +13,7 @@
 
         public void Initialize()
         {
-            MapSectionSize = 4;
+            MapSectionSize = 2;
             ActiveAreaSize = 16;
             InitializePosition = new IntVector2(0, 0);
         }

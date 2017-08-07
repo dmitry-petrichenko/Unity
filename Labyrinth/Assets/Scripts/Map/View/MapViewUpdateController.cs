@@ -13,12 +13,11 @@ namespace Map
         {
             _graphicsController = ServiceLocator.GetGraphicsController();
             _initializedIndexes = new List<IntVector2>();
+            _initializedIndexes = new List<IntVector2>();
         }
 
-        public void InitializeTiles(List<IMapTileInfo> tileInfos)
+        public void InitializeTiles<T>(List<T> tileInfos) where T:ITileView
         {
-            _initializedIndexes = new List<IntVector2>();
-
             foreach (ITileView tileInfo in tileInfos)
             {
                 InitializeTile(tileInfo);
@@ -54,14 +53,15 @@ namespace Map
                 }
             }
             
-            _initializedIndexes.Add(tileInfo.ViewPosition);
+            _initializedIndexes.Add(new IntVector2(tileInfo.ViewPosition.x, tileInfo.ViewPosition.y));
         }
 
-        public void DestroyTiles(List<IMapTileInfo> tileInfos)
+        public void DestroyTiles<T>(List<T> tileInfos) where T:ITileView
         {
             foreach (ITileView tileInfo in tileInfos)
             {
                 _graphicsController.DestroyTile(tileInfo.ViewPosition);
+                _initializedIndexes.Remove(tileInfo.ViewPosition);
             }
         }
     }

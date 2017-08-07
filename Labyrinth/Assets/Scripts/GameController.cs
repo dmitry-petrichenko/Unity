@@ -15,8 +15,7 @@ public class GameController : MonoBehaviour {
 	private GraphicsController _graphicsController;
 	private CameraController _cameraController;
 	private SettingsList _settingsList;
-
-	private int g;
+	private InputController _inputController;
 	
 	// Use this for initialization
 	void Start () {
@@ -39,32 +38,11 @@ public class GameController : MonoBehaviour {
 		_mapViewController = new MapViewController();
 		_mapViewController.Initialize();
 		ServiceLocator.InitializeMapViewController(_mapViewController);
-		
-		
-		//---
-		ISettings set = ServiceLocator.GetSettings();
-		IntVector2 pos = new IntVector2(0, 0);
-		_mapViewController.UpdateCurrentPosition(pos);
-		_cameraController.UpdateCurrentPosition(pos);
-		//_cameraController.UpdateCurrentPosition(new IntVector2(pos.x + set.ActiveAreaSize / 2, pos.y + set.ActiveAreaSize / 2));
-		g = 0;
-		InvokeRepeating("cl", 1f, 1f);
 
+		_inputController = new InputController();
+		_inputController.Initialize();
+		
+		//InvokeRepeating("cl", 1f, 1f);
 	}
 
-	private void cl()
-	{
-		g++;
-		IntVector2 pos = new IntVector2(g, 0);
-		ISettings set = ServiceLocator.GetSettings();
-		_mapViewController.UpdateCurrentPosition(pos);
-		_cameraController.UpdateCurrentPosition(pos);
-		//_cameraController.UpdateCurrentPosition(new IntVector2(pos.x + set.ActiveAreaSize / 2, pos.y + set.ActiveAreaSize / 2));
-		Debug.Log(g);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

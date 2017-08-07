@@ -6,6 +6,7 @@ namespace Map
     {
         private IMapTileInfo[,] _mapTilesInfo;
         private MapInfoInitializer _mapInfoInitializer;
+        private MapInfoStoreController _mapInfoStoreController;
         
         private IntVector2 _mapSize;
 
@@ -15,10 +16,16 @@ namespace Map
         }
 
         public void Initialize()
-        {
+        {/*
             _mapSize = new IntVector2(10, 10);
             _mapInfoInitializer = new MapInfoInitializer();
             _mapInfoInitializer.Initialize(_mapSize);
+            */
+            
+            
+            
+            _mapInfoStoreController = new MapInfoStoreController();
+            _mapInfoStoreController.SaveMapInfo(_mapInfoInitializer.MapTilesInfo, "");
 
             _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
         }

@@ -32,11 +32,11 @@ public class MainEditorController : MonoBehaviour
 
         _mapInfoStoreController = new MapInfoStoreController();
         _mapInfoStoreController.Initialize();
-        //_mapTilesInfo = _mapInfoStoreController.UploadMapInfo("");
+        _mapTilesInfo = _mapInfoStoreController.UploadMapInfo("");
 
         _mapInfoInitializer = new MapInfoInitializer();
-        //_mapInfoInitializer.Initialize(_mapTilesInfo);
-        _mapInfoInitializer.Initialize(new IntVector2(20, 20));
+        _mapInfoInitializer.Initialize(_mapTilesInfo);
+        //_mapInfoInitializer.Initialize(new IntVector2(20, 20));
         _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
 
         _mapViewController = new EditorMapViewController();
@@ -55,6 +55,9 @@ public class MainEditorController : MonoBehaviour
     {
         position = new IntVector2(position.x * 2, position.y * 2);
         _mapInfoInitializer.InitializeSquare(position);
+        _mapInfoInitializer.InitializeSquare(new IntVector2(position.x + 1, position.y));
+        _mapInfoInitializer.InitializeSquare(new IntVector2(position.x, position.y + 1));
+        _mapInfoInitializer.InitializeSquare(new IntVector2(position.x + 1, position.y + 1));
         _mapViewController.UpdateTile(position);
     }
 

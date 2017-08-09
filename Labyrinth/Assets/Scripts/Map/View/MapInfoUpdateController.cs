@@ -4,7 +4,7 @@ using Labyrinth;
 
 namespace Map
 {
-    public class MapInfoUpdateController 
+    public class MapInfoUpdateController
     {
         public delegate void InfoUpdateHandler(List<IMapTileInfo> tiles);
 
@@ -21,10 +21,9 @@ namespace Map
         private List<IMapTileInfo> _tilesInfoToDestroy;
         private List<IMapTileInfo> _tilesInfoToInitialize;
         private ISettings _settings;
-        
+
         public MapInfoUpdateController()
         {
-            
         }
 
         public void Initialize()
@@ -35,7 +34,7 @@ namespace Map
 
             _mapSectionSize = _settings.MapSectionSize;
             _halfActiveAreaX = _halfActiveAreaY = _settings.ActiveAreaSize / 2;
-            
+
             UpdateTilesInfoTime(_settings.InitializePosition);
             ResetTiles();
         }
@@ -52,17 +51,17 @@ namespace Map
                 ResetTiles();
             }
         }
-        
+
         private void UpdateTilesInfoTime(IntVector2 currentPosition)
         {
             _tilesInfoToInitialize = new List<IMapTileInfo>();
-            
+
             IntVector2 tileIndex;
             IMapTileInfo mapTileInfo;
             MapTileInfoContainer mapTileInfoContainer;
-            
+
             _updateTime = DateTime.Now.Millisecond;
-            
+
             for (int x = -_halfActiveAreaX; x < _halfActiveAreaX; x++)
             {
                 for (int y = -_halfActiveAreaY; y < _halfActiveAreaY; y++)
@@ -81,16 +80,17 @@ namespace Map
                     }
                 }
             }
-              
+
             _currentPosition = currentPosition;
-            
-            InitializeTilesHandler(_tilesInfoToInitialize); 
+
+            InitializeTilesHandler(_tilesInfoToInitialize);
         }
 
         private void ResetTiles()
         {
             _tilesInfoToDestroy = new List<IMapTileInfo>();
-            Dictionary<IntVector2, MapTileInfoContainer> _newMapTileInfoContainers = new Dictionary<IntVector2, MapTileInfoContainer>();
+            Dictionary<IntVector2, MapTileInfoContainer> _newMapTileInfoContainers =
+                new Dictionary<IntVector2, MapTileInfoContainer>();
             foreach (MapTileInfoContainer tileContainer in _mapTileInfoContainers.Values)
             {
                 if (tileContainer.InitializeTime != _updateTime)
@@ -104,7 +104,7 @@ namespace Map
             }
 
             _mapTileInfoContainers = _newMapTileInfoContainers;
-            
+
             DestroyTilesHandler(_tilesInfoToDestroy);
         }
     }
@@ -120,5 +120,4 @@ namespace Map
             this.InitializeTime = InitializeTime;
         }
     }
-    
 }

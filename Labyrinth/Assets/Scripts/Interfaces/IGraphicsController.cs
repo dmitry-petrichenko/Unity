@@ -11,7 +11,7 @@ namespace NSGraphics
         void InitializeEmpty(IntVector2 position);
         void InitializeSquare(IntVector2 position);
         void DestroyTile(IntVector2 position);
-        
+
         event TileClickHandler TileClicked;
         event TileClickHandler RightClicked;
     }

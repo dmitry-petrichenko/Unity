@@ -15,7 +15,7 @@ namespace Map
             _initializedIndexes = new List<IntVector2>();
         }
 
-        public void InitializeTiles<T>(List<T> tileInfos) where T:ITileView
+        public void InitializeTiles<T>(List<T> tileInfos) where T : ITileView
         {
             foreach (ITileView tileInfo in tileInfos)
             {
@@ -51,11 +51,11 @@ namespace Map
                     break;
                 }
             }
-            
+
             _initializedIndexes.Add(new IntVector2(tileInfo.ViewPosition.x, tileInfo.ViewPosition.y));
         }
 
-        public void DestroyTiles<T>(List<T> tileInfos) where T:ITileView
+        public void DestroyTiles<T>(List<T> tileInfos) where T : ITileView
         {
             foreach (ITileView tileInfo in tileInfos)
             {

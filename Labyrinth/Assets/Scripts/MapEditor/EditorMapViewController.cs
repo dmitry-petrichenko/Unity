@@ -20,10 +20,10 @@ namespace Map
             _tileInfos = tileInfos;
             int lengthX = tileInfos.GetLength(0);
             int lengthY = tileInfos.GetLength(1);
-            
-            for(int i = 0; i < lengthX; i += 2)
+
+            for (int i = 0; i < lengthX; i += 2)
             {
-                for(int j = 0; j < lengthY; j += 2)
+                for (int j = 0; j < lengthY; j += 2)
                 {
                     InitializeTile(tileInfos[i, j]);
                 }

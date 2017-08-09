@@ -18,11 +18,12 @@ namespace Map
         {
             _settings = ServiceLocator.GetSettings();
         }
-        
+
         public void SaveMapInfo(IMapTileInfo[,] info, string url)
         {
-            MapInfoContainer mapInfoContainer = new MapInfoContainer(info, new IntVector2(info.GetLength(0), info.GetLength(1)));
-            
+            MapInfoContainer mapInfoContainer =
+                new MapInfoContainer(info, new IntVector2(info.GetLength(0), info.GetLength(1)));
+
             infoJson = JsonMapper.ToJson(mapInfoContainer);
             File.WriteAllText(_settings.ResiurcesLocation + "/info.json", infoJson.ToString());
         }
@@ -41,12 +42,10 @@ namespace Map
 
         private void InitializeReturnInfo(List<IMapTileInfo> infoList, IMapTileInfo[,] returnInfo)
         {
-            
             foreach (IMapTileInfo tileInfo in infoList)
             {
                 returnInfo[tileInfo.Index.x, tileInfo.Index.y] = tileInfo;
             }
-
         }
 
         private IMapTileInfo[,] CreateReturnInfo()
@@ -57,30 +56,30 @@ namespace Map
             return returnInfo;
         }
 
-        List<IMapTileInfo>  UploadTileList()
+        List<IMapTileInfo> UploadTileList()
         {
             List<IMapTileInfo> infoList = new List<IMapTileInfo>();
             MapTileInfo tile;
             infoJson = infoJson["Tiles"];
             int count = infoJson.Count;
-            
+
             for (int i = 0; i < count; i++)
             {
                 tile = new MapTileInfo();
-                tile.Initialize((int)infoJson[i]["Type"], GetIntVector2FromProperty(infoJson[i], "ViewPosition"), 
+                tile.Initialize((int) infoJson[i]["Type"], GetIntVector2FromProperty(infoJson[i], "ViewPosition"),
                     GetIntVector2FromProperty(infoJson[i], "Index"), null);
-                
+
                 infoList.Add(tile);
             }
-            
-            return infoList; 
+
+            return infoList;
         }
 
         IntVector2 GetIntVector2FromProperty(JsonData tile, string property)
         {
             IntVector2 intVector2;
-            intVector2.x = (int)tile[property]["x"];
-            intVector2.y = (int)tile[property]["y"];
+            intVector2.x = (int) tile[property]["x"];
+            intVector2.y = (int) tile[property]["y"];
 
             return intVector2;
         }

@@ -11,7 +11,6 @@ namespace Labyrinth.Settings
 
         public SettingsList()
         {
-
         }
 
         public void Initialize()

@@ -7,7 +7,7 @@ namespace NSCameraController
     {
         private Camera _camera;
         private int _yPosition;
-        
+
         public void Initialize(Camera camera, int yPosition = 15)
         {
             _camera = camera;

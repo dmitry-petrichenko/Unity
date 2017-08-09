@@ -30,7 +30,7 @@ namespace NSGraphics
             if (TileClicked != null)
                 TileClicked(position);
         }
-        
+
         private void RightClickedHandler(IntVector2 position)
         {
             if (RightClicked != null)
@@ -77,7 +77,7 @@ namespace NSGraphics
 
         public event TileClickHandler TileClicked;
         public event TileClickHandler RightClicked;
-        
+
         private void AddActiveGameObject(IntVector2 position, GameObject gameObject)
         {
             _activeGameObjects.Add(position, gameObject);

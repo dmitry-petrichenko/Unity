@@ -27,7 +27,7 @@ namespace NSGraphics
             if (TileClicked != null)
                 TileClicked(position);
         }
-        
+
         private void RightClickedHandler(IntVector2 position)
         {
             if (RightClicked != null)
@@ -36,7 +36,6 @@ namespace NSGraphics
 
         public void InitializePlane(IntVector2 position)
         {
-
         }
 
         public void InitializeCube(IntVector2 position)
@@ -44,12 +43,11 @@ namespace NSGraphics
             DestroyTile(position);
             var gameObject = Object.Instantiate(_cube, new Vector3(position.x, 0, position.y), Quaternion.identity,
                 _mainScene.transform);
-             AddActiveGameObject(position, gameObject);
+            AddActiveGameObject(position, gameObject);
         }
 
         public void InitializeEmpty(IntVector2 position)
         {
-            
         }
 
         public void InitializeSquare(IntVector2 position)

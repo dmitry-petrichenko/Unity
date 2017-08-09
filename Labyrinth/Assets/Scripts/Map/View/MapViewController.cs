@@ -7,14 +7,14 @@ namespace Map
     {
         private MapInfoUpdateController _mapInfoUpdateController;
         private MapViewUpdateController _mapViewUpdateController;
-        
+
 
         public void Initialize()
         {
             _mapViewUpdateController = new MapViewUpdateController();
             _mapViewUpdateController.Initialize();
-            
-            _mapInfoUpdateController = new MapInfoUpdateController();      
+
+            _mapInfoUpdateController = new MapInfoUpdateController();
             _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
             _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
             _mapInfoUpdateController.Initialize();
@@ -29,7 +29,7 @@ namespace Map
         {
             _mapViewUpdateController.DestroyTiles(tilesInfo);
         }
-        
+
         private void InitializeTilesHandler(List<IMapTileInfo> tilesInfo)
         {
             _mapViewUpdateController.InitializeTiles(tilesInfo);

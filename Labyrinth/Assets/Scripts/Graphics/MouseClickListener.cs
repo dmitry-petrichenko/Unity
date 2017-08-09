@@ -22,7 +22,7 @@ public class MouseClickListener : MonoBehaviour
                     TileClicked(new IntVector2((int) position.x, (int) position.z));
             }
         }
-        
+
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

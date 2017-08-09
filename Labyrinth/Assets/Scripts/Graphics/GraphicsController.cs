@@ -22,12 +22,19 @@ namespace NSGraphics
 
             _mouseClickListener = _mainScene.AddComponent<MouseClickListener>();
             _mouseClickListener.TileClicked += TileClickedHandler;
+            _mouseClickListener.TileClicked += RightClickedHandler;
         }
 
         private void TileClickedHandler(IntVector2 position)
         {
             if (TileClicked != null)
                 TileClicked(position);
+        }
+        
+        private void RightClickedHandler(IntVector2 position)
+        {
+            if (RightClicked != null)
+                RightClicked(position);
         }
 
         public void InitializePlane(IntVector2 position)
@@ -69,6 +76,7 @@ namespace NSGraphics
         }
 
         public event TileClickHandler TileClicked;
+        public event TileClickHandler RightClicked;
         
         private void AddActiveGameObject(IntVector2 position, GameObject gameObject)
         {

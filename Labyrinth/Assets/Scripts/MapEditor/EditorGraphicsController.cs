@@ -19,12 +19,19 @@ namespace NSGraphics
 
             _mouseClickListener = _mainScene.AddComponent<MouseClickListener>();
             _mouseClickListener.TileClicked += TileClickedHandler;
+            _mouseClickListener.RightClicked += RightClickedHandler;
         }
 
         private void TileClickedHandler(IntVector2 position)
         {
             if (TileClicked != null)
                 TileClicked(position);
+        }
+        
+        private void RightClickedHandler(IntVector2 position)
+        {
+            if (RightClicked != null)
+                RightClicked(position);
         }
 
         public void InitializePlane(IntVector2 position)
@@ -34,9 +41,10 @@ namespace NSGraphics
 
         public void InitializeCube(IntVector2 position)
         {
+            DestroyTile(position);
             var gameObject = Object.Instantiate(_cube, new Vector3(position.x, 0, position.y), Quaternion.identity,
                 _mainScene.transform);
-            AddActiveGameObject(position, gameObject);
+             AddActiveGameObject(position, gameObject);
         }
 
         public void InitializeEmpty(IntVector2 position)
@@ -46,6 +54,7 @@ namespace NSGraphics
 
         public void InitializeSquare(IntVector2 position)
         {
+            DestroyTile(position);
             var gameObject = Object.Instantiate(_plane, new Vector3(position.x, 0, position.y), Quaternion.identity,
                 _mainScene.transform);
             AddActiveGameObject(position, gameObject);
@@ -63,10 +72,11 @@ namespace NSGraphics
         }
 
         public event TileClickHandler TileClicked;
-        
+        public event TileClickHandler RightClicked;
+
         private void AddActiveGameObject(IntVector2 position, GameObject gameObject)
         {
-            //_activeGameObjects.Add(position, gameObject);
+            _activeGameObjects.Add(position, gameObject);
         }
     }
 }

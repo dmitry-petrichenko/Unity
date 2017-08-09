@@ -13,5 +13,6 @@ namespace NSGraphics
         void DestroyTile(IntVector2 position);
         
         event TileClickHandler TileClicked;
+        event TileClickHandler RightClicked;
     }
 }

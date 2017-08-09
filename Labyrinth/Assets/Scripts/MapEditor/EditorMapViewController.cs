@@ -8,6 +8,7 @@ namespace Map
     {
         private IGraphicsController _graphicsController;
         private List<IntVector2> _initializedIndexes;
+        private IMapTileInfo[,] _tileInfos;
 
         public void Initialize()
         {
@@ -16,6 +17,7 @@ namespace Map
 
         public void InitializeTiles(IMapTileInfo[,] tileInfos)
         {
+            _tileInfos = tileInfos;
             int lengthX = tileInfos.GetLength(0);
             int lengthY = tileInfos.GetLength(1);
             
@@ -26,6 +28,11 @@ namespace Map
                     InitializeTile(tileInfos[i, j]);
                 }
             }
+        }
+
+        public void UpdateTile(IntVector2 position)
+        {
+            InitializeTile(_tileInfos[position.x, position.y]);
         }
 
         private void InitializeTile(IMapTileInfo tileInfo)

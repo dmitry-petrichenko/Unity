@@ -1,10 +1,10 @@
 ﻿namespace Map
 {
-    public enum MapTileType
+    public static class MapTileType
     {
-        Plane,
-        Cube, 
-        Square,
-        Empty
+        public const int Plane = 0;
+        public const int Cube = 1;
+        public const int Square = 2;
+        public const int Empty = 3;
     }
 }

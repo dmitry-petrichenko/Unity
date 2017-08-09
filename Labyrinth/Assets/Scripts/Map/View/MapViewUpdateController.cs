@@ -13,7 +13,6 @@ namespace Map
         {
             _graphicsController = ServiceLocator.GetGraphicsController();
             _initializedIndexes = new List<IntVector2>();
-            _initializedIndexes = new List<IntVector2>();
         }
 
         public void InitializeTiles<T>(List<T> tileInfos) where T:ITileView

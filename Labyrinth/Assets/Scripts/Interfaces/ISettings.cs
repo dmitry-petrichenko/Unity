@@ -5,5 +5,6 @@
         int MapSectionSize { get; }
         int ActiveAreaSize { get; }
         IntVector2 InitializePosition { get; }
+        string ResiurcesLocation { get; }
     }
 }

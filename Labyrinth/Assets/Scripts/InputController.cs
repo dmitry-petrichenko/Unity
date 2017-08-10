@@ -1,5 +1,6 @@
 ﻿using NSCameraController;
 using NSGraphics;
+using Units;
 
 namespace Labyrinth
 {
@@ -8,12 +9,14 @@ namespace Labyrinth
         private IMapViewController _mapViewController;
         private IGraphicsController _graphicsController;
         private ICameraController _cameraController;
+        private IUnitsController _unitsController;
 
         public void Initialize()
         {
             _mapViewController = ServiceLocator.GetMapViewController();
             _graphicsController = ServiceLocator.GetGraphicsController();
             _cameraController = ServiceLocator.GetCameraController();
+            _unitsController = ServiceLocator.GetUnitsController();
 
             _graphicsController.TileClicked += TileClickedHandler;
         }
@@ -22,6 +25,7 @@ namespace Labyrinth
         {
             _mapViewController.UpdateCurrentPosition(position);
             _cameraController.UpdateCurrentPosition(position);
+            _unitsController.PlayerMoveTo(position);
         }
     }
 }

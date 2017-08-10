@@ -1,5 +1,6 @@
 ﻿using NSCameraController;
 using NSGraphics;
+using Units;
 
 namespace Labyrinth
 {
@@ -9,7 +10,18 @@ namespace Labyrinth
         private static IMapViewController _mapViewController;
         private static IGraphicsController _graphicsController;
         private static ICameraController _cameraController;
+        private static IUnitsController _unitsController;
         private static ISettings _settings;
+        
+        public static void InitializeUnitsController(IUnitsController unitsController)
+        {
+            _unitsController = unitsController;
+        }
+
+        public static IUnitsController GetUnitsController()
+        {
+            return _unitsController;
+        }
 
         public static void InitializeSettings(ISettings settings)
         {

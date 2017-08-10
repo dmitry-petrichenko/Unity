@@ -1,5 +1,5 @@
 ﻿using Map;
-using NSUnits;
+using Units;
 
 namespace Labyrinth
 {

@@ -8,11 +8,18 @@ namespace Labyrinth.Settings
         public int ActiveAreaSize { get; private set; }
         public IntVector2 InitializePosition { get; private set; }
         public string ResiurcesLocation { get; private set; }
+        public GameObject PlayerGraphicsObject { get; private set; }
 
         public SettingsList()
         {
         }
 
+        public void Initialize(GameObject playerObject)
+        {
+            PlayerGraphicsObject = playerObject;
+            Initialize();
+        }
+        
         public void Initialize()
         {
             MapSectionSize = 2;

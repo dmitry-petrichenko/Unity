@@ -1,4 +1,6 @@
-﻿namespace Labyrinth
+﻿using UnityEngine;
+
+namespace Labyrinth
 {
     public interface ISettings
     {
@@ -6,5 +8,6 @@
         int ActiveAreaSize { get; }
         IntVector2 InitializePosition { get; }
         string ResiurcesLocation { get; }
+        GameObject PlayerGraphicsObject { get; }
     }
 }

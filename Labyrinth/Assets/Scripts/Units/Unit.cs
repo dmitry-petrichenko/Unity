@@ -1,4 +1,4 @@
-﻿namespace NSUnits
+﻿namespace Units
 {
     public class Unit
     {

@@ -1,4 +1,5 @@
-﻿using NSCameraController;
+﻿using Labyrinth.GameLoop;
+using NSCameraController;
 using NSGraphics;
 using Units;
 
@@ -12,6 +13,17 @@ namespace Labyrinth
         private static ICameraController _cameraController;
         private static IUnitsController _unitsController;
         private static ISettings _settings;
+        private static IGameLoopController _gameLoopController;
+        
+        public static void InitializeGameLoopController(IGameLoopController gameLoopController)
+        {
+            _gameLoopController = gameLoopController;
+        }
+
+        public static IGameLoopController GetGameLoopController()
+        {
+            return _gameLoopController;
+        }
         
         public static void InitializeUnitsController(IUnitsController unitsController)
         {

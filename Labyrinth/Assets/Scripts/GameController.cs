@@ -1,4 +1,6 @@
-﻿using Labyrinth;
+﻿using System;
+using Labyrinth;
+using Labyrinth.GameLoop;
 using Labyrinth.Settings;
 using Map;
 using NSCameraController;
@@ -18,6 +20,9 @@ public class GameController : MonoBehaviour
     private SettingsList _settingsList;
     private InputController _inputController;
     private UnitsController _unitsController;
+    private GameLoopController _gameLoopController;
+
+    public event Action Updated;
 
     // Use this for initialization
     void Start()
@@ -25,6 +30,14 @@ public class GameController : MonoBehaviour
         _settingsList = new SettingsList();
         _settingsList.Initialize(Player);
         ServiceLocator.InitializeSettings(_settingsList);
+        
+        _gameLoopController = new GameLoopController();
+        _gameLoopController.Initialize(this);
+        ServiceLocator.InitializeGameLoopController(_gameLoopController);
+        
+        _unitsController = new UnitsController();
+        _unitsController.Initializr();
+        ServiceLocator.InitializeUnitsController(_unitsController);
 
         _cameraController = new CameraController();
         _cameraController.Initialize(_camera);
@@ -41,16 +54,16 @@ public class GameController : MonoBehaviour
         _mapViewController = new MapViewController();
         _mapViewController.Initialize();
         ServiceLocator.InitializeMapViewController(_mapViewController);
-
-        _unitsController = new UnitsController();
-        _unitsController.Initializr();
-        ServiceLocator.InitializeUnitsController(_unitsController);
-        
         
         _inputController = new InputController();
         _inputController.Initialize();
         
-
         //InvokeRepeating("cl", 1f, 1f);
+    }
+
+    void Update()
+    {
+        if (Updated != null)
+            Updated();
     }
 }

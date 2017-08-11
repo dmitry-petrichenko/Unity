@@ -10,6 +10,7 @@ namespace Labyrinth
         private IGraphicsController _graphicsController;
         private ICameraController _cameraController;
         private IUnitsController _unitsController;
+        private ISettings _setingsController;
 
         public void Initialize()
         {
@@ -17,14 +18,17 @@ namespace Labyrinth
             _graphicsController = ServiceLocator.GetGraphicsController();
             _cameraController = ServiceLocator.GetCameraController();
             _unitsController = ServiceLocator.GetUnitsController();
-
+            _setingsController = ServiceLocator.GetSettings();
+            
             _graphicsController.TileClicked += TileClickedHandler;
+            
+            _cameraController.Follow(_setingsController.PlayerGraphicsObject);
         }
 
         private void TileClickedHandler(IntVector2 position)
         {
             _mapViewController.UpdateCurrentPosition(position);
-            _cameraController.UpdateCurrentPosition(position);
+            //_cameraController.UpdateCurrentPosition(position);
             _unitsController.PlayerMoveTo(position);
         }
     }

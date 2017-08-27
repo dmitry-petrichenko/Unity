@@ -16,7 +16,7 @@ namespace Units
 
         public void MoveTo(IntVector2 position)
         {
-            _unitController.GraphicsController.MoveToPosition(position);
+            _unitController.MoveToPosition(position);
         }
     }
 }

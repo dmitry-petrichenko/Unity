@@ -16,5 +16,10 @@ namespace Units
         {
             _player.MoveTo(position);
         }
+
+        public IUnitController Player
+        {
+            get { return _player; }
+        }
     }
 }

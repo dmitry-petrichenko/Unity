@@ -1,6 +1,7 @@
 ﻿using Interfaces;
 using NSCameraController;
 using Units;
+using UnityEngine;
 
 namespace Labyrinth
 {
@@ -23,6 +24,8 @@ namespace Labyrinth
             _graphicsController.TileClicked += TileClickedHandler;
 
             _cameraController.Follow(_setingsController.PlayerGraphicsObject);
+
+            _mapViewController.UpdateCurrentPosition(_unitsController.Player.Position);
         }
 
         private void TileClickedHandler(IntVector2 position)

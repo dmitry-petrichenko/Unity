@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Labyrinth.Map
 {
@@ -65,7 +66,7 @@ namespace Labyrinth.Map
             {
                 for (int y = -_halfActiveAreaY; y < _halfActiveAreaY; y++)
                 {
-                    tileIndex = new IntVector2(x + _currentPosition.x, y + _currentPosition.y);
+                    tileIndex = new IntVector2(x + currentPosition.x, y + currentPosition.y);
                     if (!_mapTileInfoContainers.ContainsKey(tileIndex))
                     {
                         mapTileInfo = _mapInfoController.GetMapTileInfo(tileIndex);
@@ -103,7 +104,6 @@ namespace Labyrinth.Map
             }
 
             _mapTileInfoContainers = _newMapTileInfoContainers;
-
             DestroyTilesHandler(_tilesInfoToDestroy);
         }
     }

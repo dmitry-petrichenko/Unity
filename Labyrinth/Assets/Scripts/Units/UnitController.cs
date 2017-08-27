@@ -28,5 +28,15 @@ namespace Units
         {
             _moveController.MoveTo(position);
         }
+
+        public void MoveToPosition(IntVector2 position)
+        {
+            GraphicsController.MoveToPosition(position);
+        }
+
+        public IntVector2 Position
+        {
+            get { return GraphicsController.Position; }
+        }
     }
 }

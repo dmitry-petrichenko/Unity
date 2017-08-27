@@ -9,9 +9,12 @@ namespace Units
     {
         private GameObject _unit;
 
+        public IntVector2 Position { get; private set; }
+
         public void Initialize(GameObject unit)
         {
             _unit = unit;
+            Position = new IntVector2((int)_unit.transform.position.x, (int)_unit.transform.position.z);
         }
 
         public void MoveToPosition(IntVector2 position)

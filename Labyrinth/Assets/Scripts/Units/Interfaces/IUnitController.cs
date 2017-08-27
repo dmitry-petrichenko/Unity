@@ -1,7 +1,10 @@
-﻿namespace Units
+﻿using Labyrinth;
+
+namespace Units
 {
     public interface IUnitController
     {
-        IUnitGraphicsController GraphicsController { get; set; }
+        void MoveToPosition(IntVector2 position);
+        IntVector2 Position { get; }
     }
 }

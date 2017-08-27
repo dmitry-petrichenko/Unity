@@ -1,5 +1,4 @@
 ﻿using Labyrinth;
-using UnityEngine;
 
 namespace NSCameraController
 {

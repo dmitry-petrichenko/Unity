@@ -6,9 +6,9 @@ namespace Units
     public class MoveController
     {
         private IUnitController _unitController;
-        
+
         event Action CompleteMove;
-        
+
         public void Initialize(IUnitController unitController)
         {
             _unitController = unitController;

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Labyrinth;
+using Interfaces;
 using UnityEngine;
 
-namespace NSGraphics
+namespace Labyrinth.Map
 {
-    public class GraphicsController : IGraphicsController
+    public class MapGraphicsController : IGraphicsController
     {
         private GameObject _mainScene, _plane, _cube, _empty, _square;
         private Dictionary<IntVector2, GameObject> _activeGameObjects;

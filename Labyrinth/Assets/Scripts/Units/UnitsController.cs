@@ -9,7 +9,7 @@ namespace Units
         public void Initializr()
         {
             _player = new PlayerController();
-            _player.Initialize(); 
+            _player.Initialize();
         }
 
         public void PlayerMoveTo(IntVector2 position)

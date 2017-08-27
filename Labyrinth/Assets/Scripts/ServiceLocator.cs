@@ -1,6 +1,7 @@
-﻿using Labyrinth.GameLoop;
+﻿using Interfaces;
+using Labyrinth.GameLoop;
+using Labyrinth.Map;
 using NSCameraController;
-using NSGraphics;
 using Units;
 
 namespace Labyrinth
@@ -14,7 +15,7 @@ namespace Labyrinth
         private static IUnitsController _unitsController;
         private static ISettings _settings;
         private static IGameLoopController _gameLoopController;
-        
+
         public static void InitializeGameLoopController(IGameLoopController gameLoopController)
         {
             _gameLoopController = gameLoopController;
@@ -24,7 +25,7 @@ namespace Labyrinth
         {
             return _gameLoopController;
         }
-        
+
         public static void InitializeUnitsController(IUnitsController unitsController)
         {
             _unitsController = unitsController;

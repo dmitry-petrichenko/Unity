@@ -1,5 +1,5 @@
-﻿using NSCameraController;
-using NSGraphics;
+﻿using Interfaces;
+using NSCameraController;
 using Units;
 
 namespace Labyrinth
@@ -19,9 +19,9 @@ namespace Labyrinth
             _cameraController = ServiceLocator.GetCameraController();
             _unitsController = ServiceLocator.GetUnitsController();
             _setingsController = ServiceLocator.GetSettings();
-            
+
             _graphicsController.TileClicked += TileClickedHandler;
-            
+
             _cameraController.Follow(_setingsController.PlayerGraphicsObject);
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Map
+﻿namespace Labyrinth.Map
 {
     public static class MapTileType
     {

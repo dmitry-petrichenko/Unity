@@ -1,6 +1,6 @@
 ﻿using Labyrinth;
+using Labyrinth.Map;
 using Labyrinth.Settings;
-using Map;
 using NSCameraController;
 using NSGraphics;
 using UnityEngine;

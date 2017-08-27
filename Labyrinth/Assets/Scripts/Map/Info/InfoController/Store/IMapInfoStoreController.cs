@@ -1,7 +1,6 @@
 ﻿using System;
-using Labyrinth;
 
-namespace Map
+namespace Labyrinth.Map
 {
     public interface IMapInfoStoreController
     {

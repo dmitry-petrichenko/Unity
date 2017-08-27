@@ -1,6 +1,4 @@
-﻿using Labyrinth;
-
-namespace Map
+﻿namespace Labyrinth.Map
 {
     public class MapInfoInitializer
     {

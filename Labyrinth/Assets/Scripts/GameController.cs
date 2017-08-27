@@ -1,10 +1,9 @@
 ﻿using System;
 using Labyrinth;
 using Labyrinth.GameLoop;
+using Labyrinth.Map;
 using Labyrinth.Settings;
-using Map;
 using NSCameraController;
-using NSGraphics;
 using Units;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class GameController : MonoBehaviour
 
     private MapInfoController _mapInfoController;
     private MapViewController _mapViewController;
-    private GraphicsController _graphicsController;
+    private MapGraphicsController _graphicsController;
     private CameraController _cameraController;
     private SettingsList _settingsList;
     private InputController _inputController;
@@ -30,11 +29,11 @@ public class GameController : MonoBehaviour
         _settingsList = new SettingsList();
         _settingsList.Initialize(Player);
         ServiceLocator.InitializeSettings(_settingsList);
-        
+
         _gameLoopController = new GameLoopController();
         _gameLoopController.Initialize(this);
         ServiceLocator.InitializeGameLoopController(_gameLoopController);
-        
+
         _unitsController = new UnitsController();
         _unitsController.Initializr();
         ServiceLocator.InitializeUnitsController(_unitsController);
@@ -43,7 +42,7 @@ public class GameController : MonoBehaviour
         _cameraController.Initialize(_camera);
         ServiceLocator.InitializeCameraController(_cameraController);
 
-        _graphicsController = new GraphicsController();
+        _graphicsController = new MapGraphicsController();
         _graphicsController.Initialize(gameObject, Plane, Cube, Square, Empty);
         ServiceLocator.InitializeGraphicsController(_graphicsController);
 
@@ -54,10 +53,10 @@ public class GameController : MonoBehaviour
         _mapViewController = new MapViewController();
         _mapViewController.Initialize();
         ServiceLocator.InitializeMapViewController(_mapViewController);
-        
+
         _inputController = new InputController();
         _inputController.Initialize();
-        
+
         //InvokeRepeating("cl", 1f, 1f);
     }
 

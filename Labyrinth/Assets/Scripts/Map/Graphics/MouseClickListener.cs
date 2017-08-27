@@ -1,5 +1,5 @@
-﻿using Labyrinth;
-using NSGraphics;
+﻿using Interfaces;
+using Labyrinth;
 using UnityEngine;
 
 public class MouseClickListener : MonoBehaviour

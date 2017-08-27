@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Labyrinth;
 using LitJson;
-using UnityEditor;
-using UnityEngine;
 
-namespace Map
+namespace Labyrinth.Map
 {
     public class MapInfoStoreController : IMapInfoStoreController
     {

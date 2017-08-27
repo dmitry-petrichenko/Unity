@@ -1,4 +1,4 @@
-﻿using Map;
+﻿using Labyrinth.Map;
 using Units;
 
 namespace Labyrinth

@@ -1,5 +1,4 @@
 ﻿using Labyrinth;
-using UnityEngine;
 
 namespace Units
 {
@@ -8,14 +7,14 @@ namespace Units
         private ISettings _settings;
         private UnitController _unitController;
         private UnitGraphicsController _unitGraphicsController;
-        
+
         public void Initialize()
         {
             _settings = ServiceLocator.GetSettings();
-            
+
             _unitGraphicsController = new UnitGraphicsController();
             _unitGraphicsController.Initialize(_settings.PlayerGraphicsObject);
-            
+
             _unitController = new UnitController();
             _unitController.Initialize(_unitGraphicsController);
         }
@@ -27,7 +26,6 @@ namespace Units
 
         public void Attack(IntVector2 position)
         {
-            
         }
     }
 }

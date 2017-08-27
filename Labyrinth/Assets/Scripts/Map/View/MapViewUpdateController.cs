@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Labyrinth;
-using NSGraphics;
+using Interfaces;
 
-namespace Map
+namespace Labyrinth.Map
 {
     public class MapViewUpdateController
     {

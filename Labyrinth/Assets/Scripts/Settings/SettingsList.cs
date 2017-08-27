@@ -19,7 +19,7 @@ namespace Labyrinth.Settings
             PlayerGraphicsObject = playerObject;
             Initialize();
         }
-        
+
         public void Initialize()
         {
             MapSectionSize = 2;

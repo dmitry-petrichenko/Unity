@@ -1,5 +1,4 @@
 ﻿using Labyrinth;
-using UnityEngine;
 
 namespace Units
 {
@@ -12,20 +11,19 @@ namespace Units
 
         public UnitController()
         {
-            
         }
 
         public void Initialize(IUnitGraphicsController GraphicsController)
         {
-            this.GraphicsController = GraphicsController; 
-            
+            this.GraphicsController = GraphicsController;
+
             _moveController = new MoveController();
             _moveController.Initialize(this);
-            
+
             _attackController = new AttackController();
             _attackController.Initialize(this);
         }
-        
+
         public void MoveTo(IntVector2 position)
         {
             _moveController.MoveTo(position);

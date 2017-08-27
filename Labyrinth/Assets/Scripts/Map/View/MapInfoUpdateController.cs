@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Labyrinth;
 
-namespace Map
+namespace Labyrinth.Map
 {
     public class MapInfoUpdateController
     {

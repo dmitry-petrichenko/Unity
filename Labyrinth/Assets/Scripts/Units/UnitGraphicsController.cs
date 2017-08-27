@@ -13,7 +13,7 @@ namespace Units
         {
             _unit = unit;
         }
-        
+
         public void MoveToPosition(IntVector2 position)
         {
             _unit.transform.DOMove(new Vector3(position.x, 0, position.y), 1f);
@@ -21,7 +21,6 @@ namespace Units
 
         public void Wait()
         {
-            
         }
 
         public event Action CompleteMove;

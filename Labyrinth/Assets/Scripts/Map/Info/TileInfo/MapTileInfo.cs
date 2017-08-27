@@ -1,7 +1,6 @@
-﻿using Labyrinth;
-using Units;
+﻿using Units;
 
-namespace Map
+namespace Labyrinth.Map
 {
     public class MapTileInfo : IMapTileInfo
     {

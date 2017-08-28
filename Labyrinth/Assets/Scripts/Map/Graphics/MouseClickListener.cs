@@ -1,5 +1,5 @@
-﻿using Interfaces;
-using Labyrinth;
+﻿using Labyrinth;
+using Labyrinth.Map;
 using UnityEngine;
 
 public class MouseClickListener : MonoBehaviour

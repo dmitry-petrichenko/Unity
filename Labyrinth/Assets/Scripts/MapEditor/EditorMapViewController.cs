@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using Interfaces;
 
 namespace Labyrinth.Map
 {
     public class EditorMapViewController
     {
-        private IGraphicsController _graphicsController;
+        private IMapGraphicsController _graphicsController;
         private List<IntVector2> _initializedIndexes;
         private IMapTileInfo[,] _tileInfos;
 

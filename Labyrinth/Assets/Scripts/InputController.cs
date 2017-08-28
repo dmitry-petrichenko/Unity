@@ -1,14 +1,13 @@
-﻿using Interfaces;
+﻿using Labyrinth.Map;
 using NSCameraController;
 using Units;
-using UnityEngine;
 
 namespace Labyrinth
 {
     public class InputController
     {
         private IMapViewController _mapViewController;
-        private IGraphicsController _graphicsController;
+        private IMapGraphicsController _graphicsController;
         private ICameraController _cameraController;
         private IUnitsController _unitsController;
         private ISettings _setingsController;

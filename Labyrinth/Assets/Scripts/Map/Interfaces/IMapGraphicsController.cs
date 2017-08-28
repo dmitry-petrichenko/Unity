@@ -1,10 +1,8 @@
-﻿using Labyrinth;
-
-namespace Interfaces
+﻿namespace Labyrinth.Map
 {
     public delegate void TileClickHandler(IntVector2 position);
 
-    public interface IGraphicsController
+    public interface IMapGraphicsController
     {
         void InitializePlane(IntVector2 position);
         void InitializeCube(IntVector2 position);

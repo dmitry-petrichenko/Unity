@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using Interfaces;
 using UnityEngine;
 
 namespace Labyrinth.Map
 {
-    public class MapGraphicsController : IGraphicsController
+    public class MapGraphicsController : IMapGraphicsController
     {
         private GameObject _mainScene, _plane, _cube, _empty, _square;
         private Dictionary<IntVector2, GameObject> _activeGameObjects;

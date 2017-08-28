@@ -1,4 +1,4 @@
-﻿namespace Labyrinth.Map
+﻿namespace Labyrinth
 {
     public interface IMapInfoController
     {

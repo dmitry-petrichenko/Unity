@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Interfaces;
 using Labyrinth;
+using Labyrinth.Map;
 using UnityEngine;
 
 namespace NSGraphics
 {
-    public class EditorGraphicsController : IGraphicsController
+    public class EditorGraphicsController : IMapGraphicsController
     {
         private GameObject _mainScene, _plane, _cube;
         private Dictionary<IntVector2, GameObject> _activeGameObjects;

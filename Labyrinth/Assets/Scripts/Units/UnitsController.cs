@@ -6,8 +6,10 @@ namespace Units
     {
         private PlayerController _player;
 
-        public void Initializr()
+        public void Initilize()
         {
+            
+            
             _player = new PlayerController();
             _player.Initialize();
         }

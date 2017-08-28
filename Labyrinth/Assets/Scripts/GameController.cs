@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
         ServiceLocator.InitializeGameLoopController(_gameLoopController);
 
         _unitsController = new UnitsController();
-        _unitsController.Initializr();
+        _unitsController.Initilize();
         ServiceLocator.InitializeUnitsController(_unitsController);
 
         _cameraController = new CameraController();

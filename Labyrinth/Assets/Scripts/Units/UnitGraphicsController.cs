@@ -19,7 +19,15 @@ namespace Units
 
         public void MoveToPosition(IntVector2 position)
         {
-            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), 1f);
+            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), 0.7f)
+                .OnComplete(CompleteMoveHandler)
+                .SetEase(Ease.Linear);
+        }
+
+        private void CompleteMoveHandler()
+        {
+            if (CompleteMove != null)
+                CompleteMove();
         }
 
         public void Wait()

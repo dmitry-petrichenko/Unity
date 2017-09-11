@@ -3,6 +3,7 @@
     public interface IMapInfoController
     {
         IMapTileInfo GetMapTileInfo(IntVector2 position);
-        void UpdateTileInfo(IMapTileInfo mapTileInfo);
+        void UpdateMapTileInfo(IMapTileInfo mapTileInfo);
+        IMapInfoCommon MapInfoCommon { get; }
     }
 }

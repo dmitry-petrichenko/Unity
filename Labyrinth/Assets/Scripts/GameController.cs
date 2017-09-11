@@ -34,10 +34,6 @@ public class GameController : MonoBehaviour
         _gameLoopController.Initialize(this);
         ServiceLocator.InitializeGameLoopController(_gameLoopController);
 
-        _unitsController = new UnitsController();
-        _unitsController.Initilize();
-        ServiceLocator.InitializeUnitsController(_unitsController);
-
         _cameraController = new CameraController();
         _cameraController.Initialize(_camera);
         ServiceLocator.InitializeCameraController(_cameraController);
@@ -53,6 +49,10 @@ public class GameController : MonoBehaviour
         _mapViewController = new MapViewController();
         _mapViewController.Initialize();
         ServiceLocator.InitializeMapViewController(_mapViewController);
+        
+        _unitsController = new UnitsController();
+        _unitsController.Initilize();
+        ServiceLocator.InitializeUnitsController(_unitsController);
 
         _inputController = new InputController();
         _inputController.Initialize();

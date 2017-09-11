@@ -5,8 +5,7 @@
         private IMapTileInfo[,] _mapTilesInfo;
         private MapInfoInitializer _mapInfoInitializer;
         private MapInfoStoreController _mapInfoStoreController;
-
-        private IntVector2 _mapSize;
+        private MapInfoCommon _mapInfoCommon;
 
         public MapInfoController()
         {
@@ -17,16 +16,18 @@
             _mapInfoStoreController = new MapInfoStoreController();
             _mapInfoStoreController.Initialize();
             _mapTilesInfo = _mapInfoStoreController.UploadMapInfo("");
-            _mapSize.x = _mapTilesInfo.GetLength(0);
-            _mapSize.y = _mapTilesInfo.GetLength(1);
-
+            
+            _mapInfoCommon = new MapInfoCommon();
+            _mapInfoCommon.MapWidth = _mapTilesInfo.GetLength(0);
+            _mapInfoCommon.MapHeight = _mapTilesInfo.GetLength(1);
+                        
             _mapInfoInitializer = new MapInfoInitializer();
             _mapInfoInitializer.Initialize(_mapTilesInfo);
         }
 
         public IMapTileInfo GetMapTileInfo(IntVector2 position)
         {
-            if (position.x >= _mapSize.x || position.y >= _mapSize.y)
+            if (position.x >= _mapInfoCommon.MapWidth || position.y >= _mapInfoCommon.MapHeight)
             {
                 return _mapInfoInitializer.InitializeEmptyTileInfo(position);
             }
@@ -39,8 +40,13 @@
             return _mapTilesInfo[position.x, position.y];
         }
 
-        public void UpdateTileInfo(IMapTileInfo mapTileInfo)
+        public void UpdateMapTileInfo(IMapTileInfo mapTileInfo)
         {
+        }
+
+        public IMapInfoCommon MapInfoCommon
+        {
+            get { return _mapInfoCommon; }
         }
     }
 }

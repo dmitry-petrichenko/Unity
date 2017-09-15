@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NSGraphics
 {
-    public class EditorGraphicsController : IMapGraphicsController
+    public class EditorGraphicsController : IMapViewController
     {
         private GameObject _mainScene, _plane, _cube;
         private Dictionary<IntVector2, GameObject> _activeGameObjects;

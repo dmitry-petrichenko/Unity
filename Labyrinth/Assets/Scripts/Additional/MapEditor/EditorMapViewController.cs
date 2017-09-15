@@ -4,13 +4,13 @@ namespace Labyrinth.Map
 {
     public class EditorMapViewController
     {
-        private IMapGraphicsController _graphicsController;
+        private IMapViewController _mapViewController;
         private List<IntVector2> _initializedIndexes;
         private IMapTileInfo[,] _tileInfos;
 
         public void Initialize()
         {
-            _graphicsController = ServiceLocator.GetGraphicsController();
+            _mapViewController = MapServiceLocator.GetMapViewController();
         }
 
         public void InitializeTiles(IMapTileInfo[,] tileInfos)
@@ -40,17 +40,17 @@ namespace Labyrinth.Map
             {
                 case MapTileType.Cube:
                 {
-                    _graphicsController.InitializeCube(position);
+                    _mapViewController.InitializeCube(position);
                     break;
                 }
                 case MapTileType.Square:
                 {
-                    _graphicsController.InitializeSquare(position);
+                    _mapViewController.InitializeSquare(position);
                     break;
                 }
                 case MapTileType.Empty:
                 {
-                    _graphicsController.InitializeEmpty(position);
+                    _mapViewController.InitializeEmpty(position);
                     break;
                 }
             }

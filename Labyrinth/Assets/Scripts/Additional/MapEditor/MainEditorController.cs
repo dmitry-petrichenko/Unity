@@ -26,7 +26,7 @@ public class MainEditorController : MonoBehaviour
 
         _graphicsController = new EditorGraphicsController();
         _graphicsController.Initialize(gameObject, EmptySquare, CubeSuare);
-        ServiceLocator.InitializeGraphicsController(_graphicsController);
+        MapServiceLocator.InitializeMapViewController(_graphicsController);
         _graphicsController.TileClicked += TileClickHandler;
         _graphicsController.RightClicked += RightClickHandler;
 

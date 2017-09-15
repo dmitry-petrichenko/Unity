@@ -28,7 +28,7 @@ namespace Labyrinth.Map
         public void Initialize()
         {
             _settings = ServiceLocator.GetSettings();
-            _mapInfoController = ServiceLocator.GetMapInfoController();
+            _mapInfoController = MapServiceLocator.GetMapInfoController();
             _mapTileInfoContainers = new Dictionary<IntVector2, MapTileInfoContainer>();
 
             _mapSectionSize = _settings.MapSectionSize;

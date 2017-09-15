@@ -1,6 +1,6 @@
 ﻿namespace Labyrinth
 {
-    public interface IMapViewController
+    public interface IMapController
     {
         void UpdateCurrentPosition(IntVector2 position);
     }

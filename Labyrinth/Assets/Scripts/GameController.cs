@@ -12,22 +12,25 @@ public class GameController : MonoBehaviour
     public GameObject Plane, Cube, Square, Empty, Player;
     public Camera _camera;
 
-    private MapInfoController _mapInfoController;
+    private MapController _mapController;
     private MapViewController _mapViewController;
-    private MapGraphicsController _graphicsController;
     private CameraController _cameraController;
     private SettingsList _settingsList;
     private InputController _inputController;
     private UnitsController _unitsController;
     private GameLoopController _gameLoopController;
+    private MapGraphicsList _mapGraphicsList;
 
     public event Action Updated;
 
     // Use this for initialization
     void Start()
     {
+        _mapGraphicsList = new MapGraphicsList();
+        _mapGraphicsList.Initialize(gameObject, Plane, Cube, Square, Empty);
+        
         _settingsList = new SettingsList();
-        _settingsList.Initialize(Player);
+        _settingsList.Initialize(_mapGraphicsList, Player);
         ServiceLocator.InitializeSettings(_settingsList);
 
         _gameLoopController = new GameLoopController();
@@ -38,17 +41,9 @@ public class GameController : MonoBehaviour
         _cameraController.Initialize(_camera);
         ServiceLocator.InitializeCameraController(_cameraController);
 
-        _graphicsController = new MapGraphicsController();
-        _graphicsController.Initialize(gameObject, Plane, Cube, Square, Empty);
-        ServiceLocator.InitializeGraphicsController(_graphicsController);
-
-        _mapInfoController = new MapInfoController();
-        _mapInfoController.Initialize();
-        ServiceLocator.InitializeMapInfoController(_mapInfoController);
-
-        _mapViewController = new MapViewController();
-        _mapViewController.Initialize();
-        ServiceLocator.InitializeMapViewController(_mapViewController);
+        _mapController = new MapController();
+        _mapController.Initialize();
+        ServiceLocator.InitializeMapViewController(_mapController);
         
         _unitsController = new UnitsController();
         _unitsController.Initilize();

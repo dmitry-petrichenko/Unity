@@ -22,8 +22,6 @@ namespace Units.PathFinder
         
             _closeList = new List<IntVector2>();
             _openList = new List<Vertex2D>();
-
-            var b = _grid.GetCell(new IntVector2(11, 5));
         }
         
         public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2)

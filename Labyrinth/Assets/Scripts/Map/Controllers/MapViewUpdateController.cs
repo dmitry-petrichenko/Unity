@@ -4,12 +4,12 @@ namespace Labyrinth.Map
 {
     public class MapViewUpdateController
     {
-        private IMapGraphicsController _graphicsController;
+        private IMapViewController _mapViewController;
         private List<IntVector2> _initializedIndexes;
 
         public void Initialize()
         {
-            _graphicsController = ServiceLocator.GetGraphicsController();
+            _mapViewController = MapServiceLocator.GetMapViewController();
             _initializedIndexes = new List<IntVector2>();
         }
 
@@ -30,22 +30,22 @@ namespace Labyrinth.Map
             {
                 case MapTileType.Cube:
                 {
-                    _graphicsController.InitializeCube(tileInfo.ViewPosition);
+                    _mapViewController.InitializeCube(tileInfo.ViewPosition);
                     break;
                 }
                 case MapTileType.Plane:
                 {
-                    _graphicsController.InitializePlane(tileInfo.ViewPosition);
+                    _mapViewController.InitializePlane(tileInfo.ViewPosition);
                     break;
                 }
                 case MapTileType.Square:
                 {
-                    _graphicsController.InitializeSquare(tileInfo.ViewPosition);
+                    _mapViewController.InitializeSquare(tileInfo.ViewPosition);
                     break;
                 }
                 case MapTileType.Empty:
                 {
-                    _graphicsController.InitializeEmpty(tileInfo.ViewPosition);
+                    _mapViewController.InitializeEmpty(tileInfo.ViewPosition);
                     break;
                 }
             }
@@ -57,7 +57,7 @@ namespace Labyrinth.Map
         {
             foreach (ITileView tileInfo in tileInfos)
             {
-                _graphicsController.DestroyTile(tileInfo.ViewPosition);
+                _mapViewController.DestroyTile(tileInfo.ViewPosition);
                 _initializedIndexes.Remove(tileInfo.ViewPosition);
             }
         }

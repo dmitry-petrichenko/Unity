@@ -9,13 +9,15 @@ namespace Labyrinth.Settings
         public IntVector2 InitializePosition { get; private set; }
         public string ResiurcesLocation { get; private set; }
         public GameObject PlayerGraphicsObject { get; private set; }
+        public MapGraphicsList MapGraphicsList { get; private set; }
 
         public SettingsList()
         {
         }
 
-        public void Initialize(GameObject playerObject)
+        public void Initialize(MapGraphicsList mapGraphicsList, GameObject playerObject)
         {
+            MapGraphicsList = mapGraphicsList;
             PlayerGraphicsObject = playerObject;
             Initialize();
         }

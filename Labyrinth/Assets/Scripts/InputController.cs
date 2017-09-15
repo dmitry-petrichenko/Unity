@@ -6,30 +6,30 @@ namespace Labyrinth
 {
     public class InputController
     {
+        private IMapController _mapController;
         private IMapViewController _mapViewController;
-        private IMapGraphicsController _graphicsController;
         private ICameraController _cameraController;
         private IUnitsController _unitsController;
         private ISettings _setingsController;
 
         public void Initialize()
         {
-            _mapViewController = ServiceLocator.GetMapViewController();
-            _graphicsController = ServiceLocator.GetGraphicsController();
+            _mapController = ServiceLocator.GetMapController();
+            _mapViewController = MapServiceLocator.GetMapViewController();
             _cameraController = ServiceLocator.GetCameraController();
             _unitsController = ServiceLocator.GetUnitsController();
             _setingsController = ServiceLocator.GetSettings();
 
-            _graphicsController.TileClicked += TileClickedHandler;
+            _mapViewController.TileClicked += TileClickedHandler;
 
             _cameraController.Follow(_setingsController.PlayerGraphicsObject);
 
-            _mapViewController.UpdateCurrentPosition(_unitsController.Player.Position);
+            _mapController.UpdateCurrentPosition(_unitsController.Player.Position);
         }
 
         private void TileClickedHandler(IntVector2 position)
         {
-            _mapViewController.UpdateCurrentPosition(position);
+            _mapController.UpdateCurrentPosition(position);
             //_cameraController.UpdateCurrentPosition(position);
             _unitsController.PlayerMoveTo(position);
         }

@@ -1,4 +1,5 @@
 ﻿using Labyrinth;
+using Labyrinth.Map;
 using UnityEngine;
 
 namespace Units.PathFinder
@@ -22,7 +23,7 @@ namespace Units.PathFinder
                 }
             }*/
             
-            _mapInfoController = ServiceLocator.GetMapInfoController();
+            _mapInfoController = MapServiceLocator.GetMapInfoController();
             _mapInfoCommon = _mapInfoController.MapInfoCommon;
             
             _gridValue = new bool[_mapInfoCommon.MapWidth, _mapInfoCommon.MapHeight];

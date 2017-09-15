@@ -1,37 +1,88 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace Labyrinth.Map
 {
     public class MapViewController : IMapViewController
     {
-        private MapInfoUpdateController _mapInfoUpdateController;
-        private MapViewUpdateController _mapViewUpdateController;
-
+        private GameObject _mainScene, _plane, _cube, _empty, _square;
+        private Dictionary<IntVector2, GameObject> _activeGameObjects;
+        private MouseClickListener _mouseClickListener;
+        private ISettings _settings;
 
         public void Initialize()
         {
-            _mapViewUpdateController = new MapViewUpdateController();
-            _mapViewUpdateController.Initialize();
+            _settings = ServiceLocator.GetSettings();
+            
+            _mainScene = _settings.MapGraphicsList.MainScene;
+            _plane = _settings.MapGraphicsList.Plane;
+            _cube = _settings.MapGraphicsList.Cube;
+            _empty = _settings.MapGraphicsList.Empty;
+            _square = _settings.MapGraphicsList.Square;
+            _activeGameObjects = new Dictionary<IntVector2, GameObject>();
 
-            _mapInfoUpdateController = new MapInfoUpdateController();
-            _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
-            _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
-            _mapInfoUpdateController.Initialize();
+            _mouseClickListener = _mainScene.AddComponent<MouseClickListener>();
+            _mouseClickListener.TileClicked += TileClickedHandler;
+            _mouseClickListener.TileClicked += RightClickedHandler;
         }
 
-        public void UpdateCurrentPosition(IntVector2 position)
+        private void TileClickedHandler(IntVector2 position)
         {
-            _mapInfoUpdateController.UpdateCurrentPosition(position);
+            if (TileClicked != null)
+                TileClicked(position);
         }
 
-        private void DestroyTilesHandler(List<IMapTileInfo> tilesInfo)
+        private void RightClickedHandler(IntVector2 position)
         {
-            _mapViewUpdateController.DestroyTiles(tilesInfo);
+            if (RightClicked != null)
+                RightClicked(position);
         }
 
-        private void InitializeTilesHandler(List<IMapTileInfo> tilesInfo)
+        public void InitializePlane(IntVector2 position)
         {
-            _mapViewUpdateController.InitializeTiles(tilesInfo);
+            var gameObject = Object.Instantiate(_plane, new Vector3(position.x, 0, position.y), Quaternion.identity,
+                _mainScene.transform);
+            AddActiveGameObject(position, gameObject);
+        }
+
+        public void InitializeSquare(IntVector2 position)
+        {
+            var gameObject = Object.Instantiate(_square, new Vector3(position.x, 0, position.y), Quaternion.identity,
+                _mainScene.transform);
+            AddActiveGameObject(position, gameObject);
+        }
+
+        public void InitializeCube(IntVector2 position)
+        {
+            var gameObject = Object.Instantiate(_cube, new Vector3(position.x, 0, position.y), Quaternion.identity,
+                _mainScene.transform);
+            AddActiveGameObject(position, gameObject);
+        }
+
+        public void InitializeEmpty(IntVector2 position)
+        {
+            var gameObject = Object.Instantiate(_empty, new Vector3(position.x, 0, position.y), Quaternion.identity,
+                _mainScene.transform);
+            AddActiveGameObject(position, gameObject);
+        }
+
+        public void DestroyTile(IntVector2 position)
+        {
+            if (!_activeGameObjects.ContainsKey(position))
+                return;
+
+            var gameObject = _activeGameObjects[position];
+            Object.Destroy(gameObject);
+            _activeGameObjects.Remove(position);
+        }
+
+        public event TileClickHandler TileClicked;
+        public event TileClickHandler RightClicked;
+
+        private void AddActiveGameObject(IntVector2 position, GameObject gameObject)
+        {
+            _activeGameObjects.Add(position, gameObject);
         }
     }
 }

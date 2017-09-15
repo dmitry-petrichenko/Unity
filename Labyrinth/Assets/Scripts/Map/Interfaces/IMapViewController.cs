@@ -2,7 +2,7 @@
 {
     public delegate void TileClickHandler(IntVector2 position);
 
-    public interface IMapGraphicsController
+    public interface IMapViewController
     {
         void InitializePlane(IntVector2 position);
         void InitializeCube(IntVector2 position);

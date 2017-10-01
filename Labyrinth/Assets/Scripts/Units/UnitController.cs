@@ -34,7 +34,7 @@ namespace Units
         public void MoveTo(IntVector2 position)
         {
             List<IntVector2> path;
-            path = _pathFinderController.GetPath(_position, position);
+            path = _pathFinderController.GetPath(_position, position, null);
             _moveController.MoveTo(path);
         }
 

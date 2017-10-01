@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Labyrinth;
 using Labyrinth.Units;
+using Labyrinth.Additional.Tests;
+using UnityEngine;
 
 namespace Units.PathFinder
 {
@@ -14,6 +17,8 @@ namespace Units.PathFinder
         private IntVector2 _destinationPoint;
         private bool _complete;
         private Vertex2D _currentVertex;
+
+        public TempData _tempFinderData;
         
         public void Initialize()
         {
@@ -24,13 +29,24 @@ namespace Units.PathFinder
             _openList = new List<Vertex2D>();
         }
         
-        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2)
+        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, TempData tempFinderData)
         {
-            _destinationPoint = point2;
-            _wayPoints = new List<IntVector2>();
+            if (tempFinderData != null)
+            {
+                _destinationPoint = _tempFinderData.DestinationPoint;
+                _openList = _tempFinderData.OpenList;
+                _closeList = _tempFinderData.CloseList;
+                _currentVertex = _tempFinderData.CurrentVertex;
+            }
+            else
+            {
+                _destinationPoint = point2;
+                _wayPoints = new List<IntVector2>();
 
-            Vertex2D first = CreateVertex2D(point, null);
-            _openList.Add(first);
+                Vertex2D first = CreateVertex2D(point, null);
+                _openList.Add(first);
+            }
+
 
             while (!_complete)
             {
@@ -40,15 +56,38 @@ namespace Units.PathFinder
 
                 List<Vertex2D> neighbours = GetNeibhours(_currentVertex);
 
-
                 foreach (var neighbour in neighbours)
                 {
                     AddInOpenList(neighbour);
                 }
 
+                Debug.Log("start open");
+                foreach (Vertex2D vertex2D in _openList)
+                {
+                    Debug.Log(vertex2D.Index.x + " " + vertex2D.Index.y);
+                }
+                Debug.Log("end  open");
+                
+                Debug.Log("start close");
+                foreach (IntVector2 intVertex2D in _closeList)
+                {
+                    Debug.Log(intVertex2D.x + " " + intVertex2D.y);
+                }
+                Debug.Log("end  close");
+
+                _tempFinderData = new TempData();
+                _tempFinderData.DestinationPoint = _destinationPoint;
+                _tempFinderData.OpenList = _openList;
+                _tempFinderData.CloseList = _closeList;
+                _tempFinderData.CurrentVertex = _currentVertex;
+
                 if (_openList.Count == 0)
                 {
                     _complete = true;
+                }
+                else
+                {
+                    return new List<IntVector2>();
                 }
             }
 
@@ -68,6 +107,11 @@ namespace Units.PathFinder
             return _wayPoints;
         }
 
+        public TempData TempData
+        {
+            get { return _tempFinderData; }
+        }
+
         private void SelectVertex(Vertex2D vertex2D)
         {
             _wayPoints.Add(vertex2D.Index);
@@ -84,7 +128,7 @@ namespace Units.PathFinder
 
             foreach (var vertex2D in _openList)
             {
-                if (vertex2D.Index.x == _destinationPoint.x && vertex2D.Index.y == _destinationPoint.y)
+                if (vertex2D.Index.x == vertex.Index.x && vertex2D.Index.y == vertex.Index.y)
                 {
                     return;
                 }

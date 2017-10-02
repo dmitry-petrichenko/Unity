@@ -1,4 +1,5 @@
-﻿using Labyrinth;
+﻿using System;
+using Labyrinth;
 
 namespace Units
 {
@@ -6,5 +7,6 @@ namespace Units
     {
         IUnitGraphicsController GraphicsController { get; set; }
         IntVector2 Position { get; set;  }
+        event Action PositionChanged;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Labyrinth;
 using Labyrinth.Units;
 
@@ -12,6 +13,8 @@ namespace Units
         private AttackController _attackController;
         private IPathFinderController _pathFinderController;
         private IntVector2 _position;
+        
+        public event Action PositionChanged;
 
         public UnitController()
         {
@@ -40,8 +43,15 @@ namespace Units
 
         public IntVector2 Position
         {
-            get { return GraphicsController.Position; }
-            set { _position = value; }
+            get { return _position; }
+            set
+            {
+                if (PositionChanged != null)
+                    PositionChanged();
+                
+                _position = value;
+            }
         }
+
     }
 }

@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     private UnitsController _unitsController;
     private GameLoopController _gameLoopController;
     private MapGraphicsList _mapGraphicsList;
+    private ActiveMapLocationController _activeMapLocationController;
 
     public event Action Updated;
 
@@ -51,6 +52,9 @@ public class GameController : MonoBehaviour
 
         _inputController = new InputController();
         _inputController.Initialize();
+
+        _activeMapLocationController = new ActiveMapLocationController();
+        _activeMapLocationController.Initialize();
 
         //InvokeRepeating("cl", 1f, 1f);
     }

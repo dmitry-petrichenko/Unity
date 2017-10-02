@@ -29,7 +29,6 @@ namespace Labyrinth
 
         private void TileClickedHandler(IntVector2 position)
         {
-            _mapController.UpdateCurrentPosition(position);
             //_cameraController.UpdateCurrentPosition(position);
             _unitsController.PlayerMoveTo(position);
         }

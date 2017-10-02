@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Labyrinth.Additional.Tests.Modes;
 using Labyrinth.Map;
 using Labyrinth.Units;
@@ -14,7 +15,7 @@ namespace Labyrinth.Additional.Tests
         private bool _modeType;
         private SelectStartMode _startMode;
         private SelectEndMode _endMode;
-        private IPathFinderController _pathFinderController;
+        private PathFinderControllerTest _pathFinderController;
         private TempData temp;
 
         public MapControllerTest()
@@ -81,49 +82,21 @@ namespace Labyrinth.Additional.Tests
 
         public void SetPath()
         {
-            _pathFinderController = UnitsServiceLocator.GetPathFinder();
-            if (temp != null)
+            Boolean stepMode = false;
+
+            
+            _pathFinderController = UnitsServiceLocator.GetPathFinder() as PathFinderControllerTest;
+            
+            if (stepMode)
             {
-                _pathFinderController.GetPath(_startMode.Point, _endMode.Point, temp); 
+                _pathFinderController.GetPathDrawingStepMode(_startMode.Point, _endMode.Point);
             }
             else
             {
-                List<IntVector2> path = _pathFinderController.GetPath(_startMode.Point, _endMode.Point, null);
+                _pathFinderController.GetPathDrawingFullMode(_startMode.Point, _endMode.Point);
             }
-            
-            
-            temp = _pathFinderController.TempData;
-
-            DrawTemp(temp);
-            //DrawPath(path);
         }
         
-        public void DrawTemp(TempData tempFinderData)
-        {
-            foreach (Vertex2D vertex2D in tempFinderData.OpenList)
-            {
-                _mapViewController.InitializeOpen(vertex2D.Index);
-            }
-            
-            foreach (IntVector2 intVector2 in tempFinderData.CloseList)
-            {
-                _mapViewController.InitializeCloseList(intVector2);
-            }
-            _mapViewController.InitializMinor(tempFinderData.CurrentVertex.Index);
-        }
-
-        public void DrawPath(List<IntVector2> path)
-        {
-            foreach (IntVector2 intVector2 in path)
-            {
-                DrawWayCell(intVector2);
-            }
-        }
-
-        public void DrawWayCell(IntVector2 cell)
-        {
-            _mapViewController.InitializeWay(cell);
-        }
        
         public void ChangeMode()
         {

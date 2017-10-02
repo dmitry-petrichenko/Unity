@@ -18,7 +18,7 @@ namespace Units.PathFinder
         private bool _complete;
         private Vertex2D _currentVertex;
 
-        public TempData _tempFinderData;
+        protected TempData tempTestData;
         
         public void Initialize()
         {
@@ -29,14 +29,14 @@ namespace Units.PathFinder
             _openList = new List<Vertex2D>();
         }
         
-        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, TempData tempFinderData)
+        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, Boolean testMode = false)
         {
-            if (tempFinderData != null)
+            if (testMode && tempTestData != null)
             {
-                _destinationPoint = _tempFinderData.DestinationPoint;
-                _openList = _tempFinderData.OpenList;
-                _closeList = _tempFinderData.CloseList;
-                _currentVertex = _tempFinderData.CurrentVertex;
+                _destinationPoint = tempTestData.DestinationPoint;
+                _openList = tempTestData.OpenList;
+                _closeList = tempTestData.CloseList;
+                _currentVertex = tempTestData.CurrentVertex;
             }
             else
             {
@@ -46,7 +46,6 @@ namespace Units.PathFinder
                 Vertex2D first = CreateVertex2D(point, null);
                 _openList.Add(first);
             }
-
 
             while (!_complete)
             {
@@ -61,34 +60,21 @@ namespace Units.PathFinder
                     AddInOpenList(neighbour);
                 }
 
-                Debug.Log("start open");
-                foreach (Vertex2D vertex2D in _openList)
+                if (testMode)
                 {
-                    Debug.Log(vertex2D.Index.x + " " + vertex2D.Index.y);
+                    tempTestData = new TempData();
+                    tempTestData.DestinationPoint = _destinationPoint;
+                    tempTestData.OpenList = _openList;
+                    tempTestData.CloseList = _closeList;
+                    tempTestData.CurrentVertex = _currentVertex;
+                    return new List<IntVector2>();
                 }
-                Debug.Log("end  open");
-                
-                Debug.Log("start close");
-                foreach (IntVector2 intVertex2D in _closeList)
-                {
-                    Debug.Log(intVertex2D.x + " " + intVertex2D.y);
-                }
-                Debug.Log("end  close");
-
-                _tempFinderData = new TempData();
-                _tempFinderData.DestinationPoint = _destinationPoint;
-                _tempFinderData.OpenList = _openList;
-                _tempFinderData.CloseList = _closeList;
-                _tempFinderData.CurrentVertex = _currentVertex;
 
                 if (_openList.Count == 0)
                 {
                     _complete = true;
                 }
-                else
-                {
-                    return new List<IntVector2>();
-                }
+
             }
 
             foreach (var vertex2D in _openList)
@@ -103,15 +89,15 @@ namespace Units.PathFinder
             _closeList = new List<IntVector2>();
             _destinationPoint = new IntVector2(0, 0);
             _complete = false;
+
+            if (_wayPoints.Count > 0)
+            {
+                _wayPoints.RemoveAt(0);
+            }
             
             return _wayPoints;
         }
-
-        public TempData TempData
-        {
-            get { return _tempFinderData; }
-        }
-
+        
         private void SelectVertex(Vertex2D vertex2D)
         {
             _wayPoints.Add(vertex2D.Index);

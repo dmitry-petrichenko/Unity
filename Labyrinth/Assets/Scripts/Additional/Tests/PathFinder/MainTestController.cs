@@ -36,7 +36,7 @@ public class MainTestController : MonoBehaviour
 		_mapViewController = new MapViewController();
 		_mapViewController.Initialize(_mainScene, _empty, _busy, _start, _end, _way, _minor, _close, _open);
 		
-		_pathFinderController = new PathFinderController();
+		_pathFinderController = new PathFinderControllerTest(_mapViewController);
 		_pathFinderController.Initialize();
 		UnitsServiceLocator.InitializePathFinder(_pathFinderController);
 

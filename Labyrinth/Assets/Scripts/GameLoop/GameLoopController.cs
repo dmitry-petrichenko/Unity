@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Labyrinth.GameLoop
 {
@@ -6,10 +7,10 @@ namespace Labyrinth.GameLoop
     {
         public event Action Updated;
 
-        private GameController _gameController;
+        private GameInstaller _gameController;
 
 
-        public void Initialize(GameController gameController)
+        public void Initialize(GameInstaller gameController)
         {
             _gameController = gameController;
             _gameController.Updated += UpdateHandler;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Labyrinth;
 using Labyrinth.GameLoop;
 using Labyrinth.Map;
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         _mapGraphicsList = new MapGraphicsList();
         _mapGraphicsList.Initialize(gameObject, Plane, Cube, Square, Empty);
         
@@ -35,7 +37,7 @@ public class GameController : MonoBehaviour
         ServiceLocator.InitializeSettings(_settingsList);
 
         _gameLoopController = new GameLoopController();
-        _gameLoopController.Initialize(this);
+        //_gameLoopController.Initialize(this);
         ServiceLocator.InitializeGameLoopController(_gameLoopController);
 
         _cameraController = new CameraController();

@@ -28,7 +28,6 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         _mapGraphicsList = new MapGraphicsList();
         _mapGraphicsList.Initialize(gameObject, Plane, Cube, Square, Empty);
         

@@ -8,7 +8,7 @@ using Labyrinth.Settings;
 using NSCameraController;
 using Units;
 
-public class GameInstaller : MonoInstaller<GameInstaller>
+public class GameInstaller : MonoInstaller
 {
     public GameObject Plane, Cube, Square, Empty, Player;
     public Camera _camera;
@@ -25,13 +25,17 @@ public class GameInstaller : MonoInstaller<GameInstaller>
     
     public event Action Updated;
     
+    
     public override void InstallBindings()
     {
+        //Debug.Log(_settings.Cube);
+        _mapGraphicsList = new MapGraphicsList();
+        _mapGraphicsList.Initialize(gameObject, Plane, Cube, Square, Empty);
     }
-    
+    /*
     void Start()
     {
-        
+        /*
         _mapGraphicsList = new MapGraphicsList();
         _mapGraphicsList.Initialize(gameObject, Plane, Cube, Square, Empty);
         
@@ -62,6 +66,10 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         _activeMapLocationController.Initialize();
 
         //InvokeRepeating("cl", 1f, 1f);
+        
+        Container.Bind<MapGraphicsList>().To<MapGraphicsList>().FromInstance(_mapGraphicsList);
+        Container.Bind<ISettings>().To<SettingsList>().FromInstance(_settingsList);
+        
     }
 
     void Update()
@@ -69,4 +77,5 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         if (Updated != null)
             Updated();
     }
+    */
 }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Zenject;
+using ZScripts.Map;
 using ZScripts.Settings;
 
 namespace ZScripts
@@ -12,7 +13,11 @@ namespace ZScripts
         
         public override void InstallBindings()
         {
+            MainScene.instance = gameObject;
+            Container.Bind<MainScene>().To<MainScene>().AsSingle();
             Container.Bind<ISettings>().To<SettingsList>().AsSingle();
+            MapInstaller.Install(Container);
+            
         }
         
         [Serializable]

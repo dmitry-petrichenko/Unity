@@ -1,4 +1,6 @@
-﻿namespace ZScripts.Map.Info
+﻿using ZScripts.Settings;
+
+namespace ZScripts.Map.Info
 {
     public class MapInfoController : IMapInfoController
     {
@@ -6,15 +8,17 @@
         private MapInfoInitializer _mapInfoInitializer;
         private MapInfoStoreController _mapInfoStoreController;
         private MapInfoCommon _mapInfoCommon;
+        private ISettings _settings;
 
-        public MapInfoController()
+        public MapInfoController(ISettings settings)
         {
+            _settings = settings;
+            Initialize();
         }
 
         public void Initialize()
         {
-            _mapInfoStoreController = new MapInfoStoreController();
-            _mapInfoStoreController.Initialize();
+            _mapInfoStoreController = new MapInfoStoreController(_settings);
             _mapTilesInfo = _mapInfoStoreController.UploadMapInfo("");
             
             _mapInfoCommon = new MapInfoCommon();

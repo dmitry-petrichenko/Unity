@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ZScripts.Map.Info;
 using ZScripts.Map.View;
+using ZScripts.Settings;
 using MapInfoUpdateController = ZScripts.Map.Controllers.MapInfoUpdateController;
 using MapViewUpdateController = ZScripts.Map.Controllers.MapViewUpdateController;
 
@@ -8,30 +9,28 @@ namespace ZScripts.Map
 {
     public class MapController : IMapController
     {
-        private MapViewController _mapViewController;
-        private MapInfoController _mapInfoController;
-        private MapInfoUpdateController _mapInfoUpdateController;
-        private MapViewUpdateController _mapViewUpdateController;
+        private readonly MapInfoUpdateController _mapInfoUpdateController;
+        private readonly MapViewUpdateController _mapViewUpdateController;
+        private readonly ISettings _settings;
 
         public MapController(
-            MapInfoController mapInfoController, 
-            MapViewController mapViewController,
             MapViewUpdateController mapViewUpdateController,
-            MapInfoUpdateController mapInfoUpdateController)
-        
+            MapInfoUpdateController mapInfoUpdateController,
+            ISettings settings)
         {
-            _mapInfoController = mapInfoController;
-            _mapViewController = mapViewController;
             _mapViewUpdateController = mapViewUpdateController;
             _mapInfoUpdateController = mapInfoUpdateController;
+            _settings = settings;
 
             Initialize();
         }
 
-        public void Initialize()
+        private void Initialize()
         {
             _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
             _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
+            
+            _mapInfoUpdateController.UpdateCurrentPosition(_settings.InitializePosition);
         }
 
         public void UpdateCurrentPosition(IntVector2 position)

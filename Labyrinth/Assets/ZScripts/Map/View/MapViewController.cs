@@ -20,7 +20,7 @@ namespace ZScripts.Map.View
 
         public void Initialize()
         {
-            //_mainScene = _settings.MapGraphicsList.MainScene;
+            _mainScene = MainScene.instance;
             _plane = _settings.MapGraphicsList.Plane;
             _cube = _settings.MapGraphicsList.Cube;
             _empty = _settings.MapGraphicsList.Empty;

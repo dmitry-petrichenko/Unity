@@ -38,8 +38,7 @@ namespace ZScripts.Map.Controllers
             _mapSectionSize = _settings.MapSectionSize;
             _halfActiveAreaX = _halfActiveAreaY = _settings.ActiveAreaSize / 2;
 
-            UpdateTilesInfoTime(_settings.InitializePosition);
-            ResetTiles();
+            _currentPosition = new IntVector2(-100, -100);
         }
 
         public void UpdateCurrentPosition(IntVector2 currentPosition)

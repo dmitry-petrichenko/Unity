@@ -18,12 +18,14 @@ namespace ZScripts
             IMapController mapController,
             ISettings setings,
             IUnitsController  unitsController,
+            ICameraController cameraController,
             IMapViewController mapViewController)
         {
             _mapController = mapController;
             _mapViewController = mapViewController;
             _unitsController = unitsController;
             _setings = setings;
+            _cameraController = cameraController;
 
             Initialize();
         }
@@ -32,7 +34,7 @@ namespace ZScripts
         {
             _mapViewController.TileClicked += TileClickedHandler;
 
-            //_cameraController.Follow(_setingsController.PlayerGraphicsObject);
+            _cameraController.Follow(_setings.PlayerGraphicsObject);
 
             _mapController.UpdateCurrentPosition(_unitsController.PlayerPosition);
         }

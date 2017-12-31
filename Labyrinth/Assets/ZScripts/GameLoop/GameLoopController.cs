@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
 
-namespace Labyrinth.GameLoop
+namespace ZScripts.GameLoop
 {
     public class GameLoopController : IGameLoopController
     {
@@ -9,7 +8,7 @@ namespace Labyrinth.GameLoop
 
         private GameInstaller _gameController;
 
-        public void Initialize(GameInstaller gameController)
+        public GameLoopController(GameInstaller gameController)
         {
             _gameController = gameController;
             _gameController.Updated += UpdateHandler;

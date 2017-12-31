@@ -1,10 +1,12 @@
-﻿using Labyrinth;
+﻿using System;
+using Labyrinth;
 
 namespace ZScripts.Units
 {
     public interface IUnitsController
     {
         void PlayerMoveTo(IntVector2 position);
-        //IUnitController Player { get; }
+        IntVector2 PlayerPosition { get; }
+        event Action<IntVector2> PlyerPositionChanged;
     }
 }

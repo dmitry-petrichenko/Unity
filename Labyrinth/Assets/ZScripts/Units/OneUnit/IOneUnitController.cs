@@ -7,7 +7,7 @@ namespace ZScripts.Units
     {
         IOneUnitGraphicsController GraphicsController { get; set; }
         IntVector2 Position { get; set;  }
-        event Action PositionChanged;
+        event Action<IntVector2> PositionChanged;
         void Initialize(IOneUnitGraphicsController GraphicsController);
         void MoveTo(IntVector2 position);
     }

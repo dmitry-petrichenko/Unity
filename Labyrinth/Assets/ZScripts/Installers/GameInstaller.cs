@@ -14,7 +14,9 @@ namespace ZScripts
         public override void InstallBindings()
         {
             MainScene.instance = gameObject;
-            Container.Bind<ISettings>().To<SettingsList>().AsTransient();
+            Container.Bind<ISettings>().To<SettingsList>().AsSingle();
+            Container.Bind<InputController>().To<InputController>().AsSingle().NonLazy();
+            Container.Bind<ActiveMapLocationController>().To<ActiveMapLocationController>().AsSingle().NonLazy();
             MapInstaller.Install(Container);
             UnitsInstaller.Install(Container);
         }

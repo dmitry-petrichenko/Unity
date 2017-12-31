@@ -13,7 +13,7 @@ namespace ZScripts.Units
         private IPathFinderController _pathFinderController;
         private IntVector2 _position;
         
-        public event Action PositionChanged;
+        public event Action<IntVector2> PositionChanged;
 
         public OneUnitController(
             MoveController moveController, 
@@ -46,10 +46,9 @@ namespace ZScripts.Units
             get { return _position; }
             set
             {
-                if (PositionChanged != null)
-                    PositionChanged();
-                
                 _position = value;
+                if (PositionChanged != null)
+                    PositionChanged(_position);
             }
         }
 

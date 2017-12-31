@@ -1,4 +1,5 @@
-﻿using ZScripts.Settings;
+﻿using System;
+using ZScripts.Settings;
 
 namespace ZScripts.Units.Player
 {
@@ -7,6 +8,8 @@ namespace ZScripts.Units.Player
         private ISettings _settings;
         private IOneUnitGraphicsController _oneUnitGraphicsController;
         private IOneUnitController _oneUnitController;
+        
+        public event Action<IntVector2> PositionChanged;
 
         public PlayerController(
             ISettings settings, 
@@ -23,6 +26,18 @@ namespace ZScripts.Units.Player
         {
             _oneUnitGraphicsController.Initialize(_settings.PlayerGraphicsObject);
             _oneUnitController.Initialize(_oneUnitGraphicsController);
+            _oneUnitController.PositionChanged += PositionChangetHandler;
+        }
+        
+        private void PositionChangetHandler(IntVector2 position)
+        {
+            if (PositionChanged != null)
+                PositionChanged(position);
+        }
+        
+        public IntVector2 Position
+        {
+            get { return _oneUnitController.Position; }
         }
 
         public void Attack(IntVector2 position)

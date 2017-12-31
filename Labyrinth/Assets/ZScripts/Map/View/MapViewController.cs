@@ -26,12 +26,10 @@ namespace ZScripts.Map.View
             _empty = _settings.MapGraphicsList.Empty;
             _square = _settings.MapGraphicsList.Square;
             _activeGameObjects = new Dictionary<IntVector2, GameObject>();
-
-            /*
+        
             _mouseClickListener = _mainScene.AddComponent<MouseClickListener>();
             _mouseClickListener.TileClicked += TileClickedHandler;
             _mouseClickListener.TileClicked += RightClickedHandler;
-            */
         }
 
         private void TileClickedHandler(IntVector2 position)

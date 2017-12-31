@@ -10,5 +10,6 @@ namespace ZScripts.Settings
         IntVector2 InitializePosition { get; }
         string ResiurcesLocation { get; }
         GameInstaller.MapGraphicsList MapGraphicsList { get; }
+        GameObject PlayerGraphicsObject { get; }
     }
 }

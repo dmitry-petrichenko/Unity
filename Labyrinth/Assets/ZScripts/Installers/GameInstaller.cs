@@ -14,16 +14,15 @@ namespace ZScripts
         public override void InstallBindings()
         {
             MainScene.instance = gameObject;
-            Container.Bind<MainScene>().To<MainScene>().AsSingle();
-            Container.Bind<ISettings>().To<SettingsList>().AsSingle();
+            Container.Bind<ISettings>().To<SettingsList>().AsTransient();
             MapInstaller.Install(Container);
-            
+            UnitsInstaller.Install(Container);
         }
         
         [Serializable]
         public class MapGraphicsList
         {
-            public GameObject Plane, Cube, Square, Empty;
+            public GameObject Plane, Cube, Square, Empty, Player;
         }
     }
 }

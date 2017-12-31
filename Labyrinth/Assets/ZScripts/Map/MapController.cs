@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ZScripts.Map.Info;
-using ZScripts.Map.View;
 using ZScripts.Settings;
 using MapInfoUpdateController = ZScripts.Map.Controllers.MapInfoUpdateController;
 using MapViewUpdateController = ZScripts.Map.Controllers.MapViewUpdateController;

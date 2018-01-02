@@ -30,6 +30,7 @@ namespace ZScripts.Units
 
         private void CompleteMoveHandler()
         {
+            Position = new IntVector2((int)_unit.transform.position.x, (int)_unit.transform.position.z);
             if (CompleteMove != null)
                 CompleteMove();
         }

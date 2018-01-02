@@ -10,25 +10,21 @@ namespace ZScripts.Units
 
         private MoveController _moveController;
         private AttackController _attackController;
-        private IPathFinderController _pathFinderController;
-        private IntVector2 _position;
         
         public event Action<IntVector2> PositionChanged;
 
         public OneUnitController(
             MoveController moveController, 
-            AttackController attackController,
-            IPathFinderController pathFinderController)
+            AttackController attackController)
         {
             _moveController = moveController;
             _attackController = attackController;
-            _pathFinderController = pathFinderController;
         }
 
         public void Initialize(IOneUnitGraphicsController GraphicsController)
         {
             this.GraphicsController = GraphicsController;
-            _position = GraphicsController.Position;
+            GraphicsController.CompleteMove += UpdatePosition;
 
             _moveController.Initialize(this);
             _attackController.Initialize(this);
@@ -36,21 +32,18 @@ namespace ZScripts.Units
 
         public void MoveTo(IntVector2 position)
         {
-            List<IntVector2> path;
-            path = _pathFinderController.GetPath(_position, position);
-            _moveController.MoveTo(path);
+            _moveController.MoveTo(position);
+        }
+
+        private void UpdatePosition()
+        {
+            if (PositionChanged != null)
+                PositionChanged(Position);
         }
 
         public IntVector2 Position
         {
-            get { return _position; }
-            set
-            {
-                _position = value;
-                if (PositionChanged != null)
-                    PositionChanged(_position);
-            }
+            get { return GraphicsController.Position; }
         }
-
     }
 }

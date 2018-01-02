@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Labyrinth;
+using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units
 {
@@ -8,12 +9,13 @@ namespace ZScripts.Units
     {
         private IOneUnitController _unitController;
         private List<IntVector2> _path;
+        private readonly IPathFinderController _pathFinderController;
 
         event Action CompleteMove;
 
-        public MoveController()
+        public MoveController(IPathFinderController pathFinderController)
         {
-            
+            _pathFinderController = pathFinderController;
         }
 
         public void Initialize(IOneUnitController unitController)
@@ -21,11 +23,11 @@ namespace ZScripts.Units
             _unitController = unitController;
         }
 
-        public void MoveTo(List<IntVector2> path)
+        public void MoveTo(IntVector2 position)
         {
-            _path = path;
             // TODO hide in interface 
             _unitController.GraphicsController.CompleteMove += MoveNextStep;
+            _path = _pathFinderController.GetPath(_unitController.Position, position);
             MoveNextStep();
         }
 
@@ -38,7 +40,6 @@ namespace ZScripts.Units
                 nextPosition = _path[0];
                 _path.RemoveAt(0);
                 _unitController.GraphicsController.MoveToPosition(nextPosition);
-                _unitController.Position = nextPosition;
             }
             else
             {

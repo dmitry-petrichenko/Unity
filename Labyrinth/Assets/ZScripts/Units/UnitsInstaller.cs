@@ -1,7 +1,12 @@
+using Units;
 using Zenject;
 using ZScripts.Units;
 using ZScripts.Units.PathFinder;
-using ZScripts.Units.Player;
+using AttackController = ZScripts.Units.AttackController;
+using IUnitsController = ZScripts.Units.IUnitsController;
+using MoveController = ZScripts.Units.MoveController;
+using PlayerController = ZScripts.Units.Player.PlayerController;
+using UnitsController = ZScripts.Units.UnitsController;
 
 public class UnitsInstaller : Installer<UnitsInstaller>
 {
@@ -15,5 +20,6 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<AttackController>().To<AttackController>().AsTransient();
         Container.Bind<IPathFinderController>().To<PathFinderController>().AsSingle();
         Container.Bind<Grid>().To<Grid>().AsSingle();
+        Container.Bind<IOneUnitAnimationController>().To<OneUnitAnimationController>().AsTransient();
     }
 }

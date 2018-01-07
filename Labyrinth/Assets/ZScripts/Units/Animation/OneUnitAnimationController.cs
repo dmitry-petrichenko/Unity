@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Units
 {
-    public class UnitAnimationController
+    public class OneUnitAnimationController : IOneUnitAnimationController
     {
         private GameObject _unit;
         private IUnitScript _unitScript;
@@ -11,7 +11,6 @@ namespace Units
         public void Initialize(GameObject unit)
         {
             _unit = unit;
-            //_unitScript = _unit.GetComponentInChildren<UnitScript>();
             _unitScript = _unit.GetComponentInChildren(typeof(IUnitScript)) as IUnitScript;
         }
 

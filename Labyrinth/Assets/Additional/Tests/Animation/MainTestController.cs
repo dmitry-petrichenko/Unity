@@ -7,7 +7,7 @@ namespace Tests.Animation
 	public class MainTestController : MonoBehaviour
 	{
 		public GameObject animatedUnit;
-		public UnitAnimationController unitAnimationController;
+		public OneUnitAnimationController unitAnimationController;
 		
 		// Use this for initialization
 		void Start ()
@@ -15,7 +15,7 @@ namespace Tests.Animation
 			var center = GameObject.FindGameObjectsWithTag("Respawn").FirstOrDefault();
 			var gameObject = Instantiate(animatedUnit, new Vector3(0, 0, 0), Quaternion.identity,
 				center.transform);
-			unitAnimationController = new UnitAnimationController();
+			unitAnimationController = new OneUnitAnimationController();
 			unitAnimationController.Initialize(gameObject);
 		}
 

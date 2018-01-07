@@ -1,52 +1,35 @@
-﻿using System;
+﻿using Units;
 using ZScripts.Settings;
 
 namespace ZScripts.Units.Player
 {
-    public class PlayerController
+    public class PlayerController : OneUnitComponentsContainer
     {
         private ISettings _settings;
-        private IOneUnitGraphicsController _oneUnitGraphicsController;
-        private IOneUnitController _oneUnitController;
-        
-        public event Action<IntVector2> PositionChanged;
 
         public PlayerController(
             ISettings settings, 
             IOneUnitGraphicsController oneUnitGraphicsController,
+            IOneUnitAnimationController oneUnitAnimationController,
             IOneUnitController oneUnitController)
+            : base(
+                oneUnitGraphicsController,
+                oneUnitAnimationController,
+                oneUnitController)
         {
             _settings = settings;
-            _oneUnitGraphicsController = oneUnitGraphicsController;
-            _oneUnitController = oneUnitController;
             Initialize();
         }
 
         public void Initialize()
         {
-            _oneUnitGraphicsController.Initialize(_settings.PlayerGraphicsObject);
-            _oneUnitController.Initialize(_oneUnitGraphicsController);
-            _oneUnitController.PositionChanged += PositionChangetHandler;
-        }
-        
-        private void PositionChangetHandler(IntVector2 position)
-        {
-            if (PositionChanged != null)
-                PositionChanged(position);
-        }
-        
-        public IntVector2 Position
-        {
-            get { return _oneUnitController.Position; }
+            base.initialize(_settings.PlayerGraphicsObject);
+
         }
 
         public void Attack(IntVector2 position)
         {
         }
-        
-        public void MoveTo(IntVector2 position)
-        {
-            _oneUnitController.MoveTo(position);
-        }
+       
     }
 }

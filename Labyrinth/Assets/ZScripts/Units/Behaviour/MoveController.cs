@@ -40,9 +40,11 @@ namespace ZScripts.Units
                 nextPosition = _path[0];
                 _path.RemoveAt(0);
                 _unitController.GraphicsController.MoveToPosition(nextPosition);
+                _unitController.AnimationController.PlayWalkAnimation();
             }
             else
             {
+                _unitController.AnimationController.PlayIdleAnimation();
                 _unitController.GraphicsController.CompleteMove -= MoveNextStep;
             }
         }

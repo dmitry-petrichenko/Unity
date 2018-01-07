@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Units;
 using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units
@@ -7,6 +8,7 @@ namespace ZScripts.Units
     public class OneUnitController : IOneUnitController
     {
         public IOneUnitGraphicsController GraphicsController { get; set; }
+        public IOneUnitAnimationController AnimationController { get; set; }
 
         private MoveController _moveController;
         private AttackController _attackController;
@@ -21,9 +23,10 @@ namespace ZScripts.Units
             _attackController = attackController;
         }
 
-        public void Initialize(IOneUnitGraphicsController GraphicsController)
+        public void Initialize(IOneUnitGraphicsController GraphicsController, IOneUnitAnimationController animationController)
         {
             this.GraphicsController = GraphicsController;
+            this.AnimationController = animationController;
             GraphicsController.CompleteMove += UpdatePosition;
 
             _moveController.Initialize(this);

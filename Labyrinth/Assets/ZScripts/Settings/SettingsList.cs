@@ -31,7 +31,7 @@ namespace ZScripts.Settings
 
         private void InitializePlayerGraphicsObject()
         {
-            PlayerGraphicsObject = Object.Instantiate(MapGraphicsList.Player, new Vector3(3, 0.5f, 3), Quaternion.identity,
+            PlayerGraphicsObject = Object.Instantiate(MapGraphicsList.Player, new Vector3(3, 0.0f, 3), Quaternion.identity,
                 _mainScene.transform);
         }
     }

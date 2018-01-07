@@ -1,31 +1,33 @@
-﻿using UnityEngine;
+﻿using Tests.Animation;
+using UnityEngine;
 
 namespace Units
 {
     public class UnitAnimationController
     {
         private GameObject _unit;
-        private UnitScript _unitScript;
+        private IUnitScript _unitScript;
         
         public void Initialize(GameObject unit)
         {
             _unit = unit;
-            _unitScript = _unit.GetComponentInChildren<UnitScript>();
+            //_unitScript = _unit.GetComponentInChildren<UnitScript>();
+            _unitScript = _unit.GetComponentInChildren(typeof(IUnitScript)) as IUnitScript;
         }
 
         public void PlayIdleAnimation()
         {
-            _unitScript.playIdleAnimation();
+            _unitScript.PlayIdleAnimation();
         }
         
         public void PlayAttackAnimation()
         {
-            _unitScript.playAttackAnimation();
+            _unitScript.PlayAttackAnimation();
         }
         
         public void PlayWalkAnimation()
         {
-            _unitScript.playWalkingAnimation();
+            _unitScript.PlayWalkAnimation();
         }
     }
 }

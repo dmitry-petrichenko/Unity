@@ -2,6 +2,7 @@
 using Units;
 using UnityEditor;
 using UnityEngine;
+using ZScripts.Units.Rotation;
 
 namespace ZScripts.Units
 {
@@ -9,27 +10,32 @@ namespace ZScripts.Units
     {
         public event Action<IntVector2> PositionChanged;
         
-        private IOneUnitGraphicsController _oneUnitGraphicsController;
+        private IOneUnitMotionController _oneUnitMotionController;
         private IOneUnitAnimationController _oneUnitAnimationController;
+        private IOneUnitRotationController _oneUnitRotationController;
         private IOneUnitController _oneUnitController;
         
         public OneUnitComponentsContainer(
-            IOneUnitGraphicsController oneUnitGraphicsController,
+            IOneUnitMotionController oneUnitMotionController,
             IOneUnitAnimationController oneUnitAnimationController,
+            IOneUnitRotationController oneUnitRotationController,
             IOneUnitController oneUnitController)
         {
-            _oneUnitGraphicsController = oneUnitGraphicsController;
+            _oneUnitRotationController = oneUnitRotationController;
+            _oneUnitMotionController = oneUnitMotionController;
             _oneUnitController = oneUnitController;
             _oneUnitAnimationController = oneUnitAnimationController;
         }
 
-        protected void initialize(GameObject gameObject)
+        protected void Initialize(GameObject gameObject)
         {
-            _oneUnitGraphicsController.Initialize(gameObject);
+            _oneUnitMotionController.Initialize(gameObject);
             _oneUnitAnimationController.Initialize(gameObject);
+            _oneUnitRotationController.Initialize(gameObject);
             _oneUnitController.Initialize(
-                _oneUnitGraphicsController,
-                _oneUnitAnimationController
+                _oneUnitMotionController,
+                _oneUnitAnimationController,
+                _oneUnitRotationController
                 );
             _oneUnitController.PositionChanged += PositionChangetHandler;
         }

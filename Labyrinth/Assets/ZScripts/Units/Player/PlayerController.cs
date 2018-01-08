@@ -1,5 +1,6 @@
 ﻿using Units;
 using ZScripts.Settings;
+using ZScripts.Units.Rotation;
 
 namespace ZScripts.Units.Player
 {
@@ -9,12 +10,14 @@ namespace ZScripts.Units.Player
 
         public PlayerController(
             ISettings settings, 
-            IOneUnitGraphicsController oneUnitGraphicsController,
+            IOneUnitMotionController oneUnitMotionController,
             IOneUnitAnimationController oneUnitAnimationController,
+            IOneUnitRotationController oneUnitRotationController,
             IOneUnitController oneUnitController)
             : base(
-                oneUnitGraphicsController,
+                oneUnitMotionController,
                 oneUnitAnimationController,
+                oneUnitRotationController,
                 oneUnitController)
         {
             _settings = settings;
@@ -23,13 +26,11 @@ namespace ZScripts.Units.Player
 
         public void Initialize()
         {
-            base.initialize(_settings.PlayerGraphicsObject);
-
+            base.Initialize(_settings.PlayerGraphicsObject);
         }
 
         public void Attack(IntVector2 position)
         {
         }
-       
     }
 }

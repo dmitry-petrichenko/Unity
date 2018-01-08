@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZScripts.Units
 {
-    public interface IOneUnitGraphicsController
+    public interface IOneUnitMotionController
     {
         void MoveToPosition(IntVector2 position);
         void Wait();

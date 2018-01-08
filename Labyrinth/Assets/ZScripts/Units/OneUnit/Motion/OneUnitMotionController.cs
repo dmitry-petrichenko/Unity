@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace ZScripts.Units
 {
-    public class OneUnitGraphicsController : IOneUnitGraphicsController
+    public class OneUnitMotionController : IOneUnitMotionController
     {
         private GameObject _unit;
         public IntVector2 Position { get; private set; }
 
-        public OneUnitGraphicsController()
+        public OneUnitMotionController()
         {
             
         }

@@ -26,7 +26,7 @@ namespace ZScripts.Units
         public void MoveTo(IntVector2 position)
         {
             // TODO hide in interface 
-            _unitController.GraphicsController.CompleteMove += MoveNextStep;
+            _unitController.MotionController.CompleteMove += MoveNextStep;
             _path = _pathFinderController.GetPath(_unitController.Position, position);
             MoveNextStep();
         }
@@ -39,13 +39,14 @@ namespace ZScripts.Units
             {
                 nextPosition = _path[0];
                 _path.RemoveAt(0);
-                _unitController.GraphicsController.MoveToPosition(nextPosition);
+                _unitController.MotionController.MoveToPosition(nextPosition);
                 _unitController.AnimationController.PlayWalkAnimation();
+                _unitController.RotationController.Rotate(_unitController.Position, nextPosition);
             }
             else
             {
                 _unitController.AnimationController.PlayIdleAnimation();
-                _unitController.GraphicsController.CompleteMove -= MoveNextStep;
+                _unitController.MotionController.CompleteMove -= MoveNextStep;
             }
         }
     }

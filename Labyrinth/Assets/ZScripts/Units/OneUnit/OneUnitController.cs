@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Units;
+using Zenject;
 using ZScripts.Units.PathFinder;
+using ZScripts.Units.Rotation;
 
 namespace ZScripts.Units
 {
     public class OneUnitController : IOneUnitController
     {
-        public IOneUnitGraphicsController GraphicsController { get; set; }
+        public IOneUnitMotionController MotionController { get; set; }
         public IOneUnitAnimationController AnimationController { get; set; }
+        public IOneUnitRotationController RotationController { get; set; }
 
         private MoveController _moveController;
         private AttackController _attackController;
@@ -23,11 +26,16 @@ namespace ZScripts.Units
             _attackController = attackController;
         }
 
-        public void Initialize(IOneUnitGraphicsController GraphicsController, IOneUnitAnimationController animationController)
+        public void Initialize(
+            IOneUnitMotionController MotionController, 
+            IOneUnitAnimationController animationController,
+            IOneUnitRotationController oneUnitRotationController
+            )
         {
-            this.GraphicsController = GraphicsController;
+            this.MotionController = MotionController;
             this.AnimationController = animationController;
-            GraphicsController.CompleteMove += UpdatePosition;
+            this.RotationController = oneUnitRotationController;
+            MotionController.CompleteMove += UpdatePosition;
 
             _moveController.Initialize(this);
             _attackController.Initialize(this);
@@ -46,7 +54,7 @@ namespace ZScripts.Units
 
         public IntVector2 Position
         {
-            get { return GraphicsController.Position; }
+            get { return MotionController.Position; }
         }
     }
 }

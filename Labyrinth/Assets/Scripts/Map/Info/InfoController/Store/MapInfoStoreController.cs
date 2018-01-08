@@ -22,7 +22,7 @@ namespace Labyrinth.Map
                 new MapInfoContainer(info, new IntVector2(info.GetLength(0), info.GetLength(1)));
 
             infoJson = JsonMapper.ToJson(mapInfoContainer);
-            File.WriteAllText(_settings.ResiurcesLocation + "/info.json", infoJson.ToString());
+            File.WriteAllText(_settings.ResiurcesLocation + url, infoJson.ToString());
         }
 
         public IMapTileInfo[,] UploadMapInfo(string url)
@@ -34,6 +34,22 @@ namespace Labyrinth.Map
             List<IMapTileInfo> infoList = UploadTileList();
             InitializeReturnInfo(infoList, returnInfo);
 
+            return returnInfo;
+        }
+
+        public IMapTileInfo[,] InitializeNewMapInfo(IntVector2 mapSize)
+        {
+            IMapTileInfo[,] returnInfo = new IMapTileInfo[mapSize.x, mapSize.y];
+            MapTileInfo tile;
+            for (int i = 0; i < mapSize.x; i++)
+            {
+                for (int j = 0; j < mapSize.y; j++)
+                {
+                    tile = new MapTileInfo();
+                    tile.Initialize(MapTileType.Square, new IntVector2(i, j), new IntVector2(i, j), null);
+                    returnInfo[i, j] = tile;
+                }
+            }
             return returnInfo;
         }
 

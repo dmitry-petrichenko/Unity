@@ -27,7 +27,7 @@ namespace Labyrinth.Settings
             MapSectionSize = 2;
             ActiveAreaSize = 16;
             InitializePosition = new IntVector2(0, 0);
-            ResiurcesLocation = Application.dataPath + "/Resources";
+            ResiurcesLocation = Application.dataPath + "/Resources/Maps";
         }
     }
 }

@@ -17,6 +17,7 @@ public class MainEditorController : MonoBehaviour
     private EditorGraphicsController _graphicsController;
     private SettingsList _settingsList;
     private CameraController _cameraController;
+    private IntVector2 _cameraPosition;
 
     void Start()
     {
@@ -35,8 +36,8 @@ public class MainEditorController : MonoBehaviour
         _mapTilesInfo = _mapInfoStoreController.UploadMapInfo("");
 
         _mapInfoInitializer = new MapInfoInitializer();
-        _mapInfoInitializer.Initialize(_mapTilesInfo);
-        //_mapInfoInitializer.Initialize(new IntVector2(20, 20));
+        //_mapInfoInitializer.Initialize(_mapTilesInfo);
+        _mapInfoInitializer.Initialize(new IntVector2(60, 60));
         _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
 
         _mapViewController = new EditorMapViewController();
@@ -47,8 +48,35 @@ public class MainEditorController : MonoBehaviour
         _cameraController.Initialize(Camera, 20);
         ServiceLocator.InitializeCameraController(_cameraController);
 
-        IntVector2 position = new IntVector2(_mapTilesInfo.GetLength(0) / 4, _mapTilesInfo.GetLength(1) / 4);
-        _cameraController.UpdateCurrentPosition(position);
+        _cameraPosition = new IntVector2(_mapTilesInfo.GetLength(0) / 4, _mapTilesInfo.GetLength(1) / 4);
+        _cameraController.UpdateCurrentPosition(_cameraPosition);
+
+
+        MouseClickListener _mouseClickListener = gameObject.GetComponent<MouseClickListener>();
+        _mouseClickListener.DownButtonClicked += DownButtonClicked;
+        _mouseClickListener.UpButtonClicked += UpButtonClicked;
+        _mouseClickListener.LeftButtonClicked += LeftButtonClicked;
+        _mouseClickListener.RightButtonClicked += RightButtonClicked;
+    }
+
+    private void DownButtonClicked()
+    {
+        _cameraController.UpdateCurrentPosition(new IntVector2(_cameraPosition.x, _cameraPosition.y += 2));
+    }
+    
+    private void UpButtonClicked()
+    {
+        _cameraController.UpdateCurrentPosition(new IntVector2(_cameraPosition.x, _cameraPosition.y -= 2));
+    }
+    
+    private void LeftButtonClicked()
+    {
+        _cameraController.UpdateCurrentPosition(new IntVector2(_cameraPosition.x -= 2, _cameraPosition.y));
+    }
+    
+    private void RightButtonClicked()
+    {
+        _cameraController.UpdateCurrentPosition(new IntVector2(_cameraPosition.x += 2, _cameraPosition.y));
     }
 
     private void RightClickHandler(IntVector2 position)
@@ -63,7 +91,7 @@ public class MainEditorController : MonoBehaviour
 
     public void SaveMap()
     {
-        _mapInfoStoreController.SaveMapInfo(_mapInfoInitializer.MapTilesInfo, "");
+        _mapInfoStoreController.SaveMapInfo(_mapInfoInitializer.MapTilesInfo, "/test.json");
     }
 
     private void TileClickHandler(IntVector2 position)

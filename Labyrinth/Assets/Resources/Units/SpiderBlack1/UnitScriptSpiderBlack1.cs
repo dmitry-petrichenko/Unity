@@ -1,7 +1,7 @@
 ﻿using Tests.Animation;
 using UnityEngine;
 
-public class UnitScriptRedMage : MonoBehaviour, IUnitScript
+public class UnitScriptSpiderBlack1 : MonoBehaviour, IUnitScript
 {
 	private Animator _animator;
 	
@@ -11,16 +11,16 @@ public class UnitScriptRedMage : MonoBehaviour, IUnitScript
 	
 	public void PlayIdleAnimation()
 	{
-		_animator.Play("Idle");
+		_animator.Play("idle");
 	}
 
 	public void PlayWalkAnimation()
 	{
-		_animator.Play("Move");
+		_animator.Play("walk");
 	}
 
 	public void PlayAttackAnimation()
 	{
-		_animator.Play("ATK1");
+		_animator.Play("attack");
 	}
 }

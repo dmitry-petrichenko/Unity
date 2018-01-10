@@ -11,11 +11,6 @@ namespace ZScripts.Units
         IOneUnitRotationController RotationController { get; set; }
         IntVector2 Position { get; }
         event Action<IntVector2> PositionChanged;
-        void Initialize(
-            IOneUnitMotionController GraphicsController, 
-            IOneUnitAnimationController oneUnitAnimationController,
-            IOneUnitRotationController oneUnitRotationController
-            );
         void MoveTo(IntVector2 position);
     }
 }

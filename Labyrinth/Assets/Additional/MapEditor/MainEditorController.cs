@@ -19,6 +19,8 @@ public class MainEditorController : MonoBehaviour
     private CameraController _cameraController;
     private IntVector2 _cameraPosition;
 
+    private string TEST_PATH = "/test.json";
+
     void Start()
     {
         _settingsList = new SettingsList();
@@ -33,11 +35,10 @@ public class MainEditorController : MonoBehaviour
 
         _mapInfoStoreController = new MapInfoStoreController();
         _mapInfoStoreController.Initialize();
-        _mapTilesInfo = _mapInfoStoreController.UploadMapInfo("");
-
+        _mapTilesInfo = _mapInfoStoreController.UploadMapInfo(TEST_PATH);
         _mapInfoInitializer = new MapInfoInitializer();
-        //_mapInfoInitializer.Initialize(_mapTilesInfo);
-        _mapInfoInitializer.Initialize(new IntVector2(60, 60));
+        _mapInfoInitializer.Initialize(_mapTilesInfo);
+        //_mapInfoInitializer.Initialize(new IntVector2(60, 60));
         _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
 
         _mapViewController = new EditorMapViewController();
@@ -91,7 +92,7 @@ public class MainEditorController : MonoBehaviour
 
     public void SaveMap()
     {
-        _mapInfoStoreController.SaveMapInfo(_mapInfoInitializer.MapTilesInfo, "/test.json");
+        _mapInfoStoreController.SaveMapInfo(_mapInfoInitializer.MapTilesInfo, TEST_PATH);
     }
 
     private void TileClickHandler(IntVector2 position)

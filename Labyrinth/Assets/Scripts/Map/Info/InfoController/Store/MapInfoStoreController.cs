@@ -27,7 +27,7 @@ namespace Labyrinth.Map
 
         public IMapTileInfo[,] UploadMapInfo(string url)
         {
-            jsonString = File.ReadAllText(_settings.ResiurcesLocation + "/info.json");
+            jsonString = File.ReadAllText(_settings.ResiurcesLocation + url);
             infoJson = JsonMapper.ToObject(jsonString);
 
             IMapTileInfo[,] returnInfo = CreateReturnInfo();

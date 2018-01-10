@@ -28,7 +28,7 @@ namespace ZScripts.Map.Info
 
         public IMapTileInfo[,] UploadMapInfo(string url)
         {
-            jsonString = File.ReadAllText(_settings.ResiurcesLocation + "/info.json");
+            jsonString = File.ReadAllText(_settings.ResiurcesLocation + "/test.json");
             infoJson = JsonMapper.ToObject(jsonString);
 
             IMapTileInfo[,] returnInfo = CreateReturnInfo();

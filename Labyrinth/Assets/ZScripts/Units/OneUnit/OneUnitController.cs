@@ -1,49 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
 using Units;
-using Zenject;
-using ZScripts.Units.PathFinder;
+using UnityEditor;
+using UnityEngine;
 using ZScripts.Units.Rotation;
 
 namespace ZScripts.Units
 {
     public class OneUnitController : IOneUnitController
     {
-        public IOneUnitMotionController MotionController { get; set; }
-        public IOneUnitAnimationController AnimationController { get; set; }
-        public IOneUnitRotationController RotationController { get; set; }
-
+        public event Action<IntVector2> PositionChanged;
+        
+        private IOneUnitMotionController _oneUnitMotionController;
+        private IOneUnitAnimationController _oneUnitAnimationController;
+        private IOneUnitRotationController _oneUnitRotationController;
         private MoveController _moveController;
         private AttackController _attackController;
         
-        public event Action<IntVector2> PositionChanged;
-
         public OneUnitController(
+            IOneUnitMotionController oneUnitMotionController,
+            IOneUnitAnimationController oneUnitAnimationController,
+            IOneUnitRotationController oneUnitRotationController,
             MoveController moveController, 
             AttackController attackController)
         {
+            _oneUnitRotationController = oneUnitRotationController;
+            _oneUnitMotionController = oneUnitMotionController;
+            _oneUnitAnimationController = oneUnitAnimationController;
             _moveController = moveController;
             _attackController = attackController;
         }
 
-        public void Initialize(
-            IOneUnitMotionController MotionController, 
-            IOneUnitAnimationController animationController,
-            IOneUnitRotationController oneUnitRotationController
-            )
+        protected void Initialize(GameObject gameObject)
         {
-            this.MotionController = MotionController;
-            this.AnimationController = animationController;
-            this.RotationController = oneUnitRotationController;
-            MotionController.CompleteMove += UpdatePosition;
+            _oneUnitMotionController.Initialize(gameObject);
+            _oneUnitAnimationController.Initialize(gameObject);
+            _oneUnitRotationController.Initialize(gameObject);
 
+            MotionController = _oneUnitMotionController;
+            AnimationController = _oneUnitAnimationController;
+            RotationController = _oneUnitRotationController;
+            MotionController.CompleteMove += UpdatePosition;
+            
+            // Initialize behaviour
             _moveController.Initialize(this);
             _attackController.Initialize(this);
-        }
-
-        public void MoveTo(IntVector2 position)
-        {
-            _moveController.MoveTo(position);
         }
 
         private void UpdatePosition()
@@ -52,9 +52,20 @@ namespace ZScripts.Units
                 PositionChanged(Position);
         }
 
+        public IOneUnitMotionController MotionController { get; set; }
+        public IOneUnitAnimationController AnimationController { get; set; }
+        public IOneUnitRotationController RotationController { get; set; }
+
         public IntVector2 Position
         {
-            get { return MotionController.Position; }
+            get { return _oneUnitMotionController.Position; }
         }
+
+        public void MoveTo(IntVector2 position)
+        {
+            _moveController.MoveTo(position);
+        }
+            
+            
     }
 }

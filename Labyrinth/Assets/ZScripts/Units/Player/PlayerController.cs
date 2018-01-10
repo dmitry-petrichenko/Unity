@@ -4,7 +4,7 @@ using ZScripts.Units.Rotation;
 
 namespace ZScripts.Units.Player
 {
-    public class PlayerController : OneUnitComponentsContainer
+    public class PlayerController : OneUnitController
     {
         private ISettings _settings;
 
@@ -13,12 +13,15 @@ namespace ZScripts.Units.Player
             IOneUnitMotionController oneUnitMotionController,
             IOneUnitAnimationController oneUnitAnimationController,
             IOneUnitRotationController oneUnitRotationController,
-            IOneUnitController oneUnitController)
+            MoveController moveController, 
+            AttackController attackController)
             : base(
                 oneUnitMotionController,
                 oneUnitAnimationController,
                 oneUnitRotationController,
-                oneUnitController)
+                moveController,
+                attackController
+            )
         {
             _settings = settings;
             Initialize();

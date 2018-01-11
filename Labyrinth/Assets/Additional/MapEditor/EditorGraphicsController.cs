@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Labyrinth;
-using Labyrinth.Map;
 using UnityEngine;
+using ZScripts;
+using ZScripts.Map.View;
 
 namespace NSGraphics
 {

@@ -8,6 +8,11 @@ namespace ZScripts.Map.View
     {
         public event TileClickHandler TileClicked;
         public event TileClickHandler RightClicked;
+        public delegate void ButtonPressHandler();
+        public event ButtonPressHandler RightButtonClicked;
+        public event ButtonPressHandler LeftButtonClicked;
+        public event ButtonPressHandler UpButtonClicked;
+        public event ButtonPressHandler DownButtonClicked;
 
         void Update()
         {
@@ -37,6 +42,26 @@ namespace ZScripts.Map.View
                     if (RightClicked != null)
                         RightClicked(new IntVector2((int) position.x, (int) position.z));
                 }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                UpButtonClicked();
+            }
+        
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                DownButtonClicked();
+            }
+        
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                LeftButtonClicked();
+            }
+        
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                RightButtonClicked();
             }
         }
     }

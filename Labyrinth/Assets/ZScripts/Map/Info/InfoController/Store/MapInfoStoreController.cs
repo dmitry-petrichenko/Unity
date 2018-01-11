@@ -23,12 +23,12 @@ namespace ZScripts.Map.Info
                 new MapInfoContainer(info, new IntVector2(info.GetLength(0), info.GetLength(1)));
 
             infoJson = JsonMapper.ToJson(mapInfoContainer);
-            File.WriteAllText(_settings.ResiurcesLocation + "/info.json", infoJson.ToString());
+            File.WriteAllText(_settings.ResiurcesLocation + url, infoJson.ToString());
         }
 
         public IMapTileInfo[,] UploadMapInfo(string url)
         {
-            jsonString = File.ReadAllText(_settings.ResiurcesLocation + "/test.json");
+            jsonString = File.ReadAllText(_settings.ResiurcesLocation + url);
             infoJson = JsonMapper.ToObject(jsonString);
 
             IMapTileInfo[,] returnInfo = CreateReturnInfo();

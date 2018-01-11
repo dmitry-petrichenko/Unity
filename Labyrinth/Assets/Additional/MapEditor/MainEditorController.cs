@@ -1,9 +1,11 @@
-﻿using Labyrinth;
-using Labyrinth.Map;
-using Labyrinth.Settings;
-using NSCameraController;
+﻿using Additional;
 using NSGraphics;
 using UnityEngine;
+using ZScripts;
+using ZScripts.Map.Info;
+using ZScripts.Map.View;
+using ZScripts.Settings;
+using CameraController = Additional.CameraController;
 
 public class MainEditorController : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class MainEditorController : MonoBehaviour
 
     void Start()
     {
-        _settingsList = new SettingsList();
+        _settingsList = new SettingsList(null);
         _settingsList.Initialize();
         ServiceLocator.InitializeSettings(_settingsList);
 
@@ -33,8 +35,7 @@ public class MainEditorController : MonoBehaviour
         _graphicsController.TileClicked += TileClickHandler;
         _graphicsController.RightClicked += RightClickHandler;
 
-        _mapInfoStoreController = new MapInfoStoreController();
-        _mapInfoStoreController.Initialize();
+        _mapInfoStoreController = new MapInfoStoreController(_settingsList);
         _mapTilesInfo = _mapInfoStoreController.UploadMapInfo(TEST_PATH);
         _mapInfoInitializer = new MapInfoInitializer();
         _mapInfoInitializer.Initialize(_mapTilesInfo);

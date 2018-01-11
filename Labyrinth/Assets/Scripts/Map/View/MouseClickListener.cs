@@ -2,6 +2,7 @@
 using Labyrinth.Map;
 using UnityEngine;
 
+namespace Labyrinth{
 public class MouseClickListener : MonoBehaviour
 {
     public event TileClickHandler TileClicked;
@@ -63,4 +64,5 @@ public class MouseClickListener : MonoBehaviour
             RightButtonClicked();
         }
     }
+}
 }

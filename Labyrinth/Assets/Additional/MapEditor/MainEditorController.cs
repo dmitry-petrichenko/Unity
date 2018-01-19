@@ -14,8 +14,8 @@ public class MainEditorController : MonoBehaviour
 
     private EditorMapViewController _mapViewController;
     private IMapTileInfo[,] _mapTilesInfo;
-    private MapInfoInitializer _mapInfoInitializer;
-    private MapInfoStoreController _mapInfoStoreController;
+    private IMapInfoInitializer _mapInfoInitializer;
+    private IMapInfoStoreController _mapInfoStoreController;
     private EditorGraphicsController _graphicsController;
     private SettingsList _settingsList;
     private CameraController _cameraController;
@@ -35,13 +35,18 @@ public class MainEditorController : MonoBehaviour
         _graphicsController.TileClicked += TileClickHandler;
         _graphicsController.RightClicked += RightClickHandler;
 
+       
+        _mapInfoInitializer = new MapInfoInitializer();
+        //UPLOAD MAP FROM DISK
         _mapInfoStoreController = new MapInfoStoreController(_settingsList);
         _mapTilesInfo = _mapInfoStoreController.UploadMapInfo(TEST_PATH);
-        _mapInfoInitializer = new MapInfoInitializer();
-        _mapInfoInitializer.Initialize(_mapTilesInfo);
-        //_mapInfoInitializer.Initialize(new IntVector2(60, 60));
-        _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
-
+        _mapInfoInitializer.InitializeSector(_mapTilesInfo);
+        //------------------
+        // INITIALIZE NEW MAP
+        //_mapInfoInitializer.CreateSector(new IntVector2(60, 60), new IntVector2(60, 60));
+        //_mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
+        //------------------
+        
         _mapViewController = new EditorMapViewController();
         _mapViewController.Initialize();
         _mapViewController.InitializeTiles(_mapTilesInfo);
@@ -84,10 +89,7 @@ public class MainEditorController : MonoBehaviour
     private void RightClickHandler(IntVector2 position)
     {
         position = new IntVector2(position.x * 2, position.y * 2);
-        _mapInfoInitializer.InitializeSquare(position);
-        _mapInfoInitializer.InitializeSquare(new IntVector2(position.x + 1, position.y));
-        _mapInfoInitializer.InitializeSquare(new IntVector2(position.x, position.y + 1));
-        _mapInfoInitializer.InitializeSquare(new IntVector2(position.x + 1, position.y + 1));
+        _mapInfoInitializer.InitializePlane(position);
         _mapViewController.UpdateTile(position);
     }
 

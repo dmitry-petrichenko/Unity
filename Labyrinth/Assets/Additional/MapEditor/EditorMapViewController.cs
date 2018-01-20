@@ -9,36 +9,31 @@ namespace Additional
     {
         private IMapViewController _mapViewController;
         private List<IntVector2> _initializedIndexes;
-        private IMapTileInfo[,] _tileInfos;
+        private Dictionary<IntVector2, IMapTileInfo> _tileInfos = new Dictionary<IntVector2, IMapTileInfo>();
 
         public void Initialize()
         {
             _mapViewController = MapServiceLocator.GetMapViewController();
         }
 
-        public void InitializeTiles(IMapTileInfo[,] tileInfos)
+        public void InitializeTiles(Dictionary<IntVector2, IMapTileInfo> tileInfos)
         {
             _tileInfos = tileInfos;
-            int lengthX = tileInfos.GetLength(0);
-            int lengthY = tileInfos.GetLength(1);
 
-            for (int i = 0; i < lengthX; i += 2)
+            foreach (var info in tileInfos) 
             {
-                for (int j = 0; j < lengthY; j += 2)
-                {
-                    InitializeTile(tileInfos[i, j]);
-                }
+                InitializeTile(info.Value);
             }
         }
 
         public void UpdateTile(IntVector2 position)
         {
-            InitializeTile(_tileInfos[position.x, position.y]);
+            InitializeTile(_tileInfos[position]);
         }
 
         private void InitializeTile(IMapTileInfo tileInfo)
         {
-            IntVector2 position = new IntVector2(tileInfo.Index.x / 2, tileInfo.Index.y / 2);
+            IntVector2 position = new IntVector2(tileInfo.Index.x / MainEditorController.SCALE, tileInfo.Index.y / MainEditorController.SCALE);
             switch (tileInfo.Type)
             {
                 case MapTileType.Cube:

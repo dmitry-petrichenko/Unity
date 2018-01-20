@@ -20,7 +20,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<MoveController>().To<MoveController>().AsTransient();
         Container.Bind<AttackController>().To<AttackController>().AsTransient();
         Container.Bind<IPathFinderController>().To<PathFinderController>().AsSingle();
-        Container.Bind<Grid>().To<Grid>().AsSingle();
+        Container.Bind<IGrid>().To<Grid>().AsSingle();
         Container.Bind<IOneUnitAnimationController>().To<OneUnitAnimationController>().AsTransient();
         Container.Bind<IOneUnitRotationController>().To<OneUnitRotationController>().AsTransient();
     }

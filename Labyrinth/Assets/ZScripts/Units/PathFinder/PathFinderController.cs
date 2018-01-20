@@ -7,7 +7,7 @@ namespace ZScripts.Units.PathFinder
 {
     public class PathFinderController : IPathFinderController
     {
-        private Grid _grid;
+        private IGrid _grid;
         private List<IntVector2> _closeList;
         private List<Vertex2D> _openList;
         private List<IntVector2> _wayPoints;
@@ -15,7 +15,7 @@ namespace ZScripts.Units.PathFinder
         private bool _complete;
         private Vertex2D _currentVertex;
 
-        public PathFinderController(Grid grid)
+        public PathFinderController(IGrid grid)
         {
             _grid = grid;
             Initialize();

@@ -1,10 +1,11 @@
-﻿using ZScripts.Settings;
+﻿using System.Collections.Generic;
+using ZScripts.Settings;
 
 namespace ZScripts.Map.Info
 {
     public class MapInfoController : IMapInfoController
     {
-        private IMapTileInfo[,] _mapTilesInfo;
+        private Dictionary<IntVector2, IMapTileInfo> _mapTilesInfo = new Dictionary<IntVector2, IMapTileInfo>();
         private IMapInfoInitializer _mapInfoInitializer;
         private MapInfoStoreController _mapInfoStoreController;
         private MapInfoCommon _mapInfoCommon;
@@ -19,38 +20,31 @@ namespace ZScripts.Map.Info
         public void Initialize()
         {
             _mapInfoStoreController = new MapInfoStoreController(_settings);
-            _mapTilesInfo = _mapInfoStoreController.UploadMapInfo("/test.json");
-            
-            _mapInfoCommon = new MapInfoCommon();
-            _mapInfoCommon.MapWidth = _mapTilesInfo.GetLength(0);
-            _mapInfoCommon.MapHeight = _mapTilesInfo.GetLength(1);
-                        
+            _mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(0, 0));
+
             _mapInfoInitializer = new MapInfoInitializer();
-            _mapInfoInitializer.InitializeSector(_mapTilesInfo);
+            //_mapInfoInitializer.InitializeSector(_mapTilesInfo);
         }
 
         public IMapTileInfo GetMapTileInfo(IntVector2 position)
         {
-            if (position.x >= _mapInfoCommon.MapWidth || position.y >= _mapInfoCommon.MapHeight)
+            if (_mapTilesInfo.ContainsKey(position))
+            {
+                return _mapTilesInfo[position];
+            }
+            else
             {
                 return _mapInfoInitializer.CreateEmptyTileInfo(position);
             }
-
-            if (position.x < 0 || position.y < 0)
-            {
-                return _mapInfoInitializer.CreateEmptyTileInfo(position);
-            }
-
-            return _mapTilesInfo[position.x, position.y];
         }
 
         public void UpdateMapTileInfo(IMapTileInfo mapTileInfo)
         {
         }
 
-        public IMapInfoCommon MapInfoCommon
+        public Dictionary<IntVector2, IMapTileInfo> MapTilesInfo
         {
-            get { return _mapInfoCommon; }
+            get { return _mapTilesInfo; }
         }
     }
 }

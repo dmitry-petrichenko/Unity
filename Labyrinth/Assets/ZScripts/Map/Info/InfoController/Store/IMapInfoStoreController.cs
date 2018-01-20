@@ -1,10 +1,11 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace ZScripts.Map.Info
 {
     public interface IMapInfoStoreController
     {
-        void SaveMapInfo(IMapTileInfo[,] info, String url);
-        IMapTileInfo[,] UploadMapInfo(String url);
+        ISectorInfo UploadSectorInfo(IntVector2 index);
+        Dictionary<IntVector2, IMapTileInfo> UploadSectorData(IntVector2 index);
+        void SaveSector(ISectorInfo info, Dictionary<IntVector2, IMapTileInfo> data);
     }
 }

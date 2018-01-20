@@ -1,97 +1,137 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using LitJson;
+using UnityEngine;
 using ZScripts.Settings;
 
 namespace ZScripts.Map.Info
 {
     public class MapInfoStoreController : IMapInfoStoreController
     {
-        private JsonData infoJson;
-        private string jsonString;
-        private IMapTileInfo[,] mapInfo;
         private ISettings _settings;
+        private string _jsonString;
+        private JsonData _infoJson;
+        private const string PREFIX = "sector_"; 
+        private const string INFO_POSTFIX = "_info.json"; 
+        private const string DATA_POSTFIX = "_data.json"; 
 
         public MapInfoStoreController(ISettings settings)
         {
             _settings = settings;
         }
-
-        public void SaveMapInfo(IMapTileInfo[,] info, string url)
+        
+        public ISectorInfo UploadSectorInfo(IntVector2 index)
         {
-            MapInfoContainer mapInfoContainer =
-                new MapInfoContainer(info, new IntVector2(info.GetLength(0), info.GetLength(1)));
+            ISectorInfo sectorInfo = new SectorInfo();
 
-            infoJson = JsonMapper.ToJson(mapInfoContainer);
-            File.WriteAllText(_settings.ResiurcesLocation + url, infoJson.ToString());
+            _jsonString = File.ReadAllText(_settings.ResiurcesLocation + GetSectorInfoName(index));
+            _infoJson = JsonMapper.ToObject(_jsonString);
+            
+            sectorInfo.startPoint = GetIntVector2FromProperty(_infoJson, "startPoint");
+            sectorInfo.index = GetIntVector2FromProperty(_infoJson, "index");
+            sectorInfo.size = GetIntVector2FromProperty(_infoJson, "size");
+            
+            return sectorInfo;
         }
 
-        public IMapTileInfo[,] UploadMapInfo(string url)
+        public Dictionary<IntVector2, IMapTileInfo> UploadSectorData(IntVector2 index)
         {
-            jsonString = File.ReadAllText(_settings.ResiurcesLocation + url);
-            infoJson = JsonMapper.ToObject(jsonString);
-
-            IMapTileInfo[,] returnInfo = CreateReturnInfo();
-            List<IMapTileInfo> infoList = UploadTileList();
-            InitializeReturnInfo(infoList, returnInfo);
-
-            return returnInfo;
-        }
-
-        private void InitializeReturnInfo(List<IMapTileInfo> infoList, IMapTileInfo[,] returnInfo)
-        {
-            foreach (IMapTileInfo tileInfo in infoList)
-            {
-                returnInfo[tileInfo.Index.x, tileInfo.Index.y] = tileInfo;
-            }
-        }
-
-        private IMapTileInfo[,] CreateReturnInfo()
-        {
-            IntVector2 mapSize = GetIntVector2FromProperty(infoJson, "MapSize");
-            IMapTileInfo[,] returnInfo = new IMapTileInfo[mapSize.x, mapSize.y];
-
-            return returnInfo;
-        }
-
-        List<IMapTileInfo> UploadTileList()
-        {
-            List<IMapTileInfo> infoList = new List<IMapTileInfo>();
-            MapTileInfo tile;
-            infoJson = infoJson["Tiles"];
-            int count = infoJson.Count;
-
+            Dictionary<IntVector2, IMapTileInfo> data = new Dictionary<IntVector2, IMapTileInfo>();
+            
+            _jsonString = File.ReadAllText(_settings.ResiurcesLocation + GetSectorDataName(index));
+            _infoJson = JsonMapper.ToObject(_jsonString);
+            
+            int count = _infoJson.Count;
+            IntVector2 position;
+            IMapTileInfo mapTileInfo;
+            
             for (int i = 0; i < count; i++)
             {
-                tile = new MapTileInfo();
-                tile.Initialize((int) infoJson[i]["Type"], GetIntVector2FromProperty(infoJson[i], "ViewPosition"),
-                    GetIntVector2FromProperty(infoJson[i], "Index"), null);
+                position = GetIntVector2FromProperty(_infoJson[i], "Position");
+                mapTileInfo = GetMapTileInfoFromData(_infoJson[i]["TileInfo"]);
+                data[position] = mapTileInfo;
+            }  
 
-                infoList.Add(tile);
-            }
-
-            return infoList;
+            return data;
         }
 
-        IntVector2 GetIntVector2FromProperty(JsonData tile, string property)
+        public void SaveSector(ISectorInfo info, Dictionary<IntVector2, IMapTileInfo> data)
+        {
+            string sectorInfo = JsonMapper.ToJson(info);
+            File.WriteAllText(
+                _settings.ResiurcesLocation + GetSectorInfoName(info.index),
+                sectorInfo
+                );
+            
+            string sectorData = SectorDataToJson(data);
+            File.WriteAllText(
+                _settings.ResiurcesLocation + GetSectorDataName(info.index),
+                sectorData
+            );
+        }
+        
+        private string SectorDataToJson(Dictionary<IntVector2, IMapTileInfo> data)
+        {
+            SectorTileInfoContainer[] tiles = new SectorTileInfoContainer[data.Count];
+            int i = 0;
+            foreach (var info in data)
+            {
+                tiles[i] = new SectorTileInfoContainer(info.Key, info.Value);
+                i++;
+            }
+            return JsonMapper.ToJson(tiles);
+        }
+
+        private string GetSectorInfoName(IntVector2 index)
+        {
+            string name;
+
+            name = PREFIX + index.x.ToString() + "_" + index.y.ToString() + INFO_POSTFIX;
+            
+            return name;
+        }
+        
+        private string GetSectorDataName(IntVector2 index)
+        {
+            string name;
+
+            name = PREFIX + index.x.ToString() + "_" + index.y.ToString() + DATA_POSTFIX;
+            
+            return name;
+        }
+        
+        IntVector2 GetIntVector2FromProperty(JsonData jsonData, string property)
         {
             IntVector2 intVector2;
-            intVector2.x = (int) tile[property]["x"];
-            intVector2.y = (int) tile[property]["y"];
+            intVector2.x = (int) jsonData[property]["x"];
+            intVector2.y = (int) jsonData[property]["y"];
 
             return intVector2;
         }
-    }
-
-    public class MapInfoContainer
-    {
-        public IntVector2 MapSize { get; private set; }
-        public IMapTileInfo[,] Tiles { get; private set; }
-
-        public MapInfoContainer(IMapTileInfo[,] Tiles, IntVector2 MapSize)
+        
+        MapTileInfo GetMapTileInfoFromData(JsonData jsonData)
         {
-            this.MapSize = MapSize;
-            this.Tiles = Tiles;
+            MapTileInfo tileInfo;
+
+            tileInfo = new MapTileInfo();
+            tileInfo.Initialize((int) jsonData["Type"], GetIntVector2FromProperty(jsonData, "ViewPosition"),
+                GetIntVector2FromProperty(jsonData, "Index"), null);
+
+            return tileInfo;
+        }
+    }
+    
+    public class SectorTileInfoContainer
+    {
+        public IntVector2 Position { get; private set; }
+        public IMapTileInfo TileInfo { get; private set; }
+
+        public SectorTileInfoContainer(IntVector2 Position, IMapTileInfo TileInfo)
+        {
+            this.Position = Position;
+            this.TileInfo = TileInfo;
         }
     }
 }

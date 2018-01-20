@@ -1,4 +1,5 @@
-﻿using Additional;
+﻿using System.Collections.Generic;
+using Additional;
 using NSGraphics;
 using UnityEngine;
 using ZScripts;
@@ -11,17 +12,17 @@ public class MainEditorController : MonoBehaviour
 {
     public GameObject EmptySquare, CubeSuare;
     public Camera Camera;
+    
+    public static int SCALE = 2;
 
     private EditorMapViewController _mapViewController;
-    private IMapTileInfo[,] _mapTilesInfo;
+    private Dictionary<IntVector2, IMapTileInfo> _mapTilesInfo = new Dictionary<IntVector2, IMapTileInfo>();
     private IMapInfoInitializer _mapInfoInitializer;
     private IMapInfoStoreController _mapInfoStoreController;
     private EditorGraphicsController _graphicsController;
     private SettingsList _settingsList;
     private CameraController _cameraController;
     private IntVector2 _cameraPosition;
-
-    private string TEST_PATH = "/test.json";
 
     void Start()
     {
@@ -37,14 +38,14 @@ public class MainEditorController : MonoBehaviour
 
        
         _mapInfoInitializer = new MapInfoInitializer();
-        //UPLOAD MAP FROM DISK
         _mapInfoStoreController = new MapInfoStoreController(_settingsList);
-        _mapTilesInfo = _mapInfoStoreController.UploadMapInfo(TEST_PATH);
-        _mapInfoInitializer.InitializeSector(_mapTilesInfo);
+        //UPLOAD MAP FROM DISK
+        //_mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(1, 0));
+        //_mapInfoInitializer.InitializeSector(_mapTilesInfo);
         //------------------
         // INITIALIZE NEW MAP
-        //_mapInfoInitializer.CreateSector(new IntVector2(60, 60), new IntVector2(60, 60));
-        //_mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
+        _mapInfoInitializer.CreateSector(new IntVector2(0, 0), new IntVector2(0, 0), new IntVector2(6, 6));
+        _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
         //------------------
         
         _mapViewController = new EditorMapViewController();
@@ -55,7 +56,7 @@ public class MainEditorController : MonoBehaviour
         _cameraController.Initialize(Camera, 20);
         ServiceLocator.InitializeCameraController(_cameraController);
 
-        _cameraPosition = new IntVector2(_mapTilesInfo.GetLength(0) / 4, _mapTilesInfo.GetLength(1) / 4);
+        _cameraPosition = new IntVector2(0, 0);
         _cameraController.UpdateCurrentPosition(_cameraPosition);
 
 
@@ -88,19 +89,19 @@ public class MainEditorController : MonoBehaviour
 
     private void RightClickHandler(IntVector2 position)
     {
-        position = new IntVector2(position.x * 2, position.y * 2);
+        position = new IntVector2(position.x * SCALE, position.y * SCALE);
         _mapInfoInitializer.InitializePlane(position);
         _mapViewController.UpdateTile(position);
     }
 
     public void SaveMap()
     {
-        _mapInfoStoreController.SaveMapInfo(_mapInfoInitializer.MapTilesInfo, TEST_PATH);
+        _mapInfoStoreController.SaveSector(_mapInfoInitializer.SectorInfo, _mapInfoInitializer.MapTilesInfo);
     }
 
     private void TileClickHandler(IntVector2 position)
     {
-        position = new IntVector2(position.x * 2, position.y * 2);
+        position = new IntVector2(position.x * SCALE, position.y * SCALE);
         _mapInfoInitializer.InitializeCube(position);
         _mapViewController.UpdateTile(position);
     }

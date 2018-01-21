@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
 using ModestTree.Util;
 
 namespace ModestTree
@@ -239,7 +239,7 @@ namespace ModestTree
         public static bool ContainsItem<T>(this IEnumerable<T> list, T value)
         {
             // Use object.Equals to support null values
-            return list.Where(x => object.Equals(x, value)).Any();
+            return list.Where(x => Equals(x, value)).Any();
         }
 
         // We call it Zipper instead of Zip to avoid naming conflicts with .NET 4

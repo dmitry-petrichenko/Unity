@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using ModestTree.Util;
 
 namespace Zenject
 {
@@ -12,7 +12,7 @@ namespace Zenject
         {
         }
 
-        public ConditionCopyNonLazyBinder FromMethod(ModestTree.Util.Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TContract> method)
+        public ConditionCopyNonLazyBinder FromMethod(Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TContract> method)
         {
             ProviderFunc = 
                 (container) => new MethodProviderWithContainer<TParam1, TParam2, TParam3, TParam4, TParam5, TContract>(method);

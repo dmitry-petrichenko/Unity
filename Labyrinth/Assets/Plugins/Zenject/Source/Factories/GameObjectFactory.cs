@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Zenject
@@ -25,11 +23,11 @@ namespace Zenject
     public class GameObjectFactory : IFactory<GameObject>
     {
         DiContainer _container;
-        UnityEngine.Object _prefab;
+        Object _prefab;
 
         [Inject]
         public void Construct(
-            UnityEngine.Object prefab,
+            Object prefab,
             DiContainer container)
         {
             _container = container;

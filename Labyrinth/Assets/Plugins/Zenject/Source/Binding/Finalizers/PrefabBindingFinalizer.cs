@@ -3,20 +3,20 @@
 using System;
 using System.Collections.Generic;
 using ModestTree;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
     public class PrefabBindingFinalizer : ProviderBindingFinalizer
     {
         readonly GameObjectCreationParameters _gameObjectBindInfo;
-        readonly UnityEngine.Object _prefab;
+        readonly Object _prefab;
         readonly Func<Type, IPrefabInstantiator, IProvider> _providerFactory;
 
         public PrefabBindingFinalizer(
             BindInfo bindInfo,
             GameObjectCreationParameters gameObjectBindInfo,
-            UnityEngine.Object prefab, Func<Type, IPrefabInstantiator, IProvider> providerFactory)
+            Object prefab, Func<Type, IPrefabInstantiator, IProvider> providerFactory)
             : base(bindInfo)
         {
             _gameObjectBindInfo = gameObjectBindInfo;

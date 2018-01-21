@@ -2,12 +2,8 @@ using Units;
 using Zenject;
 using ZScripts.Units;
 using ZScripts.Units.PathFinder;
+using ZScripts.Units.Player;
 using ZScripts.Units.Rotation;
-using AttackController = ZScripts.Units.AttackController;
-using IUnitsController = ZScripts.Units.IUnitsController;
-using MoveController = ZScripts.Units.MoveController;
-using PlayerController = ZScripts.Units.Player.PlayerController;
-using UnitsController = ZScripts.Units.UnitsController;
 
 public class UnitsInstaller : Installer<UnitsInstaller>
 {

@@ -1,8 +1,9 @@
 using System;
+using System.Diagnostics;
 
 namespace Zenject
 {
-    [System.Diagnostics.DebuggerStepThrough]
+    [DebuggerStepThrough]
     public class BindingId : IEquatable<BindingId>
     {
         public readonly Type Type;
@@ -45,7 +46,7 @@ namespace Zenject
 
         public static bool operator ==(BindingId left, BindingId right)
         {
-            return left.Type == right.Type && object.Equals(left.Identifier, right.Identifier);
+            return left.Type == right.Type && Equals(left.Identifier, right.Identifier);
         }
 
         public static bool operator !=(BindingId left, BindingId right)

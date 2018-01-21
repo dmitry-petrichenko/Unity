@@ -8,7 +8,6 @@ namespace ZScripts.Map.Info
         private Dictionary<IntVector2, IMapTileInfo> _mapTilesInfo = new Dictionary<IntVector2, IMapTileInfo>();
         private IMapInfoInitializer _mapInfoInitializer;
         private MapInfoStoreController _mapInfoStoreController;
-        private MapInfoCommon _mapInfoCommon;
         private ISettings _settings;
 
         public MapInfoController(ISettings settings)

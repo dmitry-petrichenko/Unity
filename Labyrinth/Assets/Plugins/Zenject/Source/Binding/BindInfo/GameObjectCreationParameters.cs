@@ -80,8 +80,8 @@ namespace Zenject
 
         public static bool operator ==(GameObjectCreationParameters left, GameObjectCreationParameters right)
         {
-            return object.Equals(left.Name, right.Name)
-                && object.Equals(left.GroupName, right.GroupName);
+            return Equals(left.Name, right.Name)
+                && Equals(left.GroupName, right.GroupName);
         }
 
         public static bool operator !=(GameObjectCreationParameters left, GameObjectCreationParameters right)

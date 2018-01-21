@@ -1,5 +1,5 @@
 using System;
-using ModestTree;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -26,7 +26,7 @@ namespace Zenject
 #if !NOT_UNITY3D
 
         public NameTransformConditionCopyNonLazyBinder ByNewPrefabMethod(
-            UnityEngine.Object prefab, Action<DiContainer> installerMethod)
+            Object prefab, Action<DiContainer> installerMethod)
         {
             BindingUtil.AssertIsValidPrefab(prefab);
 
@@ -61,7 +61,7 @@ namespace Zenject
             return new NameTransformConditionCopyNonLazyBinder(BindInfo, gameObjectInfo);
         }
 
-        public NameTransformConditionCopyNonLazyBinder ByNewPrefab(UnityEngine.Object prefab)
+        public NameTransformConditionCopyNonLazyBinder ByNewPrefab(Object prefab)
         {
             BindingUtil.AssertIsValidPrefab(prefab);
 

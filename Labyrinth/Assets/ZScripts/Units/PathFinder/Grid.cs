@@ -33,18 +33,14 @@ namespace ZScripts.Units.PathFinder
 
         public bool GetCell(IntVector2 index)
         {
-            //if (index.x >= _mapInfoCommon.MapWidth || index.y >= _mapInfoCommon.MapHeight)
-                //return false;
-            
-            if (index.x < 0 || index.y < 0)   // TODO bug
-                return false;
-            
-            if (_gridValue[index] != null)
+            if (_mapTilesInfo.ContainsKey(index))
             {
                 return _gridValue[index];
             }
-
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }

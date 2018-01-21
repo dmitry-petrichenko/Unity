@@ -3,19 +3,20 @@
 using System;
 using System.Collections.Generic;
 using ModestTree;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
     public class SubContainerPrefabBindingFinalizer : ProviderBindingFinalizer
     {
-        readonly UnityEngine.Object _prefab;
+        readonly Object _prefab;
         readonly object _subIdentifier;
         readonly GameObjectCreationParameters _gameObjectBindInfo;
 
         public SubContainerPrefabBindingFinalizer(
             BindInfo bindInfo,
             GameObjectCreationParameters gameObjectBindInfo,
-            UnityEngine.Object prefab,
+            Object prefab,
             object subIdentifier)
             : base(bindInfo)
         {

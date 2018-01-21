@@ -1,5 +1,6 @@
 using System;
 using ModestTree;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -66,14 +67,14 @@ namespace Zenject
 
 #if !NOT_UNITY3D
         public NameTransformConditionCopyNonLazyBinder ByNewPrefabInstaller<TInstaller>(
-            UnityEngine.Object prefab)
+            Object prefab)
             where TInstaller : InstallerBase
         {
             return ByNewPrefabInstaller(prefab, typeof(TInstaller));
         }
 
         public NameTransformConditionCopyNonLazyBinder ByNewPrefabInstaller(
-            UnityEngine.Object prefab, Type installerType)
+            Object prefab, Type installerType)
         {
             Assert.That(installerType.DerivesFrom<InstallerBase>(),
                 "Invalid installer type given during bind command.  Expected type '{0}' to derive from 'Installer<>'", installerType);

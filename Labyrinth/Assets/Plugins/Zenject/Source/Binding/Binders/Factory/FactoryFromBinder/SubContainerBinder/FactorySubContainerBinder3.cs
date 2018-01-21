@@ -1,4 +1,5 @@
 using System;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -24,7 +25,7 @@ namespace Zenject
 
 #if !NOT_UNITY3D
         public NameTransformConditionCopyNonLazyBinder ByNewPrefabMethod(
-            UnityEngine.Object prefab, Action<DiContainer, TParam1, TParam2, TParam3> installerMethod)
+            Object prefab, Action<DiContainer, TParam1, TParam2, TParam3> installerMethod)
         {
             BindingUtil.AssertIsValidPrefab(prefab);
 

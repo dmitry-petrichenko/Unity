@@ -2,6 +2,7 @@
 
 using System;
 using UnityEngine;
+
 namespace Zenject
 {
     public class TransformScopeArgNonLazyBinder : ScopeArgNonLazyBinder

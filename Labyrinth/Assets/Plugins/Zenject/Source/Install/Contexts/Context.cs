@@ -6,8 +6,6 @@ using System.Linq;
 using ModestTree;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Zenject.Internal;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -170,7 +168,7 @@ namespace Zenject
             {
                 Assert.IsNotNull(installerPrefab, "Found null installer prefab in '{0}'", this.GetType());
 
-                var installerGameObject = GameObject.Instantiate(installerPrefab.gameObject);
+                var installerGameObject = Instantiate(installerPrefab.gameObject);
                 installerGameObject.transform.SetParent(this.transform, false);
                 var installer = installerGameObject.GetComponent<MonoInstaller>();
 

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ZScripts.Map.Info;
 using ZScripts.Settings;
-using IMapTileInfo = ZScripts.Map.Info.IMapTileInfo;
 
 namespace ZScripts.Map.Controllers
 {

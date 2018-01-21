@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using ModestTree;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -33,7 +34,7 @@ namespace Zenject
             get { return _subInstantiator.GameObjectCreationParameters; }
         }
 
-        public UnityEngine.Object GetPrefab()
+        public Object GetPrefab()
         {
             return _subInstantiator.GetPrefab();
         }

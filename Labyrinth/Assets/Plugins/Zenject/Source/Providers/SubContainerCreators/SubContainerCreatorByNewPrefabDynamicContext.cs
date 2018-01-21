@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ModestTree;
+using ModestTree.Util;
 
 namespace Zenject
 {
@@ -196,12 +197,12 @@ namespace Zenject
 
     public class SubContainerCreatorByNewPrefabMethod<TParam1, TParam2, TParam3, TParam4> : SubContainerCreatorByNewPrefabDynamicContext
     {
-        readonly ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> _installerMethod;
+        readonly Action<DiContainer, TParam1, TParam2, TParam3, TParam4> _installerMethod;
 
         public SubContainerCreatorByNewPrefabMethod(
             DiContainer container, IPrefabProvider prefabProvider,
             GameObjectCreationParameters gameObjectBindInfo,
-            ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
+            Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
             : base(container, prefabProvider, gameObjectBindInfo)
         {
             _installerMethod = installerMethod;
@@ -229,12 +230,12 @@ namespace Zenject
 
     public class SubContainerCreatorByNewPrefabMethod<TParam1, TParam2, TParam3, TParam4, TParam5> : SubContainerCreatorByNewPrefabDynamicContext
     {
-        readonly ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> _installerMethod;
+        readonly Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> _installerMethod;
 
         public SubContainerCreatorByNewPrefabMethod(
             DiContainer container, IPrefabProvider prefabProvider,
             GameObjectCreationParameters gameObjectBindInfo,
-            ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> installerMethod)
+            Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> installerMethod)
             : base(container, prefabProvider, gameObjectBindInfo)
         {
             _installerMethod = installerMethod;

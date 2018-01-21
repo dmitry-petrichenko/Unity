@@ -36,7 +36,7 @@ namespace ZScripts.Map.Info
                 for (int j = startPoint.y * MainEditorController.SCALE; j < startPoint.y * MainEditorController.SCALE + size.y * MainEditorController.SCALE; j++)
                 {
                     mapTileInfo = new MapTileInfo();
-                    mapTileInfo.Initialize(MapTileType.Square, new IntVector2(i, j), new IntVector2(i, j), null);
+                    mapTileInfo.Initialize(MapTileType.Square, new IntVector2(i, j), new IntVector2(i, j));
                     _sectorTilesInfo[new IntVector2(i, j)] = mapTileInfo;
                 }
             }
@@ -47,19 +47,19 @@ namespace ZScripts.Map.Info
             MapTileInfo mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x, position.y), null);
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x, position.y));
             _sectorTilesInfo[new IntVector2(position.x, position.y)] = mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y), null);
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y));
             _sectorTilesInfo[new IntVector2(position.x + 1, position.y)] = mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x, position.y + 1), null);
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x, position.y + 1));
             _sectorTilesInfo[new IntVector2(position.x, position.y + 1)] = mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y + 1), null);
+            mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y + 1));
             _sectorTilesInfo[new IntVector2(position.x + 1, position.y + 1)] = mapTileInfo;
         }
 
@@ -68,26 +68,26 @@ namespace ZScripts.Map.Info
             MapTileInfo mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Square, position, position, null);
+            mapTileInfo.Initialize(MapTileType.Square, position, position);
             _sectorTilesInfo[new IntVector2(position.x, position.y)] = mapTileInfo;
             
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Square, position, new IntVector2(position.x + 1, position.y), null);
+            mapTileInfo.Initialize(MapTileType.Square, position, new IntVector2(position.x + 1, position.y));
             _sectorTilesInfo[new IntVector2(position.x + 1, position.y)] = mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Square, position, new IntVector2(position.x, position.y + 1), null);
+            mapTileInfo.Initialize(MapTileType.Square, position, new IntVector2(position.x, position.y + 1));
             _sectorTilesInfo[new IntVector2(position.x, position.y + 1)] = mapTileInfo;
 
             mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Square, position, new IntVector2(position.x + 1, position.y + 1), null);
+            mapTileInfo.Initialize(MapTileType.Square, position, new IntVector2(position.x + 1, position.y + 1));
             _sectorTilesInfo[new IntVector2(position.x + 1, position.y + 1)] = mapTileInfo;
         }
 
         public IMapTileInfo CreateEmptyTileInfo(IntVector2 position)
         {
             MapTileInfo mapTileInfo = new MapTileInfo();
-            mapTileInfo.Initialize(MapTileType.Empty, position, position, null);
+            mapTileInfo.Initialize(MapTileType.Empty, position, position);
 
             return mapTileInfo;
         }

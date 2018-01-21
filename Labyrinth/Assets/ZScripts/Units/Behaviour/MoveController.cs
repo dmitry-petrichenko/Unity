@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Labyrinth;
 using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units

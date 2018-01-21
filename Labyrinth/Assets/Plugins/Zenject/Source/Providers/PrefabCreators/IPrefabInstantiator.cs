@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -25,7 +26,7 @@ namespace Zenject
 
         IEnumerator<GameObject> Instantiate(List<TypeValuePair> args);
 
-        UnityEngine.Object GetPrefab();
+        Object GetPrefab();
     }
 }
 

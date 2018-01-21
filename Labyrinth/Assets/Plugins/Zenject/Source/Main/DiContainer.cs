@@ -5,7 +5,7 @@ using System.Linq;
 using ModestTree;
 using ModestTree.Util;
 using Zenject.Internal;
-
+using Object = UnityEngine.Object;
 #if !NOT_UNITY3D
 using UnityEngine;
 #endif
@@ -851,7 +851,7 @@ namespace Zenject
         object InstantiateInternal(Type concreteType, bool autoInject, InjectArgs args)
         {
 #if !NOT_UNITY3D
-            Assert.That(!concreteType.DerivesFrom<UnityEngine.Component>(),
+            Assert.That(!concreteType.DerivesFrom<Component>(),
                 "Error occurred while instantiating object of type '{0}'. Instantiator should not be used to create new mono behaviours.  Must use InstantiatePrefabForComponent, InstantiatePrefab, or InstantiateComponent.", concreteType);
 #endif
 
@@ -1139,7 +1139,7 @@ namespace Zenject
             return CreateAndParentPrefab(prefab, gameObjectBindInfo, context, out shouldMakeActive);
         }
 
-        GameObject GetPrefabAsGameObject(UnityEngine.Object prefab)
+        GameObject GetPrefabAsGameObject(Object prefab)
         {
             if (prefab is GameObject)
             {
@@ -1154,7 +1154,7 @@ namespace Zenject
         // You probably want to use InstantiatePrefab instead
         // This one will only create the prefab and will not inject into it
         internal GameObject CreateAndParentPrefab(
-            UnityEngine.Object prefab, GameObjectCreationParameters gameObjectBindInfo,
+            Object prefab, GameObjectCreationParameters gameObjectBindInfo,
             InjectContext context, out bool shouldMakeActive)
         {
             Assert.That(prefab != null, "Null prefab found when instantiating game object");
@@ -1400,14 +1400,14 @@ namespace Zenject
         }
 
         // Create a new game object from a prefab and fill in dependencies for all children
-        public GameObject InstantiatePrefab(UnityEngine.Object prefab)
+        public GameObject InstantiatePrefab(Object prefab)
         {
             return InstantiatePrefab(
                 prefab, GameObjectCreationParameters.Default);
         }
 
         // Create a new game object from a prefab and fill in dependencies for all children
-        public GameObject InstantiatePrefab(UnityEngine.Object prefab, Transform parentTransform)
+        public GameObject InstantiatePrefab(Object prefab, Transform parentTransform)
         {
             return InstantiatePrefab(
                 prefab, new GameObjectCreationParameters() { ParentTransform = parentTransform });
@@ -1415,7 +1415,7 @@ namespace Zenject
 
         // Create a new game object from a prefab and fill in dependencies for all children
         public GameObject InstantiatePrefab(
-            UnityEngine.Object prefab, Vector3 position, Quaternion rotation, Transform parentTransform)
+            Object prefab, Vector3 position, Quaternion rotation, Transform parentTransform)
         {
             return InstantiatePrefab(
                 prefab, new GameObjectCreationParameters()
@@ -1428,7 +1428,7 @@ namespace Zenject
 
         // Create a new game object from a prefab and fill in dependencies for all children
         public GameObject InstantiatePrefab(
-            UnityEngine.Object prefab, GameObjectCreationParameters gameObjectBindInfo)
+            Object prefab, GameObjectCreationParameters gameObjectBindInfo)
         {
             FlushBindings();
 
@@ -1472,7 +1472,7 @@ namespace Zenject
 
         // Same as InstantiatePrefab but returns a component after it's initialized
         // and optionally allows extra arguments for the given component type
-        public T InstantiatePrefabForComponent<T>(UnityEngine.Object prefab)
+        public T InstantiatePrefabForComponent<T>(Object prefab)
         {
             return (T)InstantiatePrefabForComponent(
                 typeof(T), prefab, null, new object[0]);
@@ -1481,21 +1481,21 @@ namespace Zenject
         // Same as InstantiatePrefab but returns a component after it's initialized
         // and optionally allows extra arguments for the given component type
         public T InstantiatePrefabForComponent<T>(
-            UnityEngine.Object prefab, IEnumerable<object> extraArgs)
+            Object prefab, IEnumerable<object> extraArgs)
         {
             return (T)InstantiatePrefabForComponent(
                 typeof(T), prefab, null, extraArgs);
         }
 
         public T InstantiatePrefabForComponent<T>(
-            UnityEngine.Object prefab, Transform parentTransform)
+            Object prefab, Transform parentTransform)
         {
             return (T)InstantiatePrefabForComponent(
                 typeof(T), prefab, parentTransform, new object[0]);
         }
 
         public T InstantiatePrefabForComponent<T>(
-            UnityEngine.Object prefab, Transform parentTransform, IEnumerable<object> extraArgs)
+            Object prefab, Transform parentTransform, IEnumerable<object> extraArgs)
         {
             return (T)InstantiatePrefabForComponent(
                 typeof(T), prefab, parentTransform, extraArgs);
@@ -1504,7 +1504,7 @@ namespace Zenject
         // Same as InstantiatePrefab but returns a component after it's initialized
         // and optionally allows extra arguments for the given component type
         public object InstantiatePrefabForComponent(
-            Type concreteType, UnityEngine.Object prefab,
+            Type concreteType, Object prefab,
             Transform parentTransform, IEnumerable<object> extraArgs)
         {
             return InstantiatePrefabForComponent(
@@ -1513,7 +1513,7 @@ namespace Zenject
         }
 
         public object InstantiatePrefabForComponent(
-            Type concreteType, UnityEngine.Object prefab,
+            Type concreteType, Object prefab,
             IEnumerable<object> extraArgs, GameObjectCreationParameters creationInfo)
         {
             return InstantiatePrefabForComponentExplicit(
@@ -2461,7 +2461,7 @@ namespace Zenject
         }
 
         public object InstantiatePrefabForComponentExplicit(
-            Type componentType, UnityEngine.Object prefab,
+            Type componentType, Object prefab,
             List<TypeValuePair> extraArgs)
         {
             return InstantiatePrefabForComponentExplicit(
@@ -2469,7 +2469,7 @@ namespace Zenject
         }
 
         public object InstantiatePrefabForComponentExplicit(
-            Type componentType, UnityEngine.Object prefab,
+            Type componentType, Object prefab,
             List<TypeValuePair> extraArgs, GameObjectCreationParameters gameObjectBindInfo)
         {
             return InstantiatePrefabForComponentExplicit(
@@ -2484,7 +2484,7 @@ namespace Zenject
         // Same as InstantiatePrefabForComponent except allows null values
         // to be included in the argument list.  Also see InjectUtil.CreateArgList
         public object InstantiatePrefabForComponentExplicit(
-            Type componentType, UnityEngine.Object prefab,
+            Type componentType, Object prefab,
             InjectArgs args, GameObjectCreationParameters gameObjectBindInfo)
         {
             Assert.That(!AssertOnNewGameObjects,
@@ -2565,7 +2565,7 @@ namespace Zenject
                 "Expected type '{0}' to derive from ITickable", type);
 
             BindInstance(
-                ModestTree.Util.ValuePair.New(type, order)).WhenInjectedInto<TickableManager>();
+                ValuePair.New(type, order)).WhenInjectedInto<TickableManager>();
         }
 
         public void BindInitializableExecutionOrder<T>(int order)
@@ -2580,7 +2580,7 @@ namespace Zenject
                 "Expected type '{0}' to derive from IInitializable", type);
 
             BindInstance(
-                ModestTree.Util.ValuePair.New(type, order)).WhenInjectedInto<InitializableManager>();
+                ValuePair.New(type, order)).WhenInjectedInto<InitializableManager>();
         }
 
         public void BindDisposableExecutionOrder<T>(int order)
@@ -2601,7 +2601,7 @@ namespace Zenject
                 "Expected type '{0}' to derive from IDisposable", type);
 
             BindInstance(
-                ModestTree.Util.ValuePair.New(type, order)).WhenInjectedInto<DisposableManager>();
+                ValuePair.New(type, order)).WhenInjectedInto<DisposableManager>();
         }
 
         public void BindLateDisposableExecutionOrder(Type type, int order)
@@ -2610,7 +2610,7 @@ namespace Zenject
             "Expected type '{0}' to derive from ILateDisposable", type);
 
             BindInstance(
-                ModestTree.Util.ValuePair.New(type, order)).WithId("Late").WhenInjectedInto<DisposableManager>();
+                ValuePair.New(type, order)).WithId("Late").WhenInjectedInto<DisposableManager>();
         }
 
         public void BindFixedTickableExecutionOrder<T>(int order)
@@ -2624,8 +2624,8 @@ namespace Zenject
             Assert.That(type.DerivesFrom<IFixedTickable>(),
                 "Expected type '{0}' to derive from IFixedTickable", type);
 
-            Bind<ModestTree.Util.ValuePair<Type, int>>().WithId("Fixed")
-                .FromInstance(ModestTree.Util.ValuePair.New(type, order)).WhenInjectedInto<TickableManager>();
+            Bind<ValuePair<Type, int>>().WithId("Fixed")
+                .FromInstance(ValuePair.New(type, order)).WhenInjectedInto<TickableManager>();
         }
 
         public void BindLateTickableExecutionOrder<T>(int order)
@@ -2639,8 +2639,8 @@ namespace Zenject
             Assert.That(type.DerivesFrom<ILateTickable>(),
                 "Expected type '{0}' to derive from ILateTickable", type);
 
-            Bind<ModestTree.Util.ValuePair<Type, int>>().WithId("Late")
-                .FromInstance(ModestTree.Util.ValuePair.New(type, order)).WhenInjectedInto<TickableManager>();
+            Bind<ValuePair<Type, int>>().WithId("Late")
+                .FromInstance(ValuePair.New(type, order)).WhenInjectedInto<TickableManager>();
         }
 
         ////////////// Types ////////////////

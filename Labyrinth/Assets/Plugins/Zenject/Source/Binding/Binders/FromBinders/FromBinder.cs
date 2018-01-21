@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using ModestTree;
 using System.Linq;
-
+using ModestTree;
+using Object = UnityEngine.Object;
 #if !NOT_UNITY3D
 using UnityEngine;
 #endif
-
-using Zenject.Internal;
 
 namespace Zenject
 {
@@ -194,13 +192,13 @@ namespace Zenject
             return new NameTransformScopeArgConditionCopyNonLazyBinder(BindInfo, gameObjectInfo);
         }
 
-        public NameTransformScopeArgConditionCopyNonLazyBinder FromNewComponentOnNewPrefab(UnityEngine.Object prefab)
+        public NameTransformScopeArgConditionCopyNonLazyBinder FromNewComponentOnNewPrefab(Object prefab)
         {
             return FromNewComponentOnNewPrefab(prefab, new GameObjectCreationParameters());
         }
 
         internal NameTransformScopeArgConditionCopyNonLazyBinder FromNewComponentOnNewPrefab(
-            UnityEngine.Object prefab, GameObjectCreationParameters gameObjectInfo)
+            Object prefab, GameObjectCreationParameters gameObjectInfo)
         {
             BindingUtil.AssertIsValidPrefab(prefab);
             BindingUtil.AssertIsComponent(ConcreteTypes);
@@ -214,14 +212,14 @@ namespace Zenject
             return new NameTransformScopeArgConditionCopyNonLazyBinder(BindInfo, gameObjectInfo);
         }
 
-        public NameTransformScopeArgConditionCopyNonLazyBinder FromComponentInNewPrefab(UnityEngine.Object prefab)
+        public NameTransformScopeArgConditionCopyNonLazyBinder FromComponentInNewPrefab(Object prefab)
         {
             return FromComponentInNewPrefab(
                 prefab, new GameObjectCreationParameters());
         }
 
         internal NameTransformScopeArgConditionCopyNonLazyBinder FromComponentInNewPrefab(
-            UnityEngine.Object prefab, GameObjectCreationParameters gameObjectInfo)
+            Object prefab, GameObjectCreationParameters gameObjectInfo)
         {
             BindingUtil.AssertIsValidPrefab(prefab);
             BindingUtil.AssertIsInterfaceOrComponent(AllParentTypes);

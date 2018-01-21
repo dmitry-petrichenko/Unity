@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ModestTree;
+using ModestTree.Util;
 
 namespace Zenject
 {
@@ -173,12 +174,12 @@ namespace Zenject
 
     public class SubContainerCreatorByMethod<TParam1, TParam2, TParam3, TParam4> : ISubContainerCreator
     {
-        readonly ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> _installMethod;
+        readonly Action<DiContainer, TParam1, TParam2, TParam3, TParam4> _installMethod;
         readonly DiContainer _container;
 
         public SubContainerCreatorByMethod(
             DiContainer container,
-            ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installMethod)
+            Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installMethod)
         {
             _installMethod = installMethod;
             _container = container;
@@ -220,12 +221,12 @@ namespace Zenject
 
     public class SubContainerCreatorByMethod<TParam1, TParam2, TParam3, TParam4, TParam5> : ISubContainerCreator
     {
-        readonly ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> _installMethod;
+        readonly Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> _installMethod;
         readonly DiContainer _container;
 
         public SubContainerCreatorByMethod(
             DiContainer container,
-            ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> installMethod)
+            Action<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5> installMethod)
         {
             _installMethod = installMethod;
             _container = container;

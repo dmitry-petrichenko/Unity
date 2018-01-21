@@ -47,11 +47,11 @@ namespace Zenject
                     var arg1 = pair.First;
                     var arg2 = pair.Second;
 
-                    Assert.That(arg1.Type == arg2.Type && object.Equals(arg1.Value, arg2.Value),
+                    Assert.That(arg1.Type == arg2.Type && Equals(arg1.Value, arg2.Value),
                         "Invalid use of binding '{0}'.  Ambiguous set of creation properties found (argument value mismatch)", dec.Type);
                 }
 
-                Assert.That(object.Equals(providerInfo.SingletonSpecificId, dec.SpecificId),
+                Assert.That(Equals(providerInfo.SingletonSpecificId, dec.SpecificId),
                     "Invalid use of binding '{0}'.  Found ambiguous set of creation properties.", dec.Type);
             }
             else

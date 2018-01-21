@@ -1,5 +1,4 @@
-﻿using NSCameraController;
-using ZScripts.Map;
+﻿using ZScripts.Map;
 using ZScripts.Map.View;
 using ZScripts.Settings;
 using ZScripts.Units;

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using ModestTree;
 using ModestTree.Util;
-
+using Object = System.Object;
 #if !NOT_UNITY3D
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -19,7 +18,7 @@ namespace Zenject.Internal
         // expected
         // In those cases you can use this function which will also
         // work with non-unity objects
-        public static bool IsNull(System.Object obj)
+        public static bool IsNull(Object obj)
         {
             return obj == null || obj.Equals(null);
         }

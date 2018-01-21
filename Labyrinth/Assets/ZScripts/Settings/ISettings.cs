@@ -1,5 +1,4 @@
-﻿using Labyrinth.Settings;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ZScripts.Settings
 {

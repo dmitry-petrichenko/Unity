@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ModestTree;
 
@@ -50,7 +51,7 @@ namespace Zenject
 
             resultStr += " }";
 
-            System.IO.File.WriteAllText(outputPath, resultStr);
+            File.WriteAllText(outputPath, resultStr);
         }
 
         static bool ShouldIgnoreType(Type type, List<Type> ignoreTypes)

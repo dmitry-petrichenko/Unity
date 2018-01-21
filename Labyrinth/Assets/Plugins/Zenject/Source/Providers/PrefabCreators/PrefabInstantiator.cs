@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModestTree;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -45,7 +46,7 @@ namespace Zenject
             get { return _extraArguments; }
         }
 
-        public UnityEngine.Object GetPrefab()
+        public Object GetPrefab()
         {
             return _prefabProvider.GetPrefab();
         }

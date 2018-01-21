@@ -1,6 +1,4 @@
-﻿using Labyrinth;
-using Labyrinth.Map;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ZScripts.Map.View
 {

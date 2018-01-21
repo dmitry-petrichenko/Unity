@@ -2,7 +2,6 @@
 
 using System.Linq;
 using ModestTree;
-using ModestTree.Util;
 using UnityEngine;
 using Zenject.Internal;
 
@@ -36,7 +35,7 @@ namespace Zenject
             ForceUnloadAllScenes(true);
 
             Assert.That(!IsDestroyed);
-            GameObject.DestroyImmediate(this.gameObject);
+            DestroyImmediate(this.gameObject);
             Assert.That(IsDestroyed);
         }
 
@@ -54,11 +53,11 @@ namespace Zenject
 
                 if (immediate)
                 {
-                    GameObject.DestroyImmediate(sceneContext.gameObject);
+                    DestroyImmediate(sceneContext.gameObject);
                 }
                 else
                 {
-                    GameObject.Destroy(sceneContext.gameObject);
+                    Destroy(sceneContext.gameObject);
                 }
             }
         }

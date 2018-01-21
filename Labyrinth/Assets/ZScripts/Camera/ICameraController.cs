@@ -1,6 +1,4 @@
-﻿using Labyrinth;
-
-namespace ZScripts
+﻿namespace ZScripts
 {
     public interface ICameraController
     {

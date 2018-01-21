@@ -91,9 +91,9 @@ namespace Zenject
 
             public static bool operator ==(MethodSingletonId left, MethodSingletonId right)
             {
-                return object.Equals(left.InstallerDelegate.Target, right.InstallerDelegate.Target)
-                    && object.Equals(left.InstallerDelegate.Method(), right.InstallerDelegate.Method())
-                    && object.Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
+                return Equals(left.InstallerDelegate.Target, right.InstallerDelegate.Target)
+                    && Equals(left.InstallerDelegate.Method(), right.InstallerDelegate.Method())
+                    && Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
             }
 
             public static bool operator !=(MethodSingletonId left, MethodSingletonId right)

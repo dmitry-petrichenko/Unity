@@ -1,6 +1,4 @@
-﻿using Units;
-
-namespace ZScripts.Map.Info
+﻿namespace ZScripts.Map.Info
 {
     public class MapTileInfo : IMapTileInfo
     {
@@ -20,14 +18,12 @@ namespace ZScripts.Map.Info
             }
         }
 
-        public UnitController UnitContainer { get; set; }
         public IntVector2 ViewPosition { get; set; }
         public IntVector2 Index { get; set; }
 
-        public void Initialize(int Type, IntVector2 ViewPosition, IntVector2 Index, UnitController UnitContainer)
+        public void Initialize(int Type, IntVector2 ViewPosition, IntVector2 Index)
         {
             this.Index = Index;
-            this.UnitContainer = UnitContainer;
             this.Type = Type;
             this.ViewPosition = ViewPosition;
         }

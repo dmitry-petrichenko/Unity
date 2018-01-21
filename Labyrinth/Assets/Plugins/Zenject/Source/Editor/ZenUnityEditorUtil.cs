@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ModestTree;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using ModestTree;
-using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -59,7 +59,7 @@ namespace Zenject
         // Don't use this
         public static int ValidateAllActiveScenes()
         {
-            var activeScenePaths = UnityEditor.EditorBuildSettings.scenes.Where(x => x.enabled)
+            var activeScenePaths = EditorBuildSettings.scenes.Where(x => x.enabled)
                 .Select(x => x.path).ToList();
 
             foreach (var scenePath in activeScenePaths)
@@ -155,20 +155,20 @@ namespace Zenject
 
         public static string GetCurrentDirectoryAssetPathFromSelection()
         {
-            return ZenUnityEditorUtil.ConvertFullAbsolutePathToAssetPath(
+            return ConvertFullAbsolutePathToAssetPath(
                 GetCurrentDirectoryAbsolutePathFromSelection());
         }
 
         public static string GetCurrentDirectoryAbsolutePathFromSelection()
         {
-            var folderPath = ZenUnityEditorUtil.TryGetSelectedFolderPathInProjectsTab();
+            var folderPath = TryGetSelectedFolderPathInProjectsTab();
 
             if (folderPath != null)
             {
                 return folderPath;
             }
 
-            var filePath = ZenUnityEditorUtil.TryGetSelectedFilePathInProjectsTab();
+            var filePath = TryGetSelectedFilePathInProjectsTab();
 
             if (filePath != null)
             {
@@ -193,8 +193,8 @@ namespace Zenject
         {
             var paths = new List<string>();
 
-            UnityEngine.Object[] selectedAssets = Selection.GetFiltered(
-                typeof(UnityEngine.Object), SelectionMode.Assets);
+            Object[] selectedAssets = Selection.GetFiltered(
+                typeof(Object), SelectionMode.Assets);
 
             foreach (var item in selectedAssets)
             {

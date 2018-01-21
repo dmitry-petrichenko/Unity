@@ -98,8 +98,8 @@ namespace Zenject
 
             public static bool operator ==(CustomSingletonId left, CustomSingletonId right)
             {
-                return object.Equals(left.ResourcePath, right.ResourcePath)
-                    && object.Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
+                return Equals(left.ResourcePath, right.ResourcePath)
+                    && Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
             }
 
             public static bool operator !=(CustomSingletonId left, CustomSingletonId right)

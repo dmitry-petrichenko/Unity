@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using Object = UnityEngine.Object;
 #if !NOT_UNITY3D
 using UnityEngine;
 #endif
@@ -45,9 +45,9 @@ namespace Zenject
             where T : Component;
 
         // Create a new game object from a prefab and fill in dependencies for all children
-        GameObject InstantiatePrefab(UnityEngine.Object prefab);
+        GameObject InstantiatePrefab(Object prefab);
         GameObject InstantiatePrefab(
-            UnityEngine.Object prefab, Transform parentTransform);
+            Object prefab, Transform parentTransform);
 
         // Create a new game object from a resource path and fill in dependencies for all children
         GameObject InstantiatePrefabResource(string resourcePath);
@@ -56,15 +56,15 @@ namespace Zenject
 
         // Same as InstantiatePrefab but returns a component after it's initialized
         // and optionally allows extra arguments for the given component type
-        T InstantiatePrefabForComponent<T>(UnityEngine.Object prefab);
+        T InstantiatePrefabForComponent<T>(Object prefab);
         T InstantiatePrefabForComponent<T>(
-            UnityEngine.Object prefab, IEnumerable<object> extraArgs);
+            Object prefab, IEnumerable<object> extraArgs);
         T InstantiatePrefabForComponent<T>(
-            UnityEngine.Object prefab, Transform parentTransform);
+            Object prefab, Transform parentTransform);
         T InstantiatePrefabForComponent<T>(
-            UnityEngine.Object prefab, Transform parentTransform, IEnumerable<object> extraArgs);
+            Object prefab, Transform parentTransform, IEnumerable<object> extraArgs);
         object InstantiatePrefabForComponent(
-            Type concreteType, UnityEngine.Object prefab, Transform parentTransform, IEnumerable<object> extraArgs);
+            Type concreteType, Object prefab, Transform parentTransform, IEnumerable<object> extraArgs);
 
         // Same as InstantiatePrefabResource but returns a component after it's initialized
         // and optionally allows extra arguments for the given component type

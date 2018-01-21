@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ModestTree;
+using ModestTree.Util;
 
 namespace Zenject
 {
@@ -172,9 +173,9 @@ namespace Zenject
 
     public class MethodProviderWithContainer<TParam1, TParam2, TParam3, TParam4, TValue> : IProvider
     {
-        readonly ModestTree.Util.Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TValue> _method;
+        readonly Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TValue> _method;
 
-        public MethodProviderWithContainer(ModestTree.Util.Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TValue> method)
+        public MethodProviderWithContainer(Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TValue> method)
         {
             _method = method;
         }
@@ -219,9 +220,9 @@ namespace Zenject
 
     public class MethodProviderWithContainer<TParam1, TParam2, TParam3, TParam4, TParam5, TValue> : IProvider
     {
-        readonly ModestTree.Util.Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TValue> _method;
+        readonly Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TValue> _method;
 
-        public MethodProviderWithContainer(ModestTree.Util.Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TValue> method)
+        public MethodProviderWithContainer(Func<DiContainer, TParam1, TParam2, TParam3, TParam4, TParam5, TValue> method)
         {
             _method = method;
         }

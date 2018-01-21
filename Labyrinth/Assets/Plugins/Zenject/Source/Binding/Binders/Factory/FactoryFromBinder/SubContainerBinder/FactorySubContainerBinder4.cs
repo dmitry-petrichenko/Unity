@@ -1,4 +1,5 @@
-using System;
+using ModestTree.Util;
+using UnityEngine;
 
 namespace Zenject
 {
@@ -11,7 +12,7 @@ namespace Zenject
         {
         }
 
-        public ConditionCopyNonLazyBinder ByMethod(ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
+        public ConditionCopyNonLazyBinder ByMethod(Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
         {
             ProviderFunc =
                 (container) => new SubContainerDependencyProvider(
@@ -24,7 +25,7 @@ namespace Zenject
 
 #if !NOT_UNITY3D
         public NameTransformConditionCopyNonLazyBinder ByNewPrefabMethod(
-            UnityEngine.Object prefab, ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
+            Object prefab, Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
         {
             BindingUtil.AssertIsValidPrefab(prefab);
 
@@ -42,7 +43,7 @@ namespace Zenject
         }
 
         public NameTransformConditionCopyNonLazyBinder ByNewPrefabResourceMethod(
-            string resourcePath, ModestTree.Util.Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
+            string resourcePath, Action<DiContainer, TParam1, TParam2, TParam3, TParam4> installerMethod)
         {
             BindingUtil.AssertIsValidResourcePath(resourcePath);
 

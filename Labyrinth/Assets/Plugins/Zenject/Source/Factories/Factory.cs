@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 #if !NOT_UNITY3D
 using JetBrains.Annotations;
 #endif

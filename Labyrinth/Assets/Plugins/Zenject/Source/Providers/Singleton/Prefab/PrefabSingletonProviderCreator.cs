@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ModestTree;
 using UnityEngine;
 using Zenject.Internal;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -24,7 +25,7 @@ namespace Zenject
         }
 
         public IProvider CreateProvider(
-            UnityEngine.Object prefab, Type resultType, GameObjectCreationParameters gameObjectBindInfo,
+            Object prefab, Type resultType, GameObjectCreationParameters gameObjectBindInfo,
             List<TypeValuePair> extraArguments, object concreteIdentifier, Func<Type, IPrefabInstantiator, IProvider> providerFactory)
         {
             IPrefabInstantiator creator;
@@ -63,9 +64,9 @@ namespace Zenject
         class PrefabId : IEquatable<PrefabId>
         {
             public readonly object ConcreteIdentifier;
-            public readonly UnityEngine.Object Prefab;
+            public readonly Object Prefab;
 
-            public PrefabId(object concreteIdentifier, UnityEngine.Object prefab)
+            public PrefabId(object concreteIdentifier, Object prefab)
             {
                 Assert.IsNotNull(prefab);
 
@@ -104,7 +105,7 @@ namespace Zenject
 
             public static bool operator ==(PrefabId left, PrefabId right)
             {
-                return object.Equals(left.Prefab, right.Prefab) && object.Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
+                return Equals(left.Prefab, right.Prefab) && Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
             }
 
             public static bool operator !=(PrefabId left, PrefabId right)

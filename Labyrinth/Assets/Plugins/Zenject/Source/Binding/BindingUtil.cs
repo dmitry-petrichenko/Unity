@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ModestTree;
 using Zenject.Internal;
-using System.Linq;
-
+using Object = UnityEngine.Object;
 #if !NOT_UNITY3D
 using UnityEngine;
 
 #if UNITY_EDITOR
-using UnityEditor;
+
 #endif
 
 #endif
@@ -19,7 +19,7 @@ namespace Zenject
     {
 #if !NOT_UNITY3D
 
-        public static void AssertIsValidPrefab(UnityEngine.Object prefab)
+        public static void AssertIsValidPrefab(Object prefab)
         {
             Assert.That(!ZenUtilInternal.IsNull(prefab), "Received null prefab during bind command");
 
@@ -77,7 +77,7 @@ namespace Zenject
 
         public static void AssertDerivesFromUnityObject(Type type)
         {
-            Assert.That(type.DerivesFrom<UnityEngine.Object>(),
+            Assert.That(type.DerivesFrom<Object>(),
                 "Invalid type given during bind command.  Expected type '{0}' to derive from UnityEngine.Object", type);
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Units;
-using UnityEditor;
 using UnityEngine;
 using ZScripts.Units.Rotation;
 

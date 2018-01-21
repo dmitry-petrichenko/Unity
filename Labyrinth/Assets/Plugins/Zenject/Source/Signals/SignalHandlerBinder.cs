@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using ModestTree;
+using ModestTree.Util;
 
 namespace Zenject
 {
@@ -332,7 +331,7 @@ namespace Zenject
             set;
         }
 
-        public SignalFromBinder<THandler> To<THandler>(ModestTree.Util.Action<THandler, TParam1, TParam2, TParam3, TParam4> method)
+        public SignalFromBinder<THandler> To<THandler>(Action<THandler, TParam1, TParam2, TParam3, TParam4> method)
         {
             // This is just to ensure they don't stop at BindSignal
             _finalizerWrapper.SubFinalizer = new NullBindingFinalizer();

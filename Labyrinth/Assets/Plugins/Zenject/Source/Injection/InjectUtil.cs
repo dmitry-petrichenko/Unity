@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using ModestTree;
 
 namespace Zenject
 {
-    [System.Diagnostics.DebuggerStepThrough]
+    [DebuggerStepThrough]
     public class TypeValuePair
     {
         public Type Type;
@@ -18,7 +19,7 @@ namespace Zenject
         }
     }
 
-    [System.Diagnostics.DebuggerStepThrough]
+    [DebuggerStepThrough]
     public static class InjectUtil
     {
         public static List<TypeValuePair> CreateArgList(IEnumerable<object> args)

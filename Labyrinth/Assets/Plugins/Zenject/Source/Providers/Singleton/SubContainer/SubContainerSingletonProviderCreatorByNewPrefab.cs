@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using ModestTree;
 using Zenject.Internal;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -23,7 +24,7 @@ namespace Zenject
         }
 
         public IProvider CreateProvider(
-            Type resultType, object concreteIdentifier, UnityEngine.Object prefab, object identifier,
+            Type resultType, object concreteIdentifier, Object prefab, object identifier,
             GameObjectCreationParameters gameObjectBindInfo)
         {
             _markRegistry.MarkSingleton(
@@ -57,9 +58,9 @@ namespace Zenject
         class CustomSingletonId : IEquatable<CustomSingletonId>
         {
             public readonly object ConcreteIdentifier;
-            public readonly UnityEngine.Object Prefab;
+            public readonly Object Prefab;
 
-            public CustomSingletonId(object concreteIdentifier, UnityEngine.Object prefab)
+            public CustomSingletonId(object concreteIdentifier, Object prefab)
             {
                 ConcreteIdentifier = concreteIdentifier;
                 Prefab = prefab;
@@ -96,8 +97,8 @@ namespace Zenject
 
             public static bool operator ==(CustomSingletonId left, CustomSingletonId right)
             {
-                return object.Equals(left.Prefab, right.Prefab)
-                    && object.Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
+                return Equals(left.Prefab, right.Prefab)
+                    && Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
             }
 
             public static bool operator !=(CustomSingletonId left, CustomSingletonId right)

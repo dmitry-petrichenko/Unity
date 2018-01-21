@@ -2,12 +2,11 @@
 
 using System;
 using System.IO;
-using UnityEditor;
-using UnityEngine;
 using ModestTree;
+using UnityEditor;
 using UnityEditor.SceneManagement;
-using System.Linq;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -278,7 +277,7 @@ namespace Zenject
             var assetPath = ZenUnityEditorUtil.ConvertFullAbsolutePathToAssetPath(absolutePath);
 
             EditorUtility.FocusProjectWindow();
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(assetPath);
         }
 
         [MenuItem("Edit/Zenject/Validate All Active Scenes")]

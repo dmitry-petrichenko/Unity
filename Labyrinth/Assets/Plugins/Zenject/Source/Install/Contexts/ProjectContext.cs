@@ -1,16 +1,11 @@
 #if !NOT_UNITY3D
 
-using ModestTree;
-
 using System.Collections.Generic;
-using System.Linq;
-using Zenject.Internal;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
+using ModestTree;
 using UnityEngine;
+using Zenject.Internal;
+#if UNITY_EDITOR
+#endif
 
 namespace Zenject
 {
@@ -76,7 +71,7 @@ namespace Zenject
 
         static void InstantiateAndInitialize()
         {
-            Assert.That(GameObject.FindObjectsOfType<ProjectContext>().IsEmpty(),
+            Assert.That(FindObjectsOfType<ProjectContext>().IsEmpty(),
                 "Tried to create multiple instances of ProjectContext!");
 
             var prefab = TryGetPrefab();
@@ -101,7 +96,7 @@ namespace Zenject
 
                 try
                 {
-                    _instance = GameObject.Instantiate(prefab).GetComponent<ProjectContext>();
+                    _instance = Instantiate(prefab).GetComponent<ProjectContext>();
                 }
                 finally
                 {

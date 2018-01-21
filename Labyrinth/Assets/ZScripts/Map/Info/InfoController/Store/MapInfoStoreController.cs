@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using LitJson;
-using UnityEngine;
 using ZScripts.Settings;
 
 namespace ZScripts.Map.Info
@@ -117,7 +114,7 @@ namespace ZScripts.Map.Info
 
             tileInfo = new MapTileInfo();
             tileInfo.Initialize((int) jsonData["Type"], GetIntVector2FromProperty(jsonData, "ViewPosition"),
-                GetIntVector2FromProperty(jsonData, "Index"), null);
+                GetIntVector2FromProperty(jsonData, "Index"));
 
             return tileInfo;
         }

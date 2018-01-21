@@ -1,8 +1,9 @@
 using System;
+using System.Diagnostics;
 
 namespace Zenject
 {
-    [System.Diagnostics.DebuggerStepThrough]
+    [DebuggerStepThrough]
     public class SingletonId : IEquatable<SingletonId>
     {
         public readonly Type ConcreteType;
@@ -45,7 +46,7 @@ namespace Zenject
 
         public static bool operator ==(SingletonId left, SingletonId right)
         {
-            return left.ConcreteType == right.ConcreteType && object.Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
+            return left.ConcreteType == right.ConcreteType && Equals(left.ConcreteIdentifier, right.ConcreteIdentifier);
         }
 
         public static bool operator !=(SingletonId left, SingletonId right)

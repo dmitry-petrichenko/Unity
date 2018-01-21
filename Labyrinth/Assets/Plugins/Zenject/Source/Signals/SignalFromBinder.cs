@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using Object = UnityEngine.Object;
 #if !NOT_UNITY3D
 using UnityEngine;
 #endif
@@ -119,7 +119,7 @@ namespace Zenject
         // This one doesn't make sense for signals
         //public ArgNonLazyBinder FromNewComponentSibling()
 
-        public NameTransformScopeArgNonLazyBinder FromNewComponentOnNewPrefab(UnityEngine.Object prefab)
+        public NameTransformScopeArgNonLazyBinder FromNewComponentOnNewPrefab(Object prefab)
         {
             var gameObjectInfo = new GameObjectCreationParameters();
             _subBinder.FromNewComponentOnNewPrefab(prefab, gameObjectInfo);
@@ -140,7 +140,7 @@ namespace Zenject
             return new NameTransformScopeArgNonLazyBinder(_info, gameObjectInfo);
         }
 
-        public NameTransformScopeArgNonLazyBinder FromComponentInNewPrefab(UnityEngine.Object prefab)
+        public NameTransformScopeArgNonLazyBinder FromComponentInNewPrefab(Object prefab)
         {
             var gameObjectInfo = new GameObjectCreationParameters();
             _subBinder.FromComponentInNewPrefab(prefab, gameObjectInfo);

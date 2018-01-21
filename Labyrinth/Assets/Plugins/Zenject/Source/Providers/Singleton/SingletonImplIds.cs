@@ -68,7 +68,7 @@ namespace Zenject
                     return false;
                 }
 
-                return object.Equals(_identifier, other._identifier)
+                return Equals(_identifier, other._identifier)
                     && _method.Target == other._method.Target 
                     && _method.Method() == other._method.Method();
             }

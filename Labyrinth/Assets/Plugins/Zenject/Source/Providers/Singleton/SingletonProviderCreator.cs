@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Object = UnityEngine.Object;
 
 namespace Zenject
 {
@@ -57,7 +58,7 @@ namespace Zenject
 
 #if !NOT_UNITY3D
         public IProvider CreateProviderForPrefab(
-            UnityEngine.Object prefab, Type resultType, GameObjectCreationParameters gameObjectBindInfo,
+            Object prefab, Type resultType, GameObjectCreationParameters gameObjectBindInfo,
             List<TypeValuePair> extraArguments, object concreteIdentifier, Func<Type, IPrefabInstantiator, IProvider> providerFactory)
         {
             return _prefabProviderCreator.CreateProvider(
@@ -75,7 +76,7 @@ namespace Zenject
 
         public IProvider CreateProviderForSubContainerPrefab(
             Type resultType, object concreteIdentifier, GameObjectCreationParameters gameObjectBindInfo,
-            UnityEngine.Object prefab, object identifier)
+            Object prefab, object identifier)
         {
             return _subContainerPrefabProviderCreator.CreateProvider(
                 resultType, concreteIdentifier, prefab, identifier, gameObjectBindInfo);

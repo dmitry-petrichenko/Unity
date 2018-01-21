@@ -1,4 +1,3 @@
-using System;
 using ModestTree;
 
 namespace Zenject
@@ -8,7 +7,7 @@ namespace Zenject
         void Validate();
     }
 
-    [ZenjectAllowDuringValidationAttribute]
+    [ZenjectAllowDuringValidation]
     public class Lazy<T> : ILazy
     {
         readonly DiContainer _container;

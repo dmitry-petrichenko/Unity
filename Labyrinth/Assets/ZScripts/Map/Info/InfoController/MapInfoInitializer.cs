@@ -17,9 +17,10 @@ namespace ZScripts.Map.Info
             get { return _sectorInfo; }
         }
         
-        public void InitializeSector(Dictionary<IntVector2, IMapTileInfo> mapTilesInfo)
+        public void InitializeSector(Dictionary<IntVector2, IMapTileInfo> mapTilesInfo, ISectorInfo sectorInfo)
         {
             _sectorTilesInfo = mapTilesInfo;
+            _sectorInfo = sectorInfo;
         }
 
         public void CreateSector(IntVector2 index, IntVector2 startPoint, IntVector2 size)

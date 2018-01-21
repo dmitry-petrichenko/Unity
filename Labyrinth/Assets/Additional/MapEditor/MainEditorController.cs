@@ -14,9 +14,12 @@ public class MainEditorController : MonoBehaviour
     public Camera Camera;
     
     public static int SCALE = 2;
+    
+    private const int SECTOR_SIZE = 3;
 
     private EditorMapViewController _mapViewController;
     private Dictionary<IntVector2, IMapTileInfo> _mapTilesInfo = new Dictionary<IntVector2, IMapTileInfo>();
+    private ISectorInfo _sectorInfo;
     private IMapInfoInitializer _mapInfoInitializer;
     private IMapInfoStoreController _mapInfoStoreController;
     private EditorGraphicsController _graphicsController;
@@ -40,12 +43,14 @@ public class MainEditorController : MonoBehaviour
         _mapInfoInitializer = new MapInfoInitializer();
         _mapInfoStoreController = new MapInfoStoreController(_settingsList);
         //UPLOAD MAP FROM DISK
-        //_mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(1, 0));
-        //_mapInfoInitializer.InitializeSector(_mapTilesInfo);
+        _mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(0, 0));
+        _sectorInfo = _mapInfoStoreController.UploadSectorInfo(new IntVector2(0, 0));
+        _mapInfoInitializer.InitializeSector(_mapTilesInfo, _sectorInfo);
         //------------------
-        // INITIALIZE NEW MAP
-        _mapInfoInitializer.CreateSector(new IntVector2(0, 0), new IntVector2(0, 0), new IntVector2(6, 6));
-        _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
+        // INITIALIZE NEW SECTOR
+        //IntVector2 sectorIndex = new IntVector2(0, 0);
+        //_mapInfoInitializer.CreateSector(new IntVector2(0, 0), new IntVector2(SECTOR_SIZE * SCALE * sectorIndex.x, 0), new IntVector2(SECTOR_SIZE, SECTOR_SIZE));
+        //_mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
         //------------------
         
         _mapViewController = new EditorMapViewController();

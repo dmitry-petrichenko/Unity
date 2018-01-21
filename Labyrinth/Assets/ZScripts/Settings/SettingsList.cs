@@ -13,6 +13,8 @@ namespace ZScripts.Settings
         public  GameObject PlayerGraphicsObject { get; private set; }
         private GameObject _mainScene;
 
+        private const string TEST_MAP_PATH = "TestMap_01/";
+
         public SettingsList(GameInstaller.MapGraphicsList mapGraphicsList)
         {
             _mainScene = MainScene.instance;
@@ -26,7 +28,7 @@ namespace ZScripts.Settings
             MapSectionSize = 2;
             ActiveAreaSize = 16;
             InitializePosition = new IntVector2(0, 0);
-            ResiurcesLocation = Application.dataPath + "/Resources/Maps/";
+            ResiurcesLocation = Application.dataPath + "/Resources/Maps/" + TEST_MAP_PATH;
         }
 
         private void InitializePlayerGraphicsObject()

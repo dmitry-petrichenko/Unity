@@ -26,9 +26,9 @@ namespace ZScripts.Map.Info
         
         private void PlayerPositionChangedHandler(IntVector2 position)
         {
-            IntVector2 progression = GetPlayerSectorProgression(position);
-            UpdateCurrentSector(progression);
-            //UpdateAdjacents();
+            UpdateCurrentSector(position);
+            UpdateAdjacents(position);
+            // RemoveUnusedTiles();
         }
     }
 }

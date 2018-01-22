@@ -13,13 +13,13 @@ namespace ZScripts.Map.Info
             if (xDimention)
             {
                 startValue = sectorInfo.startPoint.x;
-                endValue = sectorInfo.startPoint.x + sectorInfo.size.x;
+                endValue = sectorInfo.startPoint.x + sectorInfo.size.x - 1;
                 return new IntVector2(startValue, endValue);
             }
             else
             {
                 startValue = sectorInfo.startPoint.y;
-                endValue = sectorInfo.startPoint.y + sectorInfo.size.y;
+                endValue = sectorInfo.startPoint.y + sectorInfo.size.y - 1;
                 return new IntVector2(startValue, endValue);
             }
         }
@@ -40,13 +40,6 @@ namespace ZScripts.Map.Info
             }
         }
 
-        private IntVector2 GetPlayerSectorProgression(IntVector2 plyerPosition)
-        {
-            int xProgression, yProgression;
-            xProgression = GetSectorDimantionProgression(GetSectorRange(_currentSector, true), plyerPosition.x);
-            yProgression = GetSectorDimantionProgression(GetSectorRange(_currentSector, false), plyerPosition.y);
 
-            return new IntVector2(xProgression, yProgression);
-        }
     }
 }

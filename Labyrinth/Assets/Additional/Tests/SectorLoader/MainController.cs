@@ -31,7 +31,8 @@ namespace Additional.Tests.SectorLoader
         
         void Start()
         {
-            _settingsList = new SettingsList(null);
+            _settingsList = new ExtraSettings(null);
+            
             _settingsList.Initialize();
             ServiceLocator.InitializeSettings(_settingsList);
 

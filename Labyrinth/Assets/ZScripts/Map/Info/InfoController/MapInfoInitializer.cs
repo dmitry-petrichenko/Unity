@@ -26,15 +26,15 @@ namespace ZScripts.Map.Info
         public void CreateSector(IntVector2 index, IntVector2 startPoint, IntVector2 size)
         {
             _sectorInfo = new SectorInfo();
-            _sectorInfo.startPoint = new IntVector2(startPoint.x * MainEditorController.SCALE,startPoint.y * MainEditorController.SCALE);
-            _sectorInfo.size = new IntVector2(size.x * MainEditorController.SCALE, size.y * MainEditorController.SCALE);
+            _sectorInfo.startPoint = new IntVector2(startPoint.x, startPoint.y);
+            _sectorInfo.size = new IntVector2(size.x, size.y);
             _sectorInfo.index = index;
 
             MapTileInfo mapTileInfo;
 
-            for (int i = startPoint.x * MainEditorController.SCALE; i < startPoint.x * MainEditorController.SCALE + size.x * MainEditorController.SCALE; i++)
+            for (int i = startPoint.x; i < startPoint.x + size.x; i++)
             {
-                for (int j = startPoint.y * MainEditorController.SCALE; j < startPoint.y * MainEditorController.SCALE + size.y * MainEditorController.SCALE; j++)
+                for (int j = startPoint.y; j < startPoint.y + size.y; j++)
                 {
                     mapTileInfo = new MapTileInfo();
                     mapTileInfo.Initialize(MapTileType.Square, new IntVector2(i, j), new IntVector2(i, j));

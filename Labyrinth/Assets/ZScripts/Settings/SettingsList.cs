@@ -6,7 +6,7 @@ namespace ZScripts.Settings
     {
         
         public int MapSectionSize { get; private set; }
-        public int ActiveAreaSize { get; private set; }
+        public int ActiveAreaSize { get; protected set; }
         public IntVector2 InitializePosition { get; private set; }
         public string ResiurcesLocation { get; private set; }
         public GameInstaller.MapGraphicsList MapGraphicsList { get; private set; }
@@ -26,7 +26,7 @@ namespace ZScripts.Settings
         {
             InitializePlayerGraphicsObject();
             MapSectionSize = 2;
-            ActiveAreaSize = 16;
+            ActiveAreaSize = 2;
             InitializePosition = new IntVector2(0, 0);
             ResiurcesLocation = Application.dataPath + "/Resources/Maps/" + TEST_MAP_PATH;
         }

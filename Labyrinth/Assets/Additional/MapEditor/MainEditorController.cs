@@ -43,14 +43,18 @@ public class MainEditorController : MonoBehaviour
         _mapInfoInitializer = new MapInfoInitializer();
         _mapInfoStoreController = new MapInfoStoreController(_settingsList);
         //UPLOAD MAP FROM DISK
-        _mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(0, 0));
-        _sectorInfo = _mapInfoStoreController.UploadSectorInfo(new IntVector2(0, 0));
-        _mapInfoInitializer.InitializeSector(_mapTilesInfo, _sectorInfo);
+        //_mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(0, 0));
+        //_sectorInfo = _mapInfoStoreController.UploadSectorInfo(new IntVector2(0, 0));
+        //_mapInfoInitializer.InitializeSector(_mapTilesInfo, _sectorInfo);
         //------------------
         // INITIALIZE NEW SECTOR
-        //IntVector2 sectorIndex = new IntVector2(0, 0);
-        //_mapInfoInitializer.CreateSector(new IntVector2(0, 0), new IntVector2(SECTOR_SIZE * SCALE * sectorIndex.x, 0), new IntVector2(SECTOR_SIZE, SECTOR_SIZE));
-        //_mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
+        IntVector2 sectorIndex = new IntVector2(0, 1);
+        int f = SECTOR_SIZE * SCALE * sectorIndex.x;
+        _mapInfoInitializer.CreateSector(
+            sectorIndex, 
+            new IntVector2(SECTOR_SIZE * SCALE * sectorIndex.x, SECTOR_SIZE * SCALE * sectorIndex.y),
+            new IntVector2(SECTOR_SIZE * SCALE, SECTOR_SIZE * SCALE));
+        _mapTilesInfo = _mapInfoInitializer.MapTilesInfo;
         //------------------
         
         _mapViewController = new EditorMapViewController();

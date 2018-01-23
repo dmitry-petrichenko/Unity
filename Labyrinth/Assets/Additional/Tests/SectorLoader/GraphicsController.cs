@@ -82,5 +82,19 @@ namespace Additional.Tests.SectorLoader
         {
             _activeGameObjects.Add(position, gameObject);
         }
+
+        public void ClearGraphics()
+        {
+            foreach (var gameObject in _activeGameObjects)
+            {
+                if (!_activeGameObjects.ContainsKey(gameObject.Key))
+                    continue;
+
+                var gameObject1 = _activeGameObjects[gameObject.Key];
+                Object.Destroy(gameObject1);
+            }
+
+            _activeGameObjects = new Dictionary<IntVector2, GameObject>();
+        }
     }
 }

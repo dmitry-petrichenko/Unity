@@ -21,15 +21,13 @@ namespace Additional.Tests.SectorLoader
 
         public void UpdateTiles()
         {
-            foreach (var info in _mapSectorController.ActiveTiles) 
-            {
-                _sectorGraphicsController.DestroyTile(info.Key);
-            }
+            _sectorGraphicsController.ClearGraphics();
             
             foreach (var info in _mapSectorController.ActiveTiles) 
             {
                 InitializeTile(info.Value);
             }
+            
         }
 
         private void InitializeVisibleTile(IntVector2 position)

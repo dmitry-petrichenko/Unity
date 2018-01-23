@@ -28,7 +28,7 @@ namespace ZScripts.Map.Info
         {
             UpdateCurrentSector(position);
             UpdateAdjacents(position);
-            // RemoveUnusedTiles();
+            RemoveUnusedTiles();
         }
     }
 }

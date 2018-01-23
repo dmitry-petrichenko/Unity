@@ -23,7 +23,12 @@ namespace ZScripts.Map.Info
         {
             ISectorInfo sectorInfo = new SectorInfo();
 
-            _jsonString = File.ReadAllText(_settings.ResiurcesLocation + GetSectorInfoName(index));
+            string path = _settings.ResiurcesLocation + GetSectorInfoName(index);
+            if(!File.Exists(path))
+            {
+                return null;
+            }
+            _jsonString = File.ReadAllText(path);
             _infoJson = JsonMapper.ToObject(_jsonString);
             
             sectorInfo.startPoint = GetIntVector2FromProperty(_infoJson, "startPoint");
@@ -36,8 +41,14 @@ namespace ZScripts.Map.Info
         public Dictionary<IntVector2, IMapTileInfo> UploadSectorData(IntVector2 index)
         {
             Dictionary<IntVector2, IMapTileInfo> data = new Dictionary<IntVector2, IMapTileInfo>();
+
+            string path = _settings.ResiurcesLocation + GetSectorDataName(index);
+            if(!File.Exists(path))
+            {
+                return null;
+            }
             
-            _jsonString = File.ReadAllText(_settings.ResiurcesLocation + GetSectorDataName(index));
+            _jsonString = File.ReadAllText(path);
             _infoJson = JsonMapper.ToObject(_jsonString);
             
             int count = _infoJson.Count;

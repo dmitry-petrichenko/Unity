@@ -6,24 +6,26 @@ namespace ZScripts.Map.Info
     public partial class MapSectorController
     {     
         private ISectorInfo _currentSector;
-        private Dictionary<IntVector2, ISectorInfo> _loadedSections = new Dictionary<IntVector2, ISectorInfo>();
         private Dictionary<IntVector2, IMapTileInfo> _activeTiles = new Dictionary<IntVector2, IMapTileInfo>();
         
         private void InitializeCurrentSector()
         {
             IntVector2 index = new IntVector2(0, 0);
             _currentSector = _mapInfoStoreController.UploadSectorInfo(index);
-            _loadedSections[_currentSector.index] = _currentSector;
             UploadSector(index);
-            IntVector2 iv2 = GetPositionVisibleProgression(new IntVector2(6, 3), _currentSector);
         }
 
         private void UploadSector(IntVector2 index)
         {
+            ISectorInfo uploadedSectorInfo;
             Dictionary<IntVector2, IMapTileInfo> uploadedTiles;
-                       
+            uploadedSectorInfo = _mapInfoStoreController.UploadSectorInfo(index);
+            if (uploadedSectorInfo == null)
+            {
+                return;
+            }
             uploadedTiles = _mapInfoStoreController.UploadSectorData(index);
-
+            _activeSectors[uploadedSectorInfo.index] = uploadedSectorInfo;
             AddTiles(uploadedTiles);
         }
 
@@ -38,6 +40,10 @@ namespace ZScripts.Map.Info
         private void UpdateCurrentSector(IntVector2 position)
         {
             _currentSector =  GetSectorOfPosition(position, _currentSector);
+            if (!_activeSectors.ContainsKey(_currentSector.index))
+            {
+                _activeSectors[_currentSector.index] = _currentSector;
+            }
         }
 
         private ISectorInfo GetSectorOfPosition(IntVector2 position, ISectorInfo sectorInfo)
@@ -76,22 +82,6 @@ namespace ZScripts.Map.Info
             yProgression = GetSectorDimantionProgression(GetSectorRange(sectorInfo, false), position.y);
 
             return new IntVector2(xProgression, yProgression);
-        }
-        
-
-        private void UpdateCurrentSector1(IntVector2 progression)
-        {
-            if (progression.x == 0 && progression.y == 0)
-            {
-                return;
-            }
-            
-            IntVector2 index = new IntVector2(
-                _currentSector.index.x + progression.x, 
-                _currentSector.index.y + progression.y 
-                );
-            
-            UploadSector(index);
         }
         
         public Dictionary<IntVector2, IMapTileInfo> ActiveTiles

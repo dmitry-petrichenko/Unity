@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using LitJson;
+using UnityEngine;
 using ZScripts.Settings;
 
 namespace ZScripts.Map.Info
@@ -21,6 +22,7 @@ namespace ZScripts.Map.Info
         
         public ISectorInfo UploadSectorInfo(IntVector2 index)
         {
+            Debug.Log("UploadSectorInfo");
             ISectorInfo sectorInfo = new SectorInfo();
 
             string path = _settings.ResiurcesLocation + GetSectorInfoName(index);
@@ -40,6 +42,7 @@ namespace ZScripts.Map.Info
 
         public Dictionary<IntVector2, IMapTileInfo> UploadSectorData(IntVector2 index)
         {
+            Debug.Log("UploadSectorData");
             Dictionary<IntVector2, IMapTileInfo> data = new Dictionary<IntVector2, IMapTileInfo>();
 
             string path = _settings.ResiurcesLocation + GetSectorDataName(index);

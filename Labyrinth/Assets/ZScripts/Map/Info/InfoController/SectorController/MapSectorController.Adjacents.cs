@@ -1,4 +1,6 @@
-﻿namespace ZScripts.Map.Info
+﻿using System;
+
+namespace ZScripts.Map.Info
 {
     public partial class MapSectorController
     {     
@@ -6,8 +8,47 @@
         private void UpdateAdjacents(IntVector2 position)
         {
             IntVector2 progression = GetPositionVisibleProgression(position, _currentSector);
-            IntVector2 newPosition = new IntVector2(_currentSector.index.x + progression.x, _currentSector.index.y + progression.y);
-            UploadSector(newPosition);
+            AddNewSectors(progression);
+        }
+
+        private void AddNewSectors(IntVector2 progression)
+        {
+            if (Math.Abs(progression.x) > 0 && Math.Abs(progression.y) > 0)
+            {
+                AddNewSector(progression);
+                AddNewSectorByDimention(progression, true);
+                AddNewSectorByDimention(progression, false);
+            }
+            else
+            {
+                AddNewSector(progression);
+            }
+        }
+
+        private void AddNewSector(IntVector2 progression)
+        {
+            IntVector2 index = new IntVector2(_currentSector.index.x + progression.x, _currentSector.index.y + progression.y);
+            _sectorLifecycleController.AddActiveSector(UploadSectorInfo(index));
+        }
+
+        private void AddNewSectorByDimention(IntVector2 progression, bool xDimention)
+        {
+            if (xDimention)
+            {
+                AddNewSector(new IntVector2(progression.x, 0));
+            }
+            else
+            {
+                AddNewSector(new IntVector2(0, progression.y));
+            }
+        }
+
+        private ISectorInfo UploadSectorInfo(IntVector2 index)
+        {
+            ISectorInfo sectorInfo;
+            sectorInfo = _mapInfoStoreController.UploadSectorInfo(index);
+
+            return sectorInfo;
         }
 
         private IntVector2 GetPositionVisibleRange(IntVector2 position, bool xDimention)

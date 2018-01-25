@@ -51,7 +51,8 @@ namespace Additional.Tests.SectorLoader
             //------------------
 
             _unitsControllerMock = new UnitsControllerMock();
-            _sectorController = new MapSectorController(_settingsList, _unitsControllerMock, _mapInfoStoreController);
+            SectorLifecycleController slcc = new SectorLifecycleController(_mapInfoStoreController);
+            _sectorController = new MapSectorController(_settingsList, _unitsControllerMock, _mapInfoStoreController, slcc);
             
             _mapViewController = new MapViewController();
             _mapViewController.Initialize(_sectorController);

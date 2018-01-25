@@ -6,44 +6,19 @@ namespace ZScripts.Map.Info
     public partial class MapSectorController
     {     
         private ISectorInfo _currentSector;
-        private Dictionary<IntVector2, IMapTileInfo> _activeTiles = new Dictionary<IntVector2, IMapTileInfo>();
         
         private void InitializeCurrentSector()
         {
             IntVector2 index = new IntVector2(0, 0);
             _currentSector = _mapInfoStoreController.UploadSectorInfo(index);
-            UploadSector(index);
-        }
-
-        private void UploadSector(IntVector2 index)
-        {
-            ISectorInfo uploadedSectorInfo;
-            Dictionary<IntVector2, IMapTileInfo> uploadedTiles;
-            uploadedSectorInfo = _mapInfoStoreController.UploadSectorInfo(index);
-            if (uploadedSectorInfo == null)
-            {
-                return;
-            }
-            uploadedTiles = _mapInfoStoreController.UploadSectorData(index);
-            _activeSectors[uploadedSectorInfo.index] = uploadedSectorInfo;
-            AddTiles(uploadedTiles);
-        }
-
-        private void AddTiles(Dictionary<IntVector2, IMapTileInfo> uploadedTiles)
-        {
-            foreach (var info in uploadedTiles)
-            {
-                _activeTiles[info.Key] = info.Value;
-            }
+            _sectorLifecycleController.AddActiveSector(_currentSector);
+            _sectorLifecycleController.UpdateSectors();
         }
 
         private void UpdateCurrentSector(IntVector2 position)
         {
             _currentSector =  GetSectorOfPosition(position, _currentSector);
-            if (!_activeSectors.ContainsKey(_currentSector.index))
-            {
-                _activeSectors[_currentSector.index] = _currentSector;
-            }
+            _sectorLifecycleController.AddActiveSector(_currentSector);
         }
 
         private ISectorInfo GetSectorOfPosition(IntVector2 position, ISectorInfo sectorInfo)
@@ -84,9 +59,39 @@ namespace ZScripts.Map.Info
             return new IntVector2(xProgression, yProgression);
         }
         
-        public Dictionary<IntVector2, IMapTileInfo> ActiveTiles
+        private IntVector2 GetSectorRange(ISectorInfo sectorInfo, bool xDimention)
         {
-            get { return _activeTiles;  }
+            int startValue, endValue;
+          
+            if (xDimention)
+            {
+                startValue = sectorInfo.startPoint.x;
+                endValue = sectorInfo.startPoint.x + sectorInfo.size.x - 1;
+                return new IntVector2(startValue, endValue);
+            }
+            else
+            {
+                startValue = sectorInfo.startPoint.y;
+                endValue = sectorInfo.startPoint.y + sectorInfo.size.y - 1;
+                return new IntVector2(startValue, endValue);
+            }
         }
+
+        private int GetSectorDimantionProgression(IntVector2 range, int playerPosition)
+        {
+            if (playerPosition > range.y)
+            {
+                return 1;
+            }
+            else if (playerPosition < range.x)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
     }
 }

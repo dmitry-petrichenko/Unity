@@ -13,7 +13,11 @@ namespace ZScripts.Map.Info
 
         private void AddNewSectors(IntVector2 progression)
         {
-            if (Math.Abs(progression.x) > 0 && Math.Abs(progression.y) > 0)
+            if (progression.x == 0 && progression.y == 0)
+            {
+                return;
+            }
+            else if (Math.Abs(progression.x) > 0 && Math.Abs(progression.y) > 0)
             {
                 AddNewSector(progression);
                 AddNewSectorByDimention(progression, true);

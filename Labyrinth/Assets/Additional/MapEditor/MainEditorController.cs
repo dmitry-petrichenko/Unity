@@ -15,7 +15,7 @@ public class MainEditorController : MonoBehaviour
     
     public static int SCALE = 2;
     
-    private const int SECTOR_SIZE = 3;
+    private const int SECTOR_SIZE = 10;
 
     private EditorMapViewController _mapViewController;
     private Dictionary<IntVector2, IMapTileInfo> _mapTilesInfo = new Dictionary<IntVector2, IMapTileInfo>();
@@ -49,7 +49,6 @@ public class MainEditorController : MonoBehaviour
         //------------------
         // INITIALIZE NEW SECTOR
         IntVector2 sectorIndex = new IntVector2(0, 1);
-        int f = SECTOR_SIZE * SCALE * sectorIndex.x;
         _mapInfoInitializer.CreateSector(
             sectorIndex, 
             new IntVector2(SECTOR_SIZE * SCALE * sectorIndex.x, SECTOR_SIZE * SCALE * sectorIndex.y),

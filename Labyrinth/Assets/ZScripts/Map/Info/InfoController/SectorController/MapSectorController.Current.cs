@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace ZScripts.Map.Info
@@ -10,15 +12,21 @@ namespace ZScripts.Map.Info
         private void InitializeCurrentSector()
         {
             IntVector2 index = new IntVector2(0, 0);
+
             _currentSector = _mapInfoStoreController.UploadSectorInfo(index);
-            _sectorLifecycleController.AddActiveSector(_currentSector);
+            if (_currentSector == null)
+            {
+                throw new SystemException();
+            }
+            _sectorLifecycleController.AddActiveSector(_currentSector.index);
             _sectorLifecycleController.UpdateSectors();
+
         }
 
         private void UpdateCurrentSector(IntVector2 position)
         {
             _currentSector =  GetSectorOfPosition(position, _currentSector);
-            _sectorLifecycleController.AddActiveSector(_currentSector);
+            _sectorLifecycleController.AddActiveSector(_currentSector.index);
         }
 
         private ISectorInfo GetSectorOfPosition(IntVector2 position, ISectorInfo sectorInfo)
@@ -32,8 +40,20 @@ namespace ZScripts.Map.Info
                 IntVector2 progression;
                 progression = GetPositionSectorProgression(position, sectorInfo);
                 IntVector2 newPosition = new IntVector2(sectorInfo.index.x + progression.x, sectorInfo.index.y + progression.y);
-                sectorInfo = _mapInfoStoreController.UploadSectorInfo(newPosition);
+                sectorInfo = GetCashedSectorInfo(newPosition);
                 return GetSectorOfPosition(position, sectorInfo);
+            }
+        }
+
+        private ISectorInfo GetCashedSectorInfo(IntVector2 index)
+        {
+            if (_sectorLifecycleController.LoadedSectorInfos.ContainsKey(index))
+            {
+                return _sectorLifecycleController.LoadedSectorInfos[index];
+            }
+            else
+            {
+                return _mapInfoStoreController.UploadSectorInfo(index); 
             }
         }
 

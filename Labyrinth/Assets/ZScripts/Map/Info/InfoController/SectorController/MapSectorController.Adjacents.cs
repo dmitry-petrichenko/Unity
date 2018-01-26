@@ -32,7 +32,7 @@ namespace ZScripts.Map.Info
         private void AddNewSector(IntVector2 progression)
         {
             IntVector2 index = new IntVector2(_currentSector.index.x + progression.x, _currentSector.index.y + progression.y);
-            _sectorLifecycleController.AddActiveSector(UploadSectorInfo(index));
+            _sectorLifecycleController.AddActiveSector(index);
         }
 
         private void AddNewSectorByDimention(IntVector2 progression, bool xDimention)
@@ -45,14 +45,6 @@ namespace ZScripts.Map.Info
             {
                 AddNewSector(new IntVector2(0, progression.y));
             }
-        }
-
-        private ISectorInfo UploadSectorInfo(IntVector2 index)
-        {
-            ISectorInfo sectorInfo;
-            sectorInfo = _mapInfoStoreController.UploadSectorInfo(index);
-
-            return sectorInfo;
         }
 
         private IntVector2 GetPositionVisibleRange(IntVector2 position, bool xDimention)

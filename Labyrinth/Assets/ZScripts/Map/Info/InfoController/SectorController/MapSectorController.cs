@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using ZScripts.Settings;
 using ZScripts.Units;
 
@@ -25,10 +26,16 @@ namespace ZScripts.Map.Info
             _mapInfoStoreController = mapInfoStoreController;
             _sectorLifecycleController = sectorLifecycleController;
             _sectorLifecycleController.Initialize(_activeTiles);
-
-            InitializeCurrentSector();
             
-            _unitsController.PlyerPositionChanged += PlayerPositionChangedHandler;
+            try
+            {
+                InitializeCurrentSector();
+                _unitsController.PlyerPositionChanged += PlayerPositionChangedHandler;
+            }
+            catch 
+            {
+                Debug.Log("currentSector must be initialized");
+            }
         }
         
         private void PlayerPositionChangedHandler(IntVector2 position)
@@ -43,7 +50,6 @@ namespace ZScripts.Map.Info
         {
             _sectorLifecycleController.UpdateSectors();
         }
-        
                 
         public Dictionary<IntVector2, IMapTileInfo> ActiveTiles
         {

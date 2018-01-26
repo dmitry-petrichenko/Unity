@@ -2,6 +2,7 @@
 using ZScripts;
 using ZScripts.Map.Info;
 using ZScripts.Map.View;
+using ZScripts.Settings;
 
 namespace Additional.Tests.SectorLoader
 {
@@ -10,12 +11,14 @@ namespace Additional.Tests.SectorLoader
         private GraphicsController _sectorGraphicsController;
         private List<IntVector2> _initializedIndexes;
         private MapSectorController _mapSectorController;
+        private ISettings _settings;
 
         public void Initialize(MapSectorController mapSectorController)
         {
             _sectorGraphicsController = MapServiceLocator.GetSectorGraphicsController();
             _mapSectorController = mapSectorController;
-            
+            _settings = ServiceLocator.GetSettings();
+                
             UpdateTiles();
         }
 
@@ -40,15 +43,16 @@ namespace Additional.Tests.SectorLoader
 
         public void SetVisibleTiles(IntVector2 position)
         {
-            InitializeVisibleTile(position);
-            InitializeVisibleTile(new IntVector2(position.x + 1, position.y));
-            InitializeVisibleTile(new IntVector2(position.x, position.y + 1));
-            InitializeVisibleTile(new IntVector2(position.x + 1, position.y + 1));
-            InitializeVisibleTile(new IntVector2(position.x, position.y - 1));
-            InitializeVisibleTile(new IntVector2(position.x - 1, position.y));
-            InitializeVisibleTile(new IntVector2(position.x - 1, position.y + 1));
-            InitializeVisibleTile(new IntVector2(position.x - 1, position.y - 1));
-            InitializeVisibleTile(new IntVector2(position.x + 1, position.y - 1));
+            int xWidth = _settings.ActiveAreaSize / 2;
+            int xHeight = _settings.ActiveAreaSize / 2;
+            
+            for (int i = -xWidth; i < xWidth; i++)
+            {
+                   for (int j = -xHeight; j < xHeight; j++)
+                   {
+                       InitializeVisibleTile(new IntVector2(position.x + i, position.y + j));        
+                   }
+            }
         }
 
         private void InitializeTile(IMapTileInfo tileInfo)

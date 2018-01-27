@@ -2,27 +2,28 @@
 using UnityEngine;
 using ZScripts.Settings;
 using ZScripts.Units;
+using ZScripts.Units.Player;
 
 namespace ZScripts.Map.Info
 {
-    public partial class MapSectorController
+    public partial class MapSectorController : IMapSectorController
     {
         private Dictionary<IntVector2, IMapTileInfo> _activeTiles = new Dictionary<IntVector2, IMapTileInfo>();
         
         private readonly ISettings _settings;
-        private readonly IUnitsController _unitsController;
+        private readonly IGameEvents _gameEvents;
         private readonly IMapInfoStoreController _mapInfoStoreController;
         private readonly SectorLifecycleController _sectorLifecycleController;
         
         public MapSectorController(
             ISettings settings,
-            IUnitsController unitsController,
+            IGameEvents gameEvents,
             IMapInfoStoreController mapInfoStoreController,
             SectorLifecycleController sectorLifecycleController
             )
         {
             _settings = settings;
-            _unitsController = unitsController;
+            _gameEvents = gameEvents;
             _mapInfoStoreController = mapInfoStoreController;
             _sectorLifecycleController = sectorLifecycleController;
             _sectorLifecycleController.Initialize(_activeTiles);
@@ -30,7 +31,7 @@ namespace ZScripts.Map.Info
             try
             {
                 InitializeCurrentSector();
-                _unitsController.PlyerPositionChanged += PlayerPositionChangedHandler;
+                _gameEvents.PlayerPositionChanged += PlayerPositionChangedHandler;
             }
             catch 
             {

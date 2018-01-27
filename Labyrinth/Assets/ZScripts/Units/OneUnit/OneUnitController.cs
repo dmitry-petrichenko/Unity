@@ -45,7 +45,7 @@ namespace ZScripts.Units
             _attackController.Initialize(this);
         }
 
-        private void UpdatePosition()
+        protected virtual void UpdatePosition()
         {
             if (PositionChanged != null)
                 PositionChanged(Position);

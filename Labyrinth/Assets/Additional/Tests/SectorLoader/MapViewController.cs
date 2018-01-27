@@ -46,9 +46,9 @@ namespace Additional.Tests.SectorLoader
             int xWidth = _settings.ActiveAreaSize / 2;
             int xHeight = _settings.ActiveAreaSize / 2;
             
-            for (int i = -xWidth; i < xWidth; i++)
+            for (int i = -xWidth; i <= xWidth; i++)
             {
-                   for (int j = -xHeight; j < xHeight; j++)
+                   for (int j = -xHeight; j <= xHeight; j++)
                    {
                        InitializeVisibleTile(new IntVector2(position.x + i, position.y + j));        
                    }

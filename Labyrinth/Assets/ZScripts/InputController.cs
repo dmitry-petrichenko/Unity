@@ -2,6 +2,7 @@
 using ZScripts.Map.View;
 using ZScripts.Settings;
 using ZScripts.Units;
+using ZScripts.Units.Player;
 
 namespace ZScripts
 {
@@ -10,19 +11,19 @@ namespace ZScripts
         private IMapController _mapController;
         private IMapViewController _mapViewController;
         private ICameraController _cameraController;
-        private IUnitsController _unitsController;
+        private IPlayerController _playerController;
         private ISettings _setings;
 
         public InputController(
             IMapController mapController,
             ISettings setings,
-            IUnitsController  unitsController,
+            IPlayerController  playerController,
             ICameraController cameraController,
             IMapViewController mapViewController)
         {
             _mapController = mapController;
             _mapViewController = mapViewController;
-            _unitsController = unitsController;
+            _playerController = playerController;
             _setings = setings;
             _cameraController = cameraController;
 
@@ -35,13 +36,13 @@ namespace ZScripts
 
             _cameraController.Follow(_setings.PlayerGraphicsObject);
 
-            _mapController.UpdateCurrentPosition(_unitsController.PlayerPosition);
+            _mapController.UpdateCurrentPosition(_playerController.Position);
         }
 
         private void TileClickedHandler(IntVector2 position)
         {
             //_cameraController.UpdateCurrentPosition(position);
-            _unitsController.PlayerMoveTo(position);
+            _playerController.MoveTo(position);
         }
     }
 }

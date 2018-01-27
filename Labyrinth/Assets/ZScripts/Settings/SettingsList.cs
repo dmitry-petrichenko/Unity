@@ -26,7 +26,7 @@ namespace ZScripts.Settings
         {
             InitializePlayerGraphicsObject();
             MapSectionSize = 2;
-            ActiveAreaSize = 7;
+            ActiveAreaSize = 14;
             InitializePosition = new IntVector2(0, 0);
             ResiurcesLocation = Application.dataPath + "/Resources/Maps/" + TEST_MAP_PATH;
         }

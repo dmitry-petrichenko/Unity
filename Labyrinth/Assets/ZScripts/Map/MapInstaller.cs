@@ -14,7 +14,8 @@ namespace ZScripts.Map
             Container.Bind<MapInfoUpdateController>().To<MapInfoUpdateController>().AsSingle();
             Container.Bind<IMapViewController>().To<MapViewController>().AsSingle();
             Container.Bind<IMapInfoController>().To<MapInfoController>().AsSingle();
-            //Container.Bind<IMapInfoStoreController>().To<MapInfoStoreController>().AsSingle();
+            Container.Bind<IMapInfoStoreController>().To<MapInfoStoreController>().AsSingle();
+            Container.Bind<SectorLifecycleController>().To<SectorLifecycleController>().AsSingle();
         }
     }
 }

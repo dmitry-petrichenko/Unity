@@ -12,30 +12,14 @@ namespace ZScripts.Units.PathFinder
         public Grid(IMapInfoController mapInfoController)
         {
             _mapInfoController = mapInfoController;
-            Initialize();
-        }
-        
-        public void Initialize()
-        {
-            _mapTilesInfo = _mapInfoController.MapTilesInfo;
 
-            foreach (var info in _mapTilesInfo) 
-            {
-                InitializeCell(info.Key);
-            }
-
-        }
-
-        private void InitializeCell(IntVector2 key)
-        {
-            _gridValue[key] = _mapInfoController.GetMapTileInfo(key).IsEmpty();
         }
 
         public bool GetCell(IntVector2 index)
         {
-            if (_mapTilesInfo.ContainsKey(index))
+            if (_mapInfoController.MapTilesInfo.ContainsKey(index))
             {
-                return _gridValue[index];
+                return _mapInfoController.GetMapTileInfo(index).IsEmpty();
             }
             else
             {

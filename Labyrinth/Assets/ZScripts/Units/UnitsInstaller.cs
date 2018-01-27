@@ -10,7 +10,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
     public override void InstallBindings()
     {
         Container.Bind<IUnitsController>().To<UnitsController>().AsSingle().NonLazy();
-        Container.Bind<PlayerController>().To<PlayerController>().AsSingle();
+        Container.Bind<IPlayerController>().To<PlayerController>().AsSingle();
         Container.Bind<IOneUnitMotionController>().To<OneUnitMotionController>().AsTransient();
         //Container.Bind<IOneUnitController>().To<OneUnitController>().AsTransient();
         Container.Bind<MoveController>().To<MoveController>().AsTransient();

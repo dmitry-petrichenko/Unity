@@ -23,7 +23,7 @@ namespace Additional.Tests.SectorLoader
         private IMapInfoInitializer _mapInfoInitializer;
         private IMapInfoStoreController _mapInfoStoreController;
         private GraphicsController _graphicsController;
-        private SettingsList _settingsList;
+        private ISettings _settingsList;
         private CameraController _cameraController;
         private IntVector2 _cameraPosition;
         private MapSectorController _sectorController;
@@ -33,7 +33,6 @@ namespace Additional.Tests.SectorLoader
         {
             _settingsList = new ExtraSettings(null);
             
-            _settingsList.Initialize();
             ServiceLocator.InitializeSettings(_settingsList);
 
             _graphicsController = new GraphicsController();

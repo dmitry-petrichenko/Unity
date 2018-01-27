@@ -8,28 +8,26 @@ namespace ZScripts.Map.Info
         private Dictionary<IntVector2, IMapTileInfo> _mapTilesInfo = new Dictionary<IntVector2, IMapTileInfo>();
         private IMapInfoInitializer _mapInfoInitializer;
         private MapInfoStoreController _mapInfoStoreController;
-        private ISettings _settings;
+        private readonly IMapSectorController _mapSectorController;
+        private readonly ISettings _settings;
 
-        public MapInfoController(ISettings settings)
+        public MapInfoController(ISettings settings, IMapSectorController mapSectorController)
         {
+            _mapSectorController = mapSectorController;
             _settings = settings;
             Initialize();
         }
 
         public void Initialize()
         {
-            _mapInfoStoreController = new MapInfoStoreController(_settings);
-            _mapTilesInfo = _mapInfoStoreController.UploadSectorData(new IntVector2(0, 0));
-
             _mapInfoInitializer = new MapInfoInitializer();
-            //_mapInfoInitializer.InitializeSector(_mapTilesInfo);
         }
 
         public IMapTileInfo GetMapTileInfo(IntVector2 position)
         {
-            if (_mapTilesInfo.ContainsKey(position))
+            if (MapTilesInfo.ContainsKey(position))
             {
-                return _mapTilesInfo[position];
+                return MapTilesInfo[position];
             }
             else
             {
@@ -37,13 +35,9 @@ namespace ZScripts.Map.Info
             }
         }
 
-        public void UpdateMapTileInfo(IMapTileInfo mapTileInfo)
-        {
-        }
-
         public Dictionary<IntVector2, IMapTileInfo> MapTilesInfo
         {
-            get { return _mapTilesInfo; }
+            get { return _mapSectorController.ActiveTiles; }
         }
     }
 }

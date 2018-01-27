@@ -51,9 +51,9 @@ namespace ZScripts.Map.Info
         {
             foreach (var index in sectorsToRemove)
             {
-                RemoveTilesInSection(_loadedSectorInfos[index.Key]);
                 if (_loadedSectorInfos.ContainsKey(index.Key))
                 {
+                    RemoveTilesInSection(_loadedSectorInfos[index.Key]);
                     _loadedSectorInfos.Remove(index.Key);
                 }
             }
@@ -78,11 +78,19 @@ namespace ZScripts.Map.Info
         private void UploadSectors(Dictionary<IntVector2, IntVector2> sectorsToUpload)
         {
             Dictionary<IntVector2, IMapTileInfo> uploadedTiles;
-            
-            foreach (var index in sectorsToUpload)
+            ISectorInfo sectorInfo;
+
+            foreach (KeyValuePair<IntVector2, IntVector2> index in sectorsToUpload)
             {
-                _loadedSectorInfos[index.Key] = _mapInfoStoreController.UploadSectorInfo(index.Key);   //TODO 1
+                Debug.Log(index.Key.x + " " + index.Key.y);
+                sectorInfo = _mapInfoStoreController.UploadSectorInfo(index.Key);
+                if (sectorInfo == null)
+                {
+                    continue;
+                }
+                _loadedSectorInfos[sectorInfo.index] = sectorInfo;
                 uploadedTiles = _mapInfoStoreController.UploadSectorData(index.Key);
+                
                 UploadSector(uploadedTiles);
             }
         }

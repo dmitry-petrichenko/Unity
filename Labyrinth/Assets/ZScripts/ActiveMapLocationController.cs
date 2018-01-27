@@ -1,25 +1,26 @@
 ﻿using ZScripts.Map;
 using ZScripts.Units;
+using ZScripts.Units.Player;
 
 namespace ZScripts
 {
     public class ActiveMapLocationController
     {
         private IMapController _mapController;
-        private IUnitsController _unitsController;
+        private IPlayerController _playerController;
 
         public ActiveMapLocationController(IMapController mapController,
-            IUnitsController unitsController)
+            IPlayerController playerController)
         {
             _mapController = mapController;
-            _unitsController = unitsController;
+            _playerController = playerController;
 
             Initialize();
         }
 
         public void Initialize()
         {
-            _unitsController.PlyerPositionChanged += PlayerPositionChanged;
+            _playerController.PositionChanged += PlayerPositionChanged;
         }
 
         private void PlayerPositionChanged(IntVector2 position)

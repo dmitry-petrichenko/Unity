@@ -21,8 +21,6 @@ namespace ZScripts.Units.Rotation
 
         public void Rotate(IntVector2 point1, IntVector2 point2)
         {
-            Debug.Log(point1.x + " " + point1.y + " " + point2.x + " " + point2.y);
-            
             double angle = GetRotation(point1, point2);
             _unit.transform.localEulerAngles = new Vector3(0f, (float)angle, 0f);
             

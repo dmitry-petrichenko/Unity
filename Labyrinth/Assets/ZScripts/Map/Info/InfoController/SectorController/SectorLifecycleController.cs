@@ -82,7 +82,6 @@ namespace ZScripts.Map.Info
 
             foreach (KeyValuePair<IntVector2, IntVector2> index in sectorsToUpload)
             {
-                Debug.Log(index.Key.x + " " + index.Key.y);
                 sectorInfo = _mapInfoStoreController.UploadSectorInfo(index.Key);
                 if (sectorInfo == null)
                 {

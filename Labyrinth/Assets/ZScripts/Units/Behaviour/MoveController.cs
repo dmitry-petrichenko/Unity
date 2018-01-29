@@ -9,6 +9,7 @@ namespace ZScripts.Units
         private IOneUnitController _unitController;
         private List<IntVector2> _path;
         private readonly IPathFinderController _pathFinderController;
+        private IntVector2 _newPosition;
 
         event Action CompleteMove;
 
@@ -24,7 +25,32 @@ namespace ZScripts.Units
 
         public void MoveTo(IntVector2 position)
         {
-            // TODO hide in interface 
+            if (_unitController.MotionController.IsMoving)
+            {
+                _newPosition = position;
+                ChangeDirrection();
+            }
+            else
+            {
+                MoveToDirrection(position);
+            }
+
+        }
+
+        private void ChangeDirrection()
+        {
+            _unitController.MotionController.CompleteMove -= MoveNextStep;
+            _unitController.MotionController.CompleteMove += OnChangeDirrectionMoveCmplete;
+        }
+
+        private void OnChangeDirrectionMoveCmplete()
+        {
+            _unitController.MotionController.CompleteMove -= OnChangeDirrectionMoveCmplete;
+            MoveToDirrection(_newPosition);
+        }
+
+        private void MoveToDirrection(IntVector2 position)
+        {
             _unitController.MotionController.CompleteMove += MoveNextStep;
             _path = _pathFinderController.GetPath(_unitController.Position, position);
             MoveNextStep();

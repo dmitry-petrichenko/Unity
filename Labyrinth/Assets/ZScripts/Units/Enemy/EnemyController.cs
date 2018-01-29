@@ -1,25 +1,24 @@
-﻿using System;
-using System.Diagnostics;
-using Units;
+﻿using Units;
 using ZScripts.Settings;
 using ZScripts.Units.Rotation;
 using ZScripts.Units.Settings;
 
-namespace ZScripts.Units.Player
+namespace ZScripts.Units.Enemy
 {
-    public class PlayerController : OneUnitController, IPlayerController
+    public class EnemyController : OneUnitController
     {
+        private IPeacefulBehaviour _peacefulBehaviour; 
         private ISettings _settings;
-        private IGameEvents _gameEvents;
-
-        public PlayerController(
-            ISettings settings, 
+        
+        public EnemyController(
+            ISettings settings,
             IOneUnitMotionController oneUnitMotionController,
             IOneUnitAnimationController oneUnitAnimationController,
             IOneUnitRotationController oneUnitRotationController,
             MoveController moveController, 
             AttackController attackController,
-            IGameEvents gameEvents)
+            IPeacefulBehaviour peacefulBehaviour
+            )
             : base(
                 oneUnitMotionController,
                 oneUnitAnimationController,
@@ -29,24 +28,17 @@ namespace ZScripts.Units.Player
             )
         {
             _settings = settings;
-            _gameEvents = gameEvents;
+            _peacefulBehaviour = peacefulBehaviour;
             Initialize();
-        }
-
-        protected override void UpdatePosition()
-        {
-            base.UpdatePosition();
-            _gameEvents.TriggerPlayerPositionChanged(Position);
         }
         
         private void Initialize()
         {
             base.Initialize(_settings.PlayerGraphicsObject);
             UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Player);
-        }
-
-        public void Attack(IntVector2 position)
-        {
+            
+            _peacefulBehaviour.Initialize(this);
+            _peacefulBehaviour.Start();
         }
     }
 }

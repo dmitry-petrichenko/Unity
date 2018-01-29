@@ -2,6 +2,7 @@
 using Units;
 using UnityEngine;
 using ZScripts.Units.Rotation;
+using ZScripts.Units.Settings;
 
 namespace ZScripts.Units
 {
@@ -31,7 +32,7 @@ namespace ZScripts.Units
 
         protected void Initialize(GameObject gameObject)
         {
-            _oneUnitMotionController.Initialize(gameObject);
+            _oneUnitMotionController.Initialize(gameObject, this);
             _oneUnitAnimationController.Initialize(gameObject);
             _oneUnitRotationController.Initialize(gameObject);
 
@@ -54,6 +55,7 @@ namespace ZScripts.Units
         public IOneUnitMotionController MotionController { get; set; }
         public IOneUnitAnimationController AnimationController { get; set; }
         public IOneUnitRotationController RotationController { get; set; }
+        public IUnitSettings UnitSettings { get; set; }
 
         public IntVector2 Position
         {
@@ -63,8 +65,6 @@ namespace ZScripts.Units
         public void MoveTo(IntVector2 position)
         {
             _moveController.MoveTo(position);
-        }
-            
-            
+        }   
     }
 }

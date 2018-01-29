@@ -7,4 +7,4 @@ namespace ZScripts
         event Action<IntVector2> PlayerPositionChanged;
         void TriggerPlayerPositionChanged(IntVector2 position);
     }
-}
+} 

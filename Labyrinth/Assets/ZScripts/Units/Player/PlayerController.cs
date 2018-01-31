@@ -1,8 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using Units;
+﻿using Zenject;
 using ZScripts.Settings;
-using ZScripts.Units.Rotation;
 using ZScripts.Units.Settings;
 
 namespace ZScripts.Units.Player
@@ -12,37 +9,30 @@ namespace ZScripts.Units.Player
         private ISettings _settings;
         private IGameEvents _gameEvents;
 
-        public PlayerController(
-            ISettings settings, 
-            IOneUnitMotionController oneUnitMotionController,
-            IOneUnitAnimationController oneUnitAnimationController,
-            IOneUnitRotationController oneUnitRotationController,
-            MoveController moveController, 
-            AttackController attackController,
-            IGameEvents gameEvents)
-            : base(
-                oneUnitMotionController,
-                oneUnitAnimationController,
-                oneUnitRotationController,
-                moveController,
-                attackController
-            )
-        {
-            _settings = settings;
-            _gameEvents = gameEvents;
-            Initialize();
-        }
-
         protected override void UpdatePosition()
         {
             base.UpdatePosition();
             _gameEvents.TriggerPlayerPositionChanged(Position);
         }
+
+        [Inject]
+        void Construct(
+            ISettings settings,
+            IGameEvents gameEvents)
+        {
+            _settings = settings;
+            _gameEvents = gameEvents;
+            
+            Initialize();
+        }
         
         private void Initialize()
         {
-            base.Initialize(_settings.PlayerGraphicsObject);
-            UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Player);
+            UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Player, 
+                _settings.PlayerGraphicsObject);
+            base.Initialize();
+            
+            SetOnPosition(new IntVector2(0, 0));
         }
 
         public void Attack(IntVector2 position)

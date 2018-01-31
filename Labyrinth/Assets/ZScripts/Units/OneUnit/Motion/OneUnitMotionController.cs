@@ -1,32 +1,34 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using ZScripts.Units.Settings;
 
 namespace ZScripts.Units
 {
     public class OneUnitMotionController : IOneUnitMotionController
     {
         private GameObject _unit;
-        private IOneUnitController _unitController;
+        private IUnitSettings _unitSettings;
+        
         public IntVector2 Position { get; private set; }
         public bool IsMoving { get; private set; }
 
-        public OneUnitMotionController()
+        public void SetOnPosition(IntVector2 position)
         {
-            
-        }
+            _unit.transform.position = new Vector3(position.x, 0, position.y);
+            Position = position;
+        }   
 
-        public void Initialize(GameObject unit, IOneUnitController unitController)
+        public void Initialize(IUnitSettings unitSettings)
         {
-            _unitController = unitController;
-            _unit = unit;
-            Position = new IntVector2((int)_unit.transform.position.x, (int)_unit.transform.position.z);
+            _unitSettings = unitSettings;
+            _unit = _unitSettings.GraphicObject;
         }
 
         public void MoveToPosition(IntVector2 position)
         {
             IsMoving = true;
-            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), _unitController.UnitSettings.MotionSpeed)
+            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), _unitSettings.MotionSpeed)
                 .OnComplete(CompleteMoveHandler)
                 .SetEase(Ease.Linear);
         }

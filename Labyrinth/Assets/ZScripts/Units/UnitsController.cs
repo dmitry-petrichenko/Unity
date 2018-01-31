@@ -1,15 +1,22 @@
-﻿using System;
-using ZScripts.Units.Player;
+﻿using Zenject;
+using ZScripts.Units.Enemy;
 
 namespace ZScripts.Units
 {
-    public class UnitsController : IUnitsController
+    public class UnitsController
     {
-        private IPlayerController _playerController;
+        private EnemyController _enemy;
         
-        public UnitsController(IPlayerController playerController)
+        public UnitsController()
         {
-            _playerController = playerController;
+            
+        }
+
+        [Inject]
+        void Init(DiContainer container)
+        {
+            _enemy = container.Resolve<EnemyController>();
+            _enemy.SetOnPosition(new IntVector2(3, 3));
         }
     }
 }

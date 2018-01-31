@@ -1,5 +1,6 @@
 ﻿using Tests.Animation;
 using UnityEngine;
+using ZScripts.Units.Settings;
 
 namespace Units
 {
@@ -8,9 +9,9 @@ namespace Units
         private GameObject _unit;
         private IUnitScript _unitScript;
         
-        public void Initialize(GameObject unit)
+        public void Initialize(IUnitSettings unitSettings)
         {
-            _unit = unit;
+            _unit = unitSettings.GraphicObject;
             _unitScript = _unit.GetComponentInChildren(typeof(IUnitScript)) as IUnitScript;
         }
 

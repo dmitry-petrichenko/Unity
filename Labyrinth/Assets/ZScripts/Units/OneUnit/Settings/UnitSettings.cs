@@ -1,13 +1,17 @@
-﻿namespace ZScripts.Units.Settings
+﻿using UnityEngine;
+
+namespace ZScripts.Units.Settings
 {
     public class UnitSettings : IUnitSettings
     {
         public float MotionSpeed { get; private set; }
+        public GameObject GraphicObject { get; private set; }
         public enum UnitType {Player, Spider};
         
         
-        public UnitSettings(UnitType unitType)
+        public UnitSettings(UnitType unitType, GameObject graphicObject)
         {
+            GraphicObject = graphicObject;
             switch (unitType)
             {
                 case UnitType.Player:

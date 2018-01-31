@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ZScripts.Units.Settings;
 
 namespace Units
 {
@@ -7,6 +8,6 @@ namespace Units
         void PlayWalkAnimation();
         void PlayAttackAnimation();
         void PlayIdleAnimation();
-        void Initialize(GameObject unit);
+        void Initialize(IUnitSettings unitSettings);
     }
 }

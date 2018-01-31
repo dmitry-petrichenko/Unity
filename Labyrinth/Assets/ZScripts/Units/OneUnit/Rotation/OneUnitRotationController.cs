@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using ZScripts.Units.Settings;
 
 namespace ZScripts.Units.Rotation
 {
@@ -8,9 +9,9 @@ namespace ZScripts.Units.Rotation
     {
         private GameObject _unit;
         
-        public void Initialize(GameObject unit)
+        public void Initialize(IUnitSettings unitSettings)
         {
-            _unit = unit.transform.Find("Unit").gameObject;
+            _unit = unitSettings.GraphicObject.transform.Find("Unit").gameObject;
         }
         
         public double GetRotation(IntVector2 point1, IntVector2 point2)

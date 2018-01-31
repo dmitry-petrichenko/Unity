@@ -16,7 +16,7 @@ namespace Tests.Animation
 			var gameObject = Instantiate(animatedUnit, new Vector3(0, 0, 0), Quaternion.identity,
 				center.transform);
 			unitAnimationController = new OneUnitAnimationController();
-			unitAnimationController.Initialize(gameObject);
+			//unitAnimationController.Initialize(gameObject);
 		}
 
 		public void PlayIdleAnimation()

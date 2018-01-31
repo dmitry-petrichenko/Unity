@@ -10,5 +10,6 @@ namespace ZScripts.Settings
         string ResiurcesLocation { get; }
         GameInstaller.MapGraphicsList MapGraphicsList { get; }
         GameObject PlayerGraphicsObject { get; }
+        GameObject EnemyGraphicsObject { get; }
     }
 }

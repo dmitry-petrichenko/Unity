@@ -9,7 +9,7 @@ public class MainTestRotation : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		_oneUnitRotationController = new OneUnitRotationController();
-		_oneUnitRotationController.Initialize(gameObject);
+		//_oneUnitRotationController.Initialize(gameObject);
 	}
 	
 	public void RotateTo(string param)

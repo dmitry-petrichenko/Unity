@@ -18,5 +18,6 @@ namespace Additional.Tests.SectorLoader
         public string ResiurcesLocation { get { return _settings.ResiurcesLocation; }}
         public GameInstaller.MapGraphicsList MapGraphicsList { get { return _settings.MapGraphicsList; }}
         public GameObject PlayerGraphicsObject { get { return _settings.PlayerGraphicsObject; }}
+        public GameObject EnemyGraphicsObject { get; private set; }
     }
 }

@@ -31,7 +31,8 @@ namespace ZScripts.Units.Player
             UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Player, 
                 _settings.PlayerGraphicsObject);
             base.Initialize();
-            
+
+            CompleteMoveTo += Wait;
             SetOnPosition(new IntVector2(0, 0));
         }
 

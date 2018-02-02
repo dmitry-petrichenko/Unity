@@ -10,7 +10,8 @@ namespace ZScripts.Units
     public class OneUnitController : IOneUnitController
     {
         public event Action<IntVector2> PositionChanged;
-        
+        public event Action CompleteMoveTo;
+
         private IOneUnitMotionController _oneUnitMotionController;
         private IOneUnitAnimationController _oneUnitAnimationController;
         private IOneUnitRotationController _oneUnitRotationController;
@@ -45,7 +46,16 @@ namespace ZScripts.Units
             
             // Initialize behaviour
             _moveController.Initialize(this);
+            _moveController.CompleteMoveTo += MoveCompleteHandler;
             _attackController.Initialize(this);
+        }
+
+        private void MoveCompleteHandler()
+        {
+            if (CompleteMoveTo != null)
+            {
+                CompleteMoveTo();
+            }
         }
 
         public void SetOnPosition(IntVector2 position)
@@ -72,6 +82,11 @@ namespace ZScripts.Units
         public void MoveTo(IntVector2 position)
         {
             _moveController.MoveTo(position);
-        }   
+        }
+
+        public void Wait()
+        {
+            AnimationController.PlayIdleAnimation();
+        }
     }
 }

@@ -28,9 +28,32 @@ namespace ZScripts.Units
         public void MoveToPosition(IntVector2 position)
         {
             IsMoving = true;
-            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), _unitSettings.MotionSpeed)
+            float motionSpeed;
+            
+            if (IsDiagonal(Position, position))
+            {
+                motionSpeed = _unitSettings.MotionSpeed * 1.4f;
+            }
+            else
+            {
+                motionSpeed = _unitSettings.MotionSpeed;
+            }
+            
+            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), motionSpeed)
                 .OnComplete(CompleteMoveHandler)
                 .SetEase(Ease.Linear);
+        }
+
+        private bool IsDiagonal(IntVector2 position1, IntVector2 position2)
+        {
+            if (position1.x == position2.x || position1.y == position2.y)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void CompleteMoveHandler()

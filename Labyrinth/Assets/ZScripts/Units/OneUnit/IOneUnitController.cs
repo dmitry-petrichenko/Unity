@@ -13,6 +13,8 @@ namespace ZScripts.Units
         IUnitSettings UnitSettings { get; }
         IntVector2 Position { get; }
         event Action<IntVector2> PositionChanged;
+        event Action CompleteMoveTo;
         void MoveTo(IntVector2 position);
+        void Wait();
     }
 }

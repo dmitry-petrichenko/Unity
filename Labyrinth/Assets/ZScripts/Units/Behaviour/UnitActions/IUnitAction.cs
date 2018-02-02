@@ -7,6 +7,7 @@ namespace ZScripts.Units
         void Start();
         void Stop();
         void Destroy();
+        void Initialize(IOneUnitController oneUnitController);
         
         event Action OnComplete;
     }

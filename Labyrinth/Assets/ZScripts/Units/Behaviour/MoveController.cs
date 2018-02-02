@@ -10,8 +10,8 @@ namespace ZScripts.Units
         private List<IntVector2> _path;
         private readonly IPathFinderController _pathFinderController;
         private IntVector2 _newPosition;
-
-        event Action CompleteMove;
+        
+        public event Action CompleteMoveTo;
 
         public MoveController(IPathFinderController pathFinderController)
         {
@@ -70,8 +70,11 @@ namespace ZScripts.Units
             }
             else
             {
-                _unitController.AnimationController.PlayIdleAnimation();
                 _unitController.MotionController.CompleteMove -= MoveNextStep;
+                if (CompleteMoveTo != null)
+                {
+                    CompleteMoveTo();
+                }
             }
         }
     }

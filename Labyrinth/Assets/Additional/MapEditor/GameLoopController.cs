@@ -7,6 +7,10 @@ namespace Additional
     public class GameLoopController : IGameLoopController
     {
         public event Action Updated;
+        public void DelayStart(Action action, float time)
+        {
+            throw new NotImplementedException();
+        }
 
         private GameInstaller _gameController;
 

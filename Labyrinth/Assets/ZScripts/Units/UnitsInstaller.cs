@@ -5,6 +5,7 @@ using ZScripts.Units.Enemy;
 using ZScripts.Units.PathFinder;
 using ZScripts.Units.Player;
 using ZScripts.Units.Rotation;
+using ZScripts.Units.UnitActions;
 
 public class UnitsInstaller : Installer<UnitsInstaller>
 {
@@ -21,5 +22,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<IOneUnitMotionController>().To<OneUnitMotionController>().AsTransient();
         Container.Bind<EnemyController>().To<EnemyController>().AsTransient();
         Container.Bind<IPeacefulBehaviour>().To<PeacefulBehaviour>().AsTransient();
+        Container.Bind<IdleAction>().To<IdleAction>().AsTransient();
+        Container.Bind<MoveToPositionAction>().To<MoveToPositionAction>().AsTransient();
     }
 }

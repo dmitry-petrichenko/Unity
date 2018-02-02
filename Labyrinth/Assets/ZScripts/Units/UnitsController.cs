@@ -17,6 +17,7 @@ namespace ZScripts.Units
         {
             _enemy = container.Resolve<EnemyController>();
             _enemy.SetOnPosition(new IntVector2(3, 3));
+            _enemy.Animate();
         }
     }
 }

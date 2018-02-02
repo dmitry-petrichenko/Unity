@@ -11,7 +11,6 @@ namespace ZScripts.Units
         IntVector2 Position { get; }
         void Initialize(IUnitSettings unitSettings);
         bool IsMoving { get; }
-        void Wait();
 
         event Action CompleteMove;
     }

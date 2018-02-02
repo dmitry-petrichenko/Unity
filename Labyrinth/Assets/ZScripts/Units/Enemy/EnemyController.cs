@@ -23,10 +23,13 @@ namespace ZScripts.Units.Enemy
             
         void Initialize()
         {
-            UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Player, 
+            UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Spider, 
                 _settings.EnemyGraphicsObject);
             base.Initialize();
-            
+        }
+
+        public void Animate()
+        {
             _peacefulBehaviour.Initialize(this);
             _peacefulBehaviour.Start();
         }

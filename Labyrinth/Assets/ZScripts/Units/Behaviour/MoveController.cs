@@ -6,7 +6,7 @@ namespace ZScripts.Units
 {
     public class MoveController
     {
-        private IOneUnitController _unitController;
+        private IOneUnitServicesContainer _unitController;
         private List<IntVector2> _path;
         private readonly IPathFinderController _pathFinderController;
         private IntVector2 _newPosition;
@@ -18,7 +18,7 @@ namespace ZScripts.Units
             _pathFinderController = pathFinderController;
         }
 
-        public void Initialize(IOneUnitController unitController)
+        public void Initialize(IOneUnitServicesContainer unitController)
         {
             _unitController = unitController;
         }
@@ -52,7 +52,7 @@ namespace ZScripts.Units
         private void MoveToDirrection(IntVector2 position)
         {
             _unitController.MotionController.CompleteMove += MoveNextStep;
-            _path = _pathFinderController.GetPath(_unitController.Position, position);
+            _path = _pathFinderController.GetPath(_unitController.MotionController.Position, position);
             MoveNextStep();
         }
 
@@ -66,7 +66,7 @@ namespace ZScripts.Units
                 _path.RemoveAt(0);
                 _unitController.MotionController.MoveToPosition(nextPosition);
                 _unitController.AnimationController.PlayWalkAnimation();
-                _unitController.RotationController.Rotate(_unitController.Position, nextPosition);
+                _unitController.RotationController.Rotate(_unitController.MotionController.Position, nextPosition);
             }
             else
             {

@@ -6,5 +6,6 @@ namespace ZScripts.Units.Settings
     {
         float MotionSpeed { get; }
         GameObject GraphicObject { get; }
+        void Initialize(string settingsPath);
     }
 }

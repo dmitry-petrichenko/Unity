@@ -8,10 +8,9 @@ namespace ZScripts.Settings
         public int MapSectionSize { get; private set; }
         public int ActiveAreaSize { get; protected set; }
         public IntVector2 InitializePosition { get; private set; }
-        public string ResiurcesLocation { get; private set; }
+        public string MapsResourcesLocation { get; private set; }
+        public string UnitsResourcesLocation { get; private set; }
         public GameInstaller.MapGraphicsList MapGraphicsList { get; private set; }
-        public  GameObject PlayerGraphicsObject { get; private set; }
-        public  GameObject EnemyGraphicsObject { get; private set; }
         private GameObject _mainScene;
 
         private const string TEST_MAP_PATH = "TestMap_02/";
@@ -25,32 +24,12 @@ namespace ZScripts.Settings
 
         public void Initialize()
         {
-            InitializePlayerGraphicsObject();
-            InitializeEnemyGraphicsObject();
             MapSectionSize = 2;
             ActiveAreaSize = 14;
             InitializePosition = new IntVector2(0, 0);
-            ResiurcesLocation = Application.dataPath + "/Resources/Maps/" + TEST_MAP_PATH;
+            MapsResourcesLocation = Application.dataPath + "/Resources/Maps/" + TEST_MAP_PATH;
+            UnitsResourcesLocation = Application.dataPath + "/Resources/Units/Settings/";
         }
         
-        private void InitializeEnemyGraphicsObject()
-        {
-            if (MapGraphicsList != null)
-            {
-                EnemyGraphicsObject = Object.Instantiate(MapGraphicsList.Enemy, new Vector3(3, 0.0f, 3),
-                    Quaternion.identity,
-                    _mainScene.transform);
-            }
-        }
-
-        private void InitializePlayerGraphicsObject()
-        {
-            if (MapGraphicsList != null)
-            {
-                PlayerGraphicsObject = Object.Instantiate(MapGraphicsList.Player, new Vector3(3, 0.0f, 3),
-                    Quaternion.identity,
-                    _mainScene.transform);
-            }
-        }
     }
 }

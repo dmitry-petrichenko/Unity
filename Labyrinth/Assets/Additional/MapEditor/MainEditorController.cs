@@ -1,5 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using Additional;
+using Additional.MapEditor;
+using LitJson;
 using NSGraphics;
 using UnityEngine;
 using ZScripts;
@@ -7,6 +13,7 @@ using ZScripts.Map.Info;
 using ZScripts.Map.View;
 using ZScripts.Settings;
 using CameraController = Additional.CameraController;
+using Prodj = ZScripts.Units.Settings;
 
 public class MainEditorController : MonoBehaviour
 {
@@ -39,6 +46,23 @@ public class MainEditorController : MonoBehaviour
         _graphicsController.TileClicked += TileClickHandler;
         _graphicsController.RightClicked += RightClickHandler;
 
+        //INIT UNIT
+        UnitSettings unitSettings = new UnitSettings();
+        unitSettings.MotionSpeed = 1.8f.ToString();
+        unitSettings.PrefabPath = Prodj.UnitSettings.UNITS_ASSETS_PATH + "SpiderBlack01/unit_prefab";
+        unitSettings.RotationSpeed = 0.3f.ToString();
+
+        string unitInfo = JsonMapper.ToJson(unitSettings);
+        File.WriteAllText(
+            _settingsList.UnitsResourcesLocation + "SpiderBlack01.json",
+            unitInfo
+        );
+        //------------------
+        
+        //INIT UNIT UPLOAD
+        //Prodj.UnitSettings uSettings = new Prodj.UnitSettings(_settingsList.UnitsResourcesLocation + "Test1.json");
+        
+        //------------------
        
         _mapInfoInitializer = new MapInfoInitializer();
         _mapInfoStoreController = new MapInfoStoreController(_settingsList);

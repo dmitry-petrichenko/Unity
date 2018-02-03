@@ -9,7 +9,6 @@ namespace ZScripts.GameLoop
         public event Action Updated;
 
         private GameInstaller _gameController;
-        private Action _action;
 
         public GameLoopController(GameInstaller gameController)
         {
@@ -19,8 +18,6 @@ namespace ZScripts.GameLoop
 
         public void DelayStart(Action action, float time)
         {
-            _action = action;
-
             _gameController.StartCoroutine(WaitAndDoAction(action, time));
         }
         

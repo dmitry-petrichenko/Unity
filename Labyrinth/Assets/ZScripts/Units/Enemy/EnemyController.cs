@@ -8,23 +8,26 @@ namespace ZScripts.Units.Enemy
     {
         private IPeacefulBehaviour _peacefulBehaviour; 
         private ISettings _settings;
+        private DiContainer _container;
 
         [Inject]
         void Construct(
             ISettings settings,
-            IPeacefulBehaviour peacefulBehaviour
+            IPeacefulBehaviour peacefulBehaviour,
+            DiContainer container
         )
         {
             _settings = settings;
             _peacefulBehaviour = peacefulBehaviour;
+            _container = container;
             
             Initialize();
         }
             
         void Initialize()
         {
-            UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Spider, 
-                _settings.EnemyGraphicsObject);
+            UnitSettings = _container.Resolve<IUnitSettings>();
+            UnitSettings.Initialize(_settings.UnitsResourcesLocation + "SpiderBlack01.json");
             base.Initialize();
         }
 

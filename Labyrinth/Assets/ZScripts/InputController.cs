@@ -34,7 +34,7 @@ namespace ZScripts
         {
             _mapViewController.TileClicked += TileClickedHandler;
 
-            _cameraController.Follow(_setings.PlayerGraphicsObject);
+            _cameraController.Follow(_playerController.UnitSettings.GraphicObject);
 
             _mapController.UpdateCurrentPosition(_playerController.Position);
         }

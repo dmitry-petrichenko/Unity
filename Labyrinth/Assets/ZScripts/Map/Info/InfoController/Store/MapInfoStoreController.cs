@@ -24,7 +24,7 @@ namespace ZScripts.Map.Info
         {
             ISectorInfo sectorInfo = new SectorInfo();
 
-            string path = _settings.ResiurcesLocation + GetSectorInfoName(index);
+            string path = _settings.MapsResourcesLocation + GetSectorInfoName(index);
             if (!File.Exists(path))
             {
                 return null;
@@ -43,7 +43,7 @@ namespace ZScripts.Map.Info
         {
             Dictionary<IntVector2, IMapTileInfo> data = new Dictionary<IntVector2, IMapTileInfo>();
 
-            string path = _settings.ResiurcesLocation + GetSectorDataName(index);
+            string path = _settings.MapsResourcesLocation + GetSectorDataName(index);
             if(!File.Exists(path))
             {
                 return null;
@@ -70,13 +70,13 @@ namespace ZScripts.Map.Info
         {
             string sectorInfo = JsonMapper.ToJson(info);
             File.WriteAllText(
-                _settings.ResiurcesLocation + GetSectorInfoName(info.index),
+                _settings.MapsResourcesLocation + GetSectorInfoName(info.index),
                 sectorInfo
                 );
             
             string sectorData = SectorDataToJson(data);
             File.WriteAllText(
-                _settings.ResiurcesLocation + GetSectorDataName(info.index),
+                _settings.MapsResourcesLocation + GetSectorDataName(info.index),
                 sectorData
             );
         }

@@ -6,6 +6,7 @@ namespace ZScripts.Units
     public class UnitsController
     {
         private EnemyController _enemy;
+        private EnemyController _enemy2;
         
         public UnitsController()
         {
@@ -16,8 +17,12 @@ namespace ZScripts.Units
         void Init(DiContainer container)
         {
             _enemy = container.Resolve<EnemyController>();
-            _enemy.SetOnPosition(new IntVector2(3, 3));
+            _enemy.SetOnPosition(new IntVector2(4, 4));
             _enemy.Animate();
+            
+            _enemy2 = container.Resolve<EnemyController>();
+            _enemy2.SetOnPosition(new IntVector2(2, 2));
+            _enemy2.Animate();
         }
     }
 }

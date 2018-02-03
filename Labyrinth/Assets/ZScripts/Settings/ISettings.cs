@@ -7,9 +7,8 @@ namespace ZScripts.Settings
         int MapSectionSize { get; }
         int ActiveAreaSize { get; }
         IntVector2 InitializePosition { get; }
-        string ResiurcesLocation { get; }
+        string MapsResourcesLocation { get; }
+        string UnitsResourcesLocation { get; }
         GameInstaller.MapGraphicsList MapGraphicsList { get; }
-        GameObject PlayerGraphicsObject { get; }
-        GameObject EnemyGraphicsObject { get; }
     }
 }

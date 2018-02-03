@@ -39,7 +39,7 @@ namespace ZScripts
         [Serializable]
         public class MapGraphicsList
         {
-            public GameObject Plane, Cube, Square, Empty, Player, Enemy;
+            public GameObject Plane, Cube, Square, Empty;
         }
     }
 }

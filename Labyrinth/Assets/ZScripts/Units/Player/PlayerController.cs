@@ -8,6 +8,7 @@ namespace ZScripts.Units.Player
     {
         private ISettings _settings;
         private IGameEvents _gameEvents;
+        private DiContainer _container;
 
         protected override void UpdatePosition()
         {
@@ -18,18 +19,20 @@ namespace ZScripts.Units.Player
         [Inject]
         void Construct(
             ISettings settings,
-            IGameEvents gameEvents)
+            IGameEvents gameEvents,
+            DiContainer container)
         {
             _settings = settings;
             _gameEvents = gameEvents;
+            _container = container;
             
             Initialize();
         }
         
         private void Initialize()
         {
-            UnitSettings = new UnitSettings(Settings.UnitSettings.UnitType.Player, 
-                _settings.PlayerGraphicsObject);
+            UnitSettings = _container.Resolve<IUnitSettings>();
+            UnitSettings.Initialize(_settings.UnitsResourcesLocation + "RedMage.json");
             base.Initialize();
 
             CompleteMoveTo += Wait;

@@ -15,9 +15,13 @@ namespace Additional.Tests.SectorLoader
         public int MapSectionSize { get { return _settings.MapSectionSize; }}
         public int ActiveAreaSize { get { return 7; }}
         public IntVector2 InitializePosition { get { return _settings.InitializePosition; }}
-        public string ResiurcesLocation { get { return _settings.ResiurcesLocation; }}
+        public string MapsResourcesLocation { get { return _settings.MapsResourcesLocation; }}
+        public string UnitsResourcesLocation { get; private set; }
         public GameInstaller.MapGraphicsList MapGraphicsList { get { return _settings.MapGraphicsList; }}
-        public GameObject PlayerGraphicsObject { get { return _settings.PlayerGraphicsObject; }}
+        public GameObject PlayerGraphicsObject
+        {
+            get { return null; }
+        }
         public GameObject EnemyGraphicsObject { get; private set; }
     }
 }

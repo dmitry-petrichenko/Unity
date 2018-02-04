@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace ZScripts.Units.PathFinder
 {
@@ -12,6 +13,7 @@ namespace ZScripts.Units.PathFinder
         private IntVector2 _destinationPoint;
         private bool _complete;
         private Vertex2D _currentVertex;
+        private Dictionary<IntVector2, bool> _occupiedIndexes;
 
         public PathFinderController(IGrid grid)
         {
@@ -25,8 +27,17 @@ namespace ZScripts.Units.PathFinder
             _openList = new List<Vertex2D>();
         }
         
-        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2)
+        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, Dictionary<IntVector2, bool> occupiedIndexes = null)
         {
+            if (occupiedIndexes != null)
+            {
+                _occupiedIndexes = occupiedIndexes;
+            }
+            else
+            {
+                _occupiedIndexes = new Dictionary<IntVector2, bool>();
+            }
+            
             _destinationPoint = point2;
             _wayPoints = new List<IntVector2>();
 
@@ -134,13 +145,18 @@ namespace ZScripts.Units.PathFinder
         {
             Vertex2D vertex2D = null;
 
-            if (_grid.GetCell(index) && !IsInCloseList(index))
+            if (_grid.GetCell(index) && !IsInCloseList(index) && !IsInOccupiedIndexses(index))
             {
                 vertex2D = new Vertex2D();
                 vertex2D.Initialize(index, parent, _destinationPoint);
             }
 
             return vertex2D;
+        }
+
+        private bool IsInOccupiedIndexses(IntVector2 Index)
+        {  
+            return _occupiedIndexes.ContainsKey(Index);
         }
 
         private bool IsInCloseList(IntVector2 Index)

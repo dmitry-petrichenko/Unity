@@ -11,6 +11,7 @@ namespace ZScripts.Units
         
         IntVector2 Position { get; }
         bool IsMoving { get; }
+        IntVector2 Destination { get; set; }
 
         event Action MoveToComplete;
         event Action NextPositionOccupiedHandler;

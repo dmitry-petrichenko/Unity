@@ -34,8 +34,10 @@ namespace ZScripts.Units
 
         private void MoveToDirrection(IntVector2 position)
         {
-            List<IntVector2> path = _pathFinderController.GetPath(_subMoveController.Position, position);
+            List<IntVector2> path = _pathFinderController.GetPath(_subMoveController.Position, position, null);
+            _subMoveController.Destination = position;
             _subMoveController.MoveTo(path);
+            
         }
         
         private void ChangeDirrection()

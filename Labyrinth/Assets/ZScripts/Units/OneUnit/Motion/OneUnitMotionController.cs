@@ -13,10 +13,18 @@ namespace ZScripts.Units
         public IntVector2 Position { get; private set; }
         public bool IsMoving { get; private set; }
 
+        private readonly IOccupatedPossitionsTable _occupatedPossitionsTable;
+
+        public OneUnitMotionController(IOccupatedPossitionsTable occupatedPossitionsTable)
+        {
+            _occupatedPossitionsTable = occupatedPossitionsTable;
+        }
+
         public void SetOnPosition(IntVector2 position)
         {
             _unit.transform.position = new Vector3(position.x, 0, position.y);
             Position = position;
+            _occupatedPossitionsTable.SetOccupied(Position);
         }   
 
         public void Initialize(IUnitSettings unitSettings)

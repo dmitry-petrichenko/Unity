@@ -26,5 +26,8 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<IdleAction>().To<IdleAction>().AsTransient();
         Container.Bind<MoveToPositionAction>().To<MoveToPositionAction>().AsTransient();
         Container.Bind<IUnitSettings>().To<UnitSettings>().AsTransient();
+        
+        Container.Bind<ISubMoveController>().To<SubMoveController>().AsTransient();
+        Container.Bind<MoveToHandlerController>().To<MoveToHandlerController>().AsTransient();
     }
 }

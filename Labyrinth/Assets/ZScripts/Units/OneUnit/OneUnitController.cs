@@ -31,7 +31,7 @@ namespace ZScripts.Units
             
             // Initialize behaviour
             _moveController.Initialize(this);
-            _moveController.CompleteMoveTo += MoveCompleteHandler;
+            _moveController.MoveToComplete += MoveCompleteHandler;
             _attackController.Initialize(this);
         }
 

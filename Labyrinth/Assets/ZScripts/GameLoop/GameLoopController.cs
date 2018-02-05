@@ -18,10 +18,10 @@ namespace ZScripts.GameLoop
 
         public void DelayStart(Action action, float time)
         {
-            _gameController.StartCoroutine(WaitAndDoAction(action, time));
+            _gameController.StartCoroutine(WaitAndDoAction22(action, time));
         }
         
-        IEnumerator WaitAndDoAction(Action action, float waitTime) {
+        IEnumerator WaitAndDoAction22(Action action, float waitTime) {
             yield return new WaitForSeconds(waitTime);
             action.Invoke();
         }

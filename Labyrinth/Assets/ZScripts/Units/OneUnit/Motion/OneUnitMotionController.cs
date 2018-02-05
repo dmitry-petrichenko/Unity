@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using ZScripts.GameLoop;
 using ZScripts.Units.Settings;
 
 namespace ZScripts.Units
@@ -15,9 +16,12 @@ namespace ZScripts.Units
 
         private readonly IOccupatedPossitionsTable _occupatedPossitionsTable;
 
-        public OneUnitMotionController(IOccupatedPossitionsTable occupatedPossitionsTable)
+        private IGameLoopController _glp;
+
+        public OneUnitMotionController(IOccupatedPossitionsTable occupatedPossitionsTable, IGameLoopController glp)
         {
             _occupatedPossitionsTable = occupatedPossitionsTable;
+            _glp = glp;
         }
 
         public void SetOnPosition(IntVector2 position)
@@ -47,9 +51,11 @@ namespace ZScripts.Units
                 motionSpeed = _unitSettings.MotionSpeed;
             }
             
-            _unit.transform.DOMove(new Vector3(position.x, 0, position.y), motionSpeed)
-                .OnComplete(CompleteMoveHandler)
-                .SetEase(Ease.Linear);
+            _glp.DelayStart(CompleteMoveHandler, motionSpeed);
+            _unit.transform.position = new Vector3(position.x, 0, position.y);
+            //_unit.transform.DOMove(new Vector3(position.x, 0, position.y), motionSpeed)
+            //   .OnComplete(CompleteMoveHandler)
+            //   .SetEase(Ease.Linear);
         }
 
         private bool IsDiagonal(IntVector2 position1, IntVector2 position2)

@@ -24,8 +24,8 @@ namespace ZScripts.Units.Rotation
         public void Rotate(IntVector2 point1, IntVector2 point2)
         {
             double angle = GetRotation(point1, point2);
-            //_unit.transform.localEulerAngles = new Vector3(0f, (float)angle, 0f);
-            _unit.transform.DOLocalRotate(new Vector3(0f, (float) angle, 0f), 0.3f);
+            _unit.transform.localEulerAngles = new Vector3(0f, (float)angle, 0f);
+            //_unit.transform.DOLocalRotate(new Vector3(0f, (float) angle, 0f), 0.3f);
 
         }
     }

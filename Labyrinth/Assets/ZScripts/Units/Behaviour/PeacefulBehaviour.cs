@@ -1,4 +1,5 @@
 ﻿using Zenject;
+using ZScripts.ActionDistributor;
 using ZScripts.GameLoop;
 using ZScripts.Units.UnitActions;
 
@@ -8,14 +9,14 @@ namespace ZScripts.Units
     {
         private IUnitAction _currentUnitAction;
         private int i = 0;
-        private IGameLoopController _gameloopController;
+        private IHeavyActionDistributor _heavyActionDistributor;
         private readonly DiContainer _container;
         private IOneUnitController _oneUnitController;
 
-        public PeacefulBehaviour(IGameLoopController gameloopController, DiContainer container)
+        public PeacefulBehaviour(IHeavyActionDistributor heavyActionDistributor, DiContainer container)
         {
             _container = container;
-            _gameloopController = gameloopController;
+            _heavyActionDistributor = heavyActionDistributor;
         }
         
         public void Initialize(IOneUnitController oneUnitController)
@@ -43,7 +44,8 @@ namespace ZScripts.Units
 
             _currentUnitAction = GenerateUnitAction();
             _currentUnitAction.OnComplete += Proceed;
-            _currentUnitAction.Start();
+            //_currentUnitAction.Start();
+            _heavyActionDistributor.InvokeDistributed(_currentUnitAction.Start);
         }
 
         private IUnitAction GenerateUnitAction()

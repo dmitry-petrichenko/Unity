@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Zenject;
+using ZScripts.ActionDistributor;
 using ZScripts.GameLoop;
 using ZScripts.Map;
 using ZScripts.Map.Info;
@@ -26,6 +27,7 @@ namespace ZScripts
             Container.Bind<ICameraController>().To<CameraController>().AsSingle();
             Container.Bind<IMapSectorController>().To<MapSectorController>().AsSingle().NonLazy();
             Container.Bind<IGameEvents>().To<GameEvents>().AsSingle();
+            Container.Bind<IHeavyActionDistributor>().To<HeavyActionDistributor>().AsSingle();
             MapInstaller.Install(Container);
             UnitsInstaller.Install(Container);
         }

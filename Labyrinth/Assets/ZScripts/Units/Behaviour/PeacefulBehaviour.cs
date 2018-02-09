@@ -51,7 +51,7 @@ namespace ZScripts.Units
         private IUnitAction GenerateUnitAction()
         {
             IUnitAction action;
-            float a = UnityEngine.Random.Range(0.0f, 1.0f);
+            float a = 1.0f;//UnityEngine.Random.Range(0.0f, 1.0f);
             if (a < 0.5)
             {
                 action = _container.Resolve<IdleAction>();

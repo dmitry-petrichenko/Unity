@@ -4,11 +4,11 @@ namespace ZScripts.Units
 {
     public class OccupatedPossitionsTable : IOccupatedPossitionsTable
     {
-        private Dictionary<IntVector2, bool> _indexes = new Dictionary<IntVector2, bool>();
+        private List<IntVector2> _indexes = new List<IntVector2>();
 
         public void SetOccupied(IntVector2 index)
         {
-            _indexes[index] = false;
+            _indexes.Add(index);
         }
         
         public void SetVacant(IntVector2 index)
@@ -16,19 +16,15 @@ namespace ZScripts.Units
             _indexes.Remove(index);
         }
 
-        public bool IsVacant(IntVector2 index)
+        public bool IsVacantPosition(IntVector2 index)
         {
-            if (_indexes.ContainsKey(index))
-            {
-                return _indexes[index];
-            }
-
-            return true;
+            return !_indexes.Contains(index);
         }
-
-        public Dictionary<IntVector2, bool> GetOccupiedPossitions()
+        
+        public List<IntVector2> GetOccupiedPositions()
         {
             return _indexes;
         }
+
     }
 }

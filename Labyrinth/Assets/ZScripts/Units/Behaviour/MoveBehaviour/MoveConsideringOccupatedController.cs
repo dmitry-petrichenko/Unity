@@ -5,16 +5,16 @@ namespace ZScripts.Units
 {
     public class MoveConsideringOccupatedController
     {
-        private readonly IOccupatedPossitionsTable _occupatedPossitionsTable;
+        private readonly IUnitsTable _unitsTable;
         private ISubMoveController _subMoveController;
         private readonly IPathFinderController _pathFinderController;
-        private Dictionary<IntVector2, bool> _occupiedPossitions;
+        private List<IntVector2> _occupiedPossitions;
         
         public MoveConsideringOccupatedController(
-            IOccupatedPossitionsTable occupatedPossitionsTable,
+            IUnitsTable unitsTable,
             IPathFinderController pathFinderController)
         {
-            _occupatedPossitionsTable = occupatedPossitionsTable;
+            _unitsTable = unitsTable;
             _pathFinderController = pathFinderController;
         }
 
@@ -24,10 +24,10 @@ namespace ZScripts.Units
             _subMoveController.NextPositionOccupiedHandler += NextPositionOccupiedHandler;
         }
 
-        private void NextPositionOccupiedHandler()
+        private void NextPositionOccupiedHandler(IntVector2 occupiedPosition)
         {
             _subMoveController.Cancel();
-            _occupiedPossitions = _occupatedPossitionsTable.GetOccupiedPossitions();
+            _occupiedPossitions = _unitsTable.GetOccupiedPositions();
             RemoveCurrentUnitPosition();
             List<IntVector2> newPath = _pathFinderController.GetPath(_subMoveController.Position,
                 _subMoveController.Destination, _occupiedPossitions);
@@ -36,18 +36,18 @@ namespace ZScripts.Units
 
         private void RemoveCurrentUnitPosition()
         {
-            Dictionary<IntVector2, bool> copy;
+            List<IntVector2> copy;
             copy = CopyDictionary(_occupiedPossitions);
             _occupiedPossitions = copy;
             _occupiedPossitions.Remove(_subMoveController.Position);
         }
         
-        private Dictionary<IntVector2, bool> CopyDictionary(Dictionary<IntVector2, bool> value)
+        private List<IntVector2> CopyDictionary(List<IntVector2> value)
         {
-            Dictionary<IntVector2, bool> copy = new Dictionary<IntVector2, bool>();
+            List<IntVector2> copy = new List<IntVector2>();
             foreach (var index in value)
             {
-                copy[index.Key] = index.Value;
+                copy.Add(index);
             }
 
             return copy;

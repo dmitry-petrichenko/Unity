@@ -9,13 +9,14 @@ namespace ZScripts.Units
     {
         private IOneUnitServicesContainer _oneUnitServicesContainer;
         private List<IntVector2> _path;
-        private IOccupatedPossitionsTable _occupatedPossitionsTable;
+        private IUnitsTable _unitsTable;
+        private IntVector2 _nextOccupiedPossition;
 
         public IntVector2 Destination { get; set; }
 
-        public SubMoveController(IOccupatedPossitionsTable occupatedPossitionsTable)
+        public SubMoveController(IUnitsTable unitsTable)
         {
-            _occupatedPossitionsTable = occupatedPossitionsTable;
+            _unitsTable = unitsTable;
         }
         
         public void Initialize(IOneUnitServicesContainer oneUnitServicesContainer)
@@ -25,6 +26,14 @@ namespace ZScripts.Units
         
         public void MoveTo(List<IntVector2> path)
         {
+            if (path.Count == 0)
+            {
+                if (NoWayToPointHandler != null)
+                {
+                    NoWayToPointHandler(_nextOccupiedPossition);
+                }
+                return;
+            }
             _oneUnitServicesContainer.MotionController.CompleteMove += MoveStepCompleteHandler;
             _oneUnitServicesContainer.MotionController.CompleteMove += MoveNextStep;
             _path = path;
@@ -87,11 +96,12 @@ namespace ZScripts.Units
 
         private bool IsPositionOccupated(IntVector2 nextPosition)
         {
-            if (!_occupatedPossitionsTable.IsVacant(nextPosition))
+            if (!_unitsTable.IsVacantPosition(nextPosition))
             {
                 if (NextPositionOccupiedHandler != null)
                 {
-                    NextPositionOccupiedHandler();
+                    _nextOccupiedPossition = nextPosition;
+                    NextPositionOccupiedHandler(nextPosition);
                 }
 
                 return true;
@@ -102,18 +112,18 @@ namespace ZScripts.Units
 
         private void UpdateOccupationMap(IntVector2 newPosition, IntVector2 previousPosition)
         {
-            _occupatedPossitionsTable.SetOccupied(newPosition);
-            _occupatedPossitionsTable.SetVacant(previousPosition);
+            _unitsTable.SetOccupied(newPosition);
+            _unitsTable.SetVacant(previousPosition);
         }
         
         public void SetOnPosition(IntVector2 position)
         {
             _oneUnitServicesContainer.MotionController.SetOnPosition(position);
-            _occupatedPossitionsTable.SetOccupied(Position);
+            _unitsTable.SetOccupied(Position);
         }
 
         public event Action MoveToComplete;
-        public event Action NextPositionOccupiedHandler;
+        public event Action<IntVector2> NextPositionOccupiedHandler;
         public event Action MoveStepComplete;
         public event Action<IntVector2> NoWayToPointHandler;
     }

@@ -13,7 +13,7 @@ namespace ZScripts.Units.PathFinder
         private IntVector2 _destinationPoint;
         private bool _complete;
         private Vertex2D _currentVertex;
-        private Dictionary<IntVector2, bool> _occupiedIndexes;
+        private List<IntVector2> _occupiedIndexes;
 
         public PathFinderController(IGrid grid)
         {
@@ -27,7 +27,7 @@ namespace ZScripts.Units.PathFinder
             _openList = new List<Vertex2D>();
         }
         
-        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, Dictionary<IntVector2, bool> occupiedIndexes = null)
+        public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, List<IntVector2> occupiedIndexes = null)
         {
             if (occupiedIndexes != null)
             {
@@ -35,11 +35,16 @@ namespace ZScripts.Units.PathFinder
             }
             else
             {
-                _occupiedIndexes = new Dictionary<IntVector2, bool>();
+                _occupiedIndexes = new List<IntVector2>();
             }
             
             _destinationPoint = point2;
             _wayPoints = new List<IntVector2>();
+
+            if (IsInOccupiedIndexses(_destinationPoint))
+            {
+                return _wayPoints;
+            }
 
             Vertex2D first = CreateVertex2D(point, null);
             _openList.Add(first);
@@ -156,7 +161,7 @@ namespace ZScripts.Units.PathFinder
 
         private bool IsInOccupiedIndexses(IntVector2 Index)
         {  
-            return _occupiedIndexes.ContainsKey(Index);
+            return _occupiedIndexes.Contains(Index);
         }
 
         private bool IsInCloseList(IntVector2 Index)

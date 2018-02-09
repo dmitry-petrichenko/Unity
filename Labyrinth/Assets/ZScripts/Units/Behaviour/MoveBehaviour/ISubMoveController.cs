@@ -15,7 +15,7 @@ namespace ZScripts.Units
         IntVector2 Destination { get; set; }
 
         event Action MoveToComplete;
-        event Action NextPositionOccupiedHandler;
+        event Action<IntVector2> NextPositionOccupiedHandler;
         event Action MoveStepComplete;
         event Action<IntVector2> NoWayToPointHandler;
     }

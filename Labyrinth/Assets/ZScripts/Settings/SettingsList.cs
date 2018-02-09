@@ -13,7 +13,7 @@ namespace ZScripts.Settings
         public GameInstaller.MapGraphicsList MapGraphicsList { get; private set; }
         private GameObject _mainScene;
 
-        private const string TEST_MAP_PATH = "TestMap_02/";
+        private const string TEST_MAP_PATH = "TestMap_03/";
 
         public SettingsList(GameInstaller.MapGraphicsList mapGraphicsList)
         {

@@ -30,5 +30,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<MoveToHandlerController>().To<MoveToHandlerController>().AsTransient();
         Container.Bind<IOccupatedPossitionsTable>().To<OccupatedPossitionsTable>().AsSingle();
         Container.Bind<MoveConsideringOccupatedController>().To<MoveConsideringOccupatedController>().AsTransient();
+        Container.Bind<WaitMoveTurnController>().To<WaitMoveTurnController>().AsTransient();
+        Container.Bind<IUnitsTable>().To<UnitsTable>().AsSingle();
     }
 }

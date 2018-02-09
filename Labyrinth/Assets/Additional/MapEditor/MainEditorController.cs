@@ -47,6 +47,7 @@ public class MainEditorController : MonoBehaviour
         _graphicsController.RightClicked += RightClickHandler;
 
         //INIT UNIT
+        /*
         UnitSettings unitSettings = new UnitSettings();
         unitSettings.MotionSpeed = 1.8f.ToString();
         unitSettings.PrefabPath = Prodj.UnitSettings.UNITS_ASSETS_PATH + "SpiderBlack01/unit_prefab";
@@ -56,7 +57,7 @@ public class MainEditorController : MonoBehaviour
         File.WriteAllText(
             _settingsList.UnitsResourcesLocation + "SpiderBlack01.json",
             unitInfo
-        );
+        );*/
         //------------------
         
         //INIT UNIT UPLOAD
@@ -72,7 +73,7 @@ public class MainEditorController : MonoBehaviour
         //_mapInfoInitializer.InitializeSector(_mapTilesInfo, _sectorInfo);
         //------------------
         // INITIALIZE NEW SECTOR
-        IntVector2 sectorIndex = new IntVector2(0, 1);
+        IntVector2 sectorIndex = new IntVector2(0, 0);
         _mapInfoInitializer.CreateSector(
             sectorIndex, 
             new IntVector2(SECTOR_SIZE * SCALE * sectorIndex.x, SECTOR_SIZE * SCALE * sectorIndex.y),

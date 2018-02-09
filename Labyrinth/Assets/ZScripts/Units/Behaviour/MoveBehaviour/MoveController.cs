@@ -8,6 +8,7 @@ namespace ZScripts.Units
         private ISubMoveController _subMoveController;
         private MoveToHandlerController _moveToHandlerController;
         private MoveConsideringOccupatedController _moveConsideringOccupatedController;
+        private WaitMoveTurnController _waitMoveTurnController;
          
         public event Action MoveToComplete;
         public event Action MoveOneStepComplete;
@@ -15,9 +16,11 @@ namespace ZScripts.Units
         public MoveController(
             MoveToHandlerController moveToHandlerController,
             ISubMoveController subMoveController,
-            MoveConsideringOccupatedController moveConsideringOccupatedController
+            MoveConsideringOccupatedController moveConsideringOccupatedController,
+            WaitMoveTurnController waitMoveTurnController
             )
         {
+            _waitMoveTurnController = waitMoveTurnController;
             _subMoveController = subMoveController;
             _moveToHandlerController = moveToHandlerController;
             _moveConsideringOccupatedController = moveConsideringOccupatedController;
@@ -33,6 +36,7 @@ namespace ZScripts.Units
             _subMoveController.Initialize(_unitController);
             _moveToHandlerController.Initialize(_subMoveController);
             _moveConsideringOccupatedController.Initialize(_subMoveController);
+            _waitMoveTurnController.Initialize(_subMoveController, _unitController);
         }
 
         private void MoveOneStepCompleteHandler()

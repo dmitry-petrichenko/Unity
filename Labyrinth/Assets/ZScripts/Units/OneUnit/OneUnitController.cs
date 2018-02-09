@@ -26,11 +26,10 @@ namespace ZScripts.Units
 
         protected void Initialize()
         {
-            base.Initialize();
-            MotionController.CompleteMove += UpdatePosition;
-            
+            base.Initialize();            
             // Initialize behaviour
             _moveController.Initialize(this);
+            _moveController.MoveOneStepComplete += UpdatePosition;
             _moveController.MoveToComplete += MoveCompleteHandler;
             _attackController.Initialize(this);
         }
@@ -45,7 +44,7 @@ namespace ZScripts.Units
 
         public void SetOnPosition(IntVector2 position)
         {
-            MotionController.SetOnPosition(position);
+            _moveController.SetOnPosition(position);
         }
 
         protected virtual void UpdatePosition()

@@ -8,6 +8,7 @@ namespace ZScripts.Units
         void MoveTo(List<IntVector2> path);
         void Cancel();
         void Initialize(IOneUnitServicesContainer oneUnitServicesContainer);
+        void SetOnPosition(IntVector2 position);
         
         IntVector2 Position { get; }
         bool IsMoving { get; }
@@ -16,5 +17,6 @@ namespace ZScripts.Units
         event Action MoveToComplete;
         event Action NextPositionOccupiedHandler;
         event Action MoveStepComplete;
+        event Action<IntVector2> NoWayToPointHandler;
     }
 }

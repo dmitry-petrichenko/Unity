@@ -105,9 +105,16 @@ namespace ZScripts.Units
             _occupatedPossitionsTable.SetOccupied(newPosition);
             _occupatedPossitionsTable.SetVacant(previousPosition);
         }
+        
+        public void SetOnPosition(IntVector2 position)
+        {
+            _oneUnitServicesContainer.MotionController.SetOnPosition(position);
+            _occupatedPossitionsTable.SetOccupied(Position);
+        }
 
         public event Action MoveToComplete;
         public event Action NextPositionOccupiedHandler;
         public event Action MoveStepComplete;
+        public event Action<IntVector2> NoWayToPointHandler;
     }
 }

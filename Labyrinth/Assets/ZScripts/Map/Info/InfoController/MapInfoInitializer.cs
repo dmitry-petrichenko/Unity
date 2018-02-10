@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ZScripts.Map.Info
 {
@@ -32,13 +33,16 @@ namespace ZScripts.Map.Info
 
             MapTileInfo mapTileInfo;
 
-            for (int i = startPoint.x; i < startPoint.x + size.x; i++)
+            for (int i = startPoint.x; i < startPoint.x + size.x; i+= MainEditorController.SCALE)
             {
-                for (int j = startPoint.y; j < startPoint.y + size.y; j++)
+                for (int j = startPoint.y; j < startPoint.y + size.y; j+= MainEditorController.SCALE)
                 {
+                    InitializePlane(new IntVector2(i, j));
+                    /*
                     mapTileInfo = new MapTileInfo();
                     mapTileInfo.Initialize(MapTileType.Square, new IntVector2(i, j), new IntVector2(i, j));
                     _sectorTilesInfo[new IntVector2(i, j)] = mapTileInfo;
+                    */
                 }
             }
         }
@@ -63,7 +67,7 @@ namespace ZScripts.Map.Info
             mapTileInfo.Initialize(MapTileType.Cube, position, new IntVector2(position.x + 1, position.y + 1));
             _sectorTilesInfo[new IntVector2(position.x + 1, position.y + 1)] = mapTileInfo;
         }
-
+        
         public void InitializePlane(IntVector2 position)
         {
             MapTileInfo mapTileInfo;

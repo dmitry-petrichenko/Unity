@@ -6,6 +6,7 @@ using ZScripts.Units.PathFinder;
 using ZScripts.Units.Player;
 using ZScripts.Units.Rotation;
 using ZScripts.Units.Settings;
+using ZScripts.Units.StateInfo;
 using ZScripts.Units.UnitActions;
 
 public class UnitsInstaller : Installer<UnitsInstaller>
@@ -32,5 +33,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<MoveConsideringOccupatedController>().To<MoveConsideringOccupatedController>().AsTransient();
         Container.Bind<WaitMoveTurnController>().To<WaitMoveTurnController>().AsTransient();
         Container.Bind<IUnitsTable>().To<UnitsTable>().AsSingle();
+        Container.Bind<IMovingRandomizer>().To<MovingRandomizer>().AsSingle();
+        Container.Bind<IUnitStateInfo>().To<UnitStateInfo>().AsTransient();
     }
 }

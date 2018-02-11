@@ -3,6 +3,7 @@ using UnityEditor;
 using Zenject;
 using ZScripts.Units.Rotation;
 using ZScripts.Units.Settings;
+using ZScripts.Units.StateInfo;
 
 namespace ZScripts.Units
 {
@@ -11,16 +12,19 @@ namespace ZScripts.Units
         private IOneUnitMotionController _oneUnitMotionController;
         private IOneUnitAnimationController _oneUnitAnimationController;
         private IOneUnitRotationController _oneUnitRotationController;
+        private IUnitStateInfo _unitStateInfo;
         
         [Inject]
         void Construct(
             IOneUnitMotionController oneUnitMotionController,
             IOneUnitAnimationController oneUnitAnimationController,
-            IOneUnitRotationController oneUnitRotationController)
+            IOneUnitRotationController oneUnitRotationController,
+            IUnitStateInfo unitStateInfo)
         {
             _oneUnitRotationController = oneUnitRotationController;
             _oneUnitMotionController = oneUnitMotionController;
             _oneUnitAnimationController = oneUnitAnimationController;
+            _unitStateInfo = unitStateInfo;
         }
 
         public void Initialize()
@@ -38,5 +42,6 @@ namespace ZScripts.Units
         public IOneUnitAnimationController AnimationController { get; set; }
         public IOneUnitRotationController RotationController { get; set; }
         public IUnitSettings UnitSettings { get; set; }
+        public IUnitStateInfo UnitStateInfo { get; set; }
     }
 }

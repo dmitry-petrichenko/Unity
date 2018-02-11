@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using ZScripts.ActionDistributor;
 using ZScripts.Map.Info;
 using ZScripts.Map.View;
 
@@ -8,10 +11,15 @@ namespace ZScripts.Map.Controllers
     {
         private IMapViewController _mapViewController;
         private List<IntVector2> _initializedIndexes;
+        private IHeavyActionDistributor _heavyActionDistributor;
 
-        public MapViewUpdateController(IMapViewController mapViewController)
+        public MapViewUpdateController(
+            IMapViewController mapViewController,
+            IHeavyActionDistributor heavyActionDistributor
+            )
         {
             _mapViewController = mapViewController;
+            _heavyActionDistributor = heavyActionDistributor;
             Initialize();
         }
 
@@ -22,9 +30,12 @@ namespace ZScripts.Map.Controllers
 
         public void InitializeTiles<T>(List<T> tileInfos) where T : ITileView
         {
+            Action action;
             foreach (ITileView tileInfo in tileInfos)
             {
-                InitializeTile(tileInfo);
+                action = () => InitializeTile(tileInfo);
+                //Debug.Log("_heavyActionDistributor.InvokeDistributed(action);");
+                _heavyActionDistributor.InvokeDistributed(action);
             }
         }
 

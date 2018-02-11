@@ -26,7 +26,7 @@ namespace ZScripts.ActionDistributor
             {
                 if (HasActions())
                 {
-                    Debug.Log("_actionsQueue.Dequeue().Invoke()");
+                    //Debug.Log("_actionsQueue.Dequeue().Invoke()");
                     _actionsQueue.Dequeue().Invoke();
                 }
             }
@@ -38,7 +38,7 @@ namespace ZScripts.ActionDistributor
         {
             if (_wasAddedAtThisFrame)
             {
-                Debug.Log("_wasAddedAtThisFrame");
+                //Debug.Log("_wasAddedAtThisFrame");
                 _actionsQueue.Enqueue(action);
             }
             else

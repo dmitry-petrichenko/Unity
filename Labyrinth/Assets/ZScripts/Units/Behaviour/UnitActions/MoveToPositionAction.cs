@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units.UnitActions
 {
@@ -10,36 +11,39 @@ namespace ZScripts.Units.UnitActions
         private IOneUnitController _oneUnitController;
         private IntVector2 startPoint = new IntVector2(0, 0);
         private IntVector2 endPoint = new IntVector2(7, 7);
+        private IGrid _grid;
 
         private List<IntVector2> _vacantPoints;
         
-        public MoveToPositionAction()
+        public MoveToPositionAction(IGrid grid)
         {
             _vacantPoints = new List<IntVector2>();
+            _grid = grid;
+            
+        }
+
+        private void InitializeVacantPoints()
+        {
+            IntVector2 intVector2;
             
             for (int i = startPoint.x; i < endPoint.x; i++)
             {
                 for (int j = startPoint.y; j < endPoint.y; j++)
                 {
-                    _vacantPoints.Add(new IntVector2(i, j));
+                    intVector2 = new IntVector2(i, j);
+                    if (_grid.GetCell(intVector2))
+                    {
+                        if (intVector2.x == _oneUnitController.Position.x &&
+                            intVector2.y == _oneUnitController.Position.y)
+                        {
+                            continue;
+                        }
+                        _vacantPoints.Add(intVector2);
+                    }
                 }
             }
         }
 
-        private List<IntVector2> GenerateVacantPointsWithout(IntVector2 index)
-        {
-            List<IntVector2> newPoints = new List<IntVector2>();
-            
-            foreach (var intVector2 in _vacantPoints)
-            {
-                if (intVector2.x != index.x)
-                {
-                    newPoints.Add(intVector2);
-                }
-            }
-
-            return newPoints;
-        }
 
         private IntVector2 GenerateVacantPoint(List<IntVector2> points)
         {
@@ -53,26 +57,14 @@ namespace ZScripts.Units.UnitActions
             IntVector2 point;
 
             point = GenerateVacantPoint(_vacantPoints);
-            if (point.x == _oneUnitController.Position.x &&
-                point.y == _oneUnitController.Position.y)
-            {
-                point = GenerateVacantPoint(GenerateVacantPointsWithout(point));
-            }
-            if(i == 0)
-            {
-                i++;
-                return new IntVector2(0, 0);//point;
-            }
-            else
-            {
-                return point;
-            }
 
+            return point;
         }
         
         public void Initialize(IOneUnitController oneUnitController)
         {
             _oneUnitController = oneUnitController;
+            InitializeVacantPoints();
         }
         
         public void Start()

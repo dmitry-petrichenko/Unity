@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace ZScripts.Map.View
 {
@@ -23,8 +24,16 @@ namespace ZScripts.Map.View
                 if (Physics.Raycast(ray, out hit, 100))
                 {
                     position = hit.transform.gameObject.transform.parent.gameObject.transform.position;
-                    if (TileClicked != null)
-                        TileClicked(new IntVector2((int) position.x, (int) position.z));
+                    
+                    Plane plane = new Plane(Vector3.up, position);
+                    float point = 0f;
+                    if(plane.Raycast(ray, out point))
+                    {
+                        Vector3 target = ray.GetPoint(point);
+                        
+                        if (TileClicked != null)
+                            TileClicked(new IntVector2((int) target.x, (int) target.z));
+                    }
                 }
             }
 
@@ -37,8 +46,16 @@ namespace ZScripts.Map.View
                 if (Physics.Raycast(ray, out hit, 100))
                 {
                     position = hit.transform.gameObject.transform.parent.gameObject.transform.position;
-                    if (RightClicked != null)
-                        RightClicked(new IntVector2((int) position.x, (int) position.z));
+                    
+                    Plane plane = new Plane(Vector3.up, position);
+                    float point = 0f;
+                    if(plane.Raycast(ray, out point))
+                    {
+                        Vector3 target = ray.GetPoint(point);
+                        
+                        if (RightClicked != null)
+                            RightClicked(new IntVector2((int) target.x, (int) target.z));
+                    }
                 }
             }
             

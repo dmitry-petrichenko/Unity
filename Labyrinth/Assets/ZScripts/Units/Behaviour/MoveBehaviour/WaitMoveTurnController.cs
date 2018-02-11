@@ -36,8 +36,6 @@ namespace ZScripts.Units
             _occupiedPoint = occupiedPoint;
             _oneUnitController.AnimationController.PlayIdleAnimation();
             WaitUnitOnPosition(_occupiedPoint);
-            
-            Debug.Log("NoWayToPointHandler");
         }
 
         private void WaitUnitOnPosition(IntVector2 position)

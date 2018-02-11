@@ -32,6 +32,18 @@ namespace ZScripts.Units
             _enemy2.SetOnPosition(new IntVector2(2, 2));
             _enemy2.Animate();
             
+            EnemyController _enemy5 = container.Resolve<EnemyController>();
+            _enemy5.SetOnPosition(new IntVector2(3, 0));
+            _enemy5.Animate();
+            
+            EnemyController _enemy6 = container.Resolve<EnemyController>();
+            _enemy6.SetOnPosition(new IntVector2(4, 0));
+            _enemy6.Animate();
+            
+            EnemyController _enemy7 = container.Resolve<EnemyController>();
+            _enemy7.SetOnPosition(new IntVector2(5, 0));
+            _enemy7.Animate();
+            
             
         }
     }

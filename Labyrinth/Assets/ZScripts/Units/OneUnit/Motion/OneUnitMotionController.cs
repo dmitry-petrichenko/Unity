@@ -17,6 +17,8 @@ namespace ZScripts.Units
         {
             _unit.transform.position = new Vector3(position.x, 0, position.y);
             Position = position;
+            if (CompleteMove != null)
+                CompleteMove();
         }   
 
         public void Initialize(IUnitSettings unitSettings)
@@ -27,6 +29,7 @@ namespace ZScripts.Units
 
         public void MoveToPosition(IntVector2 position)
         {
+            Position = position;
             IsMoving = true;
             float motionSpeed;
             
@@ -58,7 +61,6 @@ namespace ZScripts.Units
 
         private void CompleteMoveHandler()
         {
-            Position = new IntVector2((int)_unit.transform.position.x, (int)_unit.transform.position.z);
             IsMoving = false;
             if (CompleteMove != null)
                 CompleteMove();

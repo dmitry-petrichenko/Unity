@@ -71,9 +71,9 @@ namespace ZScripts.Units
                 nextPosition = GetNextPossition();
                 if (IsPositionOccupated(nextPosition)) return;
                 UpdateOccupationMap(nextPosition, _oneUnitServicesContainer.MotionController.Position);
-                _oneUnitServicesContainer.MotionController.MoveToPosition(nextPosition);
-                _oneUnitServicesContainer.AnimationController.PlayWalkAnimation();
                 _oneUnitServicesContainer.RotationController.Rotate(_oneUnitServicesContainer.MotionController.Position, nextPosition);
+                _oneUnitServicesContainer.AnimationController.PlayWalkAnimation();
+                _oneUnitServicesContainer.MotionController.MoveToPosition(nextPosition);
             }
             else
             {

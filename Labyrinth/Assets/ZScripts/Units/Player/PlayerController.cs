@@ -36,7 +36,7 @@ namespace ZScripts.Units.Player
             base.Initialize();
 
             CompleteMoveTo += Wait;
-            SetOnPosition(new IntVector2(1, 2));
+            SetOnPosition(new IntVector2(1, 1));
         }
 
         public void Attack(IntVector2 position)

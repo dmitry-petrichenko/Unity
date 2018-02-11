@@ -27,8 +27,6 @@ namespace ZScripts.Map
         {
             _mapInfoUpdateController.DestroyTilesHandler += DestroyTilesHandler;
             _mapInfoUpdateController.InitializeTilesHandler += InitializeTilesHandler;
-            
-            _mapInfoUpdateController.UpdateCurrentPosition(_settings.InitializePosition);
         }
 
         public void UpdateCurrentPosition(IntVector2 position)

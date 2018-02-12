@@ -5,7 +5,7 @@ using ZScripts.Units.Settings;
 
 namespace ZScripts.Units
 {
-    public interface IOneUnitController
+    public interface IOneUnitController : IOneUnitServicesContainer
     {
         IntVector2 Position { get; }
         void MoveTo(IntVector2 position);

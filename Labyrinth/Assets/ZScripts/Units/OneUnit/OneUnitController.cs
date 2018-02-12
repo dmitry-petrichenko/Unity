@@ -33,7 +33,7 @@ namespace ZScripts.Units
             base.Initialize();            
             // Initialize behaviour
             _moveController.Initialize(this);
-            _moveController.MoveOneStepComplete += UpdatePosition;
+            _moveController.StartMove += UpdatePosition;
             _moveController.MoveToComplete += MoveCompleteHandler;
             _attackController.Initialize(this);
             _unitsTable.AddUnit(this);
@@ -54,6 +54,7 @@ namespace ZScripts.Units
 
         protected virtual void UpdatePosition()
         {
+            //Debug.Log("UPDATEPOSITION" + Position.x +" "+ Position.y );
             if (PositionChanged != null)
                 PositionChanged(Position);
         }

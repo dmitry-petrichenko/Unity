@@ -17,11 +17,13 @@ namespace ZScripts.Units
         void Init(DiContainer container)
         {
             _enemy = container.Resolve<EnemyController>();
-            _enemy.SetOnPosition(new IntVector2(3, 5));
+            _enemy.SetOnPosition(new IntVector2(0, 5));
+            //_enemy.MoveTo(new IntVector2(0, 2));
             _enemy.Animate();
             
             EnemyController _enemy4 = container.Resolve<EnemyController>();
-            _enemy4.SetOnPosition(new IntVector2(0, 5));
+            _enemy4.SetOnPosition(new IntVector2(0, 0));
+            //_enemy4.MoveTo(new IntVector2(0, 3));
             _enemy4.Animate();
             
             EnemyController _enemy3 = container.Resolve<EnemyController>();
@@ -43,8 +45,6 @@ namespace ZScripts.Units
             EnemyController _enemy7 = container.Resolve<EnemyController>();
             _enemy7.SetOnPosition(new IntVector2(5, 0));
             _enemy7.Animate();
-            
-            
         }
     }
 }

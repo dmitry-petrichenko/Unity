@@ -13,5 +13,6 @@ namespace ZScripts.Units
         bool IsMoving { get; }
 
         event Action CompleteMove;
+        event Action StartMove;
     }
 }

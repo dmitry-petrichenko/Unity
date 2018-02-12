@@ -2,6 +2,8 @@
 {
     public struct IntVector2
     {
+        public static IntVector2 UNASSIGNET = new IntVector2(-1000, -1000);
+        
         public int x;
         public int y;
 

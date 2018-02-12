@@ -7,24 +7,28 @@ namespace ZScripts.Units
 {
     public class WaitMoveTurnController
     {
-        private IOneUnitServicesContainer _oneUnitController;
+        private IOneUnitController _oneUnitController;
         private readonly IUnitsTable _unitsTable;
         private IOneUnitController _targetUnit;
         private IPathFinderController _pathFinderController;
         private IntVector2 _occupiedPoint;
+        private IMovingRandomizer _movingRandomizer;
         
         public WaitMoveTurnController(
             IUnitsTable unitsTable,
-            IPathFinderController pathFinderController
+            IPathFinderController pathFinderController,
+            IMovingRandomizer movingRandomizer
             )
         {
             _unitsTable = unitsTable;
             _pathFinderController = pathFinderController;
+            _pathFinderController = pathFinderController;
+            _movingRandomizer = movingRandomizer;
         }
         
         private ISubMoveController _subMoveController;
         
-        public void Initialize(ISubMoveController subMoveController, IOneUnitServicesContainer oneUnitController)
+        public void Initialize(ISubMoveController subMoveController, IOneUnitController oneUnitController)
         {
             _oneUnitController = oneUnitController;
             _subMoveController = subMoveController;
@@ -34,13 +38,22 @@ namespace ZScripts.Units
         private void NoWayToPointHandler(IntVector2 occupiedPoint)
         {
             _occupiedPoint = occupiedPoint;
-            _oneUnitController.AnimationController.PlayIdleAnimation();
             WaitUnitOnPosition(_occupiedPoint);
         }
 
         private void WaitUnitOnPosition(IntVector2 position)
         {
             _targetUnit = _unitsTable.GetUnitOnPosition(position);
+            if (_targetUnit.UnitStateInfo.WaitPosition.x == _subMoveController.Position.x &&
+                _targetUnit.UnitStateInfo.WaitPosition.y == _subMoveController.Position.y)
+            {
+                IntVector2 newPosition = _movingRandomizer.GetRandomPoint(_oneUnitController.MotionController.Position);
+                _oneUnitController.MoveTo(newPosition);
+                return;
+            }
+
+            _oneUnitController.Wait();
+            _oneUnitController.UnitStateInfo.WaitPosition = position;
             _targetUnit.PositionChanged += TargetUnitPositionChanged;
         }
 

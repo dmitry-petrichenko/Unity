@@ -5,7 +5,7 @@ using ZScripts.Units.Settings;
 
 namespace ZScripts.Units
 {
-    public class OneUnitMotionController : IOneUnitMotionController
+    public class OneUnitMotionController : EventDispatcher, IOneUnitMotionController
     {
         private GameObject _unit;
         private IUnitSettings _unitSettings;
@@ -17,8 +17,7 @@ namespace ZScripts.Units
         {
             _unit.transform.position = new Vector3(position.x, 0, position.y);
             Position = position;
-            if (CompleteMove != null)
-                CompleteMove();
+            DispatchEvent(StartMove);
         }   
 
         public void Initialize(IUnitSettings unitSettings)
@@ -45,6 +44,8 @@ namespace ZScripts.Units
             _unit.transform.DOMove(new Vector3(position.x, 0, position.y), motionSpeed)
                 .OnComplete(CompleteMoveHandler)
                 .SetEase(Ease.Linear);
+            
+            DispatchEvent(StartMove);
         }
 
         private bool IsDiagonal(IntVector2 position1, IntVector2 position2)
@@ -62,8 +63,7 @@ namespace ZScripts.Units
         private void CompleteMoveHandler()
         {
             IsMoving = false;
-            if (CompleteMove != null)
-                CompleteMove();
+            DispatchEvent(CompleteMove);
         }
 
         public void Wait()
@@ -71,5 +71,6 @@ namespace ZScripts.Units
         }
 
         public event Action CompleteMove;
+        public event Action StartMove;
     }
 }

@@ -7,7 +7,7 @@ namespace ZScripts.Units
 {
     public class WaitMoveTurnController
     {
-        private IOneUnitServicesContainer _oneUnitController;
+        private IOneUnitController _oneUnitController;
         private readonly IUnitsTable _unitsTable;
         private IOneUnitController _targetUnit;
         private IPathFinderController _pathFinderController;
@@ -22,12 +22,13 @@ namespace ZScripts.Units
         {
             _unitsTable = unitsTable;
             _pathFinderController = pathFinderController;
+            _pathFinderController = pathFinderController;
             _movingRandomizer = movingRandomizer;
         }
         
         private ISubMoveController _subMoveController;
         
-        public void Initialize(ISubMoveController subMoveController, IOneUnitServicesContainer oneUnitController)
+        public void Initialize(ISubMoveController subMoveController, IOneUnitController oneUnitController)
         {
             _oneUnitController = oneUnitController;
             _subMoveController = subMoveController;
@@ -42,14 +43,16 @@ namespace ZScripts.Units
 
         private void WaitUnitOnPosition(IntVector2 position)
         {
-            _oneUnitController.AnimationController.PlayIdleAnimation();
-
-            _targetUnit = _unitsTable.GetUnitOnPosition(position);/*
-            if (_targetUnit.UnitStateInfo.WaitPosition.x == _subMoveController.Destination.x &&
-                _targetUnit.UnitStateInfo.WaitPosition.y == _subMoveController.Destination.y)
+            _targetUnit = _unitsTable.GetUnitOnPosition(position);
+            if (_targetUnit.UnitStateInfo.WaitPosition.x == _subMoveController.Position.x &&
+                _targetUnit.UnitStateInfo.WaitPosition.y == _subMoveController.Position.y)
             {
-                _movingRandomizer.GetRandomPoint(_oneUnitController.MotionController.Position);
-            }*/
+                IntVector2 newPosition = _movingRandomizer.GetRandomPoint(_oneUnitController.MotionController.Position);
+                _oneUnitController.MoveTo(newPosition);
+                return;
+            }
+
+            _oneUnitController.Wait();
             _oneUnitController.UnitStateInfo.WaitPosition = position;
             _targetUnit.PositionChanged += TargetUnitPositionChanged;
         }

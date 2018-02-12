@@ -2,9 +2,9 @@
 
 namespace ZScripts.Units
 {
-    public class MoveController
+    public class MoveController : EventDispatcher
     {
-        private IOneUnitServicesContainer _unitController;
+        private IOneUnitController _unitController;
         private ISubMoveController _subMoveController;
         private MoveToHandlerController _moveToHandlerController;
         private MoveConsideringOccupatedController _moveConsideringOccupatedController;
@@ -12,6 +12,7 @@ namespace ZScripts.Units
          
         public event Action MoveToComplete;
         public event Action MoveOneStepComplete;
+        public event Action StartMove;
         
         public MoveController(
             MoveToHandlerController moveToHandlerController,
@@ -26,12 +27,13 @@ namespace ZScripts.Units
             _moveConsideringOccupatedController = moveConsideringOccupatedController;
         }
         
-        public void Initialize(IOneUnitServicesContainer unitController)
+        public void Initialize(IOneUnitController unitController)
         {
             _unitController = unitController;
             
             _subMoveController.MoveToComplete += MoveToCompleteHandler;
-            _unitController.MotionController.CompleteMove += MoveOneStepCompleteHandler;
+            _subMoveController.MoveStepComplete += MoveOneStepCompleteHandler;
+            _subMoveController.StartMove += StartMoveHandler;
             
             _subMoveController.Initialize(_unitController);
             _moveToHandlerController.Initialize(_subMoveController);
@@ -41,20 +43,19 @@ namespace ZScripts.Units
 
         private void MoveOneStepCompleteHandler()
         {
-            if (MoveOneStepComplete != null)
-            {
-                MoveOneStepComplete();
-            }
+            DispatchEvent(MoveOneStepComplete);
         }
 
         private void MoveToCompleteHandler()
         {
-            if (MoveToComplete != null)
-            {
-                MoveToComplete();
-            }
+            DispatchEvent(MoveToComplete);
         }
 
+        private void StartMoveHandler()
+        {
+            DispatchEvent(StartMove);
+        }
+        
         public void MoveTo(IntVector2 position)
         {
             _moveToHandlerController.MoveTo(position);

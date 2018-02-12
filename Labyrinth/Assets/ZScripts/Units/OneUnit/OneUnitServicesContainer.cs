@@ -36,6 +36,7 @@ namespace ZScripts.Units
             MotionController = _oneUnitMotionController;
             AnimationController = _oneUnitAnimationController;
             RotationController = _oneUnitRotationController;
+            UnitStateInfo = _unitStateInfo;
         }
         
         public IOneUnitMotionController MotionController { get; set; }

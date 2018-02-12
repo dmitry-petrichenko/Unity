@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ZScripts.Units
 {
-    public class SubMoveController : ISubMoveController
+    public class SubMoveController : EventDispatcher, ISubMoveController
     {
         private IOneUnitServicesContainer _oneUnitServicesContainer;
         private List<IntVector2> _path;
@@ -22,8 +22,14 @@ namespace ZScripts.Units
         public void Initialize(IOneUnitServicesContainer oneUnitServicesContainer)
         {
             _oneUnitServicesContainer = oneUnitServicesContainer;
+            _oneUnitServicesContainer.MotionController.StartMove += StartMoveHandler;
         }
-        
+
+        private void StartMoveHandler()
+        {
+            DispatchEvent(StartMove);
+        }
+
         public void MoveTo(List<IntVector2> path)
         {
             if (path.Count == 0)
@@ -123,8 +129,9 @@ namespace ZScripts.Units
         }
 
         public event Action MoveToComplete;
-        public event Action<IntVector2> NextPositionOccupiedHandler;
         public event Action MoveStepComplete;
+        public event Action<IntVector2> NextPositionOccupiedHandler;
         public event Action<IntVector2> NoWayToPointHandler;
+        public event Action StartMove;
     }
 }

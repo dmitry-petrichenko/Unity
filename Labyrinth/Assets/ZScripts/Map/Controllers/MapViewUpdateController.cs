@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using FeatureDistri;
 using UnityEngine;
+using Zenject;
 using ZScripts.ActionDistributor;
 using ZScripts.Map.Info;
 using ZScripts.Map.View;
@@ -12,12 +14,15 @@ namespace ZScripts.Map.Controllers
         private IMapViewController _mapViewController;
         private List<IntVector2> _initializedIndexes;
         private IHeavyActionDistributor _heavyActionDistributor;
+        private DiContainer _container;
 
         public MapViewUpdateController(
             IMapViewController mapViewController,
-            IHeavyActionDistributor heavyActionDistributor
+            IHeavyActionDistributor heavyActionDistributor,
+            DiContainer container
             )
         {
+            _container = container;
             _mapViewController = mapViewController;
             _heavyActionDistributor = heavyActionDistributor;
             Initialize();
@@ -31,12 +36,17 @@ namespace ZScripts.Map.Controllers
         public void InitializeTiles<T>(List<T> tileInfos) where T : ITileView
         {
             Action action;
+            
+            HeavyActionsBunchesExecutor heavyActionsBunchesExecutor = _container.Resolve<HeavyActionsBunchesExecutor>();
+            heavyActionsBunchesExecutor.Initialize(3);
+            
             foreach (ITileView tileInfo in tileInfos)
             {
                 action = () => InitializeTile(tileInfo);
-                //Debug.Log("_heavyActionDistributor.InvokeDistributed(action);");
-                _heavyActionDistributor.InvokeDistributed(action);
-            }
+                heavyActionsBunchesExecutor.AddAction(action);
+            }  
+            
+            heavyActionsBunchesExecutor.Execute();
         }
 
         private void InitializeTile(ITileView tileInfo)
@@ -73,11 +83,21 @@ namespace ZScripts.Map.Controllers
 
         public void DestroyTiles<T>(List<T> tileInfos) where T : ITileView
         {
+            Action action;
+            HeavyActionsBunchesExecutor heavyActionsBunchesExecutor = _container.Resolve<HeavyActionsBunchesExecutor>();
+            heavyActionsBunchesExecutor.Initialize(3);
+            
             foreach (ITileView tileInfo in tileInfos)
             {
-                _mapViewController.DestroyTile(tileInfo.ViewPosition);
-                _initializedIndexes.Remove(tileInfo.ViewPosition);
+                action = () =>
+                {
+                    _mapViewController.DestroyTile(tileInfo.ViewPosition);
+                    _initializedIndexes.Remove(tileInfo.ViewPosition);
+                };
+                heavyActionsBunchesExecutor.AddAction(action);
             }
+            
+            heavyActionsBunchesExecutor.Execute();
         }
     }
 }

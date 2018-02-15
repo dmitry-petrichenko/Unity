@@ -10,6 +10,7 @@ namespace ZScripts.Units
         IntVector2 Position { get; }
         void MoveTo(IntVector2 position);
         void Wait();
+        void Wait(IntVector2 position);
         
         event Action<IntVector2> PositionChanged;
         event Action CompleteMoveTo;

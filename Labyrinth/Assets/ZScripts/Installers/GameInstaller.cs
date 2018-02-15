@@ -1,4 +1,5 @@
 using System;
+using FeatureDistri;
 using UnityEngine;
 using Zenject;
 using ZScripts.ActionDistributor;
@@ -28,6 +29,7 @@ namespace ZScripts
             Container.Bind<IMapSectorController>().To<MapSectorController>().AsSingle().NonLazy();
             Container.Bind<IGameEvents>().To<GameEvents>().AsSingle();
             Container.Bind<IHeavyActionDistributor>().To<HeavyActionDistributor>().AsSingle();
+            Container.Bind<HeavyActionsBunchesExecutor>().To<HeavyActionsBunchesExecutor>().AsTransient();
             MapInstaller.Install(Container);
             UnitsInstaller.Install(Container);
         }

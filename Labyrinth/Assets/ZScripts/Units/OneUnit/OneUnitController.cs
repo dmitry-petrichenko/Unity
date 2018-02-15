@@ -73,5 +73,11 @@ namespace ZScripts.Units
         {
             AnimationController.PlayIdleAnimation();
         }
+        
+        public void Wait(IntVector2 position)
+        {
+            RotationController.Rotate(Position, position);
+            AnimationController.PlayIdleAnimation();
+        }
     }
 }

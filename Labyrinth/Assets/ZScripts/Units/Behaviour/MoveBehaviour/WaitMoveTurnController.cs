@@ -52,7 +52,7 @@ namespace ZScripts.Units
                 return;
             }
 
-            _oneUnitController.Wait();
+            _oneUnitController.Wait(_targetUnit.Position);
             _oneUnitController.UnitStateInfo.WaitPosition = position;
             _targetUnit.PositionChanged += TargetUnitPositionChanged;
         }

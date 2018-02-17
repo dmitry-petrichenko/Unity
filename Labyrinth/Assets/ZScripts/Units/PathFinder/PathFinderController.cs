@@ -14,6 +14,10 @@ namespace ZScripts.Units.PathFinder
         private bool _complete;
         private Vertex2D _currentVertex;
         private List<IntVector2> _occupiedIndexes;
+        
+        private List<int> _openListF;
+        private Dictionary<Vertex2D, int> _openListDict;
+
 
         public PathFinderController(IGrid grid)
         {
@@ -25,6 +29,8 @@ namespace ZScripts.Units.PathFinder
         {
             _closeList = new List<IntVector2>();
             _openList = new List<Vertex2D>();
+            _openListF = new List<int>();
+            _openListDict = new Dictionary<Vertex2D, int>();
         }
         
         public List<IntVector2> GetPath(IntVector2 point, IntVector2 point2, List<IntVector2> occupiedIndexes = null)
@@ -40,6 +46,8 @@ namespace ZScripts.Units.PathFinder
             
             _destinationPoint = point2;
             _wayPoints = new List<IntVector2>();
+            _openListF = new List<int>();
+            _openListDict = new Dictionary<Vertex2D, int>();
 
             if (IsInOccupiedIndexses(_destinationPoint))
             {
@@ -47,12 +55,13 @@ namespace ZScripts.Units.PathFinder
             }
 
             Vertex2D first = CreateVertex2D(point, null);
-            _openList.Add(first);
+            AddInOpenList(first);
 
             while (!_complete)
             {
                 _currentVertex = GetMinorVertexByF(_openList);
-                _openList.Remove(_currentVertex);
+
+                RemoveFromOpenList(_currentVertex);
                 _closeList.Add(_currentVertex.Index);
 
                 List<Vertex2D> neighbours = GetNeibhours(_currentVertex);
@@ -66,7 +75,6 @@ namespace ZScripts.Units.PathFinder
                 {
                     _complete = true;
                 }
-
             }
 
             foreach (var vertex2D in _openList)
@@ -112,13 +120,27 @@ namespace ZScripts.Units.PathFinder
                 }
             }
             
+            _openListF.Add(vertex.F);
+            _openListDict.Add(vertex, vertex.F);
             _openList.Add(vertex);
+        }
+        
+        private void RemoveFromOpenList(Vertex2D vertex)
+        {
+            _openList.Remove(vertex);
+            _openListF.Remove(vertex.F);
+            _openListDict.Remove(vertex);
         }
 
         private Vertex2D GetMinorVertexByF(List<Vertex2D> list)
         {
+            _openListF.Sort();
+            return _openListDict.FirstOrDefault(x => x.Value == _openListF[0]).Key;
+            
+            /*
             List<Vertex2D> sorted = list.OrderBy(v => v.F).ToList();
             return sorted[0];
+            */
         }
 
         private List<Vertex2D> GetNeibhours(Vertex2D vertex)

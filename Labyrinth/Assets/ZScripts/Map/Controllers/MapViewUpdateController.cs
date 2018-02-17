@@ -38,7 +38,7 @@ namespace ZScripts.Map.Controllers
             Action action;
             
             HeavyActionsBunchesExecutor heavyActionsBunchesExecutor = _container.Resolve<HeavyActionsBunchesExecutor>();
-            heavyActionsBunchesExecutor.Initialize(3);
+            heavyActionsBunchesExecutor.Initialize(4);
             
             foreach (ITileView tileInfo in tileInfos)
             {
@@ -85,7 +85,7 @@ namespace ZScripts.Map.Controllers
         {
             Action action;
             HeavyActionsBunchesExecutor heavyActionsBunchesExecutor = _container.Resolve<HeavyActionsBunchesExecutor>();
-            heavyActionsBunchesExecutor.Initialize(3);
+            heavyActionsBunchesExecutor.Initialize(4);
             
             foreach (ITileView tileInfo in tileInfos)
             {

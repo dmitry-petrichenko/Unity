@@ -8,5 +8,15 @@
         {
             _unitController = unitController;
         }
+
+        public void Cancel()
+        {
+            
+        }
+        
+        public void Attack(IntVector2 position)
+        {
+            
+        }
     }
 }

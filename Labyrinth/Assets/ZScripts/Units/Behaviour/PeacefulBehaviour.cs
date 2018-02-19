@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using System.Collections.Generic;
+using Zenject;
 using ZScripts.ActionDistributor;
 using ZScripts.GameLoop;
 using ZScripts.Units.UnitActions;
@@ -8,15 +9,20 @@ namespace ZScripts.Units
     public class PeacefulBehaviour : IPeacefulBehaviour
     {
         private IUnitAction _currentUnitAction;
-        private int i = 0;
         private IHeavyActionDistributor _heavyActionDistributor;
         private readonly DiContainer _container;
         private IOneUnitController _oneUnitController;
+        private UnitBehaviourGenerator _unitBehaviourGenerator;
 
-        public PeacefulBehaviour(IHeavyActionDistributor heavyActionDistributor, DiContainer container)
+        public PeacefulBehaviour(
+            IHeavyActionDistributor heavyActionDistributor, 
+            DiContainer container,
+            UnitBehaviourGenerator unitBehaviourGenerator
+            )
         {
             _container = container;
             _heavyActionDistributor = heavyActionDistributor;
+            _unitBehaviourGenerator = unitBehaviourGenerator;
         }
         
         public void Initialize(IOneUnitController oneUnitController)
@@ -26,43 +32,26 @@ namespace ZScripts.Units
 
         public void Start()
         {
-            Proceed();
+            List<IUnitAction> actions = new List<IUnitAction>();
+            
+            IUnitAction action;
+            action = _container.Resolve<IdleAction>();
+            action.Initialize(_oneUnitController);
+            actions.Add(action);
+            
+            action = _container.Resolve<MoveToPositionAction>();
+            action.Initialize(_oneUnitController);
+            actions.Add(action);
+            
+            _unitBehaviourGenerator.Initialize(_oneUnitController, actions);
+            
+            _unitBehaviourGenerator.Start();
         }
 
         public void Stop()
         {
-            
+            _unitBehaviourGenerator.Stop();
         }
 
-        private void Proceed()
-        {
-            if (_currentUnitAction != null)
-            {
-                _currentUnitAction.Destroy();
-                _currentUnitAction.OnComplete -= Proceed;
-            }
-
-            _currentUnitAction = GenerateUnitAction();
-            _currentUnitAction.OnComplete += Proceed;
-            //_currentUnitAction.Start();
-            _heavyActionDistributor.InvokeDistributed(_currentUnitAction.Start);
-        }
-
-        private IUnitAction GenerateUnitAction()
-        {
-            IUnitAction action;
-            float a = 1.0f;//UnityEngine.Random.Range(0.0f, 1.0f);
-            if (a < 0.5)
-            {
-                action = _container.Resolve<IdleAction>();
-            }
-            else
-            {
-                action = _container.Resolve<MoveToPositionAction>(); 
-            }  
-            action.Initialize(_oneUnitController);
-            
-            return action;
-        }
     }
 }

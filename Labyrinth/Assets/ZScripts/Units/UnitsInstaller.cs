@@ -1,6 +1,7 @@
 using Units;
 using Zenject;
 using ZScripts.Units;
+using ZScripts.Units.Behaviour.UnitActions;
 using ZScripts.Units.Enemy;
 using ZScripts.Units.PathFinder;
 using ZScripts.Units.Player;
@@ -25,6 +26,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<EnemyController>().To<EnemyController>().AsTransient();
         Container.Bind<IPeacefulBehaviour>().To<PeacefulBehaviour>().AsTransient();
         Container.Bind<IdleAction>().To<IdleAction>().AsTransient();
+        Container.Bind<AttackAction>().To<AttackAction>().AsTransient();
         Container.Bind<MoveToPositionAction>().To<MoveToPositionAction>().AsTransient();
         Container.Bind<IUnitSettings>().To<UnitSettings>().AsTransient();
         Container.Bind<ISubMoveController>().To<SubMoveController>().AsTransient();
@@ -35,5 +37,6 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<IUnitsTable>().To<UnitsTable>().AsSingle();
         Container.Bind<IMovingRandomizer>().To<MovingRandomizer>().AsSingle();
         Container.Bind<IUnitStateInfo>().To<UnitStateInfo>().AsTransient();
+        Container.Bind<UnitBehaviourGenerator>().To<UnitBehaviourGenerator>().AsTransient();
     }
 }

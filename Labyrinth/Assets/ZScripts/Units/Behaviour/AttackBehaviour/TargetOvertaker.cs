@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units
@@ -28,7 +29,14 @@ namespace ZScripts.Units
         {
             _target = target;
             _target.PositionChanged += OnTargetPositionChanged;
+            _oneUnitController.CompleteMoveTo += OnUnitCompleteMoveTo;
+            
             MoveToTarget();
+        }
+
+        private void OnUnitCompleteMoveTo()
+        {
+            _oneUnitController.CompleteMoveTo -= OnUnitCompleteMoveTo;
         }
 
         private void OnTargetPositionChanged(IntVector2 position)
@@ -46,7 +54,10 @@ namespace ZScripts.Units
 
         private void MoveToTarget()
         {
+            List<IntVector2> path =
+                _pathFinderController.GetPath(_target.Position, _oneUnitController.Position, 1);
             
+            _oneUnitController.MoveTo(path[0]);
         }
 
         private bool PositionInUnitRange(IntVector2 position)
@@ -56,7 +67,7 @@ namespace ZScripts.Units
 
         public void Cancel()
         {
-            
+            _target.PositionChanged -= OnTargetPositionChanged;
         }
     }
 }

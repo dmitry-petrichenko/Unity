@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZScripts.Units.PathFinder
 {
-    public class PathFinderController : IPathFinderController
+    public partial class PathFinderController : IPathFinderController
     {
         private IGrid _grid;
         private List<IntVector2> _closeList;

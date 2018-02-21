@@ -38,5 +38,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<IMovingRandomizer>().To<MovingRandomizer>().AsSingle();
         Container.Bind<IUnitStateInfo>().To<UnitStateInfo>().AsTransient();
         Container.Bind<UnitBehaviourGenerator>().To<UnitBehaviourGenerator>().AsTransient();
+        Container.Bind<IAgressiveBehaviour>().To<AggressiveBehaviour>().AsTransient();
+        Container.Bind<TargetOvertaker>().To<TargetOvertaker>().AsTransient();
     }
 }

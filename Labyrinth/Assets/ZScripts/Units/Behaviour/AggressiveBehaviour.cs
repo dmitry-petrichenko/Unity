@@ -7,6 +7,7 @@ namespace ZScripts.Units
         public event Action Complete;
 
         private IOneUnitController _target;
+        private IOneUnitController _oneUnitController;
         private readonly TargetOvertaker _targetOvertaker;
         private readonly AttackController _attackController;
 
@@ -17,6 +18,15 @@ namespace ZScripts.Units
         {
             _attackController = attackController;
             _targetOvertaker = targetOvertaker;
+        }
+        
+        public void Initialize(IOneUnitController oneUnitController)
+        {
+            _oneUnitController = oneUnitController;
+            
+            _attackController.Initialize(_oneUnitController);
+            _targetOvertaker.Initialize(_oneUnitController);
+            
             _targetOvertaker.Complete += OnCopleteOvertake;
             _targetOvertaker.StartFollow += OnStartFollow;
             _targetOvertaker.TargetMoved += OnTargetMove;
@@ -24,7 +34,8 @@ namespace ZScripts.Units
         
         public void Start(IOneUnitController target)
         {
-            _targetOvertaker.Overtake(target);
+            _target = target;
+            _targetOvertaker.Overtake(_target);
         }
 
         private void OnStartFollow()

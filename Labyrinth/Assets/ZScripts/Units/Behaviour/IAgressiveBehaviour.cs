@@ -8,5 +8,6 @@ namespace ZScripts.Units
         
         void Cancel();
         void Start(IOneUnitController target);
+        void Initialize(IOneUnitController oneUnitController);
     }
 }

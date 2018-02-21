@@ -1,5 +1,6 @@
 ﻿using Zenject;
 using ZScripts.Units.Enemy;
+using ZScripts.Units.Player;
 
 namespace ZScripts.Units
 {
@@ -14,13 +15,14 @@ namespace ZScripts.Units
         }
 
         [Inject]
-        void Init(DiContainer container)
+        void Init(DiContainer container, IPlayerController player)
         {
             _enemy = container.Resolve<EnemyController>();
-            _enemy.SetOnPosition(new IntVector2(0, 5));
-            //_enemy.MoveTo(new IntVector2(0, 2));
-            _enemy.Animate();
-            
+            _enemy.SetOnPosition(new IntVector2(3, 6));
+            //_enemy.MoveTo(new IntVector2(3, 3));
+            _enemy.Attack(player);
+            //_enemy.Animate();
+            /*
             EnemyController _enemy4 = container.Resolve<EnemyController>();
             _enemy4.SetOnPosition(new IntVector2(0, 0));
             //_enemy4.MoveTo(new IntVector2(0, 3));
@@ -45,6 +47,7 @@ namespace ZScripts.Units
             EnemyController _enemy7 = container.Resolve<EnemyController>();
             _enemy7.SetOnPosition(new IntVector2(5, 0));
             _enemy7.Animate();
+            */
         }
     }
 }

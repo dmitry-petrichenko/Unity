@@ -37,6 +37,7 @@ namespace ZScripts.Units
         private void OnUnitCompleteMoveTo()
         {
             _oneUnitController.CompleteMoveTo -= OnUnitCompleteMoveTo;
+            DispatchEvent(Complete);
         }
 
         private void OnTargetPositionChanged(IntVector2 position)
@@ -55,13 +56,33 @@ namespace ZScripts.Units
         private void MoveToTarget()
         {
             List<IntVector2> path =
-                _pathFinderController.GetPath(_target.Position, _oneUnitController.Position, 1);
+                _pathFinderController.GetPath(_target.Position, _oneUnitController.Position, null);
             
             _oneUnitController.MoveTo(path[0]);
         }
 
         private bool PositionInUnitRange(IntVector2 position)
         {
+            if (IsInPosition(new IntVector2(position.x - 1, position.y + 1))) return true;
+            if (IsInPosition(new IntVector2(position.x - 1, position.y))) return true;
+            if (IsInPosition(new IntVector2(position.x - 1, position.y - 1))) return true;
+            if (IsInPosition(new IntVector2(position.x, position.y - 1))) return true;
+            if (IsInPosition(new IntVector2(position.x + 1, position.y - 1))) return true;
+            if (IsInPosition(new IntVector2(position.x + 1, position.y + 1))) return true;
+            if (IsInPosition(new IntVector2(position.x, position.y + 1))) return true;
+            if (IsInPosition(new IntVector2(position.x + 1, position.y))) return true;
+
+            return false;
+        }
+
+        private bool IsInPosition(IntVector2 position)
+        {
+            if (_oneUnitController.Position.x == position.x &&
+                _oneUnitController.Position.y == position.y)
+            {
+                return true;
+            }
+            
             return false;
         }
 

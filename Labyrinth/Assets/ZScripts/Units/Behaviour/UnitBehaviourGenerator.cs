@@ -28,16 +28,16 @@ namespace ZScripts.Units
 
         public void Stop()
         {
-            
-        }
-        
-        private void Proceed()
-        {
             if (_currentUnitAction != null)
             {
                 _currentUnitAction.Destroy();
                 _currentUnitAction.OnComplete -= Proceed;
-            }
+            } 
+        }
+        
+        private void Proceed()
+        {
+            Stop();
 
             _currentUnitAction = GenerateUnitAction();
             _currentUnitAction.OnComplete += Proceed;
@@ -49,8 +49,6 @@ namespace ZScripts.Units
             IUnitAction action;
             int a = (int)UnityEngine.Random.Range(0.0f, _actions.Count);
             action = _actions[a];
-            
-            action.Initialize(_oneUnitController);
             
             return action;
         }

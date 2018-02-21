@@ -12,7 +12,7 @@ namespace ZScripts.Units.Behaviour.UnitActions
         public AttackAction(IGameLoopController gameloopController)
         {
             _gameloopController = gameloopController;
-            delayTime = 1.0f;
+            delayTime = 1.5f;
         }
         
         public void Start()
@@ -23,17 +23,17 @@ namespace ZScripts.Units.Behaviour.UnitActions
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Destroy()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Initialize(IOneUnitController oneUnitController)
         {
-            throw new NotImplementedException();
+               
         }
         
         public void Initialize(IOneUnitController oneUnitController, IntVector2 position)

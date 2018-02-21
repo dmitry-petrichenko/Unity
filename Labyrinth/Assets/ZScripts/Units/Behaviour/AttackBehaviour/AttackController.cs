@@ -26,11 +26,13 @@ namespace ZScripts.Units
 
         public void Cancel()
         {
-            
+            _unitBehaviourGenerator.Stop();
         }
         
         public void Attack(IntVector2 position)
         {
+            _unitController.RotationController.Rotate(_unitController.Position, position);
+            
             List<IUnitAction> actions = new List<IUnitAction>();
             
             AttackAction action;

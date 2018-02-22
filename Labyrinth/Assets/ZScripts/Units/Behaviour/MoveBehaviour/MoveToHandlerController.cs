@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units
@@ -23,11 +24,13 @@ namespace ZScripts.Units
         {
             if (_subMoveController.IsMoving)
             {
+                Debug.Log("_newPosition" + " " + position.x + " " + position.y);
                 _newPosition = position;
                 ChangeDirrection();
             }
             else
             {
+                Debug.Log("MoveToDirrection" + " " + position.x + " " + position.y);
                 MoveToDirrection(position);
             }
         }
@@ -37,17 +40,18 @@ namespace ZScripts.Units
             List<IntVector2> path = _pathFinderController.GetPath(_subMoveController.Position, position, null);
             _subMoveController.Destination = position;
             _subMoveController.MoveTo(path);
-            
         }
         
         private void ChangeDirrection()
         {
+            _subMoveController.MoveStepComplete -= OnChangeDirrectionMoveCmplete;
             _subMoveController.Cancel();
             _subMoveController.MoveStepComplete += OnChangeDirrectionMoveCmplete;
         }
         
         private void OnChangeDirrectionMoveCmplete()
         {
+            Debug.Log("OnChangeDirrectionMoveCmplete");
             _subMoveController.MoveStepComplete -= OnChangeDirrectionMoveCmplete;
             MoveToDirrection(_newPosition);
         }

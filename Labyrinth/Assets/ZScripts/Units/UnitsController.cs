@@ -16,7 +16,7 @@ namespace ZScripts.Units
 
         [Inject]
         void Init(DiContainer container, IPlayerController player)
-        {
+        {/*
             _enemy = container.Resolve<EnemyController>();
             _enemy.SetOnPosition(new IntVector2(3, 6));
             //_enemy.MoveTo(new IntVector2(3, 3));

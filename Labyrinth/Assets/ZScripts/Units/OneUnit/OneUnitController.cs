@@ -13,7 +13,6 @@ namespace ZScripts.Units
         public event Action CompleteMoveTo;
 
         private MoveController _moveController;
-        private AttackController _attackController;
         private IUnitsTable _unitsTable;
         
         [Inject]
@@ -25,7 +24,6 @@ namespace ZScripts.Units
         {
             _unitsTable = unitsTable;
             _moveController = moveController;
-            _attackController = attackController;
         }
 
         protected void Initialize()
@@ -35,7 +33,6 @@ namespace ZScripts.Units
             _moveController.Initialize(this);
             _moveController.StartMove += UpdatePosition;
             _moveController.MoveToComplete += MoveCompleteHandler;
-            _attackController.Initialize(this);
             _unitsTable.AddUnit(this);
         }
 

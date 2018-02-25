@@ -7,7 +7,6 @@ namespace ZScripts.Units
     {
         void MoveTo(List<IntVector2> path);
         void Cancel();
-        void Initialize(IOneUnitServicesContainer oneUnitServicesContainer);
         void SetOnPosition(IntVector2 position);
         
         IntVector2 Position { get; }

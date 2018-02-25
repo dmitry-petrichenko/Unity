@@ -1,25 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using Units;
 using UnityEditor;
 using UnityEngine;
+using ZScripts.Units.Rotation;
 
 namespace ZScripts.Units
 {
     public class SubMoveController : EventDispatcher, ISubMoveController
     {
         private IOneUnitServicesContainer _oneUnitServicesContainer;
+        private IOneUnitRotationController _rotationController;
+        private IOneUnitAnimationController _animationController;
+        private IOneUnitMotionController _motionController;
         private List<IntVector2> _path;
         private IUnitsTable _unitsTable;
         private IntVector2 _nextOccupiedPossition;
 
         public IntVector2 Destination { get; set; }
 
-        public SubMoveController(IUnitsTable unitsTable)
+        public SubMoveController(
+            IUnitsTable unitsTable,
+            IOneUnitRotationController oneUnitRotationController,
+            IOneUnitAnimationController oneUnitAnimationController,
+            IOneUnitMotionController oneUnitMotionController
+            )
         {
             _unitsTable = unitsTable;
+            _rotationController = oneUnitRotationController;
+            _animationController = oneUnitAnimationController;
+            _animationController = oneUnitAnimationController;
+            _motionController = oneUnitMotionController;
         }
         
-        public void Initialize(IOneUnitServicesContainer oneUnitServicesContainer)
+        public void Initialize(
+            IOneUnitServicesContainer oneUnitServicesContainer
+            )
         {
             _oneUnitServicesContainer = oneUnitServicesContainer;
             _oneUnitServicesContainer.MotionController.StartMove += StartMoveHandler;
@@ -40,8 +56,8 @@ namespace ZScripts.Units
                 }
                 return;
             }
-            _oneUnitServicesContainer.MotionController.CompleteMove += MoveStepCompleteHandler;
-            _oneUnitServicesContainer.MotionController.CompleteMove += MoveNextStep;
+            _motionController.CompleteMove += MoveStepCompleteHandler;
+            _motionController.CompleteMove += MoveNextStep;
             _path = path;
             MoveNextStep();
         }
@@ -56,17 +72,17 @@ namespace ZScripts.Units
 
         public void Cancel()
         {
-            _oneUnitServicesContainer.MotionController.CompleteMove -= MoveNextStep;
+            _motionController.CompleteMove -= MoveNextStep;
         }
 
         public IntVector2 Position
         {
-            get { return _oneUnitServicesContainer.MotionController.Position; }
+            get { return _motionController.Position; }
         }
 
         public bool IsMoving
         {
-            get { return _oneUnitServicesContainer.MotionController.IsMoving; }
+            get { return _motionController.IsMoving; }
         }
 
         private void MoveNextStep()
@@ -76,14 +92,14 @@ namespace ZScripts.Units
             {
                 nextPosition = GetNextPossition();
                 if (IsPositionOccupated(nextPosition)) return;
-                UpdateOccupationMap(nextPosition, _oneUnitServicesContainer.MotionController.Position);
-                _oneUnitServicesContainer.RotationController.Rotate(_oneUnitServicesContainer.MotionController.Position, nextPosition);
-                _oneUnitServicesContainer.AnimationController.PlayWalkAnimation();
-                _oneUnitServicesContainer.MotionController.MoveToPosition(nextPosition);
+                UpdateOccupationMap(nextPosition, _motionController.Position);
+                _rotationController.Rotate(_motionController.Position, nextPosition);
+                _animationController.PlayWalkAnimation();
+                _motionController.MoveToPosition(nextPosition);
             }
             else
             {
-                _oneUnitServicesContainer.MotionController.CompleteMove -= MoveNextStep;
+                _motionController.CompleteMove -= MoveNextStep;
                 
                 if (MoveToComplete != null)
                 {
@@ -124,7 +140,7 @@ namespace ZScripts.Units
         
         public void SetOnPosition(IntVector2 position)
         {
-            _oneUnitServicesContainer.MotionController.SetOnPosition(position);
+            _motionController.SetOnPosition(position);
             _unitsTable.SetOccupied(Position);
         }
 

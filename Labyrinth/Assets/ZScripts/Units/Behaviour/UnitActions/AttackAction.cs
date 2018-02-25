@@ -1,4 +1,5 @@
 ﻿using System;
+using Units;
 using ZScripts.GameLoop;
 
 namespace ZScripts.Units.Behaviour.UnitActions
@@ -8,16 +9,20 @@ namespace ZScripts.Units.Behaviour.UnitActions
         private float delayTime;
         private IGameLoopController _gameloopController;
         private IOneUnitController _oneUnitController;
+        private IOneUnitAnimationController _animationController;
         
-        public AttackAction(IGameLoopController gameloopController)
+        public AttackAction(
+            IGameLoopController gameloopController,
+            IOneUnitAnimationController animationController)
         {
             _gameloopController = gameloopController;
+            _animationController = animationController;
             delayTime = 1.5f;
         }
         
         public void Start()
         {
-            _oneUnitController.AnimationController.PlayAttackAnimation();
+            _animationController.PlayAttackAnimation();
             _gameloopController.DelayStart(TriggerComplete, delayTime);
         }
 
@@ -34,11 +39,6 @@ namespace ZScripts.Units.Behaviour.UnitActions
         public void Initialize(IOneUnitController oneUnitController)
         {
                
-        }
-        
-        public void Initialize(IOneUnitController oneUnitController, IntVector2 position)
-        {
-            _oneUnitController = oneUnitController;
         }
         
         private void TriggerComplete()

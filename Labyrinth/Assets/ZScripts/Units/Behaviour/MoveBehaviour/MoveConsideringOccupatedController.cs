@@ -6,21 +6,25 @@ namespace ZScripts.Units
     public class MoveConsideringOccupatedController
     {
         private readonly IUnitsTable _unitsTable;
-        private ISubMoveController _subMoveController;
         private readonly IPathFinderController _pathFinderController;
+        private readonly ISubMoveController _subMoveController;
         private List<IntVector2> _occupiedPossitions;
         
         public MoveConsideringOccupatedController(
             IUnitsTable unitsTable,
-            IPathFinderController pathFinderController)
+            IPathFinderController pathFinderController,
+            ISubMoveController subMoveController
+            )
         {
             _unitsTable = unitsTable;
+            _subMoveController = subMoveController;
             _pathFinderController = pathFinderController;
+
+            Initialize();
         }
 
-        public void Initialize(ISubMoveController subMoveController)
+        public void Initialize()
         {
-            _subMoveController = subMoveController;
             _subMoveController.NextPositionOccupiedHandler += NextPositionOccupiedHandler;
         }
 

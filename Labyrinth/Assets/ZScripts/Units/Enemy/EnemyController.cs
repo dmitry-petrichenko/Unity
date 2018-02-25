@@ -8,18 +8,21 @@ namespace ZScripts.Units.Enemy
     {
         private IPeacefulBehaviour _peacefulBehaviour; 
         private IAgressiveBehaviour _agressiveBehaviour; 
+        private IUnitSettings _unitSettings; 
         private ISettings _settings;
         private DiContainer _container;
 
         [Inject]
         void Construct(
             ISettings settings,
+            IUnitSettings unitSettings,
             IPeacefulBehaviour peacefulBehaviour,
             IAgressiveBehaviour agressiveBehaviour,
             DiContainer container
         )
         {
             _settings = settings;
+            _unitSettings = unitSettings;
             _peacefulBehaviour = peacefulBehaviour;
             _agressiveBehaviour = agressiveBehaviour;
             _container = container;
@@ -29,7 +32,7 @@ namespace ZScripts.Units.Enemy
             
         void Initialize()
         {
-            UnitSettings = _container.Resolve<IUnitSettings>();
+            UnitSettings = _unitSettings;
             UnitSettings.Initialize(_settings.UnitsResourcesLocation + "SpiderBlack01.json");
             base.Initialize();
             

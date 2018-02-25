@@ -31,14 +31,13 @@ namespace ZScripts.Units
             _animationController = oneUnitAnimationController;
             _animationController = oneUnitAnimationController;
             _motionController = oneUnitMotionController;
+
+            Initialize();
         }
         
-        public void Initialize(
-            IOneUnitServicesContainer oneUnitServicesContainer
-            )
+        public void Initialize()
         {
-            _oneUnitServicesContainer = oneUnitServicesContainer;
-            _oneUnitServicesContainer.MotionController.StartMove += StartMoveHandler;
+            _motionController.StartMove += StartMoveHandler;
         }
 
         private void StartMoveHandler()

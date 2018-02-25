@@ -37,7 +37,7 @@ namespace ZScripts.Map.Controllers
             _mapSectionSize = _settings.MapSectionSize;
             _halfActiveAreaX = _halfActiveAreaY = _settings.ActiveAreaSize / 2;
 
-            _currentPosition = new IntVector2(-100, -100);
+            _currentPosition = IntVector2.UNASSIGNET;
         }
 
         public void UpdateCurrentPosition(IntVector2 currentPosition)

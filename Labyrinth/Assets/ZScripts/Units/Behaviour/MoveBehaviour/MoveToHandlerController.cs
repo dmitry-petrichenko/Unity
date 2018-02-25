@@ -10,27 +10,25 @@ namespace ZScripts.Units
         private IntVector2 _newPosition;
         private IPathFinderController _pathFinderController;
 
-        public MoveToHandlerController(IPathFinderController pathFinderController)
-        {
-            _pathFinderController = pathFinderController;
-        }
-        
-        public void Initialize(ISubMoveController subMoveController)
+        public MoveToHandlerController(
+            IPathFinderController pathFinderController,
+            ISubMoveController subMoveController)
         {
             _subMoveController = subMoveController;
+            _pathFinderController = pathFinderController;
         }
 
         public void MoveTo(IntVector2 position)
         {
             if (_subMoveController.IsMoving)
             {
-                Debug.Log("_newPosition" + " " + position.x + " " + position.y);
+                //Debug.Log("_newPosition" + " " + position.x + " " + position.y);
                 _newPosition = position;
                 ChangeDirrection();
             }
             else
             {
-                Debug.Log("MoveToDirrection" + " " + position.x + " " + position.y);
+                //Debug.Log("MoveToDirrection" + " " + position.x + " " + position.y);
                 MoveToDirrection(position);
             }
         }

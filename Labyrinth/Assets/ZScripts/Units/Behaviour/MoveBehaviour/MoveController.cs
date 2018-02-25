@@ -36,7 +36,6 @@ namespace ZScripts.Units
             _subMoveController.StartMove += StartMoveHandler;
             
             _subMoveController.Initialize(_unitController);
-            _moveToHandlerController.Initialize(_subMoveController);
             _moveConsideringOccupatedController.Initialize(_subMoveController);
             _waitMoveTurnController.Initialize(_subMoveController, _unitController);
         }

@@ -11,7 +11,6 @@ namespace ZScripts.Units
         private IOneUnitController _oneUnitController;
         private readonly IUnitsTable _unitsTable;
         private IOneUnitController _targetUnit;
-        private IPathFinderController _pathFinderController;
         private IntVector2 _occupiedPoint;
         private IMovingRandomizer _movingRandomizer;
         private IOneUnitMotionController _motionController;
@@ -19,15 +18,12 @@ namespace ZScripts.Units
         
         public WaitMoveTurnController(
             IUnitsTable unitsTable,
-            IPathFinderController pathFinderController,
             IMovingRandomizer movingRandomizer,
             IOneUnitMotionController oneUnitMotionController,
             IUnitStateInfo unitStateInfo
             )
         {
             _unitsTable = unitsTable;
-            _pathFinderController = pathFinderController;
-            _pathFinderController = pathFinderController;
             _movingRandomizer = movingRandomizer;
             _motionController = oneUnitMotionController;
             _unitStateInfo = unitStateInfo;
@@ -51,8 +47,7 @@ namespace ZScripts.Units
         private void WaitUnitOnPosition(IntVector2 position)
         {
             _targetUnit = _unitsTable.GetUnitOnPosition(position);
-            if (_unitStateInfo.WaitPosition.x == _subMoveController.Position.x &&
-                _unitStateInfo.WaitPosition.y == _subMoveController.Position.y)
+            if (IntVector2.AreEqual(_targetUnit.UnitStateInfo.WaitPosition, _motionController.Position))
             {
                 IntVector2 newPosition = _movingRandomizer.GetRandomPoint(_motionController.Position);
                 _oneUnitController.MoveTo(newPosition);
@@ -79,10 +74,7 @@ namespace ZScripts.Units
 
         private void MoveToDestination(IntVector2 destination)
         {
-            List<IntVector2> path =
-                _pathFinderController.GetPath(_subMoveController.Position, _subMoveController.Destination, null);
-            
-            _subMoveController.MoveTo(path);
+            _oneUnitController.MoveTo( _subMoveController.Destination);
         }
     }
 }

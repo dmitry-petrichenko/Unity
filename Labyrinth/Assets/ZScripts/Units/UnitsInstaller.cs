@@ -17,8 +17,6 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         Container.Bind<UnitsController>().To<UnitsController>().AsSingle().NonLazy();
         Container.Bind<IPathFinderController>().To<PathFinderController>().AsSingle();
         Container.Bind<IGrid>().To<Grid>().AsSingle();
-        Container.Bind<IdleAction>().To<IdleAction>().AsTransient();
-        Container.Bind<AttackAction>().To<AttackAction>().AsTransient();
         Container.Bind<MoveToPositionAction>().To<MoveToPositionAction>().AsTransient();
         Container.Bind<IOccupatedPossitionsTable>().To<OccupatedPossitionsTable>().AsSingle();
         Container.Bind<IUnitsTable>().To<UnitsTable>().AsSingle();
@@ -57,5 +55,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         subContainer.Bind<MoveConsideringOccupatedController>().To<MoveConsideringOccupatedController>().AsSingle();
         subContainer.Bind<IUnitStateInfo>().To<UnitStateInfo>().AsSingle();
         subContainer.Bind<TargetOvertaker>().To<TargetOvertaker>().AsSingle();
+        subContainer.Bind<IdleAction>().To<IdleAction>().AsTransient();
+        subContainer.Bind<AttackAction>().To<AttackAction>().AsTransient();
     }
 }

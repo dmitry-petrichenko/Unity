@@ -59,8 +59,15 @@ namespace ZScripts.Units
             List<IntVector2> path =
                 _pathFinderController.GetPath(_target.Position, _oneUnitController.Position, null);
 
-            Debug.Log("_oneUnitController.MoveTo("+ path[0].x + " " + path[0].y);
-            _oneUnitController.MoveTo(path[0]);
+            if (IntVector2.AreEqual(path[0], _oneUnitController.Position))
+            {
+                DispatchEvent(Complete);
+            }
+            else
+            {
+                _oneUnitController.MoveTo(path[0]);
+            }
+
         }
 
         private bool PositionInUnitRange(IntVector2 position)

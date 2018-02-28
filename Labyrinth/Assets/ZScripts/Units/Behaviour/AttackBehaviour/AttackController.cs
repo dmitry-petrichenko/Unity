@@ -2,6 +2,7 @@
 using Zenject;
 using ZScripts.Units.Behaviour.UnitActions;
 using ZScripts.Units.Rotation;
+using ZScripts.Units.StateInfo;
 
 namespace ZScripts.Units
 {
@@ -11,21 +12,26 @@ namespace ZScripts.Units
         private UnitBehaviourGenerator _unitBehaviourGenerator;
         private IOneUnitRotationController _oneUnitRotationController;
         private DiContainer _container;
+        private OvertakeOccupatedPositionController _overtakeOccupatedPositionController;
 
         public AttackController(
             UnitBehaviourGenerator unitBehaviourGenerator,
             DiContainer container,
-            IOneUnitRotationController oneUnitRotationController
+            IOneUnitRotationController oneUnitRotationController,
+            OvertakeOccupatedPositionController overtakeOccupatedPositionController,
+            IUnitStateInfo unitStateInfo
             )
         {
             _container = container;
             _unitBehaviourGenerator = unitBehaviourGenerator;
             _oneUnitRotationController = oneUnitRotationController;
+            _overtakeOccupatedPositionController = overtakeOccupatedPositionController;
         }
 
         public void Initialize(IOneUnitController unitController)
         {
             _unitController = unitController;
+            _overtakeOccupatedPositionController.Initialize(_unitController);
         }
 
         public void Cancel()
@@ -35,6 +41,7 @@ namespace ZScripts.Units
         
         public void Attack(IntVector2 position)
         {
+            // TODO MAKE BETTER 
             _oneUnitRotationController.Rotate(_unitController.Position, position);
             
             List<IUnitAction> actions = new List<IUnitAction>();

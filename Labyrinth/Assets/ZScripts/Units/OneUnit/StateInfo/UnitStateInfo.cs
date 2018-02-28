@@ -8,5 +8,7 @@
         }
         
         public IntVector2 WaitPosition { get; set; }
+        public bool IsAttacking { get; set; }
+        public IOneUnitController AttackTarget { get; set; }
     }
 }

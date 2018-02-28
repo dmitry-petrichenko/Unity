@@ -32,14 +32,14 @@ namespace ZScripts.Units
             _enemy3.SetOnPosition(new IntVector2(0, 2));
             //_enemy3.Animate();
             _enemy3.Attack(player);
-            /*
+            
             _enemy2 = container.Resolve<EnemyController>();
             _enemy2.SetOnPosition(new IntVector2(0, 0));
-            _enemy2.Animate();
+            _enemy2.Attack(player);
             
             EnemyController _enemy5 = container.Resolve<EnemyController>();
             _enemy5.SetOnPosition(new IntVector2(0, 5));
-            _enemy5.Animate();
+            _enemy5.Attack(player);
             /*
             EnemyController _enemy6 = container.Resolve<EnemyController>();
             _enemy6.SetOnPosition(new IntVector2(4, 2));

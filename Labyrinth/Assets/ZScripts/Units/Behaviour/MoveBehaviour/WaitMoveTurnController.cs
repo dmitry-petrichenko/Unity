@@ -15,27 +15,31 @@ namespace ZScripts.Units
         private IMovingRandomizer _movingRandomizer;
         private IOneUnitMotionController _motionController;
         private IUnitStateInfo _unitStateInfo;
+        private INoWayEventRouter _noWayEventRouter;
         
         public WaitMoveTurnController(
             IUnitsTable unitsTable,
             IMovingRandomizer movingRandomizer,
             IOneUnitMotionController oneUnitMotionController,
-            IUnitStateInfo unitStateInfo
+            IUnitStateInfo unitStateInfo,
+            INoWayEventRouter noWayEventRouter,
+            ISubMoveController subMoveController
             )
         {
             _unitsTable = unitsTable;
             _movingRandomizer = movingRandomizer;
             _motionController = oneUnitMotionController;
             _unitStateInfo = unitStateInfo;
+            _noWayEventRouter = noWayEventRouter;
+            _subMoveController = subMoveController;
         }
         
         private ISubMoveController _subMoveController;
         
-        public void Initialize(ISubMoveController subMoveController, IOneUnitController oneUnitController)
+        public void Initialize(IOneUnitController oneUnitController)
         {
             _oneUnitController = oneUnitController;
-            _subMoveController = subMoveController;
-            _subMoveController.NoWayToPointHandler += NoWayToPointHandler;
+            _noWayEventRouter.NoWayToPointHandler += NoWayToPointHandler;
         }
 
         private void NoWayToPointHandler(IntVector2 occupiedPoint)

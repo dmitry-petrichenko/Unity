@@ -1,4 +1,5 @@
 ﻿using System;
+using ZScripts.Units.StateInfo;
 
 namespace ZScripts.Units
 {
@@ -10,14 +11,17 @@ namespace ZScripts.Units
         private IOneUnitController _oneUnitController;
         private readonly TargetOvertaker _targetOvertaker;
         private readonly AttackController _attackController;
+        private readonly IUnitStateInfo _unitStateInfo;
 
         public AggressiveBehaviour(
             TargetOvertaker targetOvertaker,
-            AttackController attackController
+            AttackController attackController,
+            IUnitStateInfo unitStateInfo 
             )
         {
             _attackController = attackController;
             _targetOvertaker = targetOvertaker;
+            _unitStateInfo = unitStateInfo;
         }
         
         public void Initialize(IOneUnitController oneUnitController)
@@ -34,6 +38,8 @@ namespace ZScripts.Units
         
         public void Start(IOneUnitController target)
         {
+            _unitStateInfo.IsAttacking = true;
+            _unitStateInfo.AttackTarget = target;
             _target = target;
             _targetOvertaker.Overtake(_target);
         }

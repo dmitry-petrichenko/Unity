@@ -57,5 +57,7 @@ public class UnitsInstaller : Installer<UnitsInstaller>
         subContainer.Bind<TargetOvertaker>().To<TargetOvertaker>().AsSingle();
         subContainer.Bind<IdleAction>().To<IdleAction>().AsTransient();
         subContainer.Bind<AttackAction>().To<AttackAction>().AsTransient();
+        subContainer.Bind<INoWayEventRouter>().To<NoWayEventRouter>().AsSingle();
+        subContainer.Bind<OvertakeOccupatedPositionController>().To<OvertakeOccupatedPositionController>().AsSingle();
     }
 }

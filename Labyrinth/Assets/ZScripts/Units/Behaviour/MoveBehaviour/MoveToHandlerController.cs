@@ -22,13 +22,11 @@ namespace ZScripts.Units
         {
             if (_subMoveController.IsMoving)
             {
-                //Debug.Log("_newPosition" + " " + position.x + " " + position.y);
                 _newPosition = position;
                 ChangeDirrection();
             }
             else
             {
-                //Debug.Log("MoveToDirrection" + " " + position.x + " " + position.y);
                 MoveToDirrection(position);
             }
         }
@@ -49,7 +47,6 @@ namespace ZScripts.Units
         
         private void OnChangeDirrectionMoveCmplete()
         {
-            Debug.Log("OnChangeDirrectionMoveCmplete");
             _subMoveController.MoveStepComplete -= OnChangeDirrectionMoveCmplete;
             MoveToDirrection(_newPosition);
         }

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using ZScripts.Units.PathFinder;
-using ZScripts.Units.Player;
-using ZScripts.Units.StateInfo;
+﻿using ZScripts.Units.StateInfo;
 
 namespace ZScripts.Units
 {

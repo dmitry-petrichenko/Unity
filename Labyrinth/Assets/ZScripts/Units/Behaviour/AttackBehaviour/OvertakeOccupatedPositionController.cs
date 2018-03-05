@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using ZScripts.Units.PathFinder;
 using ZScripts.Units.StateInfo;
 
@@ -12,6 +14,7 @@ namespace ZScripts.Units
         private ISubMoveController _subMoveController;
         private IUnitStateInfo _unitStateInfo;
         private IGrid _grid;
+        private List<KeyValuePair<IntVector2, int>> _freePositions;
         
         public OvertakeOccupatedPositionController(
             INoWayEventRouter noWayEventRouter,
@@ -39,7 +42,8 @@ namespace ZScripts.Units
             IntVector2 freePosition = GetFirstFreePositionInUnitRange(_unitStateInfo.AttackTarget.Position);
             if (IntVector2.AreEqual(freePosition, IntVector2.UNASSIGNET))
             {
-               Debug.Log("NO_WAY_TO_ATTACK_POINT");
+                _oneUnitController.Wait(position);
+                return;
             }
             
             _oneUnitController.MoveTo(freePosition);
@@ -47,24 +51,75 @@ namespace ZScripts.Units
 
         private IntVector2 GetFirstFreePositionInUnitRange(IntVector2 position)
         {
+            _freePositions = new List<KeyValuePair<IntVector2, int>>();
             IntVector2 position1 = new IntVector2(position.x - 1, position.y + 1);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1))
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x - 1, position.y);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1))
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x - 1, position.y - 1);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1))
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x, position.y - 1);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1)) 
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x + 1, position.y - 1);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1)) 
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x + 1, position.y + 1);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1)) 
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x, position.y + 1);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1)) 
+            {
+                AddFreePosition(position1);
+            }
             position1 = new IntVector2(position.x + 1, position.y);
-            if (IsFreePosition(position1)) return position1;
+            if (IsFreePosition(position1))
+            {
+                AddFreePosition(position1);
+            }
+            
+            _freePositions.Sort(
+                delegate(KeyValuePair<IntVector2, int> pair1,
+                    KeyValuePair<IntVector2, int> pair2)
+                {
+                    return pair1.Value.CompareTo(pair2.Value);
+                }
+            );
+
+            Debug.Log(_freePositions);
+
+            if (_freePositions.Count > 0)
+            {
+                return _freePositions[0].Key;
+            }
 
             return IntVector2.UNASSIGNET;
+        }
+
+        private void AddFreePosition(IntVector2 position)
+        {
+            _freePositions.Add(new KeyValuePair<IntVector2, int>(position, GetH(position)));
+        }
+
+        private int GetH(IntVector2 intVector2)
+        {
+            return Math.Abs(_oneUnitController.Position.x - intVector2.x) +
+                Math.Abs(_oneUnitController.Position.y - intVector2.y);
         }
         
         private bool IsFreePosition(IntVector2 position)

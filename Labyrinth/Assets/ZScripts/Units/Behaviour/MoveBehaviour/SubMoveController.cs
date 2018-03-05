@@ -51,7 +51,6 @@ namespace ZScripts.Units
             {
                 if (NoWayToPointHandler != null)
                 {
-                    Debug.Log("NOWAYTOPOINTHANDLER" + _nextOccupiedPossition.x + " " + _nextOccupiedPossition.y);
                     NoWayToPointHandler(_nextOccupiedPossition);
                 }
                 return;

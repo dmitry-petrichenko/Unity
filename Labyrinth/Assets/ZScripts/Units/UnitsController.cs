@@ -22,9 +22,9 @@ namespace ZScripts.Units
             //_enemy.MoveTo(new IntVector2(3, 3));
             _enemy.Attack(player);
             //_enemy.Animate();
-            
+            /*
             EnemyController _enemy4 = container.Resolve<EnemyController>();
-            _enemy4.SetOnPosition(new IntVector2(2, 2));
+             _enemy4.SetOnPosition(new IntVector2(2, 2));
             //_enemy4.Animate();
             _enemy4.Attack(player);
             

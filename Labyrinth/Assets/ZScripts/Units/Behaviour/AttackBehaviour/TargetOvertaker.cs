@@ -29,7 +29,8 @@ namespace ZScripts.Units
         public void Overtake(IOneUnitController target)
         {
             _target = target;
-            _target.PositionChanged += OnTargetPositionChanged;
+            //_target.PositionChanged += OnTargetPositionChanged;
+            _target.MoveOneStepComplete += OnTargetPositionChanged;
             
             MoveToTarget();
         }
@@ -40,8 +41,10 @@ namespace ZScripts.Units
             DispatchEvent(Complete);
         }
 
-        private void OnTargetPositionChanged(IntVector2 position)
+        private void OnTargetPositionChanged(/*IntVector2 _position*/)
         {
+            IntVector2 position = _target.Position;
+            
             if (PositionInUnitRange(position))
             {
                 DispatchEvent(TargetMoved);
@@ -97,7 +100,8 @@ namespace ZScripts.Units
 
         public void Cancel()
         {
-            _target.PositionChanged -= OnTargetPositionChanged;
+            //_target.PositionChanged -= OnTargetPositionChanged;
+            _target.MoveOneStepComplete += OnTargetPositionChanged;
         }
     }
 }

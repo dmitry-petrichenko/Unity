@@ -11,6 +11,8 @@ namespace ZScripts.Units
     {
         public event Action<IntVector2> PositionChanged;
         public event Action CompleteMoveTo;
+        public event Action MoveOneStepStart;
+        public event Action MoveOneStepComplete;
 
         private MoveController _moveController;
         private IUnitsTable _unitsTable;
@@ -31,9 +33,31 @@ namespace ZScripts.Units
             base.Initialize();            
             // Initialize behaviour
             _moveController.Initialize(this);
-            _moveController.StartMove += UpdatePosition;
+            _moveController.MoveOneStepStart += StartMoveHandler;
             _moveController.MoveToComplete += MoveCompleteHandler;
+            _moveController.MoveOneStepComplete += MoveOneStepCompleteHandler;
             _unitsTable.AddUnit(this);
+        }
+
+        private void MoveOneStepCompleteHandler()
+        {
+            if (MoveOneStepComplete != null)
+            {
+                MoveOneStepComplete();
+            }
+        }
+
+        private void StartMoveHandler()
+        {
+            UpdatePosition();
+            if (MoveOneStepStart != null)
+                MoveOneStepStart();
+        }
+
+        protected virtual void UpdatePosition()
+        {
+            if (PositionChanged != null)
+                PositionChanged(Position);
         }
 
         private void MoveCompleteHandler()
@@ -47,13 +71,6 @@ namespace ZScripts.Units
         public void SetOnPosition(IntVector2 position)
         {
             _moveController.SetOnPosition(position);
-        }
-
-        protected virtual void UpdatePosition()
-        {
-            //Debug.Log("UPDATEPOSITION" + Position.x +" "+ Position.y );
-            if (PositionChanged != null)
-                PositionChanged(Position);
         }
 
         public IntVector2 Position

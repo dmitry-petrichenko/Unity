@@ -17,7 +17,7 @@ namespace ZScripts.Units
         {
             _unit.transform.position = new Vector3(position.x, 0, position.y);
             Position = position;
-            DispatchEvent(StartMove);
+            DispatchEvent(MoveStart);
         }   
 
         public void Initialize(IUnitSettings unitSettings)
@@ -45,7 +45,7 @@ namespace ZScripts.Units
                 .OnComplete(CompleteMoveHandler)
                 .SetEase(Ease.Linear);
             
-            DispatchEvent(StartMove);
+            DispatchEvent(MoveStart);
         }
 
         private bool IsDiagonal(IntVector2 position1, IntVector2 position2)
@@ -63,14 +63,14 @@ namespace ZScripts.Units
         private void CompleteMoveHandler()
         {
             IsMoving = false;
-            DispatchEvent(CompleteMove);
+            DispatchEvent(MoveComplete);
         }
 
         public void Wait()
         {
         }
 
-        public event Action CompleteMove;
-        public event Action StartMove;
+        public event Action MoveComplete;
+        public event Action MoveStart;
     }
 }

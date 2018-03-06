@@ -37,12 +37,12 @@ namespace ZScripts.Units
         
         public void Initialize()
         {
-            _motionController.StartMove += StartMoveHandler;
+            _motionController.MoveStart += StartMoveHandler;
         }
 
         private void StartMoveHandler()
         {
-            DispatchEvent(StartMove);
+            DispatchEvent(MoveOneStepStart);
         }
 
         public void MoveTo(List<IntVector2> path)
@@ -55,23 +55,24 @@ namespace ZScripts.Units
                 }
                 return;
             }
-            _motionController.CompleteMove += MoveStepCompleteHandler;
-            _motionController.CompleteMove += MoveNextStep;
+            _motionController.MoveComplete += MoveStepCompleteHandler;
+            _motionController.MoveComplete += MoveNextStep;
             _path = path;
             MoveNextStep();
         }
 
         private void MoveStepCompleteHandler()
-        {                            
-            if (MoveStepComplete != null)
+        {         
+            
+            if (MoveOneStepComplete != null)
             {
-                MoveStepComplete();
+                MoveOneStepComplete();
             }
         }
 
         public void Cancel()
         {
-            _motionController.CompleteMove -= MoveNextStep;
+            _motionController.MoveComplete -= MoveNextStep;
         }
 
         public IntVector2 Position
@@ -98,7 +99,7 @@ namespace ZScripts.Units
             }
             else
             {
-                _motionController.CompleteMove -= MoveNextStep;
+                _motionController.MoveComplete -= MoveNextStep;
                 
                 if (MoveToComplete != null)
                 {
@@ -144,9 +145,9 @@ namespace ZScripts.Units
         }
 
         public event Action MoveToComplete;
-        public event Action MoveStepComplete;
+        public event Action MoveOneStepComplete;
         public event Action<IntVector2> NextPositionOccupiedHandler;
         public event Action<IntVector2> NoWayToPointHandler;
-        public event Action StartMove;
+        public event Action MoveOneStepStart;
     }
 }

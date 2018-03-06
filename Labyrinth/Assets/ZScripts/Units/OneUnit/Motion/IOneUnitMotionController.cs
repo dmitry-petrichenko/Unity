@@ -12,7 +12,7 @@ namespace ZScripts.Units
         void Initialize(IUnitSettings unitSettings);
         bool IsMoving { get; }
 
-        event Action CompleteMove;
-        event Action StartMove;
+        event Action MoveStart;
+        event Action MoveComplete;
     }
 }

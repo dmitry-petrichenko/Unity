@@ -10,10 +10,9 @@ namespace ZScripts.Units
         private MoveConsideringOccupatedController _moveConsideringOccupatedController;
         private WaitMoveTurnController _waitMoveTurnController;
 
-         
         public event Action MoveToComplete;
         public event Action MoveOneStepComplete;
-        public event Action StartMove;
+        public event Action MoveOneStepStart;
         
         public MoveController(
             MoveToHandlerController moveToHandlerController,
@@ -27,7 +26,6 @@ namespace ZScripts.Units
             _subMoveController = subMoveController;
             _moveToHandlerController = moveToHandlerController;
             _moveConsideringOccupatedController = moveConsideringOccupatedController;
-
         }
         
         public void Initialize(IOneUnitController unitController)
@@ -35,8 +33,8 @@ namespace ZScripts.Units
             _unitController = unitController;
             
             _subMoveController.MoveToComplete += MoveToCompleteHandler;
-            _subMoveController.MoveStepComplete += MoveOneStepCompleteHandler;
-            _subMoveController.StartMove += StartMoveHandler;
+            _subMoveController.MoveOneStepComplete += MoveOneStepCompleteHandler;
+            _subMoveController.MoveOneStepStart += StartMoveHandler;
             
             _waitMoveTurnController.Initialize(_unitController);
         }
@@ -53,7 +51,7 @@ namespace ZScripts.Units
 
         private void StartMoveHandler()
         {
-            DispatchEvent(StartMove);
+            DispatchEvent(MoveOneStepStart);
         }
         
         public void MoveTo(IntVector2 position)

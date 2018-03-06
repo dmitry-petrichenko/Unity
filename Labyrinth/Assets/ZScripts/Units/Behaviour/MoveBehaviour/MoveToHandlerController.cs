@@ -40,14 +40,14 @@ namespace ZScripts.Units
         
         private void ChangeDirrection()
         {
-            _subMoveController.MoveStepComplete -= OnChangeDirrectionMoveCmplete;
+            _subMoveController.MoveOneStepComplete -= OnChangeDirrectionMoveCmplete;
             _subMoveController.Cancel();
-            _subMoveController.MoveStepComplete += OnChangeDirrectionMoveCmplete;
+            _subMoveController.MoveOneStepComplete += OnChangeDirrectionMoveCmplete;
         }
         
         private void OnChangeDirrectionMoveCmplete()
         {
-            _subMoveController.MoveStepComplete -= OnChangeDirrectionMoveCmplete;
+            _subMoveController.MoveOneStepComplete -= OnChangeDirrectionMoveCmplete;
             MoveToDirrection(_newPosition);
         }
     }

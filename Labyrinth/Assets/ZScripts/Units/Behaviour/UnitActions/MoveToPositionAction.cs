@@ -17,7 +17,7 @@ namespace ZScripts.Units.UnitActions
 
         public void Start()
         {
-            _oneUnitController.CompleteMoveTo += MoveCompleteHandler;
+            _oneUnitController.MoveToComplete += MoveCompleteHandler;
             IntVector2 position = _movingRandomizer.GetRandomPoint(_oneUnitController.Position);
             _oneUnitController.MoveTo(position);
         }

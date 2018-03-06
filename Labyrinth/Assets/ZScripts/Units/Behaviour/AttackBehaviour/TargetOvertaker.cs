@@ -30,15 +30,16 @@ namespace ZScripts.Units
         {
             _target = target;
             //_target.PositionChanged += OnTargetPositionChanged;
-            _target.MoveOneStepComplete += OnTargetPositionChanged;
+            _target.MoveToComplete += OnTargetPositionChanged;
             
             MoveToTarget();
         }
 
         private void OnUnitCompleteMoveTo()
         {
-            _oneUnitController.CompleteMoveTo -= OnUnitCompleteMoveTo;
+            _oneUnitController.MoveToComplete -= OnUnitCompleteMoveTo;
             DispatchEvent(Complete);
+            //OnTargetPositionChanged();
         }
 
         private void OnTargetPositionChanged(/*IntVector2 _position*/)
@@ -58,7 +59,7 @@ namespace ZScripts.Units
 
         private void MoveToTarget()
         {
-            _oneUnitController.CompleteMoveTo += OnUnitCompleteMoveTo;
+            _oneUnitController.MoveToComplete += OnUnitCompleteMoveTo;
             List<IntVector2> path =
                 _pathFinderController.GetPath(_target.Position, _oneUnitController.Position, null);
 
@@ -101,7 +102,8 @@ namespace ZScripts.Units
         public void Cancel()
         {
             //_target.PositionChanged -= OnTargetPositionChanged;
-            _target.MoveOneStepComplete += OnTargetPositionChanged;
+            _target.MoveToComplete += OnTargetPositionChanged;
+            //_oneUnitController.MoveToComplete -= OnUnitCompleteMoveTo;
         }
     }
 }

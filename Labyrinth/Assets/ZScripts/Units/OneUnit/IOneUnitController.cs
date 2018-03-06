@@ -13,7 +13,7 @@ namespace ZScripts.Units
         void Wait(IntVector2 position);
         
         event Action<IntVector2> PositionChanged;
-        event Action CompleteMoveTo;        
+        event Action MoveToComplete;        
         event Action MoveOneStepStart;
         event Action MoveOneStepComplete;
     }

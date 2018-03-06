@@ -10,7 +10,7 @@ namespace ZScripts.Units
     public class OneUnitController : OneUnitServicesContainer, IOneUnitController
     {
         public event Action<IntVector2> PositionChanged;
-        public event Action CompleteMoveTo;
+        public event Action MoveToComplete;
         public event Action MoveOneStepStart;
         public event Action MoveOneStepComplete;
 
@@ -62,9 +62,9 @@ namespace ZScripts.Units
 
         private void MoveCompleteHandler()
         {
-            if (CompleteMoveTo != null)
+            if (MoveToComplete != null)
             {
-                CompleteMoveTo();
+                MoveToComplete();
             }
         }
 

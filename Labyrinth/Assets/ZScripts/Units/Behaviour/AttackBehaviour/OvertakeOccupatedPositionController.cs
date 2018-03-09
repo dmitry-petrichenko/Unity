@@ -101,8 +101,6 @@ namespace ZScripts.Units
                 }
             );
 
-            Debug.Log(_freePositions);
-
             if (_freePositions.Count > 0)
             {
                 return _freePositions[0].Key;

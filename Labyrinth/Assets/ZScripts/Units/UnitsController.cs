@@ -22,7 +22,7 @@ namespace ZScripts.Units
             //_enemy.MoveTo(new IntVector2(3, 3));
             _enemy.Attack(player);
             //_enemy.Animate();
-            /*
+            
             EnemyController _enemy4 = container.Resolve<EnemyController>();
              _enemy4.SetOnPosition(new IntVector2(2, 2));
             //_enemy4.Animate();
@@ -47,8 +47,8 @@ namespace ZScripts.Units
             
             EnemyController _enemy7 = container.Resolve<EnemyController>();
             _enemy7.SetOnPosition(new IntVector2(0, 4));
-            _enemy7.Animate();*/
-            
+            _enemy7.Animate();
+            */
         }
     }
 }

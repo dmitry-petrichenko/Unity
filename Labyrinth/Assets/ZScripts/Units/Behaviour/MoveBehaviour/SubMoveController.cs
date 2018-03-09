@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Resources;
 using Units;
 using UnityEditor;
 using UnityEngine;
@@ -47,6 +48,7 @@ namespace ZScripts.Units
 
         public void MoveTo(List<IntVector2> path)
         {
+            Reset();
             if (path.Count == 0)
             {
                 if (NoWayToPointHandler != null)
@@ -61,9 +63,15 @@ namespace ZScripts.Units
             MoveNextStep();
         }
 
+        private void Reset()
+        {
+            _path = null;
+            _motionController.MoveComplete -= MoveNextStep;
+            _motionController.MoveComplete -= MoveStepCompleteHandler;
+        }
+
         private void MoveStepCompleteHandler()
         {         
-            
             if (MoveOneStepComplete != null)
             {
                 MoveOneStepComplete();
@@ -99,12 +107,11 @@ namespace ZScripts.Units
             }
             else
             {
-                _motionController.MoveComplete -= MoveNextStep;
-                
                 if (MoveToComplete != null)
                 {
                     MoveToComplete();
                 }
+                Reset();
             }
         }
 

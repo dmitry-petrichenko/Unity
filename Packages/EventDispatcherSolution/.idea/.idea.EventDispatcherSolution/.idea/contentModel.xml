@@ -4,10 +4,23 @@
     <e p="C:\Users\dimap\.Rider2018.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\dimap\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_EventDispatcherSolution.-1030057566.00" t="ExcludeRecursive" />
     <e p="D:\Projects_Home\Unity\Packages\EventDispatcherSolution" t="IncludeFlat">
+      <e p="ConsoleApp1" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ConsoleApp1.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="ConsoleApp1.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
       <e p="EventDispatcherSolution" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Class1.cs" t="Include" />
+        <e p="EventDispatcher.cs" t="Include" />
         <e p="EventDispatcherSolution.csproj" t="IncludeRecursive" />
+        <e p="IEventDispatcher.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">

@@ -1,6 +1,6 @@
 using System;
 
-namespace ID5D6AAC.EventDispatcher
+namespace ID5D6AAC.Common.EventDispatcher
 {
     public interface IEventDispatcher
     {

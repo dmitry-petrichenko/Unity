@@ -15,8 +15,8 @@
     "frameworks": {
       "netcoreapp2.1": {
         "projectReferences": {
-          "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\EventDispatcherSolution.csproj": {
-            "projectPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\EventDispatcherSolution.csproj"
+          "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj": {
+            "projectPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj"
           }
         }
       }

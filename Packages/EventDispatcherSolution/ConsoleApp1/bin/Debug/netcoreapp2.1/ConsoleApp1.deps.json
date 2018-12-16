@@ -8,15 +8,15 @@
     ".NETCoreApp,Version=v2.1": {
       "ConsoleApp1/1.0.0": {
         "dependencies": {
-          "EventDispatcherSolution": "1.0.0"
+          "EventDispatcher": "1.0.0"
         },
         "runtime": {
           "ConsoleApp1.dll": {}
         }
       },
-      "EventDispatcherSolution/1.0.0": {
+      "EventDispatcher/1.0.0": {
         "runtime": {
-          "EventDispatcherSolution.dll": {}
+          "EventDispatcher.dll": {}
         }
       }
     }
@@ -27,7 +27,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "EventDispatcherSolution/1.0.0": {
+    "EventDispatcher/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

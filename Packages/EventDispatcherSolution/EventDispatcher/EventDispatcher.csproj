@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+		<PackageId>ID5D6AAC.Common.EventDispatcher</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Dmitry Petrichenko</Authors>
+		<Company>ID5D6AAC</Company>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RootNamespace>EventDispatcherSolution</RootNamespace>
+    </PropertyGroup>
+
+</Project>

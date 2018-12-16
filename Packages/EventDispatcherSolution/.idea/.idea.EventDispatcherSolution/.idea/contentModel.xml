@@ -16,15 +16,15 @@
         </e>
         <e p="Program.cs" t="Include" />
       </e>
-      <e p="EventDispatcherSolution" t="IncludeRecursive">
+      <e p="EventDispatcher" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="EventDispatcher.cs" t="Include" />
-        <e p="EventDispatcherSolution.csproj" t="IncludeRecursive" />
+        <e p="EventDispatcher.csproj" t="IncludeRecursive" />
         <e p="IEventDispatcher.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
-              <e p="EventDispatcherSolution.AssemblyInfo.cs" t="Include" />
+              <e p="EventDispatcher.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>

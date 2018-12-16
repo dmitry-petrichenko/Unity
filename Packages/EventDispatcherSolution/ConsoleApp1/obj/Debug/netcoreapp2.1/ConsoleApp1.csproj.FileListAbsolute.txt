@@ -3,8 +3,6 @@ D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\ne
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\ConsoleApp1.runtimeconfig.dev.json
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\ConsoleApp1.dll
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\ConsoleApp1.pdb
-D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\EventDispatcherSolution.dll
-D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\EventDispatcherSolution.pdb
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\netcoreapp2.1\ConsoleApp1.csprojAssemblyReference.cache
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\netcoreapp2.1\ConsoleApp1.csproj.CoreCompileInputs.cache
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\netcoreapp2.1\ConsoleApp1.AssemblyInfoInputs.cache
@@ -12,3 +10,5 @@ D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\ne
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\netcoreapp2.1\ConsoleApp1.csproj.CopyComplete
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\netcoreapp2.1\ConsoleApp1.dll
 D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\obj\Debug\netcoreapp2.1\ConsoleApp1.pdb
+D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\EventDispatcher.dll
+D:\Projects_Home\Unity\Packages\EventDispatcherSolution\ConsoleApp1\bin\Debug\netcoreapp2.1\EventDispatcher.pdb

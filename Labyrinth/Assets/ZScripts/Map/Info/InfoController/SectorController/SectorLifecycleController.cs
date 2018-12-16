@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VR.WSA.Persistence;
+using UnityEngine.XR.WSA.Persistence;
 
 namespace ZScripts.Map.Info
 {

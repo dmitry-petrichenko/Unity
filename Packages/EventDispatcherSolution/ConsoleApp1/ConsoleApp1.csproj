@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\EventDispatcherSolution\EventDispatcherSolution.csproj" />
+      <ProjectReference Include="..\EventDispatcher\EventDispatcher.csproj" />
     </ItemGroup>
 
 </Project>

@@ -2,21 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25ee3d74-66cc-4199-b5d7-ae2a28ab156e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventDispatcherSolution/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventDispatcherSolution/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventDispatcherSolution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventDispatcherSolution/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/ConsoleApp1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/ConsoleApp1.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/ConsoleApp1.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/ConsoleApp1.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/ConsoleApp1.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/ConsoleApp1.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/ConsoleApp1.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/ConsoleApp1.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/EventDispatcherSolution.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/EventDispatcherSolution.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/EventDispatcherSolution.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/bin/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/ConsoleApp1.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/ConsoleApp1.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp2.1/ConsoleApp1.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/bin/Debug/netcoreapp2.1/EventDispatcherSolution.dll" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution/bin/Debug/netcoreapp2.1/EventDispatcherSolution.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/bin/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution/bin/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.dll" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcher/bin/Debug/netcoreapp2.1/EventDispatcher.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcher/bin/Debug/netcoreapp2.1/EventDispatcher.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcher/bin/Debug/netcoreapp2.1/EventDispatcherSolution.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution.sln" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcherSolution.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/EventDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/EventDispatcherSolution.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/EventDispatcher.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/IEventDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.dll" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/Debug/netcoreapp2.1/EventDispatcherSolution.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/EventDispatcherSolution.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/EventDispatcherSolution.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/EventDispatcherSolution.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/EventDispatcherSolution.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/EventDispatcherSolution.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/EventDispatcherSolution.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventDispatcherSolution/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/EventDispatcher/obj/project.packagespec.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,29 +49,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs">
+        <entry file="file://$PROJECT_DIR$/EventDispatcher/EventDispatcher.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="48" column="61" lean-forward="true" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+            <state>
               <folding>
-                <marker date="1543176413073" expanded="true" signature="6:47" ph="..." />
-                <marker date="1543176413073" expanded="true" signature="90:2888" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="144:2884" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="360:564" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="636:893" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="714:818" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="979:1374" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="1059:1185" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="1427:1622" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="1504:1612" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="1694:2217" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="1843:2207" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="1935:2191" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="2310:2769" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="2428:2524" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="2593:2657" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="2691:2759" ph="{...}" />
-                <marker date="1543176413073" expanded="true" signature="2831:2878" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="6:47" ph="..." />
+                <marker date="1543176704430" expanded="true" signature="90:2892" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="144:2888" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="360:564" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="636:893" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="714:818" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="979:1374" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="1059:1185" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="1427:1622" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="1504:1612" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="1694:2221" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="1845:2211" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="1939:2195" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="2314:2773" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="2432:2528" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="2597:2661" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="2695:2763" ph="{...}" />
+                <marker date="1543176704430" expanded="true" signature="2835:2882" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -58,24 +79,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ConsoleApp1/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="23" column="9" lean-forward="true" selection-end-line="25" selection-end-column="1" />
+            <state relative-caret-position="102">
+              <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
               <folding>
-                <marker date="1543176605083" expanded="true" signature="6:52" ph="..." />
-                <marker date="1543176605083" expanded="true" signature="75:698" ph="{...}" />
-                <marker date="1543176605083" expanded="true" signature="95:696" ph="{...}" />
-                <marker date="1543176605083" expanded="true" signature="141:601" ph="{...}" />
-                <marker date="1543176605083" expanded="true" signature="636:690" ph="{...}" />
+                <marker date="1543270264931" expanded="true" signature="6:52" ph="..." />
+                <marker date="1543270264931" expanded="true" signature="75:836" ph="{...}" />
+                <marker date="1543270264931" expanded="true" signature="95:834" ph="{...}" />
+                <marker date="1543270264931" expanded="true" signature="141:639" ph="{...}" />
+                <marker date="1543270264931" expanded="true" signature="678:739" ph="{...}" />
+                <marker date="1543270264931" expanded="true" signature="774:828" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs">
+        <entry file="file://$PROJECT_DIR$/EventDispatcher/IEventDispatcher.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="64" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+              <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
               <folding>
                 <marker date="1543175825990" expanded="true" signature="56:365" ph="{...}" />
                 <marker date="1543175825990" expanded="true" signature="96:363" ph="{...}" />
@@ -90,9 +112,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/EventDispatcher/IEventDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ConsoleApp1/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/EventDispatcher/EventDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -100,14 +122,15 @@
         <option value="$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs" />
         <option value="$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs" />
         <option value="$PROJECT_DIR$/ConsoleApp1/Program.cs" />
+        <option value="$PROJECT_DIR$/../../TestSolutions/ConsoleApp1/ConsoleApp1/Program.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-63" />
-    <option name="y" value="71" />
+    <option name="x" value="80" />
+    <option name="y" value="19" />
     <option name="width" value="1079" />
-    <option name="height" value="775" />
+    <option name="height" value="686" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -115,7 +138,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -131,14 +154,14 @@
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="EventDispatcherSolution" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="EventDispatcherSolution" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="EventDispatcher" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
-      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -197,12 +220,13 @@
       <updated>1542837511040</updated>
       <workItem from="1542837516334" duration="651000" />
       <workItem from="1542921153068" duration="2270000" />
-      <workItem from="1543175241331" duration="1347000" />
+      <workItem from="1543175241331" duration="1566000" />
+      <workItem from="1543269142449" duration="3890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4268000" />
+    <option name="totallyTimeSpent" value="8377000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -217,17 +241,17 @@
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21984127" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2777778" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.29185867" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3809524" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info active="true" anchor="bottom" id="NuGet" order="7" visible="true" weight="0.59447" />
       <window_info anchor="bottom" id="Performance Profiler" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" />
@@ -259,10 +283,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/EventDispatcherSolution/IEventDispatcher.cs">
+    <entry file="file://$PROJECT_DIR$/EventDispatcher/IEventDispatcher.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="64" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
           <folding>
             <marker date="1543175825990" expanded="true" signature="56:365" ph="{...}" />
             <marker date="1543175825990" expanded="true" signature="96:363" ph="{...}" />
@@ -270,43 +294,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EventDispatcherSolution/EventDispatcher.cs">
+    <entry file="file://$PROJECT_DIR$/EventDispatcher/EventDispatcher.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="48" column="61" lean-forward="true" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+        <state>
           <folding>
-            <marker date="1543176413073" expanded="true" signature="6:47" ph="..." />
-            <marker date="1543176413073" expanded="true" signature="90:2888" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="144:2884" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="360:564" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="636:893" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="714:818" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="979:1374" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="1059:1185" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="1427:1622" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="1504:1612" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="1694:2217" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="1843:2207" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="1935:2191" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="2310:2769" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="2428:2524" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="2593:2657" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="2691:2759" ph="{...}" />
-            <marker date="1543176413073" expanded="true" signature="2831:2878" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="6:47" ph="..." />
+            <marker date="1543176704430" expanded="true" signature="90:2892" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="144:2888" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="360:564" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="636:893" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="714:818" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="979:1374" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="1059:1185" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="1427:1622" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="1504:1612" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="1694:2221" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="1845:2211" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="1939:2195" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="2314:2773" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="2432:2528" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="2597:2661" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="2695:2763" ph="{...}" />
+            <marker date="1543176704430" expanded="true" signature="2835:2882" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConsoleApp1/Program.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="9" lean-forward="true" selection-end-line="25" selection-end-column="1" />
+        <state relative-caret-position="102">
+          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding>
-            <marker date="1543176605083" expanded="true" signature="6:52" ph="..." />
-            <marker date="1543176605083" expanded="true" signature="75:698" ph="{...}" />
-            <marker date="1543176605083" expanded="true" signature="95:696" ph="{...}" />
-            <marker date="1543176605083" expanded="true" signature="141:601" ph="{...}" />
-            <marker date="1543176605083" expanded="true" signature="636:690" ph="{...}" />
+            <marker date="1543270264931" expanded="true" signature="6:52" ph="..." />
+            <marker date="1543270264931" expanded="true" signature="75:836" ph="{...}" />
+            <marker date="1543270264931" expanded="true" signature="95:834" ph="{...}" />
+            <marker date="1543270264931" expanded="true" signature="141:639" ph="{...}" />
+            <marker date="1543270264931" expanded="true" signature="678:739" ph="{...}" />
+            <marker date="1543270264931" expanded="true" signature="774:828" ph="{...}" />
           </folding>
         </state>
       </provider>

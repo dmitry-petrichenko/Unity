@@ -208,14 +208,14 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "EventDispatcherSolution/1.0.0": {
+      "ID5D6AAC.Common.EventDispatcher/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "compile": {
-          "bin/placeholder/EventDispatcherSolution.dll": {}
+          "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EventDispatcherSolution.dll": {}
+          "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         }
       }
     }
@@ -684,15 +684,15 @@
         "netstandard.library.nuspec"
       ]
     },
-    "EventDispatcherSolution/1.0.0": {
+    "ID5D6AAC.Common.EventDispatcher/1.0.0": {
       "type": "project",
-      "path": "../EventDispatcherSolution/EventDispatcherSolution.csproj",
-      "msbuildProject": "../EventDispatcherSolution/EventDispatcherSolution.csproj"
+      "path": "../EventDispatcher/EventDispatcher.csproj",
+      "msbuildProject": "../EventDispatcher/EventDispatcher.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "EventDispatcherSolution >= 1.0.0",
+      "ID5D6AAC.Common.EventDispatcher >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
@@ -727,8 +727,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\EventDispatcherSolution.csproj": {
-              "projectPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\EventDispatcherSolution.csproj"
+            "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj": {
+              "projectPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj"
             }
           }
         }

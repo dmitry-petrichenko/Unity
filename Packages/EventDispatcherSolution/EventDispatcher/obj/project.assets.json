@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\EventDispatcherSolution.csproj",
-      "projectName": "EventDispatcherSolution",
-      "projectPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\EventDispatcherSolution.csproj",
+      "projectUniqueName": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj",
+      "projectName": "ID5D6AAC.Common.EventDispatcher",
+      "projectPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj",
       "packagesPath": "C:\\Users\\dimap\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcherSolution\\obj\\",
+      "outputPath": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

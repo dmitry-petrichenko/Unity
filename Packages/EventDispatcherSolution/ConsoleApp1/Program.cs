@@ -7,15 +7,21 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            EventDispatcher e = new EventDispatcher();
+            IEventDispatcher e = new EventDispatcher();
             e.AddEventListener("asa", () => Console.WriteLine("hello"));
             e.AddEventListener("asa", () => Console.WriteLine("hello2"));
             e.AddEventListener("as1", () => Console.WriteLine("hello3"));
             
-            e.AddEventListener<int>("asaAkira", Wright);
+            e.AddEventListener("asaAkira", Wright2);
             
             e.DispatchEvent("asa");
             e.DispatchEvent("asaAkira", 16);
+            e.DispatchEvent("asaAkira");
+        }
+
+        private static void Wright2()
+        {
+            Console.WriteLine("hello0");
         }
 
         static void Wright(int i)

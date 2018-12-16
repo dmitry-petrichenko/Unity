@@ -4,6 +4,7 @@ using ZScripts.Units.PathFinder;
 
 namespace ZScripts.Units
 {
+    //If position changed when unit is moving.
     public class MoveToHandlerController
     {
         private ISubMoveController _subMoveController;

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventDispatcherSolution", "EventDispatcherSolution\EventDispatcherSolution.csproj", "{B62B6BCD-22B2-4B93-8A0C-98ED0A1D6ADC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventDispatcher", "EventDispatcher\EventDispatcher.csproj", "{B62B6BCD-22B2-4B93-8A0C-98ED0A1D6ADC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{9963824F-3750-44A7-8EA3-76958C63ADEC}"
 EndProject

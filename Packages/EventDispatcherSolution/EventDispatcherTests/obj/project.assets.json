@@ -70,9 +70,9 @@
           "lib/net452/xunit.execution.desktop.dll": {}
         }
       },
-      "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+      "ID5D6AAC.Common.EventDispatcher/1.1.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v1.0",
         "compile": {
           "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         },
@@ -150,9 +150,9 @@
           "lib/net452/xunit.execution.desktop.dll": {}
         }
       },
-      "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+      "ID5D6AAC.Common.EventDispatcher/1.1.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v1.0",
         "compile": {
           "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         },
@@ -230,9 +230,9 @@
           "lib/net452/xunit.execution.desktop.dll": {}
         }
       },
-      "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+      "ID5D6AAC.Common.EventDispatcher/1.1.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v1.0",
         "compile": {
           "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         },
@@ -310,9 +310,9 @@
           "lib/net452/xunit.execution.desktop.dll": {}
         }
       },
-      "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+      "ID5D6AAC.Common.EventDispatcher/1.1.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v1.0",
         "compile": {
           "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         },
@@ -427,7 +427,7 @@
         "xunit.extensibility.execution.nuspec"
       ]
     },
-    "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+    "ID5D6AAC.Common.EventDispatcher/1.1.0": {
       "type": "project",
       "path": "../EventDispatcher/EventDispatcher.csproj",
       "msbuildProject": "../EventDispatcher/EventDispatcher.csproj"
@@ -435,7 +435,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
-      "ID5D6AAC.Common.EventDispatcher >= 1.0.0",
+      "ID5D6AAC.Common.EventDispatcher >= 1.1.0",
       "xunit >= 2.4.1"
     ]
   },

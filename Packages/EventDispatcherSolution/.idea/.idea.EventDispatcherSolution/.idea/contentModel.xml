@@ -13,7 +13,7 @@
         <e p="IEventDispatcher.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netstandard2.0" t="Include">
+            <e p="netstandard1.0" t="Include">
               <e p="EventDispatcher.AssemblyInfo.cs" t="Include" />
             </e>
           </e>

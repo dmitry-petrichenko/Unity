@@ -100,7 +100,7 @@ namespace EventDispatcherTests
             eventDispatcher.DispatchEvent(SOME_OTHER_EVENT);
             
             // Assert
-            Assert.True(actualCallCount == actualCallCount);
+            Assert.True(actualCallCount == expectedCallCount);
         }
         
         [Fact]

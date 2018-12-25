@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0",
+  "version": "1.1.0",
   "restore": {
     "projectUniqueName": "D:\\Projects_Home\\Unity\\Packages\\EventDispatcherSolution\\EventDispatcher\\EventDispatcher.csproj",
     "projectName": "ID5D6AAC.Common.EventDispatcher",
@@ -10,10 +10,10 @@
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
-      "netstandard2.0"
+      "netstandard1.0"
     ],
     "frameworks": {
-      "netstandard2.0": {
+      "netstandard1.0": {
         "projectReferences": {}
       }
     },
@@ -24,20 +24,15 @@
     }
   },
   "frameworks": {
-    "netstandard2.0": {
+    "netstandard1.0": {
       "dependencies": {
         "NETStandard.Library": {
           "suppressParent": "All",
           "target": "Package",
-          "version": "[2.0.3, )",
+          "version": "[1.6.1, )",
           "autoReferenced": true
         }
-      },
-      "imports": [
-        "net461"
-      ],
-      "assetTargetFallback": true,
-      "warn": true
+      }
     }
   }
 }

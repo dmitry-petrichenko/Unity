@@ -208,9 +208,9 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+      "ID5D6AAC.Common.EventDispatcher/1.1.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETStandard,Version=v1.0",
         "compile": {
           "bin/placeholder/ID5D6AAC.Common.EventDispatcher.dll": {}
         },
@@ -692,7 +692,7 @@
         "netstandard.library.nuspec"
       ]
     },
-    "ID5D6AAC.Common.EventDispatcher/1.0.0": {
+    "ID5D6AAC.Common.EventDispatcher/1.1.0": {
       "type": "project",
       "path": "../EventDispatcher/EventDispatcher.csproj",
       "msbuildProject": "../EventDispatcher/EventDispatcher.csproj"
@@ -700,7 +700,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "ID5D6AAC.Common.EventDispatcher >= 1.0.0",
+      "ID5D6AAC.Common.EventDispatcher >= 1.1.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },

@@ -8,6 +8,8 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="EventDispatcher.cs" t="Include" />
         <e p="EventDispatcher.csproj" t="IncludeRecursive" />
+        <e p="EventDispatcherNoParameters.cs" t="Include" />
+        <e p="EventDispatcherWithParameters.cs" t="Include" />
         <e p="IEventDispatcher.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

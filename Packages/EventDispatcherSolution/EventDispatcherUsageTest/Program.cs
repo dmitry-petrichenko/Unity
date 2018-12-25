@@ -11,25 +11,29 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             IEventDispatcher eventDispatcher = new EventDispatcher();
-            eventDispatcher.AddEventListener(EVENT_FIRST, () => Console.WriteLine("hello"));
-            eventDispatcher.AddEventListener(EVENT_SECOND, () => Console.WriteLine("hello2"));
-            eventDispatcher.AddEventListener(EVENT_FIRST, () => Console.WriteLine("hello3"));
+            eventDispatcher.AddEventListener<string>(EVENT_FIRST, WrightEventFirstToConsoleString);
+            eventDispatcher.AddEventListener<string>(EVENT_FIRST, WrightEventFirstToConsoleString);
+            eventDispatcher.AddEventListener<string>(EVENT_FIRST, WrightEventFirstToConsoleString);
             
-            eventDispatcher.AddEventListener("asaAkira", Wright2);
+            //eventDispatcher.AddEventListener(EVENT_SECOND, WrightEventFirstToConsole);
+            eventDispatcher.RemoveEventListener(EVENT_FIRST, new Action<string>(WrightEventFirstToConsoleString));
+            //eventDispatcher.RemoveEventListener(EVENT_FIRST, new Action(WrightEventFirstToConsole));
             
-            eventDispatcher.DispatchEvent(EVENT_FIRST);
-            eventDispatcher.DispatchEvent("asaAkira", 16);
-            eventDispatcher.DispatchEvent(EVENT_FIRST);
+            eventDispatcher.DispatchEvent(EVENT_FIRST, "hello world");
+            //eventDispatcher.DispatchEvent(EVENT_FIRST);
+            
+            //eventDispatcher.RemoveEventListener(EVENT_FIRST, new Action(Wright2));s
+            //eventDispatcher.DispatchEvent(EVENT_FIRST);
         }
 
-        private static void Wright2()
+        private static void WrightEventFirstToConsoleString(string value)
         {
-            Console.WriteLine("hello0");
+            Console.WriteLine(value);
         }
 
-        static void Wright(int i)
+        static void WrightEventFirstToConsole()
         {
-            Console.WriteLine(i);
+            Console.WriteLine("Event1");
         }
     }
 }
